@@ -1,4 +1,16 @@
 ProjectPublicSecret::Application.routes.draw do
+
+  #devise_for :users
+  # match 'auth/:provider/callback', to: 'sessions#create'
+  # match 'auth/failure', to: redirect('/')
+  # match 'signout', to: 'sessions#destroy', as: 'signout'
+
+
+  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
+                     controllers: {omniauth_callbacks: "oauth_callbacks"}
+
+
+  root :to => 'home#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +60,7 @@ ProjectPublicSecret::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+
 
   # See how all your routes lay out with "rake routes"
 
