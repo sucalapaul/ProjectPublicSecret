@@ -13,4 +13,10 @@ class OmniauthCallbacksController < ApplicationController
 	end
     alias_method :facebook, :all
 
+
+  def failure
+  	
+
+  end
+
 end
