@@ -2,11 +2,70 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* Login */
+
+.btn_oauth.facebook {
+	background-color: #3b5998;
+	margin: 0 0 30px 0;
+
+	-webkit-transition: linear 0.2s;
+	-moz-transition:   linear 0.2s;
+	-ms-transition:  linear 0.2s;
+	-o-transition:   linear 0.2s;
+	transition: linear 0.2s;
+}
+
+.btn_oauth {
+	font-family: "Museo-300", Helvetica Neue, Helvetica, Arial, sans-serif;
+	border: 0;
+	display: block;
+	padding-left: 70px;
+	padding-top: 16px;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
+	cursor: pointer;
+	-webkit-box-shadow: 0 0 3px #888;
+	-moz-box-shadow: 0 0 3px #888;
+	box-shadow: 0 0 3px #888;
+	background-repeat: no-repeat;
+	height: 34px;
+	width: 222px;
+}
+
+.btn_oauth:hover{
+	color:white;
+	text-decoration:none;
+	background-color:#1b3a83;
+
+	-webkit-transition: linear 0.2s;
+	-moz-transition:   linear 0.2s;
+	-ms-transition:  linear 0.2s;
+	-o-transition:   linear 0.2s;
+	transition: linear 0.2s;
+}
+
+
+/* End Login*/
+
+/* Top bar */
 .top-bar {
 	background: white;
 	position: relative;
 	padding: 10px;
 	margin-bottom: 40px;
+
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px; 
+
+	border: 1px solid #ddd;
+	border-bottom:0px;
+
+	-moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);background:white;
 }
 
 .top-bar .right-menu {
@@ -32,7 +91,7 @@
 .top-bar .stats li.stat {
 	float: left;
 	width: 120px;
-	padding: 10px 30px 0;
+	padding: 0px 0px 0 20px;
 	border-right: 1px solid #EEE;
 }
 .top-bar .stats li.stat .value {
@@ -41,3 +100,70 @@
 	line-height: 1.5em;
 	color: #0099B5;
 }
+
+/* End Top Bar*/
+
+/* Side Menu*/
+.bs-docs-sidenav {
+
+	float:left;
+	width: 230px;
+	margin: 0 20px 0 0;
+	padding: 0;
+	background-color: white;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .065);
+	-moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .065);
+	position:relative;
+	margin-bottom:30px;
+}
+
+.bs-docs-sidenav > li > a {
+display: block;
+width: 190px 9px;
+margin: 0 0 -1px;
+padding: 8px 14px;
+border: 1px solid #E5E5E5;
+}
+
+.bs-docs-sidenav .icon-chevron-right {
+color:#111;
+float: right;
+margin-top: 2px;
+margin-right: -6px;
+opacity: .25;
+}
+
+/* End Side Menu*/
+
+/*User Content */
+
+.user-content {
+	float:left;
+	margin-bottom:30px;
+	width:498px;
+	height:300px; 
+	background:white;
+
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+
+	border: 1px solid #ddd;
+	border-bottom:0px;
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .065);
+	-moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .065);
+}
+
+
+
+
+
+
+
+
