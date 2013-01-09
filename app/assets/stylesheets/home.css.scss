@@ -21,22 +21,63 @@
 .gossip-post .gossip {
 
 	float:left;
-	width:500px;
+	width:530px;
 	margin:0 20px 0 0; 
-	background: #fff;
-	padding:15px;
-	border: 1px solid #ddd;
-	border-bottom:0px;
+}
 
+.gossip-post .text {
+	width:500px;
+	padding:15px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px; 
 
+	border: 1px solid #ddd;
+	border-bottom:0px;
+
 	-moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
 	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);background:white;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+	background:white;
+}
+
+.gossip-post .comments {
+	list-style: none;
+	margin-top:1px;
+}
+
+.gossip-post .comment {
+	background: #fff;
+	padding:7px;
+	border-left:1px solid #ddd;
+	border-right:1px solid #ddd;
+	border-bottom:1px dashed #ddd;
+	width:440px;
+	float:right;
 
 }
+
+
+
+.gossip-post .your-comment {
+	width:440px;
+	float:right;
+	background: #eee;
+	padding:7px;
+
+	border:1px solid #ddd;
+}
+
+.gossip-post .comment:hover {
+	background: #fafafa;
+}
+
+ li.comment:last-child {
+	border-bottom:none;
+}
+
+
+
  .gossip-post .side { 
  	margin-top:10px;
  	float:right;
