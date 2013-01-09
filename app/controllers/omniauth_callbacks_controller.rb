@@ -15,8 +15,7 @@ class OmniauthCallbacksController < ApplicationController
 
 
   def failure
-  	
-
+  	redirect_to root_path
   end
 
 end
