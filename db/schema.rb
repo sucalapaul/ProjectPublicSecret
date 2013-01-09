@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130109003506) do
+ActiveRecord::Schema.define(:version => 20130109114926) do
 
   create_table "circle_gossips", :force => true do |t|
     t.integer  "circle_id"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20130109003506) do
     t.integer  "following_count"
     t.integer  "gossip_count"
     t.integer  "circle_count"
+    t.string   "nickname"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

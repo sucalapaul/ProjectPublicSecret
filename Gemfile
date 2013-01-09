@@ -42,4 +42,5 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'devise'
+gem 'devise_invitable', '~> 1.0.0'
 gem 'omniauth-facebook'

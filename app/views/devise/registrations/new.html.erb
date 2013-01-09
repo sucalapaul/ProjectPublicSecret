@@ -6,6 +6,9 @@
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
 
+  <div><%= f.label :nickname %><br />
+  <%= f.text_field :nickname %></div>
+
   <% if f.object.password_required? %>
     <div class="field"><%= f.label :password %><br />
     <%= f.password_field :password %></div>
