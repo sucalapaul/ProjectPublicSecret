@@ -11,7 +11,84 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108155632) do
+ActiveRecord::Schema.define(:version => 20130109003506) do
+
+  create_table "circle_gossips", :force => true do |t|
+    t.integer  "circle_id"
+    t.integer  "gossip_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "circle_users", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "circle_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "circles", :force => true do |t|
+    t.string   "name"
+    t.integer  "city_id"
+    t.integer  "gossip_count"
+    t.integer  "people_count"
+    t.text     "description"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "cities", :force => true do |t|
+    t.string   "name"
+    t.integer  "circle_count"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "gossip_id"
+    t.integer  "user_id"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "followers", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "follower_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "gossip_votes", :force => true do |t|
+    t.integer  "gossip_id"
+    t.integer  "user_id"
+    t.boolean  "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "gossips", :force => true do |t|
+    t.text     "content"
+    t.integer  "like_count"
+    t.integer  "comments_count"
+    t.integer  "true_count"
+    t.integer  "false_count"
+    t.integer  "user_id"
+    t.boolean  "private"
+    t.float    "score"
+    t.integer  "circle_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "likes", :force => true do |t|
+    t.integer  "gossip_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -31,6 +108,10 @@ ActiveRecord::Schema.define(:version => 20130108155632) do
     t.string   "name"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.integer  "follower_count"
+    t.integer  "following_count"
+    t.integer  "gossip_count"
+    t.integer  "circle_count"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

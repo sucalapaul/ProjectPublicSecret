@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  content: MyText
+  like_count: 1
+  comments_count: 1
+  true_count: 1
+  false_count: 1
+  user_id: 1
+  private: false
+  score: 1.5
+  circle_id: 1
+
+two:
+  content: MyText
+  like_count: 1
+  comments_count: 1
+  true_count: 1
+  false_count: 1
+  user_id: 1
+  private: false
+  score: 1.5
+  circle_id: 1
