@@ -1,17 +1,23 @@
-<h2>Sign in</h2>
+<div style="width:292px;margin:0 auto;">
+	<a href="/users/auth/facebook" class="btn_oauth facebook" style="background-image: url( /assets/fb-ico.png)">Sign in with Facebook</a>
+
+	<center><h6 style="margin-bottom:25px"> - Or sign in with email -</h6> </center>
+
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  
+   	<div><%= f.email_field :email, :placeholder => "Email", :style => "width:275px;margin-bottom:20px" %></div>
+	<div><%= f.password_field :password , :placeholder => "Password", :style => "margin-bottom:10px;width:275px"%></div>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+	<div><%= f.submit "Sign in", :class => "btn btn-success pull-right" %></div>
+	<% if devise_mapping.rememberable? -%>
+	  <div><%= f.check_box :remember_me, :style => "float:left" %>    &nbsp;Remember me </div>
+	<% end %>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
-
-  <div><%= f.submit "Sign in" %></div>
+	<div><%= link_to "Forgot your password?", new_password_path(resource_name), :style => "margin-top:35px;float:right;margin-bottom:30px;margin-right:10px;" %></div>
+	
 <% end %>
+</div>
+<!-- <%= render "devise/shared/links" %> -->
 
-<%= render "devise/shared/links" %>
+

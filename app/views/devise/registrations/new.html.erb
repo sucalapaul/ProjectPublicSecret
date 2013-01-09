@@ -1,23 +1,25 @@
-<h2>Sign up</h2>
+<div style="width:292px;margin:0 auto;">
+<a href="/users/auth/facebook" class="btn_oauth facebook" style="background-image: url( /assets/fb-ico.png)">Sign up with Facebook</a>
+<center><h6 style="margin-bottom:25px"> - Or sign up with email -</h6> </center>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <div>
+  <%= f.email_field :email, :style => "width:275px;margin-bottom:20px", :placeholder => "email" %></div>
 
-  <div><%= f.label :nickname %><br />
-  <%= f.text_field :nickname %></div>
+  <div>
+  <%= f.text_field :nickname, :style => "width:275px;margin-bottom:20px", :placeholder => "anonymous nickname" %></div>
 
   <% if f.object.password_required? %>
-    <div class="field"><%= f.label :password %><br />
-    <%= f.password_field :password %></div>
+    <div class="field">
+    <%= f.password_field :password,  :style => "width:275px;margin-bottom:20px", :placeholder => "password" %></div>
 
-    <div class="field"><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %></div>
+    <div class="field">
+    <%= f.password_field :password_confirmation, :style => "width:275px;margin-bottom:10px", :placeholder => "confirm password" %></div>
   <% end %>
 
-  <div><%= f.submit "Sign up" %></div>
+  <div><%= f.submit "Sign up", :class => "btn btn-success pull-right", :style => "margin-bottom:30px;" %></div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+</div>
