@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  city_id: 1
+  gossip_count: 1
+  people_count: 1
+  description: MyText
+
+two:
+  name: MyString
+  city_id: 1
+  gossip_count: 1
+  people_count: 1
+  description: MyText
