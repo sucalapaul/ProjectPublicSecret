@@ -13,15 +13,49 @@
 <body>
   <%= render "menu_bar" %>
   
-  <div class="container-fluid">
-    <div class="row-fluid">
-      <div class= "span8 offset2">
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p> 
-      </div>
+  <!-- div to animate down for righting posts -->
+  <div class="post-gossip clearfix">
+    <div class="post-wrapper">
+       <p style="color:#888;float:right;margin-bottom:0pc;margin-top:15px;"> 453 left</p>
+      <h4 style="margin-bottom:0;color:white"> What's the word? </h4>
+
+        <div class="post-well clearfix">
+            
+            <textarea class="input-block-level" rows="3" style="max-height:90px;max-width:560px;"></textarea>
+             <button type="button" class="btn btn-primary pull-right "><i class="icon-pencil"></i> Post</button>
+             <div class="btn-toolbar pull-right" style="margin:0 20px 0 0">
+                <div class="btn-group">
+                  <a class="btn" href="#"><i class="icon-lock"></i> anonymous</a>
+                  <a class="btn active" href="#"><i class="icon-user"></i> you</a>
+                </div>
+              </div>
+              <p style="float:right;margin-top:5px;margin-bottom:0px;margin-right:15px;color:white;font-size:12px;">Post as:</p>
+             
+             <div class="btn-group">
+                <button class="btn dropdown-toggle" data-toggle="dropdown">Change Circle <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Colegiul National Emanouil Gojdu</a></li>
+                  <li><a href="#">Colegiul National Emanouil Gojdu Another action long</a></li>
+                  <li><a href="#">Something else </a></li>
+                  <li class="divider"></li>
+                  <li><div class="btn btn-primary btn-small" style="margin-left:20px;margin-bottom:5px;">Create new circle</div></li>
+                </ul>
+              </div>
+        </div>
+
     </div>
 
-    <%= yield %>
+  </div>
+
+
+  <div class="container">
+
+          <!-- <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>  -->
+        <%= yield %>
+    </div>
+
+    
   </div>  
 </body>
 </html>
