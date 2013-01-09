@@ -1,0 +1,29 @@
+<div class="gossip-post">
+	<span class="avatar"> </span>
+	
+	<div class="gossip">
+		<img style="position:absolute; margin-top:0px;margin-left:-30px;" src="/assets/arrow.png"/>
+		<img style="width:22px;height:22px;" src="/assets/open-quote.gif"/>
+		<p><%= gossip.content %></p>
+		<img style="float:right;width:25px;height:25px;" src="/assets/close-quote.gif"/>
+
+	</div>
+
+
+	<div class="side">
+		<div class="" style="border-bottom:1px dashed #aaa; margin-bottom:10px">
+			<a class="like">Like</a>
+			<p style="margin-bottom:5px;font-size:12px;"> <%= gossip.like_count %> people</p>
+		</div>
+		<div class="" style="border-bottom:1px dashed #aaa; margin-bottom:10px">
+			<a class="true"> True </a>
+			<p style="margin-bottom:5px;font-size:12px;"> <%= gossip.true_count %> people</p>
+		</div>
+		<div class="" style="margin-bottom:10px;border-bottom:1px dotted #aaa;">
+			<a class="fake"> Fake </a>
+			<p style="margin-bottom:5px;font-size:12px;"> <%= gossip.false_count %> </p>
+		</div>
+	</div>
+
+	
+</div>

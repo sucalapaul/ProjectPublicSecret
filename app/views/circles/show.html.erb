@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @circle.name %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @circle.city.name %>
+</p>
+
+<p>
+  <b>Gossip count:</b>
+  <%= @circle.gossip_count %>
+</p>
+
+<p>
+  <b>People count:</b>
+  <%= @circle.people_count %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @circle.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_circle_path(@circle) %> |
+<%= link_to 'Back', circles_path %>

@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @gossip.content %>
+</p>
+
+<p>
+  <b>Like count:</b>
+  <%= @gossip.like_count %>
+</p>
+
+<p>
+  <b>Comments count:</b>
+  <%= @gossip.comments_count %>
+</p>
+
+<p>
+  <b>True count:</b>
+  <%= @gossip.true_count %>
+</p>
+
+<p>
+  <b>False count:</b>
+  <%= @gossip.false_count %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @gossip.user_id %>
+</p>
+
+<p>
+  <b>Private:</b>
+  <%= @gossip.private %>
+</p>
+
+<p>
+  <b>Score:</b>
+  <%= @gossip.score %>
+</p>
+
+<p>
+  <b>Circle:</b>
+  <%= @gossip.circle_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_gossip_path(@gossip) %> |
+<%= link_to 'Back', gossips_path %>

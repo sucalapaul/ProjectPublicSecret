@@ -14,3 +14,33 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+$.ajaxSetup({
+  beforeSend: function(xhr) {
+    xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+  }
+}); 
+
+
+$(document).ready(function() {
+
+
+	$("#gossip_content").charCount({
+	    allowed: 500,		
+	    warning: 100,
+	    counterText: 'Characters left: ',
+	    disableId: 'button_post_gossip'
+	});	
+
+	$("#button_post_gossip").click(function () {
+		var form = $(this).closest("form");
+		$.post("/gossips", form.serialize(),
+			function(data) {
+				console.log(data);
+				$(form).find("input[type=text], textarea").val("");
+			}, "json");
+	});
+
+
+
+});
