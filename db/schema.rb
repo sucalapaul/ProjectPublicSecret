@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130109124157) do
+ActiveRecord::Schema.define(:version => 20130109171300) do
 
   create_table "circle_gossips", :force => true do |t|
     t.integer  "circle_id"
@@ -70,17 +70,17 @@ ActiveRecord::Schema.define(:version => 20130109124157) do
   end
 
   create_table "gossips", :force => true do |t|
-    t.text     "content"
-    t.integer  "like_count"
-    t.integer  "comments_count"
-    t.integer  "true_count"
-    t.integer  "false_count"
+    t.text     "content",        :default => ""
+    t.integer  "like_count",     :default => 0
+    t.integer  "comments_count", :default => 0
+    t.integer  "true_count",     :default => 0
+    t.integer  "false_count",    :default => 0
     t.integer  "user_id"
     t.boolean  "private"
     t.float    "score"
     t.integer  "circle_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "likes", :force => true do |t|

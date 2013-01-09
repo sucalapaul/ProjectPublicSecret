@@ -88,14 +88,14 @@ Devise.setup do |config|
   # The period the generated invitation token is valid, after
   # this period, the invited resource won't be able to accept the invitation.
   # When invite_for is 0 (the default), the invitation won't expire.
-  # config.invite_for = 2.weeks
+  config.invite_for = 2.weeks
 
   # Number of invitations users can send.
   # If invitation_limit is nil, users can send unlimited invitations.
   # If invitation_limit is 0, users can't send invitations.
   # If invitation_limit n > 0, users can send n invitations.
   # Default: nil
-  # config.invitation_limit = 5
+  config.invitation_limit = 0
 
   # The key to be used to check existing users when sending an invitation
   # and the regexp used to test it when validate_on_invite is not set.
@@ -185,7 +185,7 @@ Devise.setup do |config|
   config.reset_password_within = 6.hours
 
   # ==> Configuration for :encryptable
-  # Allow you to use another encryption algorithm besides bcrypt (default). You can use
+  # Allow you to use another encryption algorithm besidesusers can send n invitations. bcrypt (default). You can use
   # :sha1, :sha512 or encryptors from others authentication tools as :clearance_sha1,
   # :authlogic_sha512 (then you should set stretches above to 20 for default behavior)
   # and :restful_authentication_sha1 (then you should set stretches to 10, and copy

@@ -1,0 +1,53 @@
+<%= form_for(@gossip) do |f| %>
+  <% if @gossip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@gossip.errors.count, "error") %> prohibited this gossip from being saved:</h2>
+
+      <ul>
+      <% @gossip.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label :like_count %><br />
+    <%= f.number_field :like_count %>
+  </div>
+  <div class="field">
+    <%= f.label :comments_count %><br />
+    <%= f.number_field :comments_count %>
+  </div>
+  <div class="field">
+    <%= f.label :true_count %><br />
+    <%= f.number_field :true_count %>
+  </div>
+  <div class="field">
+    <%= f.label :false_count %><br />
+    <%= f.number_field :false_count %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :private %><br />
+    <%= f.check_box :private %>
+  </div>
+  <div class="field">
+    <%= f.label :score %><br />
+    <%= f.text_field :score %>
+  </div>
+  <div class="field">
+    <%= f.label :circle_id %><br />
+    <%= f.number_field :circle_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

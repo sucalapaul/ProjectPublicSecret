@@ -1,0 +1,11 @@
+<div id="content">
+
+<% @gossips.each do |gossip| %>
+    <%= render partial: "gossip", locals: { gossip: gossip }, formats: [:html] %>
+<% end %>
+
+</div>
+
+<br />
+
+<%= link_to 'New Gossip', new_gossip_path %>

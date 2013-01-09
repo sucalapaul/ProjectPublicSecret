@@ -1,0 +1,31 @@
+<h1>Listing circles</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>City</th>
+    <th>Gossip count</th>
+    <th>People count</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @circles.each do |circle| %>
+  <tr>
+    <td><%= circle.name %></td>
+    <td><%= circle.city_id %></td>
+    <td><%= circle.gossip_count %></td>
+    <td><%= circle.people_count %></td>
+    <td><%= circle.description %></td>
+    <td><%= link_to 'Show', circle %></td>
+    <td><%= link_to 'Edit', edit_circle_path(circle) %></td>
+    <td><%= link_to 'Destroy', circle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Circle', new_circle_path %>
