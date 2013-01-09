@@ -9,6 +9,12 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
+  has_many :followers
+  has_many :gossips
+  has_many :likes
+  has_many :votes, :through => :gossip_votes
+  has_many :comments
+  has_many :circles, :through => :circle_users
 
   def self.from_omniauth(auth)
   Rails.logger.debug("My object: #{auth.to_yaml}")
