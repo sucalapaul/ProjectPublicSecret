@@ -1,0 +1,43 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.top-bar {
+	background: white;
+	position: relative;
+	padding: 10px;
+	margin-bottom: 40px;
+}
+
+.top-bar .right-menu {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+.top-bar .stats {
+	list-style: none;
+	margin-top: 15px;
+	display: block;
+}
+
+.top-bar .stats li.stat:first-child {
+	padding-left: 0;
+}
+.top-bar .stats li.stat:last-child {
+	border-right: none;
+}
+.top-bar .stats li.stat {
+	float: left;
+	width: 120px;
+	padding: 10px 30px 0;
+	border-right: 1px solid #EEE;
+}
+.top-bar .stats li.stat .value {
+	font-size: 2.2em;
+	font-family: "Museo-300", Helvetica Neue, Helvetica, Arial, sans-serif;
+	line-height: 1.5em;
+	color: #0099B5;
+}
