@@ -38,7 +38,7 @@
  	/*margin-top:-20px;*/
  	-webkit-box-shadow: inset 0px 1px 12px 1px rgba(0, 0, 0, 0.7);
 	box-shadow: inset 0px 1px 12px 1px rgba(0, 0, 0, 0.7);
-	margin-bottom:30px;
+	//margin-bottom:30px;
 	margin-bottom:1px solid white; margin-top:1px solid white;
 }
 /* asta nush daca trebe, ca nu arata ok icoana*/
@@ -60,4 +60,16 @@
 	overflow: hidden;
 	background: url("/assets/back-to-top.png") no-repeat;
 	z-index: 100;
+}
+
+
+#side-menu {
+	background:#00a0c6;
+	width:240px;
+	height:100%;
+	position:fixed;
+	top:0px;
+	left:0px; 
+	padding:20px;
+	border-right:1px solid #dcd3d9;
 }

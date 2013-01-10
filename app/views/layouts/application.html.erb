@@ -14,7 +14,7 @@
   <%= render "menu_bar" %>
   
   <!-- div to animate down for righting posts -->
-  <form id="post_gossip_form" style="display: none;">
+  <form id="post_gossip_form" style="display:none;margin-bottom:0">
     <div class="post-gossip clearfix">
       <div class="post-wrapper">
          <p id="gossip_content_counter" style="color:#888;float:right;margin-bottom:0pc;margin-top:15px;"> 453 left</p>
@@ -50,7 +50,8 @@
     </div>
   </form>
 
-
+<div style="margin:0 auto; position:relative;">
+  <div id="side-menu"> <p style="margin-top:100px">gwefwefwe</p></div>
   <div class="container">
 
           <!-- <p class="notice"><%= notice %></p>
@@ -59,6 +60,7 @@
         <%= yield %>
         <div class="back-to-top"></div>
   </div>
+</div>
 
      
 </body>
