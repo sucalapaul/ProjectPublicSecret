@@ -1,3 +1,7 @@
+<script type="text/javascript">
+  currentCircleId = <%= @circle.id %>;
+</script>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -24,6 +28,10 @@
   <b>Description:</b>
   <%= @circle.description %>
 </p>
+
+<% @circle.gossips.each do |gossip| %>
+    <%= render partial: "gossip", locals: { gossip: gossip }, formats: [:html] %>
+<% end %>
 
 
 <%= link_to 'Edit', edit_circle_path(@circle) %> |

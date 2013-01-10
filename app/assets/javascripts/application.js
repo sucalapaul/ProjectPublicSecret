@@ -21,27 +21,39 @@ $.ajaxSetup({
   }
 }); 
 
-menuDelay = 500;
+// Animation for left menu
+menuDelay = 500;		// wait before hiding menu for first time
 function toggleMenu() {
 	var width = $("#side-menu").width();
 	var margin = parseInt ( $("#side-menu").css('margin-left').replace('px', '') );
 	var diff = -margin - width + 30;
-	var delay = 400;
+	var delay = 400;	// duration for revealing menu
 	
-	if (diff < 0){ delay = 300; }
+	if (diff < 0){ delay = 300; } 	// duration for hiding menu
 	$("#side-menu").delay(menuDelay).animate({ 'margin-left': diff }, delay);
 	menuDelay = 0;
 }
 
+//Slide up-down toggle
+function toggleSlide(id){
+	var toggleObj = $('#'+id);
+	if ( toggleObj.css("display") == "none" ) {
+		toggleObj.slideDown();
+	} else {
+		toggleObj.slideUp();
+	}
+}
+
 
 $(document).ready(function() {
+
 	toggleMenu();
 
+	// toggle Private <-> Me
 	$(".toggle-radio input").each(function() {
 		var value = $(this).val();
 		$(this).siblings('[data-value="' + value + '"]').addClass("active");
 	});
-
 	$(".toggle-radio .btn").click(function() {
 		$(this).siblings('.active').removeClass('active');
 		$(this).addClass('active');
@@ -49,7 +61,7 @@ $(document).ready(function() {
 		$(this).siblings('input').val(value);
 	});
 
-
+	//Character counter for posting gossip
 	$("#gossip_content").charCount({
 	    allowed: 500,		
 	    warning: 50,
@@ -57,25 +69,45 @@ $(document).ready(function() {
 	    disableId: 'button_post_gossip'
 	});	
 
+	//Animation for gossip posting form (on top)
 	$(".toggle-slide").click(function() {
-		var toggleId = '#' + $(this).data('toggleid');
-		var toggleObj = $(toggleId);
-		if ( toggleObj.css("display") == "none" ) {
-			toggleObj.slideDown();
-		} else {
-			toggleObj.slideUp();
-		}
-
+		toggleSlide( $(this).data('toggleid') );
 	});
 
+	//Ajax post for a gossip
 	$("#button_post_gossip").click(function () {
 		var form = $(this).closest("form");
 		$.post("/gossips", form.serialize(),
 			function(data) {
 				console.log(data);
 				$(form).find("input[type=text], textarea").val("");
+				$(form).slideUp();
+				$(".gossip-post:first").before("data.html");
 			}, "json");
 	});
+
+
+	//Initialize dropdown
+	if (typeof currentCircleId === 'undefined') {
+    // variable is undefined
+	} else {
+		$("#gossip_circle_id").val(currentCircleId);
+		$('#dropdwn_gossip_circle li[data-id="' + currentCircleId + '"]').addClass("active");
+	}
+
+	// Circle dropdown item click
+	$("#dropdwn_gossip_circle li[data-id]").click(function() {
+		var circleId = $(this).data('id');
+		var circleName = $(this).children().html();
+
+		$("#gossip_circle_id").val(circleId);
+		$("#gossip_circle_info").html("Posting in " + circleName + " as: ");
+
+		$(this).siblings().removeClass("active");
+		$(this).addClass("active");
+	});
+
+
 
 
 

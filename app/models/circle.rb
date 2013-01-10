@@ -3,8 +3,7 @@ class Circle < ActiveRecord::Base
 
   belongs_to :city
 
-  has_many :circle_gossips
   has_many :circle_users
-  has_many :gossips, :through => :circle_gossips
+  has_many :gossips, :order => 'id DESC'
   has_many :users, :through => :circle_users
 end

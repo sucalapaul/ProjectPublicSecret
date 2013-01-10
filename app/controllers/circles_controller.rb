@@ -13,7 +13,7 @@ class CirclesController < ApplicationController
   # GET /circles/1
   # GET /circles/1.json
   def show
-    @circle = Circle.find(params[:id])
+    @circle = Circle.find(params[:id], :include => [:gossips])
 
     respond_to do |format|
       format.html # show.html.erb

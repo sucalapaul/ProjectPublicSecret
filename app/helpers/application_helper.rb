@@ -1,10 +1,11 @@
 module ApplicationHelper
 
-	def circle_list(circles)
+	def circle_list
 		t = ""
-		circles.each do |c|
-			#t << "<li><a href="#">Colegiul National Emanouil Gojdu</a></li>"
+		current_user.circles.each do |c|
+			t << "<li data-id=\"#{c.id}\"><a href=\"#\">#{c.name}</a></li>"
 		end
+		return t.html_safe
 	end
 
 end
