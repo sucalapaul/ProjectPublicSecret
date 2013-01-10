@@ -49,8 +49,8 @@ class GossipsController < ApplicationController
     respond_to do |format|
       if @gossip.save
         format.html { redirect_to @gossip, notice: 'Gossip was successfully created.' }
-        format.json { render json:  {
-              'html' => render_to_string( partial: "gossip", locals: { gossip: @gossip }, formats: [:json])
+        format.json { render json: {
+              'html' => render_to_string( partial: "gossip", locals: { gossip: @gossip, hidden: true }, formats: [:html])
           }, status: :created, location: @gossip }
       else
         format.html { render action: "new" }
