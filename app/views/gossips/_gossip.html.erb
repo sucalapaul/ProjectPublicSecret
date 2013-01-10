@@ -2,10 +2,10 @@
 		<span class="avatar"> </span>
 			<div class="gossip">
 				<div class="text clearfix">
-					<img style="position:absolute; margin-top:0px;margin-left:-25px;" src="/assets/arrow.png"/>
-					<img style="width:22px;height:22px;" src="/assets/open-quote.gif"/>
+					<img style="position:absolute; margin-top:0px;margin-left:-22px;" src="/assets/arrow.png"/>
+					<img style="width:21px;height:auto" src="/assets/quote-open.png"/>
 					<p><%= gossip.content %></p>
-					<img style="float:right;width:25px;height:25px;" src="/assets/close-quote.gif"/>
+					<img style="float:right;width:21px;height:auto" src="/assets/quote-close.png"/>
 				</div>
 				<ol class="comments" >
 					    <%= render partial: "comment" %>
@@ -25,7 +25,6 @@
 				</div>
 			</div>
 
-
 		<div class="side">
 			<div class="" style="border-bottom:1px dashed #aaa; margin-bottom:10px">
 				<a class="like">Like</a>
@@ -40,4 +39,4 @@
 				<p style="margin-bottom:5px;font-size:12px;"> <%= gossip.false_count %> </p>
 			</div>
 		</div>
-	</div>
+</div>
