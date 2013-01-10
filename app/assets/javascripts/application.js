@@ -24,13 +24,36 @@ $.ajaxSetup({
 
 $(document).ready(function() {
 
+	$(".toggle-radio input").each(function() {
+		var value = $(this).val();
+		$(this).siblings('[data-value="' + value + '"]').addClass("active");
+	});
+
+	$(".toggle-radio .btn").click(function() {
+		$(this).siblings('.active').removeClass('active');
+		$(this).addClass('active');
+		var value = $(this).data('value');
+		$(this).siblings('input').val(value);
+	});
+
 
 	$("#gossip_content").charCount({
 	    allowed: 500,		
-	    warning: 100,
+	    warning: 50,
 	    counterText: 'Characters left: ',
 	    disableId: 'button_post_gossip'
 	});	
+
+	$(".toggle-slide").click(function() {
+		var toggleId = '#' + $(this).data('toggleid');
+		var toggleObj = $(toggleId);
+		if ( toggleObj.css("display") == "none" ) {
+			toggleObj.slideDown();
+		} else {
+			toggleObj.slideUp();
+		}
+
+	});
 
 	$("#button_post_gossip").click(function () {
 		var form = $(this).closest("form");

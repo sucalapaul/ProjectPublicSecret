@@ -7,4 +7,13 @@ class ApplicationController < ActionController::Base
   # end
   # helper_method :current_user
 
+  helper_method :user_circles
+
+  def user_circles
+  	if user_signed_in? 
+  		return current_user.circles
+  	end
+  	return nil
+  end
+
 end

@@ -12,8 +12,10 @@ class User < ActiveRecord::Base
   has_many :followers
   has_many :gossips
   has_many :likes
+  has_many :gossip_votes
   has_many :votes, :through => :gossip_votes
   has_many :comments
+  has_many :circle_users
   has_many :circles, :through => :circle_users
 
   # def self.from_omniauth(auth)
