@@ -73,3 +73,24 @@
 	left:0px; 
 	border-right:1px solid #dcd3d9;
 }
+
+
+.hover-xx{
+	color:white;
+	cursor: pointer;
+	cursor: hand;
+}
+
+a.x-hover {color:#fff;}
+a.x-hover:hover {color:#00a0c6;}
+
+.hover-xx:hover {
+	//background:rgba(255, 255 ,255 , 0.7); 
+	color: rgb(25, 76, 102);
+	
+	-webkit-transition: linear 0.05s;
+	-moz-transition:   linear 0.05s;
+	-ms-transition:  linear 0.05s;
+	-o-transition:   linear 0.05s;
+	transition: linear 0.05s;
+}
