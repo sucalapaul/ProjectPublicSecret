@@ -45,12 +45,13 @@ class GossipsController < ApplicationController
   def create
     @gossip = Gossip.new(params[:gossip])
     @gossip.user = current_user
-    #Rails.logger.debug("My object: #{current_user.to_yaml}")
 
     respond_to do |format|
       if @gossip.save
         format.html { redirect_to @gossip, notice: 'Gossip was successfully created.' }
-        format.json { render json: @gossip, status: :created, location: @gossip }
+        format.json { render json:  {
+              'html' => render_to_string( partial: "gossip", locals: { gossip: @gossip }, formats: [:html])
+          }, status: :created, location: @gossip }
       else
         format.html { render action: "new" }
         format.json { render json: @gossip.errors, status: :unprocessable_entity }

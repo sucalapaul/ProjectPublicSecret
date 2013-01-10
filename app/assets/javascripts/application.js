@@ -26,7 +26,7 @@ menuDelay = 500;		// wait before hiding menu for first time
 function toggleMenu() {
 	var width = $("#side-menu").width();
 	var margin = parseInt ( $("#side-menu").css('margin-left').replace('px', '') );
-	var diff = -margin - width;
+	var diff = -margin - width + 30;
 	var delay = 400;	// duration for revealing menu
 	
 	if (diff < 0){ delay = 300; } 	// duration for hiding menu
@@ -82,9 +82,20 @@ $(document).ready(function() {
 				console.log(data);
 				$(form).find("input[type=text], textarea").val("");
 				$(form).slideUp();
+				$(".gossip-post:first").before("data.html");
 			}, "json");
 	});
 
+
+	//Initialize dropdown
+	if (typeof currentCircleId === 'undefined') {
+    // variable is undefined
+	} else {
+		$("#gossip_circle_id").val(currentCircleId);
+		$('#dropdwn_gossip_circle li[data-id="' + currentCircleId + '"]').addClass("active");
+	}
+
+	// Circle dropdown item click
 	$("#dropdwn_gossip_circle li[data-id]").click(function() {
 		var circleId = $(this).data('id');
 		var circleName = $(this).children().html();
@@ -92,7 +103,11 @@ $(document).ready(function() {
 		$("#gossip_circle_id").val(circleId);
 		$("#gossip_circle_info").html("Posting in " + circleName + " as: ");
 
+		$(this).siblings().removeClass("active");
+		$(this).addClass("active");
 	});
+
+
 
 
 
