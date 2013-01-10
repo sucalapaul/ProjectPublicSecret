@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Store</title>
+  <title>Let's Gossip</title>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
   <![endif]-->
@@ -28,23 +28,21 @@
                   <div class="btn-group toggle-radio">
                     <a class="btn" data-value="1" href="#"><i class="icon-lock"></i> anonymous</a>
                     <a class="btn" data-value="0" href="#"><i class="icon-user"></i> you</a>
-                    <input id="gossip_private" name="gossip[private]" type="hidden" value="1">
+                    <input id="gossip_private" name="gossip[private]" type="hidden" value="0" />
                   </div>
                 </div>
-                <p style="float:right;margin-top:5px;margin-bottom:0px;margin-right:15px;color:white;font-size:12px;">Post as:</p>
+                <p id="gossip_circle_info" style="float:right;margin-top:5px;margin-bottom:0px;margin-right:15px;color:white;font-size:12px;">Post as:</p>
                
-               <div class="btn-group">
+                <div class="btn-group" id="dropdwn_gossip_circle">
                   <button class="btn dropdown-toggle" data-toggle="dropdown">Change Circle <span class="caret"></span></button>
                   <ul class="dropdown-menu">
-                    <%= %>
-                    <li><a href="#">Colegiul National Emanouil Gojdu</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Colegiul National Emanouil Gojdu Another action long</a></li>
-                    <li><a href="#">Something else </a></li>
+                    <%= circle_list %>
                     <li class="divider"></li>
                     <li><div class="btn btn-primary btn-small" style="margin-left:20px;margin-bottom:5px;">Create new circle</div></li>
                   </ul>
+                  <input id="gossip_circle_id" name="gossip[circle_id]" type="hidden">
                 </div>
+                <!--p  style="margin-top:5px;margin-bottom:0px;margin-right:15px;color:white;font-size:12px;">Choose a circle!</p-->
           </div>
       </div>
     </div>
@@ -56,7 +54,7 @@
 
           <!-- <p class="notice"><%= notice %></p>
           <p class="alert"><%= alert %></p>  -->
-          <%= user_circles.to_yaml %>
+          <!-- %= user_circles.to_yaml % -->
         <%= yield %>
         <div class="back-to-top"></div>
   </div>

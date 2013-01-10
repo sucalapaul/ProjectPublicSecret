@@ -25,6 +25,12 @@
   <%= @circle.description %>
 </p>
 
+barfe:
+<%= @circle.gossips.to_yaml %>
+<% @circle.gossips.each do |gossip| %>
+    <!-- %= render partial: "gossips/gossip", locals: { gossip: gossip }, formats: [:html] % -->
+<% end %>
+
 
 <%= link_to 'Edit', edit_circle_path(@circle) %> |
 <%= link_to 'Back', circles_path %>

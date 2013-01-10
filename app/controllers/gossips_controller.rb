@@ -1,9 +1,11 @@
 class GossipsController < ApplicationController
-  # GET /gossips
-  # GET /gossips.json
+
   before_filter :authenticate_user!, except: [:index]
+  
+  # GET /gossips
+  # GET /gossips.json  
   def index
-    @gossips = Gossip.all
+    @gossips = Gossip.order("id desc").all
 
     respond_to do |format|
       format.html # index.html.erb
