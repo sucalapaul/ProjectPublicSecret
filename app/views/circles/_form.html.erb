@@ -12,26 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :style => "width:345px;margin-bottom:20px", :placeholder => "Circle Name" %>
   </div>
   <div class="field">
-    <%= f.label :city_id %><br />
-    <%= f.number_field :city_id %>
+    <%= f.label  "location" %>
+    <%= f.number_field :city_id, :style => "width:345px;margin-bottom:20px;", :placeholder => "City" %>
   </div>
+
   <div class="field">
-    <%= f.label :gossip_count %><br />
-    <%= f.number_field :gossip_count %>
-  </div>
-  <div class="field">
-    <%= f.label :people_count %><br />
-    <%= f.number_field :people_count %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.label :description %>
+    <%= f.text_area :description, :rows => "3", :style=> "width:345px;max-width:345px;max-height:60px" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-success pull-right", :style => "margin-right:0px" %>
   </div>
 <% end %>
