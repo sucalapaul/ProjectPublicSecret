@@ -62,13 +62,14 @@
 	z-index: 100;
 }
 
+/* Side-menu */
 
 #side-menu {
 	background:#00a0c6;
 	width:240px;
 	z-index:0;
 	position:fixed;
-	top:42px;
+	top:41px;
 	bottom:0;
 	left:0px; 
 	border-right:1px solid #dcd3d9;
@@ -94,3 +95,5 @@ a.x-hover:hover {color:#00a0c6;}
 	-o-transition:   linear 0.05s;
 	transition: linear 0.05s;
 }
+
+/*End side-menu*/

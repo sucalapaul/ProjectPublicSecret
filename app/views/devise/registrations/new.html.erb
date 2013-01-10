@@ -1,4 +1,4 @@
-<div style="width:292px;margin:0 auto;">
+<div style="width:292px;margin:0 auto;margin-top:75px;">
 <a href="/users/auth/facebook" class="btn_oauth facebook" style="background-image: url( /assets/fb-ico.png)">Sign up with Facebook</a>
 <center><h6 style="margin-bottom:25px"> - Or sign up with email -</h6> </center>
 
@@ -6,17 +6,17 @@
   <%= devise_error_messages! %>
 
   <div>
-  <%= f.email_field :email, :style => "width:275px;margin-bottom:20px", :placeholder => "email" %></div>
+  <%= f.email_field :email, :style => "width:278px;margin-bottom:20px", :placeholder => "email" %></div>
 
   <div>
-  <%= f.text_field :nickname, :style => "width:275px;margin-bottom:20px", :placeholder => "anonymous nickname" %></div>
+  <%= f.text_field :nickname, :style => "width:278px;margin-bottom:20px", :placeholder => "anonymous nickname" %></div>
 
   <% if f.object.password_required? %>
     <div class="field">
-    <%= f.password_field :password,  :style => "width:275px;margin-bottom:20px", :placeholder => "password" %></div>
+    <%= f.password_field :password,  :style => "width:278px;margin-bottom:20px", :placeholder => "password" %></div>
 
     <div class="field">
-    <%= f.password_field :password_confirmation, :style => "width:275px;margin-bottom:10px", :placeholder => "confirm password" %></div>
+    <%= f.password_field :password_confirmation, :style => "width:278px;margin-bottom:10px", :placeholder => "confirm password" %></div>
   <% end %>
 
   <div><%= f.submit "Sign up", :class => "btn btn-success pull-right", :style => "margin-bottom:30px;" %></div>

@@ -1,11 +1,11 @@
-<div style="width:292px;margin:0 auto;">
+<div style="width:292px;margin:0 auto;margin-top:80px;">
 <h3><center>Forgot your password?</center></h3>
 
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
   <%= devise_error_messages! %>
 
   <div><center><%= "Don't worry, just enter your email address below to reset your password." %></center><br />
-  <%= f.email_field :email, :placeholder => "email",:style => "width:275px;margin-bottom:20px;" %></div>
+  <%= f.email_field :email, :placeholder => "Email",:style => "width:278px;margin-bottom:20px;" %></div>
 
   <div><%= f.submit "Send me reset password instructions", :class =>"btn btn-block btn-primary" %></div>
 <% end %>
