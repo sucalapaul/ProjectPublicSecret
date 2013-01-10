@@ -66,10 +66,10 @@
 #side-menu {
 	background:#00a0c6;
 	width:240px;
-	height:100%;
+	z-index:0;
 	position:fixed;
-	top:0px;
+	top:42px;
+	bottom:0;
 	left:0px; 
-	padding:20px;
 	border-right:1px solid #dcd3d9;
 }

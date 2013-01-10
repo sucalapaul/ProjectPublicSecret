@@ -14,7 +14,7 @@
   <%= render "menu_bar" %>
   
   <!-- div to animate down for righting posts -->
-  <form id="post_gossip_form" style="display:none;margin-bottom:0">
+  <form id="post_gossip_form" style="display:none;margin-bottom:0;z-index:1000;position:relative">
     <div class="post-gossip clearfix">
       <div class="post-wrapper">
          <p id="gossip_content_counter" style="color:#888;float:right;margin-bottom:0pc;margin-top:15px;"> 453 left</p>
@@ -51,7 +51,33 @@
   </form>
 
 <div style="margin:0 auto; position:relative;">
-  <div id="side-menu"> <p style="margin-top:100px">gwefwefwe</p></div>
+  <div id="side-menu">
+     <!--  <a href="#" class="closed" style="height: 100%; color: rgb(255, 255, 255);">
+        <span style="-webkit-transform: rotate(0deg);">+</span>
+      </a> -->
+
+
+      <a href="#" style="color:#333;float:left;background:#eee;height:20px;width:70px;padding:15px;border-bottom:3px solid #00a0c6;">
+       <center><p style="padding:0"> Hot Circles </p></center>
+      </a>
+
+      <a href="#" style="float:left;background:#00a0c6;height:20px;width:70px;padding:15px;border-bottom:3px solid #00a0c6;">
+       <center><p style="padding:0;color:white"> Cities </p></center>
+      </a>
+
+      <a href="#" class="" style="float:left;background:#ccc;height:20px;width:30px;padding:15px 5px 15px 5px;border-bottom:3px solid #00a0c6;color: rgb(25, 76, 102);">
+          <p style="paddinh:0;margin:0;font-size:26px;font-weight:bold;-webkit-transform: rotate(135deg);"> + </p>
+    
+      </a>
+
+
+
+      <div style="background:white;width:200px;float:left;padding:20px;border-bottom:1px dashed #999 ;height:40px;">Colegiul National ..</div>
+      <div style="background:white;width:200px;float:left;padding:20px;border-bottom:1px dashed #999 ;height:40px">Club Midi- Cluj</div>
+      <div style="background:white;width:200px;float:left;padding:20px;border-bottom:1px dashed #999 ;height:40px">Cercul Bazatilor Gay din cj</div>
+      
+  
+  </div>
   <div class="container">
 
           <!-- <p class="notice"><%= notice %></p>
