@@ -82,7 +82,8 @@ $(document).ready(function() {
 				console.log(data);
 				$(form).find("input[type=text], textarea").val("");
 				$(form).slideUp();
-				$(".gossip-post:first").before("data.html");
+				$(".gossip-post:first").before(data.html);
+				$(".gossip-post:first").slideDown();
 			}, "json");
 	});
 
