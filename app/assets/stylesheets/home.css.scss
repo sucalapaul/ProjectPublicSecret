@@ -6,6 +6,7 @@
 	margin:0;
 	padding:0;
 	background:none;
+	margin-top:40px;
 }
 
 .gossip-post {
@@ -17,7 +18,6 @@
 }
 
 .gossip-post .gossip {
-
 	float:left;
 	width:530px;
 	margin:0 20px 0 0; 
@@ -43,6 +43,7 @@
 	list-style: none;
 	margin-top:1px;
 	margin-right:8px;
+	margin-bottom:0;
 }
 
 .gossip-post .comment {
@@ -55,8 +56,6 @@
 	float:right;
 
 }
-
-
 
 .gossip-post .your-comment {
 	width:440px;
@@ -74,8 +73,6 @@
  li.comment:last-child {
 	border-bottom:none;
 }
-
-
 
  .gossip-post .side { 
  	margin-top:10px;
@@ -103,7 +100,6 @@
  	background: url("/assets/social/fake.png") no-repeat 0px 4px;
  	padding-left:20px;
 }
-
 
 .gossip-post .avatar {
 	float: left;
