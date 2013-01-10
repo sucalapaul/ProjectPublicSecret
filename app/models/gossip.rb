@@ -6,5 +6,6 @@ class Gossip < ActiveRecord::Base
 
   has_many :comments 
   has_many :likes
+  has_many :gossip_votes
   has_many :votes, :through => :gossip_votes
 end
