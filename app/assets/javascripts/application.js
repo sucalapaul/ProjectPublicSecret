@@ -21,8 +21,21 @@ $.ajaxSetup({
   }
 }); 
 
+menuDelay = 500;
+function toggleMenu() {
+	var width = $("#side-menu").width();
+	var margin = parseInt ( $("#side-menu").css('margin-left').replace('px', '') );
+	var diff = -margin - width;
+	var delay = 400;
+	
+	if (diff < 0){ delay = 300; }
+	$("#side-menu").delay(menuDelay).animate({ 'margin-left': diff }, delay);
+	menuDelay = 0;
+}
+
 
 $(document).ready(function() {
+	toggleMenu();
 
 	$(".toggle-radio input").each(function() {
 		var value = $(this).val();
@@ -66,4 +79,7 @@ $(document).ready(function() {
 
 
 
+
+
 });
+
