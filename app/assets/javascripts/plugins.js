@@ -45,12 +45,15 @@
 			}
 			if(available < 0){
 				objCounter.addClass(options.cssExceeded);
-				objDisable.addClass(options.cssDisable);
 			} else {
 				objCounter.removeClass(options.cssExceeded);
+			}
+
+			if (count == 0 || available < 0){
+				objDisable.addClass(options.cssDisable);
+			} else {
 				objDisable.removeClass(options.cssDisable);
 			}
-			objCounter.html(options.counterText + available);
 		};
 				
 		this.each(function() {
