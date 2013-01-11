@@ -49,6 +49,8 @@ $(document).ready(function() {
 
 	toggleMenu();
 
+	$("abbr.timeago").timeago();
+
 	// toggle Private <-> Me
 	$(".toggle-radio input").each(function() {
 		var value = $(this).val();
@@ -83,7 +85,8 @@ $(document).ready(function() {
 				$(form).find("input[type=text], textarea").val("");
 				$(form).slideUp();
 				$(".gossip-post:first").before(data.html);
-				$(".gossip-post:first").slideDown();
+				$(".gossip-post:first").slideDown().find("abbr.timeago").timeago();
+
 			}, "json");
 	});
 

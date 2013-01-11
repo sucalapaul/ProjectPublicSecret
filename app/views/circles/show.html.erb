@@ -4,30 +4,6 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @circle.name %>
-</p>
-
-<p>
-  <b>City:</b>
-  <%= @circle.city.name %>
-</p>
-
-<p>
-  <b>Gossip count:</b>
-  <%= @circle.gossip_count %>
-</p>
-
-<p>
-  <b>People count:</b>
-  <%= @circle.people_count %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @circle.description %>
-</p>
 
 <% @circle.gossips.each do |gossip| %>
     <%= render partial: "gossip", locals: { gossip: gossip }, formats: [:html] %>
