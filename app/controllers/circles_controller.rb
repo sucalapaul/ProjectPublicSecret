@@ -40,7 +40,20 @@ class CirclesController < ApplicationController
   # POST /circles
   # POST /circles.json
   def create
-    @circle = Circle.new(params[:circle])
+    @circle = Circle.new(params[:circle].except(:city_name, :city_lat, :city_long))
+
+    @circle.users << current_user
+
+    city = City.where(name: params[:circle][:city_name]).first_or_initialize
+
+    if not city.persisted? 
+      city.latitude = params[:circle][:city_lat]
+      city.longitude = params[:circle][:city_long]
+      city.save
+    end
+
+    City.update_counters(city.id, circle_count: 1)
+    @circle.city = city
 
     respond_to do |format|
       if @circle.save
