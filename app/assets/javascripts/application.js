@@ -91,7 +91,7 @@ $(document).ready(function() {
 		if (textLen == 0 || textLen >= gossipPostMaxLength){
 			return;
 		}
-		$.post("/gossips", form.serialize(),
+		var jqxhr = $.post("/gossips", form.serialize(),
 			function(data) {
 				console.log(data);
 				$(form).find("input[type=text], textarea").val("");
@@ -101,7 +101,7 @@ $(document).ready(function() {
 
 			}, "json")
 			.error(function() {
-				showError("Something went wrong!");
+				showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
 			}
 		);
 

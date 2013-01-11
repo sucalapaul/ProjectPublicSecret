@@ -8,4 +8,7 @@ class Gossip < ActiveRecord::Base
   has_many :likes
   has_many :gossip_votes
   has_many :votes, :through => :gossip_votes
+
+  validates :content, :length => { :minimum => 2 }
+  
 end
