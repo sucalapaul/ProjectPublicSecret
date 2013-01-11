@@ -10,7 +10,7 @@
 					<div style="display:inline-block;width:510px;">
 						<p class="pull-right" style="color:#757575;margin-top:-5px;margin-bottom:0"><%= timeago gossip.created_at  %></p>
 						<img style="float:left;width:21px;height:auto" src="/assets/quote-open.png"/>
-						<p class="pull-left" style="margin-left:10px;margin-bottom:0;font-weight:500"> </p>
+						<p class="pull-left" style="margin-left:10px;margin-bottom:0;font-weight:500"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/index")  %></p>
 					</div>
 					
 					

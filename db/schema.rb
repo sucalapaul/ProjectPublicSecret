@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130109171300) do
+ActiveRecord::Schema.define(:version => 20130111173206) do
 
   create_table "circle_gossips", :force => true do |t|
     t.integer  "circle_id"
@@ -30,20 +30,20 @@ ActiveRecord::Schema.define(:version => 20130109171300) do
   create_table "circles", :force => true do |t|
     t.string   "name"
     t.integer  "city_id"
-    t.integer  "gossip_count"
-    t.integer  "people_count"
+    t.integer  "gossip_count", :default => 0
+    t.integer  "people_count", :default => 0
     t.text     "description"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "cities", :force => true do |t|
     t.string   "name"
-    t.integer  "circle_count"
+    t.integer  "circle_count", :default => 0
     t.float    "latitude"
     t.float    "longitude"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "comments", :force => true do |t|

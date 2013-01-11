@@ -1,4 +1,7 @@
 class CirclesController < ApplicationController
+
+ before_filter :authenticate_user!, except: [:index]
+
   # GET /circles
   # GET /circles.json
   def index
@@ -41,6 +44,7 @@ class CirclesController < ApplicationController
   # POST /circles.json
   def create
     @circle = Circle.new(params[:circle])
+    @circle.users << current_user
 
     respond_to do |format|
       if @circle.save
