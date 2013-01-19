@@ -52,8 +52,10 @@ class CirclesController < ApplicationController
       city.save
     end
 
-    City.update_counters(city.id, circle_count: 1)
-    @circle.city = city
+    City.update_counters(city.id, circle_count: 1)   # cresc numarul de cercuri la oras
+    User.update_counters(current_user.id, circle_count: 1) # cresc numarul de cercuri la persoana
+    @circle.city = city #pun orasul la cerc
+    @circle.people_count = 1 # adaug omu care o creat cercul in numaratoare
 
     respond_to do |format|
       if @circle.save
