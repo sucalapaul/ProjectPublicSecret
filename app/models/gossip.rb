@@ -10,5 +10,7 @@ class Gossip < ActiveRecord::Base
   has_many :votes, :through => :gossip_votes
 
   validates :content, :length => { :minimum => 2 }
+
   
+
 end
