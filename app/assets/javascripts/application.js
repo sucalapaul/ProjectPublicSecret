@@ -51,7 +51,22 @@ function showError(msj){
 	alert(msj);
 }
 
+//Ajax post for a comment
+$(document).on("click", ".post_comment_button", function () {
+	var form = $(this).closest("form");
+	var jqxhr = $.post("/comments", form.serialize(),
+		function(data) {
+			console.log(data);
+			$(form).find("input[type=text], textarea").val("");
+			$(form).closest(".gossip").find(".comment:last").after(data.html);
+			$(form).closest(".gossip").find(".comment:last").slideDown().find("abbr.timeago").timeago();
+		}, "json")
+		.error(function() {
+			showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+		}
+	);
 
+});
 
 $(document).ready(function() {
 
