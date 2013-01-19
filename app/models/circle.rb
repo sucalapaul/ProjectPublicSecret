@@ -16,4 +16,6 @@ class Circle < ActiveRecord::Base
   has_many :circle_users
   has_many :gossips, :order => 'id DESC'
   has_many :users, :through => :circle_users
+
+  validates :city_id, :presence => true
 end
