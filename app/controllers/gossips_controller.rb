@@ -46,6 +46,9 @@ class GossipsController < ApplicationController
     @gossip = Gossip.new(params[:gossip])
     @gossip.user = current_user
 
+    User.update_counters(current_user.id, gossip_count: 1) # cresc numarul de gossips la persoana
+    Circle.update_counters(@gossip.circle_id, gossip_count: 1) # cresc numarul de gossips la cerc
+
     respond_to do |format|
       if @gossip.save
         format.html { redirect_to @gossip, notice: 'Gossip was successfully created.' }
