@@ -7,8 +7,8 @@
 			<div class="gossip">
 				<div class="text clearfix">
 					<img style="position:absolute; margin-top:0px;margin-left:-22px;" src="/assets/arrow.png"/>
-					<div style="display:inline-block;width:510px;">
-						<p class="pull-right" style="color:#757575;margin-top:-5px;margin-bottom:0"><%= timeago gossip.created_at  %></p>
+					<div style="display:inline-block;width:500px;">
+						 <%= timeago gossip.created_at  %>
 						<img style="float:left;width:21px;height:auto" src="/assets/quote-open.png"/>
 						<p class="pull-left" style="margin-left:10px;margin-bottom:0;font-weight:500"> </p>
 					</div>
@@ -36,7 +36,7 @@
 				</div>
 			</div>
 
-		<div class="side">
+	<!-- 	<div class="side">
 			<div class="" style="border-bottom:1px dashed #aaa; margin-bottom:10px">
 				<a class="like">Like</a>
 				<p style="margin-bottom:5px;font-size:12px;"> <%= gossip.like_count %>  people</p>
@@ -49,5 +49,5 @@
 				<a class="fake" style="color:#f4512f"> Fake </a>
 				<p style="margin-bottom:5px;font-size:12px;"> <%= gossip.false_count %> </p>
 			</div>
-		</div>
+		</div> -->
 </div>
