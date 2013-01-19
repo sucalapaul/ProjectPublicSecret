@@ -1,4 +1,4 @@
-<div class="gossip-post"
+<div class="gossip-post" data-id="<%= gossip.id %>"
 	<% if defined? hidden %> 
 		style="display:none"
 	<% end %>
@@ -10,7 +10,7 @@
 					<div style="display:inline-block;width:500px;">
 						 <%= timeago gossip.created_at  %>
 						<img style="float:left;width:21px;height:auto" src="/assets/quote-open.png"/>
-						<p class="pull-left" style="margin-left:10px;margin-bottom:0;font-weight:500"> </p>
+						<p class="pull-left" style="margin-left:10px;margin-bottom:0;font-weight:500"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/index")  %></p>
 					</div>
 					
 					
@@ -18,22 +18,27 @@
 					<img style="float:right;width:21px;height:auto" src="/assets/quote-close.png"/>
 				</div>
 				<ol class="comments">
-				     <%= render partial: "comment", formats: [:html] %>
-					 <%= render partial: "comment", formats: [:html] %>
+					<li class="comment clearfix" style="display:none">
+					 <% gossip.comments.each do |comment| %>
+					 	<%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
+					 <% end %>
 				</ol>
-				<div class="your-comment">
-					<span class="avatar-mini">
-						<img  src="http://profile.ak.fbcdn.net/hprofile-ak-snc6/260896_708576256_1093295786_t.jpg">
-					</span>
-					<input type="text" style="margin:0 5px;border-radius:0;height:22px;" />
-					<div class="btn btn-primary pull-right" style="background:#008fd0;"> Post </div>
-					 <div class="btn-toolbar pull-right" style="margin:0 10px 0 0">
-		                <div class="btn-group">
-		                  <a class="btn" href="#"><i class="icon-lock"></i></a>
-		                  <a class="btn active" href="#"><i class="icon-user"></i></a>
-		                </div>
-		             </div>
-				</div>
+				<form id="post_comment_form">
+					<div class="your-comment">
+						<span class="avatar-mini">
+							<img  src="http://profile.ak.fbcdn.net/hprofile-ak-snc6/260896_708576256_1093295786_t.jpg">
+						</span>
+						<textarea type="textarea" id="comment_content" name="comment[content]" rows="1" style="max-height:90px;max-width:560px;" ></textarea>
+						<div class="btn btn-primary post_comment_button pull-right" onclick="post_comment();" style="background:#008fd0;"> Post </div>
+						<div class="btn-toolbar pull-right" style="margin:0 10px 0 0">
+			                <div class="btn-group toggle-radio">
+		                    <a class="btn" data-value="1" href="#"><i class="icon-lock"></i></a>
+		                    <a class="btn" data-value="0" href="#"><i class="icon-user"></i></a>
+		                    <input id="comment_gossip_id" name="comment[gossip_id]" type="hidden" value="<%= gossip.id %>" />
+		                  </div>
+			      </div>
+					</div>
+				</form>
 			</div>
 
 	<!-- 	<div class="side">
@@ -41,6 +46,8 @@
 				<a class="like">Like</a>
 				<p style="margin-bottom:5px;font-size:12px;"> <%= gossip.like_count %>  people</p>
 			</div>
+
+			<!-- %= render partial: "like_button", formats: [:html] % -->
 			<div class="" style="border-bottom:1px dashed #aaa; margin-bottom:10px">
 				<a class="true" style="color:#008FD0"> True </a>
 				<p style="margin-bottom:5px;font-size:12px;"> <%= gossip.true_count %> people</p>

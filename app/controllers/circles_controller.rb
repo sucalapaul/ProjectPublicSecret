@@ -1,4 +1,7 @@
 class CirclesController < ApplicationController
+
+ before_filter :authenticate_user!, except: [:index]
+
   # GET /circles
   # GET /circles.json
   def index
@@ -40,7 +43,22 @@ class CirclesController < ApplicationController
   # POST /circles
   # POST /circles.json
   def create
-    @circle = Circle.new(params[:circle])
+    @circle = Circle.new(params[:circle].except(:city_name, :city_lat, :city_long))
+
+    @circle.users << current_user
+
+    city = City.where(name: params[:circle][:city_name]).first_or_initialize
+
+    if not city.persisted? 
+      city.latitude = params[:circle][:city_lat]
+      city.longitude = params[:circle][:city_long]
+      city.save
+    end
+
+    City.update_counters(city.id, circle_count: 1)   # cresc numarul de cercuri la oras
+    User.update_counters(current_user.id, circle_count: 1) # cresc numarul de cercuri la persoana
+    @circle.city = city #pun orasul la cerc
+    @circle.people_count = 1 # adaug omu care o creat cercul in numaratoare
 
     respond_to do |format|
       if @circle.save

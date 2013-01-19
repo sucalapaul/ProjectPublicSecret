@@ -44,6 +44,29 @@ function toggleSlide(id){
 	}
 }
 
+var gossipPostMaxLength = 500;
+var gossipPostWarningLength = 50;
+
+function showError(msj){
+	alert(msj);
+}
+
+//Ajax post for a comment
+$(document).on("click", ".post_comment_button", function () {
+	var form = $(this).closest("form");
+	var jqxhr = $.post("/comments", form.serialize(),
+		function(data) {
+			console.log(data);
+			$(form).find("input[type=text], textarea").val("");
+			$(form).closest(".gossip").find(".comment:last").after(data.html);
+			$(form).closest(".gossip").find(".comment:last").slideDown().find("abbr.timeago").timeago();
+		}, "json")
+		.error(function() {
+			showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+		}
+	);
+
+});
 
 $(document).ready(function() {
 
@@ -79,7 +102,11 @@ $(document).ready(function() {
 	//Ajax post for a gossip
 	$("#button_post_gossip").click(function () {
 		var form = $(this).closest("form");
-		$.post("/gossips", form.serialize(),
+		var textLen = $("#gossip_content").val().length;
+		if (textLen == 0 || textLen >= gossipPostMaxLength){
+			return;
+		}
+		var jqxhr = $.post("/gossips", form.serialize(),
 			function(data) {
 				console.log(data);
 				$(form).find("input[type=text], textarea").val("");
@@ -87,7 +114,12 @@ $(document).ready(function() {
 				$(".gossip-post:first").before(data.html);
 				$(".gossip-post:first").slideDown().find("abbr.timeago").timeago();
 
-			}, "json");
+			}, "json")
+			.error(function() {
+				showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+			}
+		);
+
 	});
 
 
@@ -96,7 +128,10 @@ $(document).ready(function() {
     // variable is undefined
 	} else {
 		$("#gossip_circle_id").val(currentCircleId);
-		$('#dropdwn_gossip_circle li[data-id="' + currentCircleId + '"]').addClass("active");
+		var selectedItem = $('#dropdwn_gossip_circle li[data-id="' + currentCircleId + '"]');
+		selectedItem.addClass("active");
+		var currentCircleName = $(selectedItem).children().html();
+		$("#gossip_circle_info").html("Posting in " + currentCircleName );
 	}
 
 	// Circle dropdown item click
@@ -105,7 +140,7 @@ $(document).ready(function() {
 		var circleName = $(this).children().html();
 
 		$("#gossip_circle_id").val(circleId);
-		$("#gossip_circle_info").html("Posting in " + circleName + " as: ");
+		$("#gossip_circle_info").html("Posting in " + circleName );
 
 		$(this).siblings().removeClass("active");
 		$(this).addClass("active");

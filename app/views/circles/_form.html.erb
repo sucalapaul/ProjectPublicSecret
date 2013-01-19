@@ -16,7 +16,10 @@
   </div>
   <div class="field">
     <%= f.label  "location" %>
-    <%= f.number_field :city_id, :style => "width:345px;margin-bottom:20px;", :placeholder => "City" %>
+    <%= f.text_field :city_name, :style => "width:345px;margin-bottom:20px", :placeholder => "City" %>
+
+    <%= f.hidden_field :city_lat %>
+    <%= f.hidden_field :city_long %>
   </div>
 
   <div class="field">
@@ -26,4 +29,40 @@
   <div class="actions">
     <%= f.submit :class => "btn btn-success pull-right", :style => "margin-right:0px" %>
   </div>
+
+  <div id="map_canvas"></div>
+
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+
+  <script>
+    var mapOptions = {
+          center: new google.maps.LatLng(-33.8688, 151.2195),
+          zoom: 13,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+    var map2 = new google.maps.Map(document.getElementById('map_canvas'),
+          mapOptions);
+
+    var input = document.getElementById('circle_city_name');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+    autocomplete.bindTo('bounds', map2);
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+          // Inform the user that the place was not found and return.
+          $('#geocode-error').text('This address cannot be found.').fadeIn('fast');
+          return;
+        }
+
+        $('#circle_city_long').val(place.geometry.location.$a);
+        $('#circle_city_lat').val(place.geometry.location.Za);
+      });
+  </script>
+
+
 <% end %>
+
+
