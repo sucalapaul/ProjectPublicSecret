@@ -104,6 +104,35 @@ $(document).ready(function() {
 				showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
 			}
 		);
+	});
+
+
+	//Ajax post for a like
+	$(".like-btn").click(function () {
+		var self = this;
+		var gossipPost = $(this).closest(".gossip-post");
+		var gossipId = $(gossipPost).data('id');
+		var likeCount = $(self).data('count');
+
+		var jqxhr = $.post("/likes", { "like[gossip_id]": gossipId }, //form.serialize(),
+			function(data) {
+				console.log(data);
+				if (data == 1)
+				{
+					$(self).find('a').html("Unlike");
+				} else
+				{
+					$(self).find('a').html("Like");
+				}
+				likeCount = likeCount + data;
+				$(self).find('p').html(likeCount + " people");
+				$(self).data('count', likeCount);
+
+			}, "json")
+			.error(function() {
+				showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+			}
+		);
 
 	});
 
