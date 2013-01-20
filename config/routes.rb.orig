@@ -10,10 +10,13 @@ ProjectPublicSecret::Application.routes.draw do
                      controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   resources :circles    
+<<<<<<< HEAD
   resources :gossips     
-  resources :likes     
-  resources :comments     
-  resources :gossip_votes         
+  resources :likes                 
+=======
+  resources :gossips
+  resources :comments                 
+>>>>>>> 61b4d916bb9e20b3968dcff617faec3b553f0368
 
 
   root :to => 'home#index'
