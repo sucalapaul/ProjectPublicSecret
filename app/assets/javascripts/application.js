@@ -68,6 +68,75 @@ $(document).on("click", ".post_comment_button", function () {
 
 });
 
+
+
+//Ajax post for a like
+$(document).on("click", ".gossip-like-btn", function () {
+	var self = this;
+	var gossipPost = $(this).closest(".gossip-post");
+	var gossipId = $(gossipPost).data('id');
+	var likeCount = $(self).data('count');
+
+	var jqxhr = $.post("/likes", { "like[gossip_id]": gossipId }, //form.serialize(),
+		function(data) {
+			console.log(data);
+			if (data == 1) {
+				$(self).find('a').html("Unlike");
+			} else {
+				$(self).find('a').html("Like");
+			}
+			likeCount = likeCount + data;
+			$(self).find('p').html(likeCount + " people");
+			$(self).data('count', likeCount);
+
+		}, "json")
+		.error(function() {
+			showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+		});
+
+});
+
+
+	//Ajax post for a gossip vote (true/fake)
+$(document).on("click", ".gossip-vote-btn", function () {
+	var self = this;
+	var other = $(this).siblings('.gossip-vote-btn');
+	var gossipPost = $(self).closest(".gossip-post");
+	var gossipId = $(gossipPost).data('id');
+	var voteCount = $(self).data('count');
+	var value = $(self).data('value');
+
+	var jqxhr = $.post("/gossip_votes", {
+			"gossip_vote[gossip_id]": gossipId,
+			"gossip_vote[value]": value
+		},
+		function(data) {
+			if (data == 1) { //click on True or Fake, both buttons unchecked
+				voteCount++;
+				$(other).addClass('disabled');
+				$(self).addClass('enabled');
+			} else if (data == 0) {  //click on T/F, other one was checked
+				voteCount++;
+				var voteCountOther = $(other).data('count') -1;
+				$(other).removeClass('enabled').addClass('disabled');
+				$(self).addClass('enabled');
+				$(other).find('p').html(voteCountOther);
+				$(other).data('count', voteCountOther);
+			} else if (data == -1) {		//click on T/F, this button was checked
+				voteCount--;
+				$(other).removeClass('disabled');
+				$(self).removeClass('enabled');
+			}
+			$(self).data('count', voteCount);
+			$(self).find('p').html(voteCount);
+
+		}, "json")
+		.error(function() {
+			showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+		});
+
+});
+
 $(document).ready(function() {
 
 	toggleMenu();
@@ -121,73 +190,6 @@ $(document).ready(function() {
 		);
 	});
 
-
-	//Ajax post for a like
-	$(".gossip-like-btn").click(function () {
-		var self = this;
-		var gossipPost = $(this).closest(".gossip-post");
-		var gossipId = $(gossipPost).data('id');
-		var likeCount = $(self).data('count');
-
-		var jqxhr = $.post("/likes", { "like[gossip_id]": gossipId }, //form.serialize(),
-			function(data) {
-				console.log(data);
-				if (data == 1) {
-					$(self).find('a').html("Unlike");
-				} else {
-					$(self).find('a').html("Like");
-				}
-				likeCount = likeCount + data;
-				$(self).find('p').html(likeCount + " people");
-				$(self).data('count', likeCount);
-
-			}, "json")
-			.error(function() {
-				showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
-			});
-
-	});
-
-
-	//Ajax post for a gossip vote (true/fake)
-	$(".gossip-vote-btn").click(function () {
-		var self = this;
-		var other = $(this).siblings('.gossip-vote-btn');
-		var gossipPost = $(self).closest(".gossip-post");
-		var gossipId = $(gossipPost).data('id');
-		var voteCount = $(self).data('count');
-		var value = $(self).data('value');
-
-		var jqxhr = $.post("/gossip_votes", {
-				"gossip_vote[gossip_id]": gossipId,
-				"gossip_vote[value]": value
-			},
-			function(data) {
-				if (data == 1) { //click on True or Fake, both buttons unchecked
-					voteCount++;
-					$(other).addClass('disabled');
-					$(self).addClass('enabled');
-				} else if (data == 0) {  //click on T/F, other one was checked
-					voteCount++;
-					var voteCountOther = $(other).data('count') -1;
-					$(other).removeClass('enabled').addClass('disabled');
-					$(self).addClass('enabled');
-					$(other).find('p').html(voteCountOther);
-					$(other).data('count', voteCountOther);
-				} else if (data == -1) {		//click on T/F, this button was checked
-					voteCount--;
-					$(other).removeClass('disabled');
-					$(self).removeClass('enabled');
-				}
-				$(self).data('count', voteCount);
-				$(self).find('p').html(voteCount);
-
-			}, "json")
-			.error(function() {
-				showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
-			});
-
-	});
 
 	//Initialize dropdown
 	if (typeof currentCircleId === 'undefined') {
