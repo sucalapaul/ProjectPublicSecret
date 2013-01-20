@@ -12,7 +12,8 @@ ProjectPublicSecret::Application.routes.draw do
   resources :circles    
   resources :gossips     
   resources :likes     
-  resources :comments              
+  resources :comments     
+  resources :gossip_votes         
 
 
   root :to => 'home#index'
