@@ -60,8 +60,8 @@ class GossipVotesController < ApplicationController
       else
         #click on other button
         vote_response = 0
-        vote_this = -1
-        vote_other = 1
+        vote_this = 1
+        vote_other = -1
         gossip_vote.value = value.to_bool
         gossip_vote.save
       end
@@ -74,7 +74,7 @@ class GossipVotesController < ApplicationController
       end
     end
 
-    if value == true
+    if value.to_bool == true
       Gossip.update_counters(gossip_id, true_count: vote_this)
       Gossip.update_counters(gossip_id, false_count: vote_other)
     else
