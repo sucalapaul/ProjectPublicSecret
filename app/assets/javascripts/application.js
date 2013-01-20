@@ -86,7 +86,7 @@ $(document).on("click", ".gossip-like-btn", function () {
 				$(self).find('a').html("Like");
 			}
 			likeCount = likeCount + data;
-			$(self).find('p').html(likeCount + " people");
+			$(self).find('p').html(likeCount);
 			$(self).data('count', likeCount);
 
 		}, "json")
@@ -139,7 +139,7 @@ $(document).on("click", ".gossip-vote-btn", function () {
 
 $(document).ready(function() {
 
-	toggleMenu();
+	//toggleMenu();
 
 	$("abbr.timeago").timeago();
 
@@ -189,7 +189,6 @@ $(document).ready(function() {
 			}
 		);
 	});
-
 
 	//Initialize dropdown
 	if (typeof currentCircleId === 'undefined') {

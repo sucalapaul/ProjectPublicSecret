@@ -7,8 +7,8 @@
 			<div class="gossip">
 				<div class="text clearfix">
 					<img style="position:absolute; margin-top:0px;margin-left:-22px;" src="/assets/arrow.png"/>
-					<div style="display:inline-block;width:510px;">
-						<p class="pull-right" style="color:#757575;margin-top:-5px;margin-bottom:0"><%= timeago gossip.created_at  %></p>
+					<div style="display:inline-block;width:500px;">
+						 <%= timeago gossip.created_at  %>
 						<img style="float:left;width:21px;height:auto" src="/assets/quote-open.png"/>
 						<p class="pull-left" style="margin-left:10px;margin-bottom:0;font-weight:500"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/index")  %></p>
 					</div>
@@ -16,7 +16,30 @@
 					
 					<p style="display:inline-block;text-indent:15px;margin-left:15px;margin-bottom:0px;margin-top:2px"><%= gossip.content %></p>
 					<img style="float:right;width:21px;height:auto" src="/assets/quote-close.png"/>
+
+					<div class= "meta clearfix">
+						<div class="gossip-like-btn" data-count="<%= gossip.like_count %>">
+							<%if current_user.likes.find_by_gossip_id(gossip.id) %>
+								<a class="xxx like-it">Unlike</a>
+							<% else %>
+								<a class="xxx like-it">Like</a>
+							<%end%>
+							<span class="hearty">&nbsp; </span>
+							<p class="value likes" style="margin-top:4px"> <%= gossip.like_count %> </p>
+						</div>
+						<div class="pull-right">
+							<div class="gossip-vote-btn xxx" data-value="true" data-count="<%= gossip.true_count %>" style="float:left;" >
+								<a class="true" style="margin-right:10px;color:#008FD0;float:left">True</a>
+								<p class="value" style="margin-right:10px;"> <%= gossip.true_count %></p>
+							</div>
+							<div class="gossip-vote-btn xxx" data-value="false" data-count="<%= gossip.false_count %>" style=" float:left;margin-left:10px;">
+								<a class="fake" style="color:#f4512f;float:left">&nbsp;</a>
+								<p class="value"><%= gossip.false_count %></p>
+							</div>
+						</div>
+					</div>
 				</div>
+
 				<ol class="comments">
 					<li class="comment clearfix" style="display:none">
 					 <% gossip.comments.each do |comment| %>
@@ -28,8 +51,8 @@
 						<span class="avatar-mini">
 							<img  src="http://profile.ak.fbcdn.net/hprofile-ak-snc6/260896_708576256_1093295786_t.jpg">
 						</span>
-						<textarea type="textarea" id="comment_content" name="comment[content]" rows="1" style="max-height:90px;max-width:560px;" ></textarea>
-						<div class="btn btn-primary post_comment_button pull-right" onclick="post_comment();" style="background:#008fd0;"> Post </div>
+						<textarea  type="textarea" id="comment_content" name="comment[content]" rows="1" style="resize:none;margin-bottom:0px;border-radius:0;height:20px;max-height:90px;width:210px;max-width:210px;" ></textarea>
+						<a class="btnx btnx-blue post_comment_button pull-right" onclick="post_comment();"> Post </a>
 						<div class="btn-toolbar pull-right" style="margin:0 10px 0 0">
 			                <div class="btn-group toggle-radio">
 		                    <a class="btn" data-value="1" href="#"><i class="icon-lock"></i></a>
@@ -40,24 +63,4 @@
 					</div>
 				</form>
 			</div>
-
-		<div class="side">
-			<div class="gossip-like-btn" style="border-bottom:1px dashed #aaa; margin-bottom:10px" data-count="<%= gossip.like_count %>">
-				<% if current_user.likes.find_by_gossip_id(gossip.id) %>
-					<a class="like">Unlike</a>
-				<% else %>
-					<a class="like">Like</a>
-				<% end %>
-				<p style="margin-bottom:5px;font-size:12px;"><%= gossip.like_count %> people</p>
-			</div>
-
-			<div class="gossip-vote-btn" data-value="true" data-count="<%= gossip.true_count %>" style="border-bottom:1px dashed #aaa; margin-bottom:10px">
-				<a class="true" style="color:#008FD0"> True </a>
-				<p style="margin-bottom:5px;font-size:12px;"> <%= gossip.true_count %> people</p>
-			</div>
-			<div class="gossip-vote-btn" data-value="false" data-count="<%= gossip.false_count %>" style="margin-bottom:10px;border-bottom:1px dotted #aaa;">
-				<a class="fake" style="color:#f4512f"> Fake </a>
-				<p style="margin-bottom:5px;font-size:12px;"> <%= gossip.false_count %> </p>
-			</div>
-		</div>
 </div>

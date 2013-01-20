@@ -1,21 +1,21 @@
   <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
-      <div class="container">
+      <div class="container" style="width:880px">
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a onclick="toggleMenu()" class="brand" href="#">the gossip</a>
+        <a onclick="toggleMenu()" class="brand" style="margin:0 auto" href="#">lets gossip</a>
         <div class="nav-collapse">
-          <ul class="nav">
+        <!--   <ul class="nav">
             <li><%= link_to "Home"%></li>
             <li><%= link_to "City" %></li>
             <li><%= link_to "Circles" %></li>
             <li class="vertical-divider"></li>
             <li><%= link_to "Circles"%></li>
           </ul>
-
+ -->
           <ul class="nav pull-right">
             <% if user_signed_in? %>
               <li class="dropdown no-border">
@@ -28,9 +28,9 @@
                 </ul>
               </li>
 <li class="divider-vertical"></li>
-              <li class="btn btn-primary toggle-slide" data-toggleid="post_gossip_form" style="-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15);
+              <li class="btnx btnx-blue-x toggle-slide" data-toggleid="post_gossip_form" style="-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15);
 -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.15);
-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15);border-color: #222;"> <i class="icon-pencil"></i> New </li>     
+box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15);border-color: #222;margin-top:4px;padding:8px 12px;"><i class="icon-plus"></i> New </li>     
 
 
             <% else %>
