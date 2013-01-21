@@ -308,14 +308,13 @@ a.x-hover:hover {color:#00a0c6;}
 }
 /* Tags end */
 
-
-/* Button fancy */
+/* Button btnx */
 .btnx {	
   cursor: hand;
   cursor:pointer;
   position: relative;
   display: block;
-  padding: 10px 14px;
+  padding: 9px 14px;
   max-width: 20em;
   color: #fff;
   font-size: 1em;
@@ -327,6 +326,7 @@ a.x-hover:hover {color:#00a0c6;}
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
+
 
 .btnx-green {
  background-color: #58a300;
@@ -392,4 +392,4 @@ a.x-hover:hover {color:#00a0c6;}
   .btnx-blue-x:active {
     top: 1px;
 }
-/*Button fancy - End*/
+/*Button btnx - End*/

@@ -52,10 +52,11 @@
 /* Top bar */
 .top-bar {
 	margin-top:30px;
+	margin-bottom: 40px;
 	background: white;
 	position: relative;
 	padding: 10px;
-	margin-bottom: 40px;
+	
 
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -67,6 +68,16 @@
 	-moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
 	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);background:white;
+}
+
+.top-bar-circle {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	padding:15px;
+	padding-bottom:0;
+	border:1px solid #dbdbdb;
+	border-radius:5px;margin-bottom:10px;
 }
 
 .top-bar .right-menu {
@@ -98,8 +109,11 @@
 .top-bar .stats li.stat .value {
 	font-size: 2.2em;
 	font-family: "Museo-300", Helvetica Neue, Helvetica, Arial, sans-serif;
-	line-height: 1.5em;
-	color: #0099B5;
+	line-height: 1.1em;
+	color: #1f518e;
+}
+.top-bar .stats li.stat .descriptor {
+	color:#588cc7;
 }
 
 

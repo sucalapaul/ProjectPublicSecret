@@ -1,51 +1,15 @@
 
 <div class="clearfix" style="border-radius:5px;margin-top:30px;margin-bottom:20px;padding:10px;background:white;border:1px solid #dbdbdb">
-    <a class="pull-right btnx btnx-green" style="margin-top:2px;"> <i class="icon-plus"></i> New Circle</a>
+    <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New Circle</a>
         <h3 style="margin:0">Listing circles</h3>
 </div>
 
- <div style="padding:15px;padding-bottom:0;background:white;border:1px solid #dbdbdb;border-radius:5px;margin-bottom:10px">
-        <a class="pull-right"><i class="icon-map-marker"></i> Cluj Napoca </a>
-        <h4 style="margin-top:0;margin-bottom:15px;">Numele Cercului vine aici</h4>
-        <p style="max-width:450px;"> Lorem ipsum dolor sit amet asa nu mai tin minte lorem ipsum ca de fiecare data dadeam copy paste de pe interneet</p>
-        <div class="meta clearfix" style="border-top:1px dashed #ddd;padding:8px 0">
-            <a style="margin-top:6px;" class="pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle</a>
-            <div class="info" style="float:left;padding:3px 20px;border-right:1px solid #dadada">
-                <p style="font-size:24px;margin:0">26</p>
-                <p style="margin-bottom:0">gossips </p>
-            </div>
-            <div class="info" style="float:left;padding:3px 20px;">
-                <p style="font-size:24px;margin:0">65</p>
-                <p style="margin-bottom:0">people </p>
-            </div>
-        </div>
-</div>
+
 
 <% @circles.each do |circle| %>
-    <div style="padding:15px;padding-bottom:0;background:white;border:1px solid #dbdbdb;border-radius:5px;margin-bottom:10px">
-        <a class="pull-right"><i class="icon-map-marker"></i> Cluj Napoca <%= circle.city_id %></a>
-        <h4 style="margin-top:0;margin-bottom:15px;"><%= circle.name %></h4>
-        <p style="max-width:450px;"> <%= circle.description %></p>
-        <div class="meta clearfix" style="border-top:1px dashed #ddd;padding:8px 0">
-            <a style="margin-top:6px;" class="pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle</a>
-            <div class="info" style="float:left;padding:3px 20px;border-right:1px solid #dadada">
-                <p style="font-size:24px;margin:0">26 <%= circle.gossip_count %></p>
-                <p style="margin-bottom:0">gossips </p>
-            </div>
-            <div class="info" style="float:left;padding:3px 20px;">
-                <p style="font-size:24px;margin:0">65 <%= circle.people_count %></p>
-                <p style="margin-bottom:0">people </p>
-            </div>
-        </div>
-</div>
-
-    <%= link_to 'Show', circle %>
-    <%= link_to 'Edit', edit_circle_path(circle) %>
-    <%= link_to 'Destroy', circle, method: :delete, data: { confirm: 'Are you sure?' } %>
- 
+    <%= render partial: "circle_header", locals: { circle: circle }, formats: [:html] %>
 <% end %>
 
-<%= link_to 'New Circle', new_circle_path %>
 
 
 

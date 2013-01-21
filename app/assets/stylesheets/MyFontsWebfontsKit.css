@@ -1,0 +1,26 @@
+/* @license
+ * MyFonts Webfont Build ID 2369993, 2012-09-22T04:48:46-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Museo 300 by exljbris
+ * URL: http://www.myfonts.com/fonts/exljbris/museo/300/
+ * Copyright: Copyright (c) 2008 by Jos Buivenga/exljbris. All rights reserved.
+ * Licensed pageviews: Unlimited
+ * 
+ * 
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=2369993
+ * 
+ * © 2012 Bitstream Inc
+*/
+
+ @font-face {
+  font-family: "Museo-300";
+  src: url(/assets/museo.eot);
+  src: url(/assets/museo.eot?#iefix) format('eot'), url(/assets/museo.woff) format('woff'), url(/assets/museo.ttf) format('truetype');  font-weight: normal;
+  font-style: normal;
+}

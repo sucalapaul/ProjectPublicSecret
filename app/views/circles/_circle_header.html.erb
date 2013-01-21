@@ -1,23 +1,18 @@
-<div class="top-bar clearfix">
-	<div class="right-menu">
-		<a href="#" class="btnx btnx-green"><i class="icon-plus"></i> Join circle</a>
-	</div>
-
-	<p style="padding-right:100px;padding-left:10px;font-size:24px;line-height:1.2">Colegiul National Emanouil Gojduu nume lung</h4>
-	<div class="cleafix">
-		<ul class="stats" style="margin-bottom:0px">
-			<li class="stat">
-			<div class="value">53</div>
-			<div class="descriptor">Gossips</div>
-			</li>
-			<li class="stat" style="width:140px">
-			<div class="value">65</div>
-			<div class="descriptor">People in this circle</div>
-			</li>		
-		</ul>
-		<!-- <div class="pull-left" style="font-size:14px;overflow:hidden;padding:0px 10px 5px 10px;width:400px;height:50px;margin-bottom:5px"></div> -->
-		<a href="#" style="margin-top:40px;float:right;color:#777;font-size:16px;margin-bottom:0;"><i class="icon-map-marker"></i> Cluj Napoca</a>
-		
-	</div>
-
+<div class="top-bar top-bar-circle">
+    <a class="pull-right"><i class="icon-map-marker"></i> <%= circle.city.name %></a>
+    <h3 style="margin-top:0;margin-bottom:15px;"><%= circle.name %> </h3>
+    <p style="max-width:450px;"> <%= circle.description %></p>
+    <div class="meta clearfix" style="border-top:1px dashed #ddd;padding:8px 0">
+        <a style="margin-top:10px;" class="pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle</a>
+        <ul class="stats" style="margin:0px">
+            <li class="stat">
+            <div class="value"><%= circle.gossip_count %></div>
+            <div class="descriptor">Gossips</div>
+            </li>
+            <li class="stat" style="width:140px">
+            <div class="value"><%= circle.people_count %></div>
+            <div class="descriptor">People in this circle</div>
+            </li>       
+        </ul>
+    </div>
 </div>

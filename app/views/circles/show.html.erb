@@ -1,8 +1,7 @@
-<%= render partial: "circle_header"%>
-
 <script type="text/javascript">
   currentCircleId = <%= @circle.id %>;
 </script>
+<%= render partial: "circle_header", locals: { circle: @circle }, formats: [:html] %>
 
 <p id="notice"><%= notice %></p>
 

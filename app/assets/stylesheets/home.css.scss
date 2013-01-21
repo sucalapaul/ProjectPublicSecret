@@ -50,9 +50,24 @@
 	background:white;
 }
 
+.gossip-post .gossip-content {
+	font-family: "Museo-300", Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size:1.18em;
+  line-height: 1.22em;
+
+	display:inline-block;
+	text-indent:10px;
+	margin: 5px 20px 0px 15px;
+
+}
+
 .gossip-post .text:hover .xxx {
-	border:1px solid #ddd;
+	border:1px solid #d3d3d3;
 	background:#fafafa;
+	  background-image: -moz-linear-gradient(top, #fcfcfc, #f8f8f8);
+	  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fcfcfc), to(#f8f8f8));
+	  background-image: -o-linear-gradient(top, #fcfcfc, #f8f8f8);
+	  background-image: linear-gradient(to bottom, #fcfcfc, #f8f8f8);
 }
 
 .gossip-post .comments {
@@ -91,7 +106,7 @@
 }
 
  .gossip-post .meta { 
- 	margin-top:5px;
+ 	margin-top:22px;
  	border-top:1px dotted #dadada;
  	padding:5px 0;
  }
@@ -105,10 +120,13 @@
   .gossip-post .meta .xxx:hover { 
  	background:#f1f1f1;
  	border-color:#c6c6c6;
+ 	  background-image: -moz-linear-gradient(top, #f8f8f8, #eee);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f8f8f8), to(#eee));
+  background-image: -o-linear-gradient(top, #f8f8f8, #eee);
+  background-image: linear-gradient(to bottom, #f8f8f8, #eee);
  }
 
   .gossip-post .meta a {
-
   	float:left;
   }
 
@@ -129,25 +147,36 @@
  	margin-bottom:0;
  	margin-top:2px;
  	font-size:13px;
-}
+ 	color:#666;
+ }
 
 .gossip-post .meta p.likes { color:#EA4C89; }
 
  .gossip-post .meta a.true  {
  	display:block;
-	color: #3d3d30;
+	color: #666;
  	background: url("/assets/social/true.png") no-repeat;
  	margin-top:1px;
  	padding-left:20px;
+ 	margin-right:10px;
 }
-
 
 .gossip-post .meta a.fake {
  	display:block;
-	color: #2d2d30;
  	background: url("/assets/social/fake.png") no-repeat 0px 4px;
  	padding-left:20px;
 }
+
+.gossip-vote-btn.enabled[data-value="true"] a{
+	color:#009700;
+	background: url("/assets/social/true-active.png") no-repeat;
+}
+
+.gossip-vote-btn.enabled[data-value="false"] a{
+	color:#5ead00;
+	background: url("/assets/social/fake-hover.png") no-repeat 0px 4px;
+}
+
 
 .gossip-post .avatar {
 	float: left;
@@ -180,3 +209,18 @@
 	min-width:62px;
 	min-height:62px;
 }
+
+.your-comment .public, .your-comment .private {
+	border:1px solid transparent;
+	padding:4px;
+	float:right;
+	margin-right:12px;
+	height:22px;
+	width:22px;
+	cursor:hand;
+	cursor:pointer;
+	
+}
+.your-comment .public:hover, .your-comment .private:hover {border:1px solid #cdcdcd;}
+.your-comment .public { background: url(/assets/unlocked.png) no-repeat 6px 4px; }
+.your-comment .private { background: url(/assets/locked.png) no-repeat 7px 4px; }
