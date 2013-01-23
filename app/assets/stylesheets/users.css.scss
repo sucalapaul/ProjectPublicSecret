@@ -165,7 +165,51 @@ opacity: .25;
 	-moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
 	box-shadow: 0 1px 4px rgba(0, 0, 0, .065);
 }
+/*User Content END*/
 
+.top-bar .intro {
+color: #7d7f82;
+font-size: 18px;
+text-align: center;
+padding-bottom: 28px;
+}
+
+.InvitesList {
+	display: block;
+	list-style: none;
+	margin: 0;
+	padding-top:5px;
+	border-top: 3px double rgba(34,25,25,0.1);	
+	border-bottom: 1px solid rgba(255,255,255,0.7);
+}
+
+.InvitesList li {
+	clear: both;
+	display: block;
+	margin: 0;
+	padding: 4px 0;
+	list-style: none;
+	border-bottom: 1px solid #dfdedf /*rgba(34,25,25,0.1)*/;
+	overflow: hidden;
+}
+
+.InvitesList li a {
+	float: right;
+	margin-top: 4px;
+}
+
+.InvitesList .InvitesProfileImage {
+	float: left;
+	width: 40px;
+	height: 40px;
+	margin-right: 10px;
+}
+.InvitesList li .individual {
+	display: block;
+	margin-top: 9px;
+	font-size: 15px;
+	line-height: 19px;
+}
 
 
 

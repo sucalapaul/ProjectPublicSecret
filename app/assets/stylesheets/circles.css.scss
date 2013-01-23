@@ -17,3 +17,21 @@
 	margin-top:40px;
 	position:relative;
 }
+
+.circles-tabs {
+	border-bottom:1px solid white;
+	margin-bottom:0;
+	margin-top:30px;	
+}
+
+.circles-tabs li:hover a {
+	background:#fff;
+	border:transparent;
+	border-top:3px solid #dedede;
+}
+
+.circles-tabs li.active a {
+	background:#d0d;
+	border:transparent;
+	border-top:3px solid #dedede;
+}
