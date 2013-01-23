@@ -57,6 +57,11 @@ class User < ActiveRecord::Base
       super
     end
   end
+
+  #TODO: Optimize this to accept a list of posts
+  def already_likes?(post_id)
+    self.likes.find(:all, conditions: ['gossip_id = ?', post_id ]).size>0
+  end  
   
   def password_required?
     super #&& provider.blank?
