@@ -1,15 +1,15 @@
+<p id="notice"><%= notice %></p>
+
 <script type="text/javascript">
   currentCircleId = <%= @circle.id %>;
 </script>
 <%= render partial: "circle_header", locals: { circle: @circle }, formats: [:html] %>
 
-<p id="notice"><%= notice %></p>
-
-
+<span style="line-height:30px">&nbsp;</span>
 <% @circle.gossips.each do |gossip| %>
     <%= render partial: "gossip", locals: { gossip: gossip }, formats: [:html] %>
 <% end %>
 
 
 <%= link_to 'Edit', edit_circle_path(@circle) %> |
-<%= link_to 'Back', circles_path %>
+

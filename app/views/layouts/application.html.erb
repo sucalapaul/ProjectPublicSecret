@@ -17,8 +17,10 @@
 
 </head>
 <body>
-  <%= render "menu_bar" %>
-  
+    <%= render "menu_bar" %>
+    
+
+
   <!-- div to animate down for wrighting posts -->
   <form id="post_gossip_form" style="display:none;margin-bottom:0;z-index:1000;position:relative">
     <div class="post-gossip clearfix">
@@ -49,82 +51,37 @@
                   </ul>
                   <input id="gossip_circle_id" name="gossip[circle_id]" type="hidden">
                 </div>
-                <!--p  style="margin-top:5px;margin-bottom:0px;margin-right:15px;color:white;font-size:12px;">Choose a circle!</p-->
+               <!--  <p  style="margin-top:5px;margin-bottom:0px;margin-right:15px;color:white;font-size:12px;">Choose a circle!</p> -->
           </div>
       </div>
     </div>
   </form>
 
-<!-- <div style="margin:0 auto; position:relative;">
-  <div id="side-menu" style="color:white">
-     <!--  <a href="#" class="closed" style="height: 100%; color: rgb(255, 255, 255);">
-        <span style="-webkit-transform: rotate(0deg);">+</span>
-      </a>
-
-
-      <a href="#" style="color:#333;float:left;background:#eee;height:20px;width:75px;padding:15px;border-bottom:3px solid #00a0c6;">
-       <center><p style="font-size:15px;"> Hot Circles </p></center>
-      </a>
-
-      <a href="#" style="float:left;background:#00a0c6;height:20px;width:75px;padding:15px;border-bottom:3px solid #00a0c6;">
-       <center><p style="font-size:15px;color:white"> Cities </p></center>
-      </a>
-
-      <a href="#" onclick="toggleMenu()" class="x-hover" style="float:left;background:#27313f;height:20px;width:20px;padding:15px 5px 15px 5px;border-bottom:3px solid #00a0c6;">
-          <p style="paddinh:0;margin:0;font-size:26px;font-weight:bold;-webkit-transform: rotate(135deg);"> + </p>
-    
-      </a>
-
-
-      <div class="hover-xx" style="padding:10px 30px 0 15px;float:left">
-        <div style="width:195px; border-bottom:1px dashed #66c6dd ;">
-          <p style="font-size:14px;margin-bottom:5px">Colegiul National Goojdu Oradea</p>
-          <p style="font-size:12px;float:right"> 245 <i class="icon-user icon-white"></i></p>
-          <p style="font-size:12px;"><i class="icon-map-marker"> </i> Bucuresti</p>
-        </div> 
-      </div>
-
-      <div class="hover-xx" style="padding:10px 30px 0 15px;float:left">
-        <div style="width:195px; border-bottom:1px dashed #66c6dd ;">
-          <p style="font-size:14px;margin-bottom:5px">Colegiul National Goojdu Oradea</p>
-          <p style="font-size:12px;float:right"> 24002 <i class="icon-user icon-white"></i></p>
-          <p style="font-size:12px;"><i class="icon-map-marker"> </i> Timisoara</p>
-        </div> 
-      </div>
-
-      <div class="hover-xx" style="padding:10px 30px 0 15px;float:left">
-        <div style="width:195px; border-bottom:1px dashed #66c6dd ;">
-          <p style="font-size:14px;margin-bottom:5px">Colegiul National Goojdu Oradea</p>
-          <p style="font-size:12px;float:right"> 2115 <i class="icon-user icon-white"></i></p>
-          <p style="font-size:12px;"><i class="icon-map-marker"> </i> Cluj-Napoca</p>
-        </div> 
-      </div>
-</div>
- -->
-
-
-
-
 <div class="container">
-
           <!-- <p class="notice"><%= notice %></p>
           <p class="alert"><%= alert %></p>  -->
           <!-- %= user_circles.to_yaml % -->
+        
+
+          <% if (@current_controller=="circles" && @current_action == "new" ) || @current_controller=="sessions" || @current_controller=="registrations" || @current_controller=="passwords" || @current_controller=="users" %>
+            <%= yield %>
+
+          <% else %>
+
           <div class="dashboard" style="width:240px;height:500px;float:left;display:block;margin-top:30px; ">
             
-            <!-- HTML -->
             <div class="menux-container" style="margin-bottom:20px">      
               <div class="navx">
-                <h5 style="margin-left:32px;color:white;float:left">Menu</h5>
+                <h4 style="margin-left:15px;color:white;float:left">lets gossip</h4>
                   <!-- <div class="settings"><i class="icon-user icon-white"></i></div> -->
               </div>
               <div class="menux">
                   <ul>
-                    <li><a href="#" target="_blank"><img src="http://i.imgur.com/4JPrK.png"><p>Home</p></a></li>
-                    <li><a href="#" target="_blank"><img src="http://i.imgur.com/jHwHy.png"><p>Circles</p></a></li>
-                    <li><a href="#" target="_blank"><img src="http://i.imgur.com/Gyusy.png"><p>Cities</p></a></li>
-                    <li><a href="#" target="_blank"><img src="http://i.imgur.com/mbWpc.png"><p>People</p></a></li>
-                    <li><a href="#" target="_blank"><img src="http://i.imgur.com/mbWpc.png"><p>Create new Circle</p></a></li>
+                    <li><a href="#" ><img src="http://i.imgur.com/4JPrK.png"><p>Home</p></a></li>
+                    <li><a href="<%= circles_path %>" ><img src="http://i.imgur.com/jHwHy.png"><p>Circles</p></a></li>
+                    <li><a href="#" ><img src="http://i.imgur.com/Gyusy.png"><p>Cities</p></a></li>
+                    <li><a href="#" ><img src="http://i.imgur.com/mbWpc.png"><p>People</p></a></li>
+                    <li><a href="#" ><img src="http://i.imgur.com/mbWpc.png"><p>Create new Circle</p></a></li>
                   </ul>
               </div>         
             </div>
@@ -153,7 +110,7 @@
               
             </div>
 
-     <!--        <a href="#" class="btnx btnx-blue-x btnx-large" >Gossip in this Circle</a> -->
+             <a href="#" class="btnx btnx-blue-x btnx-large" >Gossip in this Circle</a> 
 
               <h6> TRENDING </h6>
               <!-- Tags -->
@@ -178,15 +135,17 @@
                 <li><a href="#">Desktop <span>160</span></a></li>
               </ul>
           </div>
+
           <div class="mainx-content" style="float:right;width:600px; ">
             <%= yield %>
           </div>
 
         
-        <div class="back-to-top"></div>
-  </div>
-<!-- </div> -->
+       
 
+    <% end %>
+           <div class="back-to-top"></div>
+  </div>
      
 </body>
 </html>

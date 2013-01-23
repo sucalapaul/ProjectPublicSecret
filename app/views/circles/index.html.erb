@@ -1,10 +1,30 @@
+<ul class="nav nav-tabs" style="border-bottom:none;margin-bottom:0;margin-top:30px">
+  <li class="active">
+    <a href="#">Recent</a>
+  </li>
+  <li class="">
+    <a href="#">Location</a>
+  </li>
+  <li class="">
+    <a href="#">Hot Circles</a>
+  </li>
+  <li class="dropdown">
+    <a class="dropdown-toggle"
+       data-toggle="dropdown"
+       href="#">
+        Dropdown
+        <b class="caret"></b>
+      </a>
+    <ul class="dropdown-menu">
+      <!-- links -->
+    </ul>
+  </li>
+</ul>
 
-<div class="clearfix" style="border-radius:5px;margin-top:30px;margin-bottom:20px;padding:10px;background:white;border:1px solid #dbdbdb">
+<div class="clearfix top-bar" style="margin-top:0;border-radius:0 5px 5px 5px">
     <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New Circle</a>
-        <h3 style="margin:0">Listing circles</h3>
+        <h3 style="margin-bottom:0;margin-top:4px">Listing circles</h3>
 </div>
-
-
 
 <% @circles.each do |circle| %>
     <%= render partial: "circle_header", locals: { circle: circle }, formats: [:html] %>

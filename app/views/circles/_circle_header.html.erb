@@ -1,6 +1,6 @@
-<div class="top-bar top-bar-circle">
+<div class="top-bar" style="padding-bottom:0">
     <a class="pull-right"><i class="icon-map-marker"></i> <%= circle.city.name %></a>
-    <h3 style="margin-top:0;margin-bottom:15px;"><%= circle.name %> </h3>
+    <a style="color: rgb(51, 51, 51)" href="<%= circle_path(circle) %>"><h3 style="margin-top:0;margin-bottom:15px;"><%= circle.name %> </h3></a>
     <p style="max-width:450px;"> <%= circle.description %></p>
     <div class="meta clearfix" style="border-top:1px dashed #ddd;padding:8px 0">
         <a style="margin-top:10px;" class="pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle</a>

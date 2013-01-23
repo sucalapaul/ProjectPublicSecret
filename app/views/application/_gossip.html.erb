@@ -10,7 +10,7 @@
 					<div style="display:inline-block;width:500px;">
 						 <%= timeago gossip.created_at  %>
 						<img style="float:left;width:21px;height:auto" src="/assets/quote-open.png"/>
-						<p class="pull-left" style="margin-left:10px;margin-bottom:0;font-weight:500"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/index")  %></p>
+						<p class="pull-left" style="margin-left:10px;margin-bottom:0;font-weight:500"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/user/index")  %></p>
 					</div>				
 					<p class="gossip-content"><%= gossip.content %></p>
 					<img style="float:right;width:21px;height:auto" src="/assets/quote-close.png"/>
