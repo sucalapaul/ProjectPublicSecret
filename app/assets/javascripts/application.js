@@ -119,7 +119,7 @@ $(document).on("click", ".gossip-vote-btn", function () {
 				voteCount++;
 				var voteCountOther = $(other).data('count') -1;
 				$(other).removeClass('enabled').addClass('disabled');
-				$(self).addClass('enabled');
+				$(self).removeClass('disabled').addClass('enabled');
 				$(other).find('p').html(voteCountOther);
 				$(other).data('count', voteCountOther);
 			} else if (data == -1) {		//click on T/F, this button was checked
