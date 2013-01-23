@@ -17,7 +17,7 @@
 
 					<div class= "meta clearfix">
 						<div class="gossip-like-btn" data-count="<%= gossip.like_count %>">
-							<%if current_user.likes.find_by_gossip_id(gossip.id) %>
+							<%if current_user.already_likes?(gossip.id) %>
 								<a class="xxx like-it">Unlike</a>
 							<% else %>
 								<a class="xxx like-it">Like</a>
