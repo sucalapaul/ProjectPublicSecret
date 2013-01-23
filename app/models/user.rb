@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :gossips
   has_many :likes
   has_many :gossip_votes
-  has_many :votes, :through => :gossip_votes
+  has_many :votes, :through => :gossip_votes, :source => :gossip
   has_many :comments
   has_many :circle_users
   has_many :circles, :through => :circle_users
@@ -62,6 +62,10 @@ class User < ActiveRecord::Base
   def already_likes?(post_id)
     self.likes.find(:all, conditions: ['gossip_id = ?', post_id ]).size>0
   end  
+
+  def voted(post_id)
+    self.gossip_votes.find(:first, conditions: ['gossip_id = ?', post_id])
+  end
   
   def password_required?
     super #&& provider.blank?

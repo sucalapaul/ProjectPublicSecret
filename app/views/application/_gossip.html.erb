@@ -26,11 +26,29 @@
 							<p class="value likes" style="margin-top:4px"> <%= gossip.like_count %> </p>
 						</div>
 						<div class="pull-right">
-							<div class="gossip-vote-btn xxx" data-value="true" data-count="<%= gossip.true_count %>" style="float:left;" >
+							<% v =  current_user.voted(gossip.id) %>
+							<div class="gossip-vote-btn xxx 
+								<% if ! v.nil? %>
+									<% if v.value %>
+										enabled 
+									<% else %>
+										disabled 
+									<% end %>
+								<% end %>
+								" data-value="true" data-count="<%= gossip.true_count %>" style="float:left;" >
+
 								<a class="true">True</a>
 								<p class="value" style="margin-right:10px;"> <%= gossip.true_count %></p>
 							</div>
-							<div class="gossip-vote-btn xxx" data-value="false" data-count="<%= gossip.false_count %>" style=" float:left;margin-left:10px;">
+							<div class="gossip-vote-btn xxx 
+								<% if ! v.nil? %>
+									<% if ! v.value %>
+										enabled 
+									<% else %>
+										disabled 
+									<% end %>
+								<% end %>
+							" data-value="false" data-count="<%= gossip.false_count %>" style=" float:left;margin-left:10px;">
 								<a class="fake">&nbsp;</a>
 								<p class="value"><%= gossip.false_count %></p>
 							</div>
