@@ -1,18 +1,29 @@
-<div class="top-bar" style="padding-bottom:0">
-    <a class="pull-right"><i class="icon-map-marker"></i> <%= circle.city.name %></a>
-    <a style="color: rgb(51, 51, 51)" href="<%= circle_path(circle) %>"><h3 style="margin-top:0;margin-bottom:15px;"><%= circle.name %> </h3></a>
-    <p style="max-width:450px;"> <%= circle.description %></p>
-    <div class="meta clearfix" style="border-top:1px dashed #ddd;padding:8px 0">
-        <a style="margin-top:10px;" class="pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle</a>
-        <ul class="stats" style="margin:0px">
-            <li class="stat">
-            <div class="value"><%= circle.gossip_count %></div>
-            <div class="descriptor">Gossips</div>
-            </li>
-            <li class="stat" style="width:140px">
-            <div class="value"><%= circle.people_count %></div>
-            <div class="descriptor">People in this circle</div>
-            </li>       
-        </ul>
+<div class="circle-post" data-id="<%= circle.id %>"
+    <% if defined? hidden %> 
+        style="display:none"
+    <% end %>
+>
+
+    <div class="top-bar" style="padding-bottom:0">
+        <a class="pull-right"><i class="icon-map-marker"></i> <%= circle.city.name %></a>
+        <a style="color: rgb(51, 51, 51)" href="<%= circle_path(circle) %>"><h3 style="margin-top:0;margin-bottom:15px;"><%= circle.name %> </h3></a>
+        <p style="max-width:450px;"> <%= circle.description %></p>
+        <div class="meta clearfix" style="border-top:1px dashed #ddd;padding:8px 0">
+            <%if current_user.already_joined?(circle.id) %>
+                <a style="margin-top:10px;" data-count="<%= circle.people_count %>" class="join-circle-btn pull-right btnx btnx-blue"><i class="icon-minus"></i> Leave Circle</a>
+            <% else %>
+                <a style="margin-top:10px;" data-count="<%= circle.people_count %>" class="join-circle-btn pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle</a>
+            <%end%>
+            <ul class="stats" style="margin:0px">
+                <li class="stat">
+                <div class="value"><%= circle.gossip_count %></div>
+                <div class="descriptor">Gossips</div>
+                </li>
+                <li class="stat" style="width:140px">
+                <p class="value" style="margin:0px"><%= circle.people_count %></p>
+                <div class="descriptor">People in this circle</div>
+                </li>       
+            </ul>
+        </div>
     </div>
 </div>

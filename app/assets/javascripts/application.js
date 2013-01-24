@@ -68,7 +68,31 @@ $(document).on("click", ".post_comment_button", function () {
 
 });
 
+//Ajax post for joining/leaving circle
+$(document).on("click", ".join-circle-btn", function () {
+	var self = this;
+	var circlePost = $(this).closest(".circle-post");
+	var circleId = $(circlePost).data('id');
+	var peopleCount = $(self).data('count');
 
+	var jqxhr = $.post("/circles/join", { "circle[circle_id]": circleId },
+		function(data) {
+			console.log(data);
+			if (data == 1) {
+				$(self).html("<i class=\"icon-minus\"></i> Leave Circle");
+			} else {
+				$(self).html("<i class=\"icon-plus\"></i> Join Circle");
+			}
+			peopleCount = peopleCount + data;
+			$(self).parent().find('p').html(peopleCount);
+			$(self).data('count', peopleCount);
+
+		}, "json")
+		.error(function() {
+			showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+		});
+
+});
 
 //Ajax post for a like
 $(document).on("click", ".gossip-like-btn", function () {
@@ -97,7 +121,7 @@ $(document).on("click", ".gossip-like-btn", function () {
 });
 
 
-	//Ajax post for a gossip vote (true/fake)
+//Ajax post for a gossip vote (true/fake)
 $(document).on("click", ".gossip-vote-btn", function () {
 	var self = this;
 	var other = $(this).siblings('.gossip-vote-btn');
