@@ -6,6 +6,43 @@
 <%= render partial: "circle_header", locals: { circle: @circle }, formats: [:html] %>
 
 <span style="line-height:30px">&nbsp;</span>
+
+	<div class="top-bar" style="margin-top:-20px;width:480px; background:#fff;padding:20px 60px;">
+		<h3> People in this Circle </h3>
+		<ul class="InvitesList">
+	        <li class="friend">
+	        	<a class="btnx btnx-blue" >Follow</a>
+	  			<img class="InvitesProfileImage" src="https://graph.facebook.com/100001260751431/picture?type=square">
+	    		<div class="individual">
+	        		<div>Bicu Adelina</div>
+			    </div>
+			</li>
+			<li class="friend">
+	        	<a class="btnx btnx-blue" >Follow</a>
+	  			<img class="InvitesProfileImage" src="https://graph.facebook.com/100001260751431/picture?type=square">
+	    		<div class="individual">
+	        		<div>Bicu Adelina</div>
+			    </div>
+			</li>
+			<li class="friend">
+	        	<a class="btnx btnx-blue" >Follow</a>
+	  			<img class="InvitesProfileImage" src="https://graph.facebook.com/100001260751431/picture?type=square">
+	    		<div class="individual">
+	        		<div>Bicu Adelina</div>
+			    </div>
+			</li>
+			<li class="friend">
+	        	<a class="btnx btnx-blue" >Follow</a>
+	  			<img class="InvitesProfileImage" src="https://graph.facebook.com/100001260751431/picture?type=square">
+	    		<div class="individual">
+	        		<div>Bicu Adelina</div>
+			    </div>
+			</li>
+			
+		</ul>
+	</div>
+
+
 <% @circle.gossips.each do |gossip| %>
     <%= render partial: "gossip", locals: { gossip: gossip }, formats: [:html] %>
 <% end %>

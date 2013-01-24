@@ -29,9 +29,8 @@
         <p style="margin-bottom:0;color:white;font-size:17px"> What's the word? </p>
 
           <div class="post-well clearfix">
-              
               <textarea id="gossip_content" name="gossip[content]" class="input-block-level" rows="3" style="max-height:90px;max-width:560px;"></textarea>
-               <button type="button" class="btn btn-primary pull-right disabled" id="button_post_gossip" ><i class="icon-new-gossip"></i> OK </button>
+               <button type="button" class="btn btn-primary pull-right disabled" id="button_post_gossip" >OK </button>
                <div class="btn-toolbar pull-right" style="margin:0 20px 0 0">
                   <div class="btn-group toggle-radio">
                     <a class="btn" data-value="1" href="#"><i class="icon-lock"></i> anonymous</a>
@@ -68,7 +67,7 @@
 
           <% else %>
 
-          <div class="dashboard" style="width:240px;height:500px;float:left;display:block;margin-top:30px; ">
+          <div class="dashboard">
             
             <div class="menux-container" style="margin-bottom:20px">      
               <div class="navx">
@@ -112,28 +111,33 @@
 
              <a href="#" class="btnx btnx-blue-x btnx-large" >Gossip in this Circle</a> 
 
-              <h6> TRENDING </h6>
+             
               <!-- Tags -->
-              <ul class="tags">
-                <li><a href="#">Interface <span>4</span></a></li>
-                <li><a href="#">Icon <span>8</span></a></li>
-                <li><a href="#">Typography <span>15</span></a></li>
-                <li><a href="#">Color <span>16</span></a></li>
-              </ul>
+              <div class="clearfix" style="margin-bottom:20px;padding:10px;width:220px;background:#fafafa;border-radius:5px; border:1px solid #dbdbdb">
+                 <h6> TRENDING </h6>
+                  <a class="tag bordered" href="#">topic</a>
+                  <a class="tag bordered" href="#">high school</a>
+                  <a class="tag bordered" href="#">college</a>
+                  <a class="tag bordered" href="#">night life</a>
+                  <a class="tag bordered" href="#">fun</a>
+                  <a class="tag bordered" href="#">high school</a>
+                  <a class="tag bordered" href="#">college</a>
+                  <a class="tag bordered" href="#">night life</a>
+                  <a class="tag bordered" href="#">high school</a>
+                  <a class="tag bordered" href="#">college</a>
+                  <a class="tag bordered" href="#">night life</a>
+                  <a class="tag bordered" href="#">high school</a>
+                  <a class="tag bordered" href="#">college</a>
+                  <a class="tag bordered" href="#">night life</a>
+              </div>
 
-              <ul class="tags green">
-                <li><a href="#">Design <span>23</span></a></li>
-                <li><a href="#">Illustration <span>42</span></a></li>
-                <li><a href="#">Component <span>108</span></a></li>
-                <li><a href="#">Misc <span>12</span></a></li>
+              <!--FOOTER -->
+              <ul class="footer-nav">
+                <li><a href="/">© Let's Gossip</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/terms">Terms</a></li>
               </ul>
-
-              <ul class="tags blue">
-                <li><a href="#">Infrastructure <span>31</span></a></li>
-                <li><a href="#">Application <span>33</span></a></li>
-                <li><a href="#">Mobile <span>65</span></a></li>
-                <li><a href="#">Desktop <span>160</span></a></li>
-              </ul>
+              
           </div>
 
           <div class="mainx-content" style="float:right;width:600px; ">
