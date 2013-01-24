@@ -1,9 +1,9 @@
 <div class="top-bar clearfix" style="padding:10px">
 	<div class="right-menu">
 		<%if current_user.already_follows?(user.id) %>
-			<a class="btn btn-green">Unfollow</a>
+			<a class="follow-user-btn btn btn-green" data-id="<%= user.id %>">Unfollow</a>
 		<% else %>
-			<a class="btn btn-green">Follow</a>
+			<a class="follow-user-btn btn btn-green" data-id="<%= user.id %>">Follow</a>
 		<%end%>
 	</div>
 	<a class="profile-image" style="display: block;
@@ -27,7 +27,7 @@
 			<div class="descriptor">Following</div>
 			</li>
 			<li class="stat">
-			<div class="value"><%= user.follower_count %></div>
+			<div id="follower-count" class="value"><%= user.follower_count %></div>
 			<div class="descriptor">Followers</div>
 			</li>
 		
