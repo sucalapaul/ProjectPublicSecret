@@ -1,3 +1,7 @@
+<script type="text/javascript">
+  currentUserId = <%= @user.id %>;
+</script>
+
 <%= render partial: "user_header", locals: { user: @user }, formats: [:html] %>
 
 <div class="bs-docs-sidebar">
@@ -12,4 +16,3 @@
 </div>
 
 <div class="user-content"></div>
-
