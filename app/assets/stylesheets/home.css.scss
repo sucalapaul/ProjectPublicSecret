@@ -9,6 +9,7 @@
 	margin-top:40px;
 }
 
+/* GOSSIP DESIGN */
 .gossip-post {
 	margin-top:20px;
 	margin:0 0 20px 0;
@@ -44,9 +45,9 @@
 	border: 1px solid #ddd;
 	border-bottom:0px;
 
-	-moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
-	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 	background:white;
 }
 
@@ -224,3 +225,5 @@
 .your-comment .public:hover, .your-comment .private:hover {border:1px solid #cdcdcd;}
 .your-comment .public { background: url(/assets/unlocked.png) no-repeat 6px 4px; }
 .your-comment .private { background: url(/assets/locked.png) no-repeat 7px 4px; }
+
+/* GOSSIP DESIGN END */

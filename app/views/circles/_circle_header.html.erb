@@ -10,9 +10,9 @@
         <p style="max-width:450px;"> <%= circle.description %></p>
         <div class="meta clearfix" style="border-top:1px dashed #ddd;padding:8px 0">
             <%if current_user.already_joined?(circle.id) %>
-                <a style="margin-top:10px;" data-count="<%= circle.people_count %>" class="join-circle-btn pull-right btnx btnx-blue"><i class="icon-minus"></i> Leave Circle</a>
+                <a style="margin-top:10px;" data-count="<%= circle.people_count %>" class="joined-circle join-circle-btn pull-right btnx btnx-blue"><span class="joined"><i class="icon-ok"></i> Joined</span> <span class="leave"><i class="icon-remove"></i> Leave Circle </span></a>
             <% else %>
-                <a style="margin-top:10px;" data-count="<%= circle.people_count %>" class="join-circle-btn pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle</a>
+                <a style="margin-top:10px;" data-count="<%= circle.people_count %>" class="join-circle join-circle-btn pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle <span class="leave"> Leave Circle </span></a>
             <%end%>
             <ul class="stats" style="margin:0px">
                 <li class="stat">

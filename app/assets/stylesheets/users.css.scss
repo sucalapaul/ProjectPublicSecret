@@ -177,7 +177,7 @@ padding-bottom: 28px;
 .InvitesList {
 	display: block;
 	list-style: none;
-	margin: 0;
+	margin: 0 0 20px 0;
 	padding-top:5px;
 	border-top: 3px double rgba(34,25,25,0.1);	
 	border-bottom: 1px solid rgba(255,255,255,0.7);
@@ -187,7 +187,7 @@ padding-bottom: 28px;
 	clear: both;
 	display: block;
 	margin: 0;
-	padding: 4px 0;
+	padding: 6px 0;
 	list-style: none;
 	border-bottom: 1px solid #dfdedf /*rgba(34,25,25,0.1)*/;
 	overflow: hidden;
@@ -204,6 +204,7 @@ padding-bottom: 28px;
 	height: 40px;
 	margin-right: 10px;
 }
+
 .InvitesList li .individual {
 	display: block;
 	margin-top: 9px;

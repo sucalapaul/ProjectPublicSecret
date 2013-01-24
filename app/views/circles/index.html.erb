@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs circles-tabs">
   <li class="active">
-    <a style="font-weight:bold" href="#">My Circles</a>
+    <a href="#">My Circles</a>
   </li>
   <li class="">
     <a href="#">City</a>
@@ -13,7 +13,33 @@
 
 <div class="clearfix top-bar" style="margin-top:0;border-radius:0 5px 5px 5px">
     <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New Circle</a>
-        <h3 style="margin-bottom:0;margin-top:4px">Listing circles</h3>
+        <h3 style="margin-bottom:0;margin-top:4px">Circles you joined</h3>
+</div>
+
+<div class="clearfix top-bar" style="margin-top:0;border-radius:0 5px 5px 5px">
+    <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New</a>
+        <input type="text" placeholder="Search for a city" style="margin-right:10px;float:left;height:22px;width:278px;margin-bottom:0px" >
+        <a class="btnx btnx-blue pull-left"href="#">Search</a>
+</div>
+
+<div class="clearfix top-bar " style="margin-top:0;border-radius:0 5px 5px 5px">
+    <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New Circle</a>
+        <h3 style="margin-top:4px">Popular Tags</h3>
+        <a class="tag" href="#">topic</a>
+        <a class="tag" href="#">high school</a>
+        <a class="tag" href="#">college</a>
+        <a class="tag" href="#">night life</a>
+        <a class="tag" href="#">fun</a>
+        <a class="tag" href="#">high school</a>
+        <a class="tag" href="#">college</a>
+        <a class="tag" href="#">night life</a>
+        <a class="tag" href="#">high school</a>
+        <a class="tag" href="#">college</a>
+        <a class="tag" href="#">night life</a>
+        <a class="tag" href="#">high school</a>
+        <a class="tag" href="#">college</a>
+        <a class="tag" href="#">night life</a>
+
 </div>
 
 <% @circles.each do |circle| %>
