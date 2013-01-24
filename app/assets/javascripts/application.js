@@ -79,9 +79,14 @@ $(document).on("click", ".join-circle-btn", function () {
 		function(data) {
 			console.log(data);
 			if (data == 1) {
-				$(self).html("<i class=\"icon-minus\"></i> Leave Circle");
+				$(self).html("<span class=\"joined\"><i class=\"icon-ok\"></i> Joined</span> <span class=\"leave\"><i class=\"icon-remove\"></i> Leave Circle </span>");
+				$(self).addClass("joined-circle");
+				$(self).removeClass("join-circle");
 			} else {
 				$(self).html("<i class=\"icon-plus\"></i> Join Circle");
+				$(self).removeClass("joined-circle");
+				$(self).addClass("join-circle");
+
 			}
 			peopleCount = peopleCount + data;
 			$(self).parent().find('p').html(peopleCount);

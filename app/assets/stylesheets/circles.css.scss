@@ -40,3 +40,18 @@
 .circles-tabs li.active a:hover {
 border:1px solid #fff;
 }
+
+/* JOIN BUTTON */
+
+.joined-circle:hover{
+	background-color: #DA5C45;
+}
+.joined-circle span.leave, .join-circle span.leave{ display:none;}
+.joined-circle:hover span.leave {
+	display: block;
+}
+.join-circle:hover,.joined-circle {background-color: #84C449;}
+
+.joined-circle:hover span.joined {
+	display: none;
+}
