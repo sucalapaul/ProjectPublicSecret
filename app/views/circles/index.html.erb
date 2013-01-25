@@ -16,11 +16,13 @@
         <h3 style="margin-bottom:0;margin-top:4px">Circles you joined</h3>
 </div>
 
-<div class="clearfix top-bar" style="margin-top:0;border-radius:0 5px 5px 5px">
-    <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New</a>
-        <input type="text" placeholder="Search for a city" style="margin-right:10px;float:left;height:22px;width:278px;margin-bottom:0px" >
-        <a class="btnx btnx-blue pull-left"href="#">Search</a>
-</div>
+<form id="search_circles_form">
+  <div class="clearfix top-bar" style="margin-top:0;border-radius:0 5px 5px 5px">
+      <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New</a>
+          <input type="text" id="search_city_box" placeholder="Search for a city" style="margin-right:10px;float:left;height:22px;width:278px;margin-bottom:0px" >
+          <a class="btnx btnx-blue pull-left" onclick="search_circle();">Search</a>
+  </div>
+</form>
 
 <div class="clearfix top-bar " style="margin-top:0;border-radius:0 5px 5px 5px">
     <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New Circle</a>
@@ -42,10 +44,13 @@
 
 </div>
 
-<% @circles.each do |circle| %>
-    <%= render partial: "circle_header", locals: { circle: circle }, formats: [:html] %>
+<% if @circles.size == 0 %>
+  <p>Hey gossiper, it looks like there aren't any gossip circles in your city. Start by creating one <a href="/circles/new">here</a>. Xoxo..</p>
+<% else %>
+  <% @circles.each do |circle| %>
+      <%= render partial: "circle_header", locals: { circle: circle }, formats: [:html] %>
+  <% end %>
 <% end %>
-
 
 
 

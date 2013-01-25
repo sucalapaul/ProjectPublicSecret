@@ -5,8 +5,14 @@ class CirclesController < ApplicationController
   # GET /circles
   # GET /circles.json
   def index
-    @circles = Circle.all
+    #@client_ip = request.remote_ip
 
+    @c = GeoIP.new('/home/bogdangabriel/Downloads/GeoLiteCity.dat').city('google.com') #iau orasul
+
+    #iau id-urile oraselor care corespund coordonatelor
+    @city_id = City.find(:all, :select => 'id', :conditions => ["abs(latitude - ?) < 0.1 AND abs(longitude - ?) < 0.1", @c.latitude, @c.longitude] )
+
+    @circles = Circle.where(:city_id => @city_id)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @circles }
