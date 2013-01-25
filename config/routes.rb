@@ -13,13 +13,17 @@ ProjectPublicSecret::Application.routes.draw do
   resources :gossips     
   resources :likes     
   resources :comments     
-  resources :gossip_votes         
+  resources :gossip_votes  
+  resources :circle_users
+  resources :users       
 
 
   root :to => 'home#index'
 
   get "users/index"
   get "users/invites"
+  post "circles/join"
+  post "users/follow"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

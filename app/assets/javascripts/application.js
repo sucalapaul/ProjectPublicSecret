@@ -68,7 +68,36 @@ $(document).on("click", ".post_comment_button", function () {
 
 });
 
+//Ajax for joining a circle
+$(document).on("click", ".join-circle-btn", function () {
+	var self = this;
+	var circlePost = $(this).closest(".circle-post");
+	var circleId = $(circlePost).data('id');
+	var peopleCount = $(self).data('count');
 
+	var jqxhr = $.post("/circles/join", { "circle[circle_id]": circleId },
+		function(data) {
+			console.log(data);
+			if (data == 1) {
+				$(self).html("<span class=\"joined\"><i class=\"icon-ok\"></i> Joined</span> <span class=\"leave\"><i class=\"icon-remove\"></i> Leave Circle </span>");
+				$(self).addClass("joined-circle");
+				$(self).removeClass("join-circle");
+			} else {
+				$(self).html("<i class=\"icon-plus\"></i> Join Circle");
+				$(self).removeClass("joined-circle");
+				$(self).addClass("join-circle");
+
+			}
+			peopleCount = peopleCount + data;
+			$(self).parent().find('p').html(peopleCount);
+			$(self).data('count', peopleCount);
+
+		}, "json")
+		.error(function() {
+			showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+		});
+
+});
 
 //Ajax post for a like
 $(document).on("click", ".gossip-like-btn", function () {
@@ -97,7 +126,7 @@ $(document).on("click", ".gossip-like-btn", function () {
 });
 
 
-	//Ajax post for a gossip vote (true/fake)
+//Ajax post for a gossip vote (true/fake)
 $(document).on("click", ".gossip-vote-btn", function () {
 	var self = this;
 	var other = $(this).siblings('.gossip-vote-btn');
@@ -213,11 +242,27 @@ $(document).ready(function() {
 		$(this).addClass("active");
 	});
 
+	//Ajax post for following a user
+	$(".follow-user-btn").click( function () {
+		var self = this;
+		var followerId = $(self).data('id');
 
+		var jqxhr = $.post("/users/follow", { "user[follower_id]": followerId },
+			function(data) {
+				console.log(data);
+				if (data == 1) {
+					$(self).html("Unfollow");
+				} else {
+					$(self).html("Follow");
+				}
+				$("#follower-count").html(parseInt($("#follower-count").html()) + data);
 
+			}, "json")
+			.error(function() {
+				showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+			});
 
-
-
+	});
 
 });
 

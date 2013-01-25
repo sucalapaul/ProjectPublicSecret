@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :nickname, :circles_names
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :nickname, :circles_names, :name
   # attr_accessible :title, :body
 
   has_many :followers
@@ -67,6 +67,14 @@ class User < ActiveRecord::Base
     self.gossip_votes.find(:first, conditions: ['gossip_id = ?', post_id])
   end
   
+  def already_joined?(circle_id)
+    self.circles.find(:all, conditions: ['circle_id = ?', circle_id ]).size>0
+  end
+
+  def already_follows?(follower_id)
+    self.followers.find(:all, conditions: ['follower_id = ?', follower_id ]).size>0
+  end
+
   def password_required?
     super #&& provider.blank?
   end

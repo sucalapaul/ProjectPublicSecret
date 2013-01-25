@@ -1,0 +1,36 @@
+<div class="top-bar clearfix" style="padding:10px">
+	<div class="right-menu">
+		<%if current_user.already_follows?(user.id) %>
+			<a class="follow-user-btn btn btn-green" data-id="<%= user.id %>">Unfollow</a>
+		<% else %>
+			<a class="follow-user-btn btn btn-green" data-id="<%= user.id %>">Follow</a>
+		<%end%>
+	</div>
+	<a class="profile-image" style="display: block;
+									float: left;
+									margin-right: 20px;">
+			<img alt="Small_vapjpmb0a3bscmazj0du" src="https://s3.amazonaws.com/assets.spinlister.com/user/4174/small_vAPjpMb0a3BsCMAZj0dU.jpg" width="150">						
+	</a>
+	<h2>Hi, <%= user.name %></h2>
+	<div class="cleafix">
+		<ul class="stats">
+			<li class="stat">
+			<div class="value"><%= user.gossip_count %></div>
+			<div class="descriptor">Gossips</div>
+			</li>
+			<li class="stat">
+			<div class="value"><%= user.circle_count %></div>
+			<div class="descriptor">Circles</div>
+			</li>
+			<li class="stat">
+			<div class="value"><%= user.following_count %></div>
+			<div class="descriptor">Following</div>
+			</li>
+			<li class="stat">
+			<div id="follower-count" class="value"><%= user.follower_count %></div>
+			<div class="descriptor">Followers</div>
+			</li>
+		
+		</ul>
+	</div>
+</div>

@@ -71,6 +71,27 @@ class CirclesController < ApplicationController
     end
   end
 
+  # POST /circles
+  # POST /circles.json
+  def join
+    joined = CircleUser.where(circle_id: params[:circle][:circle_id], user_id: current_user.id).first_or_initialize
+
+    respond_to do |format|
+      if not joined.persisted?
+        joined.save
+        Circle.update_counters(params[:circle][:circle_id], people_count: 1)
+        User.update_counters(current_user.id, circle_count: 1)
+        mod = 1
+      else
+        joined.delete
+        Circle.update_counters(params[:circle][:circle_id], people_count: -1)
+        User.update_counters(current_user.id, circle_count: -1)
+        mod = -1
+      end
+      format.json { render json: mod, status: :created }
+    end
+  end
+
   # PUT /circles/1
   # PUT /circles/1.json
   def update
