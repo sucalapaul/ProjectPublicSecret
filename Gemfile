@@ -44,3 +44,4 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'devise_invitable', '~> 1.0.0'
 gem 'omniauth-facebook'
+gem "koala"

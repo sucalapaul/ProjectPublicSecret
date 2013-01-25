@@ -79,4 +79,19 @@ class User < ActiveRecord::Base
     end
   end
 
+
+def facebook
+  @facebook ||= Koala::Facebook::API.new(oauth_token)
+end
+
+def self.get_fb_friends()
+    if self.provider != "facebook"
+      user = User.where("email = ? AND provider = ?", "sucalas_lab@yahoo.com", "facebook").first
+    end
+    return self.facebook.get_connection("me", "friends")
+  rescue Koala::Facebook::APIError
+    logger.info e.to_s
+    e.to_s
+  end
+
 end
