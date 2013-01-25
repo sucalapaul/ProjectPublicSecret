@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :gossips
   has_many :likes
   has_many :gossip_votes
-  has_many :votes, :through => :gossip_votes
+  has_many :votes, :through => :gossip_votes, :source => :gossip
   has_many :comments
   has_many :circle_users
   has_many :circles, :through => :circle_users
@@ -62,6 +62,10 @@ class User < ActiveRecord::Base
   def already_likes?(post_id)
     self.likes.find(:all, conditions: ['gossip_id = ?', post_id ]).size>0
   end  
+
+  def voted(post_id)
+    self.gossip_votes.find(:first, conditions: ['gossip_id = ?', post_id])
+  end
   
   def already_joined?(circle_id)
     self.circles.find(:all, conditions: ['circle_id = ?', circle_id ]).size>0
@@ -81,6 +85,21 @@ class User < ActiveRecord::Base
     else
       super
     end
+  end
+
+
+def facebook
+  @facebook ||= Koala::Facebook::API.new(oauth_token)
+end
+
+def self.get_fb_friends()
+    if self.provider != "facebook"
+      user = User.where("email = ? AND provider = ?", "sucalas_lab@yahoo.com", "facebook").first
+    end
+    return self.facebook.get_connection("me", "friends")
+  rescue Koala::Facebook::APIError
+    logger.info e.to_s
+    e.to_s
   end
 
 end

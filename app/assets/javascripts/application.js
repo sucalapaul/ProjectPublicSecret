@@ -68,7 +68,7 @@ $(document).on("click", ".post_comment_button", function () {
 
 });
 
-//Ajax post for joining/leaving circle
+//Ajax for joining a circle
 $(document).on("click", ".join-circle-btn", function () {
 	var self = this;
 	var circlePost = $(this).closest(".circle-post");
@@ -242,11 +242,27 @@ $(document).ready(function() {
 		$(this).addClass("active");
 	});
 
+	//Ajax post for following a user
+	$(".follow-user-btn").click( function () {
+		var self = this;
+		var followerId = $(self).data('id');
 
+		var jqxhr = $.post("/users/follow", { "user[follower_id]": followerId },
+			function(data) {
+				console.log(data);
+				if (data == 1) {
+					$(self).html("Unfollow");
+				} else {
+					$(self).html("Follow");
+				}
+				$("#follower-count").html(parseInt($("#follower-count").html()) + data);
 
+			}, "json")
+			.error(function() {
+				showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+			});
 
-
-
+	});
 
 });
 
