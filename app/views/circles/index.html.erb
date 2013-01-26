@@ -44,13 +44,16 @@
 
 </div>
 
-<% if @circles.size == 0 %>
-  <p>Hey gossiper, it looks like there aren't any gossip circles in your city. Start by creating one <a href="/circles/new">here</a>. Xoxo..</p>
-<% else %>
-  <% @circles.each do |circle| %>
-      <%= render partial: "circle_header", locals: { circle: circle }, formats: [:html] %>
+<div id="circles_container">
+  <% if @circles.size == 0 %>
+    <p>Hey gossiper, it looks like there aren't any gossip circles in your city. Start by creating one <a href="/circles/new">here</a>. Xoxo..</p>
+  <% else %>
+    <% @circles.each do |circle| %>
+        <%= render partial: "circle_header", locals: { circle: circle, delete: 1 }, formats: [:html] %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 
+<%= render partial: "circle_header", locals: { circle: @circles.first, delete: 0 }, formats: [:html] %>
 
 

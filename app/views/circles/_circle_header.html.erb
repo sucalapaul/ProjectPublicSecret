@@ -1,4 +1,9 @@
-<div class="circle-post" data-id="<%= circle.id %>"
+<div  <% if delete == 0 %> 
+        class="circle-post hidden" id="template" 
+      <%else%>
+        class="circle-post"  
+      <% end %>
+     data-bind="id" data-id="<%= circle.id %>"
     <% if defined? hidden %> 
         style="display:none"
     <% end %>
@@ -6,8 +11,8 @@
 
     <div class="top-bar" style="padding-bottom:0">
         <a class="pull-right"><i class="icon-map-marker"></i> <%= circle.city.name %></a>
-        <a style="color: rgb(51, 51, 51)" href="<%= circle_path(circle) %>"><h3 style="margin-top:0;margin-bottom:15px;"><%= circle.name %> </h3></a>
-        <p style="max-width:450px;"> <%= circle.description %></p>
+        <a style="color: rgb(51, 51, 51)" href="<%= circle_path(circle) %>"><h3 data-bind="name" style="margin-top:0;margin-bottom:15px;"><%= circle.name %> </h3></a>
+        <p style="max-width:450px;" data-bind="description"> <%= circle.description %></p>
         <div class="meta clearfix" style="border-top:1px dashed #ddd;padding:8px 0">
             <%if current_user.already_joined?(circle.id) %>
                 <a style="margin-top:10px;" data-count="<%= circle.people_count %>" class="joined-circle join-circle-btn pull-right btnx btnx-blue"><span class="joined"><i class="icon-ok"></i> Joined</span> <span class="leave"><i class="icon-remove"></i> Leave Circle </span></a>
@@ -16,11 +21,11 @@
             <%end%>
             <ul class="stats" style="margin:0px">
                 <li class="stat">
-                <div class="value"><%= circle.gossip_count %></div>
+                <div data-bind="gossip_count" class="value"><%= circle.gossip_count %></div>
                 <div class="descriptor">Gossips</div>
                 </li>
                 <li class="stat" style="width:140px">
-                <p class="value" style="margin:0px"><%= circle.people_count %></p>
+                <p class="value" data-bind="people_count" style="margin:0px"><%= circle.people_count %></p>
                 <div class="descriptor">People in this circle</div>
                 </li>       
             </ul>

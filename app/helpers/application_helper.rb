@@ -10,6 +10,17 @@ module ApplicationHelper
 		return t.html_safe
 	end
 
+	# add "enabled" and "disabled" classes for True/Fake button
+	def add_vote_class (vote, button)
+		if ! vote.nil?
+			if button == vote.value  
+				"enabled"
+			else
+				"disabled"
+			end
+		end
+	end
+
 	def timeago(time, options = {})
 	  options[:class] ||= "timeago"
 	  content_tag(:abbr, time.to_s, options.merge(:title => time.getutc.iso8601)) if time

@@ -3,10 +3,10 @@ class UsersController < ApplicationController
 	def index
 		@user = User.find(3, :include => [:gossips], :include => [:circles], :include => [:followers])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @circle }
-    end	
+		respond_to do |format|
+		  format.html # show.html.erb
+		  format.json { render json: @circle }
+		end	
 	end
 
 	# GET /users/1
@@ -40,5 +40,11 @@ class UsersController < ApplicationController
       format.json { render json: mod, status: :created }
     end
   end
+
+	def invites
+		#@graph = Koala::Facebook::API.new(current_user.oauth_token)
+		@friend_data = current_user.facebook.get_connection("me", "friends?fields=name,picture") #@graph.get_object("me","likes")
+
+	end 
 
 end

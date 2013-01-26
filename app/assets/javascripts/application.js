@@ -63,8 +63,7 @@ $(document).on("click", ".post_comment_button", function () {
 		}, "json")
 		.error(function() {
 			showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
-		}
-	);
+		});
 
 });
 
@@ -166,6 +165,20 @@ $(document).on("click", ".gossip-vote-btn", function () {
 
 });
 
+//Ajax for searching a circle
+function search_circle() {
+	var form = $(this).closest("form");
+	var jqxhr = $.post("/circles/search", {"city[latitude]": 46.77, "city[longitude]": 23.59},
+		function(data) {
+			var circleData = data;
+			$('#template').clone().appendTo('.circles_container').removeClass('hidden');
+			$('#circles_container').render(circleData);
+		}, "json")
+		.error(function() {
+			showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+		});
+}
+
 $(document).ready(function() {
 
 	//toggleMenu();
@@ -263,6 +276,11 @@ $(document).ready(function() {
 			});
 
 	});
+
+	Transparency.matcher = function(element, key) {
+		  return element.getAttribute('data-bind') == key;
+		};
+
 
 });
 
