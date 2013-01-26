@@ -1,6 +1,6 @@
 .page-homepage {
-color: #333;
-padding:0;
+	color: #333;
+	padding:0;
 
 }
 
@@ -12,8 +12,8 @@ div.scroller-holder {
 }
 
 body > .wrapx {
-height: auto;
-min-height: 100%;
+	height: auto;
+	min-height: 100%;
 }
 
 .page-homepage .dummy-firstload {
@@ -26,7 +26,6 @@ min-height: 100%;
 	text-align: center;
 }
 .content-main {
-	padding-bottom: 7em;
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	-ms-transform-style: preserve-3d;
@@ -47,7 +46,7 @@ min-height: 100%;
 }
 
 .page-homepage section {
-background-color: #fff;
+	background-color: #fff;
 }
 
 
@@ -62,7 +61,7 @@ background-color: #fff;
 	padding:0 4%;
 }
 .page-homepage section.soundtrack .box {
-	padding-top: 110px;
+	padding-top: 120px;
 	padding-bottom: 210px;
 	padding-top: 0 9;
 	padding-bottom: 0 9;
@@ -83,30 +82,30 @@ background-color: #fff;
 }
 .page-homepage .soundtrack h1 {
 	color: #FFF;
-	font-size: 4em;
+	font-size: 3.9em;
 	line-height: 1.1;
 	margin: .2em 0;
 }
 .page-homepage .soundtrack p {
-color: #FFF;
+	color: #FFF;
 }
 
 /* HEADER */
 .header-main {
-background-color: #6b6b6d;
-background-color: rgba(0,0,0,0.78);
--webkit-transform-style: preserve-3d;
--moz-transform-style: preserve-3d;
--ms-transform-style: preserve-3d;
--o-transform-style: preserve-3d;
-transform-style: preserve-3d;
-left: 0;
-padding-bottom: .25em;
-position: fixed;
-text-align: right;
-top: 0;
-width: 100%;
-z-index: 1000;
+	background-color: #6b6b6d;
+	background-color: rgba(0,0,0,0.78);
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	-o-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	left: 0;
+	padding-bottom: .25em;
+	position: fixed;
+	text-align: right;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
 }
 
 .header-main .container {
@@ -143,14 +142,12 @@ background-color: #fff;
 
 /* FOOTER */
 .footer-main {
+margin-top:0px;
 background-color: #f5f5f3;
 border-top: 1px solid #FFF;
-height: 4em;
-margin-top: -7em;
 padding-bottom: 1.5em;
 padding-top: 1.5em;
 position: relative;
-width: 100%;
 }
 
 .footer-main nav {
@@ -165,6 +162,7 @@ display: inline-block;
 
 .footer-main .copyright {
 clear: right;
+margin-right:25px;
 color: #999;
 display: block;
 font-family: Helvetica,Arial,sans-serif;
