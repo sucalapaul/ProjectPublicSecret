@@ -46,6 +46,8 @@
 
     var input = document.getElementById('circle_city_name');
     var autocomplete = new google.maps.places.Autocomplete(input);
+    
+    var city_name;
 
     autocomplete.bindTo('bounds', map2);
 
@@ -57,9 +59,14 @@
           return;
         }
 
+        city_name = place.address_components[0].long_name;
         $('#circle_city_long').val(place.geometry.location.$a);
         $('#circle_city_lat').val(place.geometry.location.Za);
       });
+
+    $('#new_circle').submit(function() {
+      $('#circle_city_name').val(city_name);
+    });
   </script>
 
 
