@@ -1,6 +1,6 @@
 class GossipsController < ApplicationController
 
-  before_filter :authenticate_user!, except: [:index]
+  before_filter :authenticate_user!
   
   # GET /gossips
   # GET /gossips.json  
