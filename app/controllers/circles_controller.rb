@@ -7,7 +7,7 @@ class CirclesController < ApplicationController
   def index
     #@client_ip = request.remote_ip
 
-    @c = GeoIP.new('/home/bogdangabriel/Downloads/GeoLiteCity.dat').city('188.24.108.194') #iau orasul
+    @c = GeoIP.new('data/GeoLiteCity.dat').city('188.24.108.194') #iau orasul
 
     #iau id-urile oraselor care corespund coordonatelor
     @city_id = City.find(:all, :select => 'id', :conditions => ["abs(latitude - ?) < 0.1 AND abs(longitude - ?) < 0.1", @c.latitude, @c.longitude] )
