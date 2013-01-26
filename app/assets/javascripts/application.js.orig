@@ -21,6 +21,10 @@ $.ajaxSetup({
   }
 }); 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> dd2f18b5fcdbdf6ec82e32f0fd27793912357495
 // Animation for left menu
 menuDelay = 500;		// wait before hiding menu for first time
 function toggleMenu() {
@@ -211,6 +215,8 @@ $(document).ready(function() {
 
 	$("abbr.timeago").timeago();
 
+<<<<<<< HEAD
+=======
 	//gspit.parallaxScroller = $.parallaxScroller();
 	//gspit.parallaxScroller.scroller.initialize();
 
@@ -224,6 +230,8 @@ $(document).ready(function() {
     //gspit.analytics.init()
   }());
 
+
+>>>>>>> dd2f18b5fcdbdf6ec82e32f0fd27793912357495
 	// toggle Private <-> Me
 	$(".toggle-radio input").each(function() {
 		var value = $(this).val();

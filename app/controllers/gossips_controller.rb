@@ -5,8 +5,8 @@ class GossipsController < ApplicationController
   # GET /gossips
   # GET /gossips.json  
   def index
-    @gossips = Gossip.order("id desc").all
-
+    @gossips = current_user.gossips_feed.order("created_at desc") 
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @gossips }

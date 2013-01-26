@@ -11,16 +11,20 @@
   </li>
 </ul>
 
+<div id="map_canvas"></div>
+
 <div class="clearfix top-bar" style="margin-top:0;border-radius:0 5px 5px 5px">
     <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New Circle</a>
         <h3 style="margin-bottom:0;margin-top:4px">Circles you joined</h3>
 </div>
 
-<div class="clearfix top-bar" style="margin-top:0;border-radius:0 5px 5px 5px">
-    <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New</a>
-        <input type="text" placeholder="Search for a city" style="margin-right:10px;float:left;height:22px;width:278px;margin-bottom:0px" >
-        <a class="btnx btnx-blue pull-left"href="#">Search</a>
-</div>
+<form id="search_circles_form">
+  <div class="clearfix top-bar" style="margin-top:0;border-radius:0 5px 5px 5px">
+      <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New</a>
+          <input type="text" id="search_city_box" placeholder="Search for a city" style="margin-right:10px;float:left;height:22px;width:278px;margin-bottom:0px" >
+          <a class="btnx btnx-blue pull-left" onclick="search_circle();">Search</a>
+  </div>
+</form>
 
 <div class="clearfix top-bar " style="margin-top:0;border-radius:0 5px 5px 5px">
     <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New Circle</a>
@@ -42,9 +46,15 @@
 
 </div>
 
-<% @circles.each do |circle| %>
-    <%= render partial: "circle_header", locals: { circle: circle }, formats: [:html] %>
-<% end %>
+<div id="initial_content">
+  <% @circles.each do |circle| %>
+      <%= render partial: "circle_header", locals: { circle: circle }, formats: [:html] %>
+  <% end %>
+</div>
+
+<div id="circles_container">
+  <%= render partial: "circle_header", locals: { circle: Circle.new, hidden: 1 }, formats: [:html] %>
+</div>
 
 
 

@@ -44,5 +44,8 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'devise_invitable', '~> 1.0.0'
 gem 'omniauth-facebook'
+<<<<<<< HEAD
 gem 'geoip'
+=======
 gem "koala"
+>>>>>>> b8b61ce388ed1a57023c9352aeb4829e599fcb04
