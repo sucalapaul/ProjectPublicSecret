@@ -10,7 +10,7 @@
 					<div style="display:inline-block;width:500px;">
 						 <%= timeago gossip.created_at  %>
 						<img style="float:left;width:21px;height:auto" src="/assets/quote-open.png"/>
-						<p class="pull-left" style="margin-left:10px;margin-bottom:0;font-weight:500"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/user/index")  %></p>
+						<p class="pull-left" style="font-style:italic;max-width:334px;overflow:hidden;text-overflow: ellipsis;white-space:nowrap;margin-left:10px; margin-bottom:0;"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/user/index")  %><span> in </span><a href="">   <%= gossip.circle.name %></a></p>
 					</div>				
 					<p class="gossip-content"><%= gossip.content %></p>
 					<img style="float:right;width:21px;height:auto" src="/assets/quote-close.png"/>
@@ -59,7 +59,7 @@
 		                    <input id="comment_gossip_id" name="comment[gossip_id]" type="hidden" value="<%= gossip.id %>" />
 		                  </div>
 			      		</div> -->
-			      		<span class="private"> </span>
+			      		<span class="private"> </span> <!-- clasa public cand posteaza ca public -->
 					</div>
 				</form>
 			</div>

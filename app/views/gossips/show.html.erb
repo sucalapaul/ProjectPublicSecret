@@ -1,49 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Content:</b>
-  <%= @gossip.content %>
-</p>
 
-<p>
-  <b>Like count:</b>
-  <%= @gossip.like_count %>
-</p>
+<div style="display:table;block;margin:0 auto">
+  <div class="top-bar clearfix" style="margin-bottom:30px;">
+  <h3 style="text-align:center;padding-bottom:10px;border-bottom: 3px double rgba(34,25,25,0.1);"><a href="#"><%=@gossip.circle.name%></a></h3>
+   <a class="btnx btnx-green pull-right">Join Circle</a>
 
-<p>
-  <b>Comments count:</b>
-  <%= @gossip.comments_count %>
-</p>
+   <a href="http://www.facebook.com/sharer/sharer.php?u=http://www.theseedbit.com" target="_blank" class="btnx btnx-blue pull-left" style="line-height:16px;background-color: #3b5998;margin-right:20px"><span class="fb-ico"></span> Share gossip</a>
 
-<p>
-  <b>True count:</b>
-  <%= @gossip.true_count %>
-</p>
+   <a href="https://twitter.com/share?url=&amp;text=Textul de sharuit acest gossip @TheGossip. http://www.theseedbit.com/year/2012" target="_blank" class="btnx btnx-blue pull-left" style="line-height:16px;background-color: #00aced;"><span class="tw-ico"></span>Tweet gossip</a>
 
-<p>
-  <b>False count:</b>
-  <%= @gossip.false_count %>
-</p>
+  </div>
+  <%= render partial: "gossip", locals: { gossip: @gossip }, formats: [:html] %>
+</div>
 
-<p>
-  <b>User:</b>
-  <%= @gossip.user_id %>
-</p>
 
-<p>
-  <b>Private:</b>
-  <%= @gossip.private %>
-</p>
-
-<p>
-  <b>Score:</b>
-  <%= @gossip.score %>
-</p>
-
-<p>
-  <b>Circle:</b>
-  <%= @gossip.circle_id %>
-</p>
 
 
 <%= link_to 'Edit', edit_gossip_path(@gossip) %> |
