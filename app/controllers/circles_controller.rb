@@ -13,6 +13,7 @@ class CirclesController < ApplicationController
     @city_id = City.find(:all, :select => 'id', :conditions => ["abs(latitude - ?) < 0.1 AND abs(longitude - ?) < 0.1", @c.latitude, @c.longitude] )
 
     @circles = Circle.where(:city_id => @city_id)
+    #@circles = Circle.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @circles }
@@ -25,10 +26,15 @@ class CirclesController < ApplicationController
     #iau id-urile oraselor care corespund coordonatelor
     @city_id = City.find(:all, :select => 'id', :conditions => ["abs(latitude - ?) < 0.1 AND abs(longitude - ?) < 0.1", params[:city][:latitude], params[:city][:longitude]] )
 
-    @circles = Circle.where(:city_id => @city_id)
+    @circles = Circle.where(:city_id => @city_id).includes(:city)
+    
+    @circles.each do |circle|
+      circle.joined = current_user.already_joined?(circle.id)
+    end
+    #@circles = Circle.find(:all, :conditions => [:city_id => @city_id], :include => [:city])
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @circles }
+      format.json { render json: @circles, :include => :city }
     end
   end
 

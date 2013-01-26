@@ -21,8 +21,6 @@ $.ajaxSetup({
   }
 }); 
 
-var gsp = gsp || {};
-
 // Animation for left menu
 menuDelay = 500;		// wait before hiding menu for first time
 function toggleMenu() {
@@ -170,25 +168,48 @@ $(document).on("click", ".gossip-vote-btn", function () {
 //Ajax for searching a circle
 function search_circle() {
 	var form = $(this).closest("form");
-	var jqxhr = $.post("/circles/search", {"city[latitude]": 46.77, "city[longitude]": 23.59},
+	var jqxhr = $.post("/circles/search", {"city[latitude]": city_latitude, "city[longitude]": city_longitude},
 		function(data) {
 			var circleData = data;
-			$('#template').clone().appendTo('.circles_container').removeClass('hidden');
-			$('#circles_container').render(circleData);
+			var directives = {
+		  	muie: {
+			    "data-id": function(params) {
+			      return this.id;
+			    }
+			  },
+				cityname: {
+					html: function(params) {
+						return this.city.name;
+					}
+				},
+				joined: {
+					html: function(params) {
+						if (params.value) {
+							return '<a style="margin-top:10px;" data-count="' + this.people_count + '" class="joined-circle join-circle-btn pull-right btnx btnx-blue"><span class="joined"><i class="icon-ok"></i> Joined</span> <span class="leave"><i class="icon-remove"></i> Leave Circle </span></a>';
+						} else {
+							return '<a style="margin-top:10px;" data-count="' + this.people_count + '" class="join-circle join-circle-btn pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle </a>';
+						}
+					}
+				}
+			};
+			$('#initial_content').empty();
+			$('#circles_container').render(circleData, directives);
+			$('.circle-post').removeAttr('style');
 		}, "json")
 		.error(function() {
 			showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
 		});
 }
 
+var city_latitude;
+var city_longitude;
+
 $(document).ready(function() {
+
 
 	//toggleMenu();
 
 	$("abbr.timeago").timeago();
-
-	gsp.parallaxScroller = $.parallaxScroller();
-	gsp.parallaxScroller.scroller.initialize();
 
 	// toggle Private <-> Me
 	$(".toggle-radio input").each(function() {
@@ -286,6 +307,33 @@ $(document).ready(function() {
 		  return element.getAttribute('data-bind') == key;
 		};
 
+	//Autocomplete for search_city_box
 
+	var mapOptions = {
+	      center: new google.maps.LatLng(-33.8688, 151.2195),
+	      zoom: 13,
+	      mapTypeId: google.maps.MapTypeId.ROADMAP
+	    };
+
+	var map2 = new google.maps.Map(document.getElementById('map_canvas'),
+	      mapOptions);
+
+	var input = document.getElementById('search_city_box');
+	var autocomplete = new google.maps.places.Autocomplete(input);
+
+	autocomplete.bindTo('bounds', map2);
+
+	google.maps.event.addListener(autocomplete, 'place_changed', function() {
+	    var place = autocomplete.getPlace();
+	    if (!place.geometry) {
+	      // Inform the user that the place was not found and return.
+	      $('#geocode-error').text('This address cannot be found.').fadeIn('fast');
+	      return;
+	    }
+
+	    city_name = place.address_components[0].long_name;
+	    city_longitude = place.geometry.location.$a;
+	    city_latitude = place.geometry.location.Za;
+	  });
 });
 

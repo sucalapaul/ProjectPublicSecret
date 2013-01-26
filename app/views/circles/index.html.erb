@@ -11,6 +11,8 @@
   </li>
 </ul>
 
+<div id="map_canvas"></div>
+
 <div class="clearfix top-bar" style="margin-top:0;border-radius:0 5px 5px 5px">
     <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New Circle</a>
         <h3 style="margin-bottom:0;margin-top:4px">Circles you joined</h3>
@@ -44,16 +46,16 @@
 
 </div>
 
-<div id="circles_container">
-  <% if @circles.size == 0 %>
-    <p>Hey gossiper, it looks like there aren't any gossip circles in your city. Start by creating one <a href="/circles/new">here</a>. Xoxo..</p>
-  <% else %>
-    <% @circles.each do |circle| %>
-        <%= render partial: "circle_header", locals: { circle: circle, delete: 1 }, formats: [:html] %>
-    <% end %>
+<div id="initial_content">
+  <% @circles.each do |circle| %>
+      <%= render partial: "circle_header", locals: { circle: circle }, formats: [:html] %>
   <% end %>
 </div>
 
-<%= render partial: "circle_header", locals: { circle: @circles.first, delete: 0 }, formats: [:html] %>
+<div id="circles_container">
+  <%= render partial: "circle_header", locals: { circle: Circle.new, hidden: 1 }, formats: [:html] %>
+</div>
+
+
 
 
