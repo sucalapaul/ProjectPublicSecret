@@ -16,6 +16,13 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' urel='stylesheet' type='text/css'>
 
 </head>
+
+<% if !user_signed_in? && @current_controller=='home' && @current_action=="index"%> 
+
+ <%= render "landing_page" %>
+
+<% else %>
+
 <body>
     <%= render "menu_bar" %>
     
@@ -55,6 +62,7 @@
       </div>
     </div>
   </form>
+
 
 <div class="container">
           <!-- <p class="notice"><%= notice %></p>
@@ -152,4 +160,5 @@
   </div>
      
 </body>
+<% end %> <!-- if ul daca e landing page --> 
 </html>

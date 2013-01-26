@@ -21,6 +21,8 @@ $.ajaxSetup({
   }
 }); 
 
+var gsp = gsp || {};
+
 // Animation for left menu
 menuDelay = 500;		// wait before hiding menu for first time
 function toggleMenu() {
@@ -184,6 +186,9 @@ $(document).ready(function() {
 	//toggleMenu();
 
 	$("abbr.timeago").timeago();
+
+	gsp.parallaxScroller = $.parallaxScroller();
+	gsp.parallaxScroller.scroller.initialize();
 
 	// toggle Private <-> Me
 	$(".toggle-radio input").each(function() {

@@ -1,0 +1,184 @@
+.page-homepage {
+	color: #333;
+	padding:0;
+
+}
+
+div.scroller-holder {
+	top: 0;
+	left: 0;
+	position: fixed;
+	overflow: hidden;
+}
+
+body > .wrapx {
+	height: auto;
+	min-height: 100%;
+}
+
+.page-homepage .dummy-firstload {
+	background-color: #000;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+.page-homepage .content-main {
+	text-align: center;
+}
+.content-main {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	-o-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.page-homepage .soundtrack.intro-dusk {
+	background-image: url('http://cf.scdn.co/i/backgrounds/intro-dusk.jpg');
+	background-image: url('/assets/gossip_big.png');
+}
+.page-homepage .soundtrack {
+	background-position: top center;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.page-homepage section {
+	background-color: #fff;
+}
+
+
+
+.page-homepage section .container {
+	display: block;
+	height: 100%;
+	margin: 0 auto;
+	width: 92%;
+	max-width: 100em;
+	overflow: hidden;
+	padding:0 4%;
+}
+.page-homepage section.soundtrack .box {
+	padding-top: 120px;
+	padding-bottom: 210px;
+	padding-top: 0 9;
+	padding-bottom: 0 9;
+	min-height: 600px 9;
+}
+.page-homepage section .box {
+	width: 100%;
+	height: 100%;
+	display: table;
+	vertical-align: middle;
+	padding-top: 45px;
+	padding-bottom: 25px;
+}
+.page-homepage section .box .single-column {
+	height: 100%;
+	display: table-cell;
+	vertical-align: middle;
+}
+.page-homepage .soundtrack h1 {
+	color: #FFF;
+	font-size: 3.9em;
+	line-height: 1.1;
+	margin: .2em 0;
+}
+.page-homepage .soundtrack p {
+	color: #FFF;
+}
+
+/* HEADER */
+.header-main {
+	background-color: #6b6b6d;
+	background-color: rgba(0,0,0,0.78);
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	-o-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	left: 0;
+	padding-bottom: .25em;
+	position: fixed;
+	text-align: right;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+}
+
+.header-main .container {
+padding-top: .25em;
+}
+.header-main .logo {
+float: left;
+margin-top: .5em;
+/*width:178px;
+height: 3px;
+background-image: url('/assets/gossip_logo.png');*/
+}
+
+/* HEADER END */
+
+.page-homepage .section-arrow.section-arrow-big {
+height: 60px;
+width: 60px;
+background-image: url("http://cf.scdn.co/i/home/arrow-big-new.png");
+}
+.page-homepage .section-arrow {
+height: 33px;
+width: 72px;
+background-image: url("http://cf.scdn.co/i/home/arrow-new.png");
+cursor: pointer;
+display: block;
+margin: 0 auto;
+-webkit-tap-highlight-color: transparent;
+}
+.page-homepage .section-arrow-holder {
+width: 100%;
+background-color: #fff;
+}
+
+/* FOOTER */
+.footer-main {
+margin-top:0px;
+background-color: #f5f5f3;
+border-top: 1px solid #FFF;
+padding-bottom: 1.5em;
+padding-top: 1.5em;
+position: relative;
+}
+
+.footer-main nav {
+float: left;
+}
+.nav-footer .nav-item {
+margin: .2em 1em .2em 0;
+}
+nav .nav-item {
+display: inline-block;
+}
+
+.footer-main .copyright {
+clear: right;
+margin-right:25px;
+color: #999;
+display: block;
+font-family: Helvetica,Arial,sans-serif;
+font-size: .75em;
+padding: .475em 0 .475em .5em;
+text-align: right;
+}
+.page-homepage .artwork-strip {
+position: absolute;
+top: 0;
+left: 0;
+height: 384px;
+overflow: hidden;
+}
+.page-homepage .artwork-strip-tile {
+background-size: 100%;
+position: absolute;
+}
+/* FOOTER END */

@@ -643,11 +643,64 @@ browserDetect.init();
   $.parallaxScroller = function () {
     return {
         scroller: {
+
+            initialize: function () {
+              var c = gsp.parallaxScroller.ui.isMobilePage();
+              if (!c) {
+                  var a = function () {
+                     $(".section-auto-size").each(function () {
+                          var a = $(this),
+                              c = $(window).height() * parseFloat(a.data("auto-size"));
+                          a.css("height", c);
+                          var e = a.find(".box").outerHeight();
+                          e > c && a.css("height", e)
+                      })
+                  };
+                  $(window).on("resize", function () {
+                      a()
+                  });
+                  a();
+                  $(window).load(function () {
+                      a()
+                  })
+              }
+              if (c) $("div.scroller-main").each(function () {
+                  var a = $(this);
+                  a.addClass("parallax-disabled");
+                  a.css("background-image", "url(" + a.data("image-mobile") + ")");
+                  var c = 0.5 * $(window).height() + (a.data("extra-height-mobile") || 0);
+                  a.css("height", 250 > c ? 250 : c)
+              });
+              else if ($.browser.msie || Modernizr.touch) {
+                  var e = $(window).height(),
+                      d = function (a, c) {
+                          var $ = Math.max(0.75 * c, 200) + (a.data("extra-height") || 0);
+                          a.css("height", $ + "px")
+                      };
+                  $("div.scroller-main").each(function () {
+                      var a = $(this);
+                      a.addClass("parallax-disabled");
+                      a.css("background-image", "url(" + a.data("image") + ")");
+                      d(a, e)
+                  });
+                  $(window).resize(function () {
+                      var a = $(window).height();
+                      $("div.scroller-main").each(function () {
+                          var c = $(this);
+                          d(c, a)
+                      })
+                  })
+              } else gsp.parallaxScroller.scroller.init({
+                  speed: 0.2,
+                  items: $("div.scroller-main")
+              });
+            },
+
             init: function (a) {
                 var a = a || {}, b = this;
                 this.items = a.items || [];
                 this.speed = a.speed;
-                //this.supportedFeatures = spweb.ui.applyCssGetSupportedFeatures();
+                this.supportedFeatures = gsp.parallaxScroller.ui.applyCssGetSupportedFeatures();
                 this.world = window;
                 this.scrollDistance = 0;
                 this.busy = !1;
@@ -691,7 +744,7 @@ browserDetect.init();
                         i, j = c - (c - f) * a.speed;
                     i = h * (j / k);
                     i >= b ? h = j : (i = b, h = k * (i / h));
-                    d = new parallaxScroller.tile({
+                    d = new gsp.parallaxScroller.tile({
                         main: d[0],
                         holder: e[0],
                         holderWidth: b,
@@ -722,7 +775,7 @@ browserDetect.init();
             },
             _getBounds: function () {
                 var a = this.world;
-                return !a ? null : a === window ? (a = parallaxScroller.utils.getWindowSize(), {
+                return !a ? null : a === window ? (a = gsp.parallaxScroller.utils.getWindowSize(), {
                     width: a.width,
                     height: a.height
                 }) : {
@@ -763,14 +816,14 @@ browserDetect.init();
                     this.visibility = a.visibility || "visible"
                 },
                 draw: function (a) {
-                    spweb.ui.applyCss(this.holder, a, {
+                    gsp.parallaxScroller.ui.applyCss(this.holder, a, {
                         x: this.holderLocation.x,
                         y: this.holderLocation.y,
                         width: this.holderWidth,
                         height: this.holderHeight,
                         visibility: this.visibility
                     });
-                    spweb.ui.applyCss(this.img, a, {
+                    gsp.parallaxScroller.ui.applyCss(this.img, a, {
                         x: this.backgroundOffset.x,
                         y: this.backgroundOffset.y,
                         width: this.backgroundWidth,
@@ -792,6 +845,32 @@ browserDetect.init();
                 "undefined" !== typeof window.innerHeight ? a.height = window.innerHeight : "undefined" !== typeof document.documentElement && "undefined" !== typeof document.documentElement.clientHeight ? a.height = document.documentElement.clientHeight : "undefined" !== typeof document.body && (a.height = document.body.clientHeight);
                 return a
             }
+        }, 
+        ui: {
+          isMobilePage: function () {
+              return 715 > window.screen.width
+          },
+          applyCss: function (b, a, c) {
+              var f = [],
+                  d = (c.x || 0) | 0,
+                  g = (c.y || 0) | 0;
+              if (0 != d || 0 != g) f = a.csstransforms3d ? f.concat(["-webkit-transform: translate3d(" + d + "px, " + g + "px, 0)", "-moz-transform: translate3d(" + d + "px, " + g + "px, 0)", "-o-transform: translate3d(" + d + "px, " + g + "px, 0)", "-ms-transform: translate3d(" + d + "px, " + g + "px, 0)"]) : a.csstransforms ? f.concat(["-webkit-transform: translateX(" + d + "px) translateY(" + g + "px)", "-moz-transform: translateX(" + d + "px) translateY(" + g + "px)", "-o-transform: translateX(" + d + "px) translateY(" + g + "px)", "-ms-transform: translateX(" + d + "px) translateY(" + g + "px)"]) : f.concat(["position: absolute", "left: " + d + "px", "top: " + g + "px"]);
+              c.backgroundImageUrl && f.push('background-image: url("' + c.backgroundImageUrl + '")');
+              c.width && f.push("width: " + (c.width | 0) + "px");
+              c.height && f.push("height: " + (c.height | 0) + "px");
+              c.visibility && f.push("visibility: " + c.visibility);
+              b.style.cssText = f.join(";")
+          }, 
+          applyCssGetSupportedFeatures: function () {
+              return window.Modernizr ? {
+                  csstransforms3d: Modernizr.csstransforms3d,
+                  csstransforms: Modernizr.csstransforms
+              } : {
+                  csstransforms3d: !1,
+                  csstransforms: !1
+              }
+          }                
+
         }
     }
   };

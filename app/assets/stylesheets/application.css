@@ -133,9 +133,12 @@ a.x-hover:hover {color:#00a0c6;}
 }
 
 .navx{
-  background-color: #c70151;
+  background-color: #c70151; /*mai visiniu*/
+   background-color: #D62C6C; /*mai roz*/
+  background: #efefef url(/assets/bg/bg_header_2.png) repeat center top;
   height:40px;
   border-radius:5px 5px 0 0;
+  border-bottom:3px solid #D62C6C;
 }
 
 .settings {
@@ -180,7 +183,8 @@ a.x-hover:hover {color:#00a0c6;}
 .menux ul li p {margin:0;}
 
 .menux ul li:hover {
-  border-left:3px solid #c70151;
+  //border-left:3px solid #c70151;
+  border-left:3px solid #D62C6C;
   background-color:rgba(0,0,0,0.02);
 }
 /*Side menu - new end*/
