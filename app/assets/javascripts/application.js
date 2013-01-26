@@ -21,7 +21,6 @@ $.ajaxSetup({
   }
 }); 
 
-var gsp = gsp || {};
 
 // Animation for left menu
 menuDelay = 500;		// wait before hiding menu for first time
@@ -174,8 +173,19 @@ $(document).ready(function() {
 
 	$("abbr.timeago").timeago();
 
-	gsp.parallaxScroller = $.parallaxScroller();
-	gsp.parallaxScroller.scroller.initialize();
+	//gspit.parallaxScroller = $.parallaxScroller();
+	//gspit.parallaxScroller.scroller.initialize();
+
+	  $(function () {
+    gspit.ui.init();
+    //0 < $("#js-market-picker").length && gspit.marketpicker.init();
+    var a = $("body");
+    a.hasClass("page-homepage") && gspit.home.init();
+    //(a.hasClass("page-download-mac") || a.hasClass("page-download-windows")) && gspit.download.init();
+    //a.hasClass("page-download-redirect") && gspit.download.redirectToDownloadPage();
+    //gspit.analytics.init()
+  }());
+
 
 	// toggle Private <-> Me
 	$(".toggle-radio input").each(function() {
