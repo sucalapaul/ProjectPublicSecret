@@ -1,0 +1,103 @@
+
+
+<div class="top-bar clearfix" style="padding:50px 80px; background:white">
+	<center><h2>Facebook People</h2></center>
+	<p class="intro">Gossip is much more fun when have your friends around.</p>
+
+	<div style="float:left;width:340px; margin-right:40px;">
+		<h3> Invite Friends </h3>
+		<ul id="invite_list" class="InvitesList">
+			<li class="friend" data-bind="id">
+	        	<a class="btn-invite btnx btnx-blue">Invite</a>
+	  			<img data-bind="profilePicture" class="InvitesProfileImage" src="" alt="">
+	    		<div class="individual">
+	        	<div data-bind="name"></div>
+			    </div>
+			</li>
+		</ul>
+	</div>
+
+	<script type="text/javascript">
+		var friendData = <%= @friend_data.to_json.html_safe %>;
+		Transparency.matcher = function(element, key) {
+		  return element.getAttribute('data-bind') == key;
+		};
+
+		var directives = {
+		  profilePicture: {
+		    src: function(params) {
+		      return this.picture.data.url;
+		    },
+		    alt: function() {
+		    	return this.name;
+		    }
+		  }, 
+		  id: {
+		  	data_id: function(params) {
+		  		return this.id;
+		  	}, 
+		  	text: function(params) {
+		  		return '';
+		  	}
+		  }
+		};
+		$('#invite_list').render(friendData, directives);
+
+		//Invite Button click
+		$(document).on('click', 'a.btn-invite', function () {
+			var self = this;
+			var id = $(self).attr('data_id');
+			sendInvites(id, self);
+		})
+
+	</script>
+
+	<div style="float:left;width:340px; margin-right:0px;">
+	<h3> Friends on The Gossip </h3>
+	<ul class="InvitesList">
+	        <li class="friend">
+	        	<a class="btnx btnx-blue" >Follow</a>
+	  			<img class="InvitesProfileImage" src="https://graph.facebook.com/100001260751431/picture?type=square" alt="Profile picture of &lt;%= name %&gt;">
+	    		<div class="individual">
+	        		<div class="name">Bicu Adelina</div>
+			    </div>
+			</li>
+			<li class="friend">
+	        	<a class="btnx btnx-blue">Follow</a>
+	  			<img class="InvitesProfileImage" src="https://graph.facebook.com/100001260751431/picture?type=square" alt="Profile picture of &lt;%= name %&gt;">
+	    		<div class="individual">
+	        		<div class="name">Sucala Paul</div>
+			    </div>
+			</li>
+		</ul>
+</div>
+
+<script type="text/javascript">
+
+	function sendInvites(fb_ids, selector) {
+	  var link_url = "http://theseedbit.com/";
+	  FB.ui({
+	      method: "send",
+	      to: fb_ids,
+	      name: "Da cu papagalu!",
+	      description: "Intra si tu pe Gossip.it si afla cele mai noi gossip-uri",
+	      picture: "http://media-cache-ec1.pinterest.com/avatars/sucalapaul_1333646543_444.jpg",
+	      link: link_url
+	  }, function(response) {
+	      if (!response){
+	          selector.selectionCancelled();
+	          return;
+	      }
+
+	      $.post("/invite/new/", {
+	          fb_ids: fb_ids
+	      }, function(data) {
+	          if (data.status == "success") {
+	              selector.afterSelection();
+	          } else {
+	              alert(data.message);
+	          }
+	      }, "json");
+	  });
+	};
+</script>
