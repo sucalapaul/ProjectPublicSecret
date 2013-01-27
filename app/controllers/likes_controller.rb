@@ -2,11 +2,14 @@ class LikesController < ApplicationController
   # # GET /likes
   # # GET /likes.json
   def index
-      
+    
     @tags = ActsAsTaggableOn::Tag.where("name like ?", "%#{params[:q]}%")
+    if @tags.empty?
+      @tags = [{id: "#{params[:q]}", name: "New: \"#{params[:q]}\""}]
+    end
     respond_to do |format|
       format.html
-      format.json { render :json => @tags.map(&:attributes) }
+      format.json { render :json => @tags }
     end
   end
 

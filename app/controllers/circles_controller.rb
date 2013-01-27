@@ -2,11 +2,11 @@ class CirclesController < ApplicationController
 
 
  before_filter :authenticate_user!, except: [:index]
-  autocomplete :tag, :name
   # GET /circles
   # GET /circles.json
   def index
     #@client_ip = request.remote_ip
+    
     if params[:tag]
       @circles = Circle.tagged_with(params[:tag])
     else
@@ -39,16 +39,6 @@ class CirclesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @circles, :include => :city }
-    end
-  end
-  
-  # GET /circles/1
-  # GET /circles/1.json
-  def autocomplete
-    @tags = ActsAsTaggableOn::Tag.where("name like ?", "%#{params[:q]}%")
-    respond_to do |format|
-      format.html
-      format.json { render :json => @tags.map(&:attributes) }
     end
   end
 
