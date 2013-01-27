@@ -18,8 +18,9 @@ ProjectPublicSecret::Application.routes.draw do
   resources :users  
   resources :invites     
 
-
   root :to => 'home#index'
+
+  get 'tags/:tag', to: 'circles#index', as: :tag
 
   get "home/terms"
   match '/terms' => 'home#terms'

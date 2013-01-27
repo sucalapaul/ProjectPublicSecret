@@ -30,21 +30,9 @@
 <div id="hot_circles" class="clearfix top-bar hidden nav-tab-page" style="margin-top:0;border-radius:0 5px 5px 5px">
     <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New Circle</a>
         <h3 style="margin-top:4px">Popular Tags</h3>
-        <a class="tag" href="#">topic</a>
-        <a class="tag" href="#">high school</a>
-        <a class="tag" href="#">college</a>
-        <a class="tag" href="#">night life</a>
-        <a class="tag" href="#">fun</a>
-        <a class="tag" href="#">high school</a>
-        <a class="tag" href="#">college</a>
-        <a class="tag" href="#">night life</a>
-        <a class="tag" href="#">high school</a>
-        <a class="tag" href="#">college</a>
-        <a class="tag" href="#">night life</a>
-        <a class="tag" href="#">high school</a>
-        <a class="tag" href="#">college</a>
-        <a class="tag" href="#">night life</a>
-
+        <% tag_cloud Circle.tag_counts, %w[tag] do |tag_itself, tag| %>
+          <%= link_to tag_itself.name, tag_path(tag_itself.name), class: tag %>
+        <% end %>
 </div>
 
 <div id="initial_content">
