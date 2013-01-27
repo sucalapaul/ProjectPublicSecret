@@ -99,7 +99,7 @@
           <!-- %= user_circles.to_yaml % -->
  <div style="min-width:880px"> <!-- wrapper - strict pt mobile altfel zboara pe paginile cu dashboard -->       
 
-          <% if (@current_controller=="gossips" && @current_action=="show") || (@current_controller=="circles" && @current_action == "new" ) || @current_controller=="sessions" || @current_controller=="registrations" || @current_controller=="passwords" || @current_controller=="users" || (@current_controller=="home" && @current_action=="terms")%>
+          <% if (@current_controller=="gossips" && @current_action=="show") || (@current_controller=="circles" && @current_action == "new" ) || @current_controller=="sessions" || @current_controller=="registrations" || @current_controller=="passwords" || @current_controller=="users" || @current_controller=="invites" %>
             <%= yield %>
 
           <% else %>

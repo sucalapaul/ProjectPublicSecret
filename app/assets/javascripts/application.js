@@ -340,35 +340,36 @@ $(document).ready(function() {
 	});
 
 	Transparency.matcher = function(element, key) {
-		  return element.getAttribute('data-bind') == key;
-		};
+		return element.getAttribute('data-bind') == key;
+	};
 
 	//Autocomplete for search_city_box
+	if (document.getElementById('map_canvas')) {
+		var mapOptions = {
+		      center: new google.maps.LatLng(-33.8688, 151.2195),
+		      zoom: 13,
+		      mapTypeId: google.maps.MapTypeId.ROADMAP
+		    };
 
-	var mapOptions = {
-	      center: new google.maps.LatLng(-33.8688, 151.2195),
-	      zoom: 13,
-	      mapTypeId: google.maps.MapTypeId.ROADMAP
-	    };
+		var map2 = new google.maps.Map(document.getElementById('map_canvas'),
+		      mapOptions);
 
-	var map2 = new google.maps.Map(document.getElementById('map_canvas'),
-	      mapOptions);
+		var input = document.getElementById('search_city_box');
+		var autocomplete = new google.maps.places.Autocomplete(input);
 
-	var input = document.getElementById('search_city_box');
-	var autocomplete = new google.maps.places.Autocomplete(input);
+		autocomplete.bindTo('bounds', map2);
 
-	autocomplete.bindTo('bounds', map2);
+		google.maps.event.addListener(autocomplete, 'place_changed', function() {
+		    var place = autocomplete.getPlace();
+		    if (!place.geometry) {
+		      // Inform the user that the place was not found and return.
+		      $('#geocode-error').text('This address cannot be found.').fadeIn('fast');
+		      return;
+		    }
 
-	google.maps.event.addListener(autocomplete, 'place_changed', function() {
-	    var place = autocomplete.getPlace();
-	    if (!place.geometry) {
-	      // Inform the user that the place was not found and return.
-	      $('#geocode-error').text('This address cannot be found.').fadeIn('fast');
-	      return;
-	    }
-
-	    city_name = place.address_components[0].long_name;
-	    city_longitude = place.geometry.location.$a;
-	    city_latitude = place.geometry.location.Za;
-	  });
+		    city_name = place.address_components[0].long_name;
+		    city_longitude = place.geometry.location.$a;
+		    city_latitude = place.geometry.location.Za;
+		  });
+	}
 });
