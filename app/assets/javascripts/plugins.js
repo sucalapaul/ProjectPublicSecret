@@ -618,3 +618,11 @@ var browserDetect = {
 };
 
 browserDetect.init();
+
+
+/* Case insensitive jQuery 'Contains'
+ *  used for search
+ */;
+jQuery.expr[':'].Contains = function(a,i,m){
+    return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+};
