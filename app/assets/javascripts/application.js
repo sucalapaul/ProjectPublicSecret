@@ -69,11 +69,16 @@ $(document).on("click", ".post_comment_button", function () {
 
 //Ajax for joining a circle
 $(document).on("click", ".join-circle-btn", function () {
+	var from = "circles";
 	var self = this;
 	var circlePost = $(this).closest(".circle-post");
 	var circleId = $(circlePost).data('id');
-	var peopleCount = $(self).data('count');
-
+	if(typeof circleId != 'undefined')
+		var peopleCount = $(self).data('count');
+	else {
+		circleId = $(self).data('id');
+		from = "gossip"
+	}
 	var jqxhr = $.post("/circles/join", { "circle[circle_id]": circleId },
 		function(data) {
 			console.log(data);
@@ -87,9 +92,11 @@ $(document).on("click", ".join-circle-btn", function () {
 				$(self).addClass("join-circle");
 
 			}
-			peopleCount = peopleCount + data;
-			$(self).parent().find('p').html(peopleCount);
-			$(self).data('count', peopleCount);
+			if (from === "circles"){
+				peopleCount = peopleCount + data;
+				$(self).parent().find('p').html(peopleCount);
+				$(self).data('count', peopleCount);
+			}
 
 		}, "json")
 		.error(function() {
@@ -167,6 +174,12 @@ $(document).on("click", ".gossip-vote-btn", function () {
 
 //Ajax for searching a circle
 function search_circle() {
+	if ($('#search_city_box').val() == ''){
+		$('#error').show("fast");
+		return false;
+	}
+	else
+		$('#error').hide("fast");
 	var form = $(this).closest("form");
 	var jqxhr = $.post("/circles/search", {"city[latitude]": city_latitude, "city[longitude]": city_longitude},
 		function(data) {
@@ -201,8 +214,8 @@ function search_circle() {
 		});
 }
 
-var city_latitude;
-var city_longitude;
+var city_latitude = 0;
+var city_longitude = 0;
 
 $(document).ready(function() {
 
@@ -256,6 +269,7 @@ $(document).ready(function() {
 	//Animation for gossip posting form (on top)
 	$(".toggle-slide").click(function() {
 		toggleSlide( $(this).data('toggleid') );
+		$('html, body').animate({ scrollTop: 0 }, 'slow');
 	});
 
 	//Ajax post for a gossip

@@ -95,9 +95,9 @@
           <!-- <p class="notice"><%= notice %></p>
           <p class="alert"><%= alert %></p>  -->
           <!-- %= user_circles.to_yaml % -->
-        
+ <div style="min-width:880px"> <!-- wrapper - strict pt mobile altfel zboara pe paginile cu dashboard -->       
 
-          <% if (@current_controller=="circles" && @current_action == "new" ) || @current_controller=="sessions" || @current_controller=="registrations" || @current_controller=="passwords" || @current_controller=="users" %>
+          <% if (@current_controller=="gossips" && @current_action=="show") || (@current_controller=="circles" && @current_action == "new" ) || @current_controller=="sessions" || @current_controller=="registrations" || @current_controller=="passwords" || @current_controller=="users" %>
             <%= yield %>
 
           <% else %>
@@ -185,7 +185,7 @@
     <% end %>
            <div class="back-to-top"></div>
   </div>
-     
+  </div>   
 </body>
 <% end %> <!-- if ul daca e landing page --> 
 <div id="fb-root"></div>

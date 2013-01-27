@@ -270,6 +270,17 @@ a.tag.bordered:hover {
   border-radius: 3px;
 }
 
+.btnx span.tw-ico{
+  float:left;
+  width:19px;height:16px;margin-right:5px;
+  background-image:url('/assets/social/tw-ico.png');
+}
+.btnx span.fb-ico{
+  float:left;
+  width:8px;height:16px;margin-right:5px;
+  background-image:url('/assets/social/fb-ico.png');
+}
+
 
 .btnx-green {
  background-color: #58a300;
