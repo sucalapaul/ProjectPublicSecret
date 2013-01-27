@@ -227,15 +227,24 @@ $(document).ready(function() {
 	//gspit.parallaxScroller = $.parallaxScroller();
 	//gspit.parallaxScroller.scroller.initialize();
 
-	  $(function () {
-    gspit.ui.init();
-    //0 < $("#js-market-picker").length && gspit.marketpicker.init();
-    var a = $("body");
-    a.hasClass("page-homepage") && gspit.home.init();
-    //(a.hasClass("page-download-mac") || a.hasClass("page-download-windows")) && gspit.download.init();
-    //a.hasClass("page-download-redirect") && gspit.download.redirectToDownloadPage();
-    //gspit.analytics.init()
-  }());
+	  //$(function () {
+	    gspit.ui.init();
+	    //0 < $("#js-market-picker").length && gspit.marketpicker.init();
+	    var a = $("body");
+	    a.hasClass("page-homepage") && gspit.home.init();
+	    //(a.hasClass("page-download-mac") || a.hasClass("page-download-windows")) && gspit.download.init();
+	    //a.hasClass("page-download-redirect") && gspit.download.redirectToDownloadPage();
+	    //gspit.analytics.init()
+	  //}());
+
+	//Circles -> Navigation Tabs
+
+	$('.nav-tabs li').click(function () {
+		$(this).siblings().removeClass('active');
+		$(this).addClass('active');
+		$('.nav-tab-page').addClass('hidden');
+		$( '#' + $(this).data('id') ).removeClass('hidden');
+	});
 
 	// toggle Private <-> Me
 	$(".toggle-radio input").each(function() {
@@ -363,4 +372,3 @@ $(document).ready(function() {
 	    city_latitude = place.geometry.location.Za;
 	  });
 });
-

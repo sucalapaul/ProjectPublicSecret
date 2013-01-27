@@ -15,13 +15,13 @@ ProjectPublicSecret::Application.routes.draw do
   resources :comments     
   resources :gossip_votes  
   resources :circle_users
-  resources :users       
+  resources :users  
+  resources :invites     
 
 
   root :to => 'home#index'
 
   get "users/index"
-  get "users/invites"
   post "circles/join"
   post "users/follow"
   post "circles/search"
