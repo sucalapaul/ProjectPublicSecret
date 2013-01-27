@@ -17,8 +17,9 @@ ProjectPublicSecret::Application.routes.draw do
   resources :circle_users
   resources :users       
 
-
   root :to => 'home#index'
+
+  get 'tags/:tag', to: 'circles#index', as: :tag
 
   get "users/index"
   get "users/invites"

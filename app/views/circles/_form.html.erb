@@ -26,8 +26,14 @@
     <%= f.label :description %>
     <%= f.text_area :description, :rows => "3", :style=> "width:345px;max-width:345px;max-height:60px" %>
   </div>
+
+  <div class="field">
+    <%= f.label :tag_list, "Tags (separated by commas)" %>
+    <%= f.text_field :tag_list %>
+  </div>
+
   <div class="actions">
-    <%= f.submit :class => "btn btn-success pull-right", :style => "margin-right:0px" %>
+    <%= f.submit :class => "btn btn-success pull-right", :style => "margin-top:20px; margin-right:0px" %>
   </div>
 
   <div id="map_canvas"></div>

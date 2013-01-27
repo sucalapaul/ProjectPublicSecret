@@ -214,6 +214,7 @@ function search_circle() {
 		});
 }
 
+
 var city_latitude = 0;
 var city_longitude = 0;
 
@@ -262,6 +263,13 @@ $(document).ready(function() {
 		toggleSlide( $(this).data('toggleid') );
 		$('html, body').animate({ scrollTop: 0 }, 'slow');
 	});
+
+	//Autocomplete tags
+	$( '#circle_tag_list' ).tokenInput("/likes.json", {
+	    crossDomain: false,
+	    hintText: "Insert a tag",
+	    theme: "facebook"
+	  });
 
 	//Ajax post for a gossip
 	$("#button_post_gossip").click(function () {
