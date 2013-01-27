@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :nickname, :circles_names, :name
   # attr_accessible :title, :body
 
-  has_many :followers
+  # has_many :followers
+  # has_many :followers_users, :through => :followers, :source => :user
   has_many :gossips
   has_many :likes
   has_many :gossip_votes
@@ -18,6 +19,15 @@ class User < ActiveRecord::Base
   has_many :circle_users
   has_many :circles, :through => :circle_users
   has_many :gossips_feed, :through => :circles, :source => :gossips
+
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :followed_users, through: :relationships, source: :followed
+
+  has_many :reverse_relationships, foreign_key: "followed_id",
+                                   class_name:  "Relationship",
+                                   dependent:   :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower
+
 
   # def self.from_omniauth(auth)
   #   where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
@@ -72,9 +82,21 @@ class User < ActiveRecord::Base
     self.circles.find(:all, conditions: ['circle_id = ?', circle_id ]).size>0
   end
 
-  def already_follows?(follower_id)
-    self.followers.find(:all, conditions: ['follower_id = ?', follower_id ]).size>0
+  # def already_follows?(follower_id)
+  #   self.followers.find(:all, conditions: ['follower_id = ?', follower_id ]).size>0
+  # end
+
+  def already_follows?(other_user_id)
+    relationships.find_by_followed_id(other_user_id)
   end
+
+  # def follow!(other_user)
+  #   relationships.create!(followed_id: other_user.id)
+  # end  
+
+  def already_follows_fb?(follower_fbid)
+    already_follows?(User.find_by_uid(follower_fbid.to_s))
+  end  
 
   def password_required?
     super #&& provider.blank?

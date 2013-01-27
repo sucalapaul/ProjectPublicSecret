@@ -1,6 +1,6 @@
 class CirclesController < ApplicationController
 
- before_filter :authenticate_user!, except: [:index]
+ before_filter :authenticate_user!
 
   # GET /circles
   # GET /circles.json
