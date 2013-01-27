@@ -10,7 +10,7 @@
 					<div style="display:inline-block;width:500px;">
 						 <%= timeago gossip.created_at  %>
 						<img style="float:left;width:21px;height:auto" src="/assets/quote-open.png"/>
-						<p class="pull-left" style="font-style:italic;max-width:334px;overflow:hidden;text-overflow: ellipsis;white-space:nowrap;margin-left:10px; margin-bottom:0;"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/"<<gossip.user.id.to_s())  %><span> in </span><a href="cirlces/<%=gossip.circle.id%>">   <%= gossip.circle.name %></a></p>
+						<p class="pull-left" style="font-style:italic;max-width:334px;overflow:hidden;text-overflow: ellipsis;white-space:nowrap;margin-left:10px; margin-bottom:0;"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/"<<gossip.user.id.to_s())  %><span> in </span><a href="circles/<%=gossip.circle.id%>">   <%= gossip.circle.name %></a></p>
 					</div>				
 					<p class="gossip-content"><%= gossip.content %></p>
 					<img style="float:right;width:21px;height:auto" src="/assets/quote-close.png"/>
@@ -61,12 +61,7 @@
 						</span>
 						<textarea  type="textarea" id="comment_content" name="comment[content]" rows="1" style="resize:none;margin-bottom:0px;border-radius:0;height:22px;max-height:90px;width:250px;max-width:250px;" ></textarea>
 						<a class="btnx btnx-blue post_comment_button pull-right" > Post </a>
-						<!-- <div class="btn-toolbar pull-right" style="margin:0 10px 0 0">
-			                <div class="btn-group toggle-radio">
-		                    <a class="btn" data-value="1" href="#"><i class="icon-lock"></i></a>
-		                    <a class="btn" data-value="0" href="#"><i class="icon-user"></i></a>
-		                  </div>
-			      		</div> -->
+						<a class="private"> </a>
 			      		<input id="comment_gossip_id" name="comment[gossip_id]" type="hidden" value="<%= gossip.id %>" />
 					</div>
 				</form>

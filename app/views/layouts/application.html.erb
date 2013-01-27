@@ -5,8 +5,8 @@
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
   <![endif]-->
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "application", :media => "all"%>
+  <%= javascript_include_tag "application"%>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -59,34 +59,36 @@
   <form id="post_gossip_form" style="display:none;margin-bottom:0;z-index:1000;position:relative">
     <div class="post-gossip clearfix">
       <div class="post-wrapper">
-         <p id="gossip_content_counter" style="color:#888;float:right;margin-bottom:0pc;margin-top:15px;"></p>
-        <p style="margin-bottom:0;color:white;font-size:17px"> What's the word? </p>
+         <p id="gossip_content_counter" style="color:#999;float:right;margin-bottom:5px;margin-top:10px;"></p>
+        <h3 style="margin-bottom:0;color:white;font-size:19px"> What's the word? </h3>
 
           <div class="post-well clearfix">
-              <textarea id="gossip_content" name="gossip[content]" class="input-block-level" rows="3" style="max-height:90px;max-width:560px;"></textarea>
+              <textarea id="gossip_content" name="gossip[content]" class="input-block-level" rows="3" style="max-height:70px;max-width:553px;"></textarea>
                <button type="button" class="btn btn-primary pull-right disabled" id="button_post_gossip" >OK </button>
-               <div class="btn-toolbar pull-right" style="margin:0 20px 0 0">
+             <!--   <div class="btn-toolbar pull-right" style="margin:0 20px 0 0">
                   <div class="btn-group toggle-radio">
                     <a class="btn" data-value="1" href="#"><i class="icon-lock"></i> anonymous</a>
                     <a class="btn" data-value="0" href="#"><i class="icon-user"></i> you</a>
                     <input id="gossip_private" name="gossip[private]" type="hidden" value="0" />
                   </div>
-                </div>
+                </div> -->
+                <a class=" private"> </a>
                 <p style="float:right;margin-top:5px;margin-bottom:0px;margin-right:15px;color:white;font-size:12px;">Post as:</p>
-                <p id="gossip_circle_info" style="margin-top:5px;margin-bottom:0px;margin-right:15px;color:white;font-size:12px;">Select a circle!</p>
-               
+
                 <div class="btn-group" id="dropdwn_gossip_circle">
                   <button class="btn dropdown-toggle" data-toggle="dropdown">Change Circle <span class="caret"></span></button>
                   <ul class="dropdown-menu">
                     <%= circle_list %>
                     <li class="divider"></li>
-                    <li><div class="btn btn-primary btn-small" style="margin-left:20px;margin-bottom:5px;">Create new circle</div></li>
+                    <li><a  href="/circles/new"><img style="margin-top:-3px;" src="/assets/menu/add.png"> New Circle</a></li>
                   </ul>
                   <input id="gossip_circle_id" name="gossip[circle_id]" type="hidden">
                 </div>
-               <!--  <p  style="margin-top:5px;margin-bottom:0px;margin-right:15px;color:white;font-size:12px;">Choose a circle!</p> -->
           </div>
+          <p id="gossip_circle_info" style="margin-top:5px;margin-bottom:0px;color:#bbb;">Select a circle from above</p>
+         <center><img style="position:absolute;margin-left:-21px" src="/assets/close-post.png"><i style="font-size:18px;color:white;"class="icon-chevron-up"></i></center>
       </div>
+
     </div>
   </form>
 
@@ -97,7 +99,7 @@
           <!-- %= user_circles.to_yaml % -->
  <div style="min-width:880px"> <!-- wrapper - strict pt mobile altfel zboara pe paginile cu dashboard -->       
 
-          <% if (@current_controller=="gossips" && @current_action=="show") || (@current_controller=="circles" && @current_action == "new" ) || @current_controller=="sessions" || @current_controller=="registrations" || @current_controller=="passwords" || @current_controller=="users" || @current_controller=="invites" %>
+          <% if (@current_controller=="gossips" && @current_action=="show") || (@current_controller=="circles" && @current_action == "new" ) || @current_controller=="sessions" || @current_controller=="registrations" || @current_controller=="passwords" || @current_controller=="users" || @current_controller=="invites" || (@current_controller=="home" && @current_action=="terms") %>
             <%= yield %>
 
           <% else %>
@@ -106,16 +108,16 @@
             
             <div class="menux-container" style="margin-bottom:20px">      
               <div class="navx">
-                <h4 style="margin-left:15px;color:white;float:left">lets gossip</h4>
+               <h5 style="font-weight:300;font-size:17px;margin-left:15px;color:white;float:left"> Menu</h5>
                   <!-- <div class="settings"><i class="icon-user icon-white"></i></div> -->
               </div>
               <div class="menux">
                   <ul>
-                    <li><a href="#" ><img src="http://i.imgur.com/4JPrK.png"><p>Home</p></a></li>
-                    <li><a href="<%= circles_path %>" ><img src="http://i.imgur.com/jHwHy.png"><p>Circles</p></a></li>
-                    <li><a href="#" ><img src="http://i.imgur.com/Gyusy.png"><p>Cities</p></a></li>
-                    <li><a href="#" ><img src="http://i.imgur.com/mbWpc.png"><p>People</p></a></li>
-                    <li><a href="#" ><img src="http://i.imgur.com/mbWpc.png"><p>Create new Circle</p></a></li>
+                    <li><a href="#" ><img src="/assets/menu/feed.png"><p>Feed</p></a></li>
+                    <li><a href="<%= circles_path %>" ><img src="/assets/menu/circles.png"><p>Circles</p></a></li>
+                    <li><a href="#" ><img src="/assets/menu/pin.png"><p>Cities</p></a></li>
+                    <li><a href="#" ><img src="/assets/menu/people.png"><p>People</p></a></li>
+                    <li><a href="/circles/new" ><img src="/assets/menu/add.png"><p>New Circle</p></a></li>
                   </ul>
               </div>         
             </div>
@@ -149,21 +151,10 @@
              
               <!-- Tags -->
               <div class="clearfix" style="margin-bottom:20px;padding:10px;width:220px;background:#fafafa;border-radius:5px; border:1px solid #dbdbdb">
-                 <h6> TRENDING </h6>
-                  <a class="tag bordered" href="#">topic</a>
-                  <a class="tag bordered" href="#">high school</a>
-                  <a class="tag bordered" href="#">college</a>
-                  <a class="tag bordered" href="#">night life</a>
-                  <a class="tag bordered" href="#">fun</a>
-                  <a class="tag bordered" href="#">high school</a>
-                  <a class="tag bordered" href="#">college</a>
-                  <a class="tag bordered" href="#">night life</a>
-                  <a class="tag bordered" href="#">high school</a>
-                  <a class="tag bordered" href="#">college</a>
-                  <a class="tag bordered" href="#">night life</a>
-                  <a class="tag bordered" href="#">high school</a>
-                  <a class="tag bordered" href="#">college</a>
-                  <a class="tag bordered" href="#">night life</a>
+                <h6> TRENDING </h6>
+                <% tag_cloud Circle.tag_counts, %w[tag] do |tag_itself, tag| %>
+                  <%= link_to tag_itself.name, tag_path(tag_itself.name), class: tag %>
+                <% end %>
               </div>
 
               <!--FOOTER -->
@@ -183,7 +174,7 @@
        
 
     <% end %>
-           <div class="back-to-top"></div>
+           <div class="back-to-top hidden-phone"></div>
   </div>
   </div>   
 </body>

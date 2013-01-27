@@ -6,14 +6,18 @@ class CirclesController < ApplicationController
   # GET /circles.json
   def index
     #@client_ip = request.remote_ip
+    
+    if params[:tag]
+      @circles = Circle.tagged_with(params[:tag])
+    else
+      @c = GeoIP.new('data/GeoLiteCity.dat').city('188.24.108.194') #iau orasul
 
-    @c = GeoIP.new('data/GeoLiteCity.dat').city('188.24.108.194') #iau orasul
+      #iau id-urile oraselor care corespund coordonatelor
+      @city_id = City.find(:all, :select => 'id', :conditions => ["abs(latitude - ?) < 0.1 AND abs(longitude - ?) < 0.1", @c.latitude, @c.longitude] )
 
-    #iau id-urile oraselor care corespund coordonatelor
-    @city_id = City.find(:all, :select => 'id', :conditions => ["abs(latitude - ?) < 0.1 AND abs(longitude - ?) < 0.1", @c.latitude, @c.longitude] )
+      @circles = Circle.where(:city_id => @city_id)
+    end
 
-    @circles = Circle.where(:city_id => @city_id)
-    #@circles = Circle.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @circles }
