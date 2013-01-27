@@ -21,7 +21,11 @@ ProjectPublicSecret::Application.routes.draw do
 
   root :to => 'home#index'
 
+  get "home/terms"
+  match '/terms' => 'home#terms'
+
   get "users/index"
+
   post "circles/join"
   post "users/follow"
   post "circles/search"
