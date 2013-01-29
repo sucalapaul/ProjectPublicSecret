@@ -5,16 +5,16 @@ class GossipsController < ApplicationController
   # GET /gossips
   # GET /gossips.json  
   def index
-    @gossips = current_user.gossips_feed.order("created_at desc") 
+    @gossips = current_user.gossips_feed.order("created_at desc") .page(params[:page]).per_page(10)
 
     @gossips.each do |g|
       g.last_comments = Comment.where("gossip_id = ?", g.id).order("created_at desc").limit(3).reverse
     end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @gossips }
-    end
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   format.json { render json: @gossips }
+    # end
   end
 
   # GET /gossips/1

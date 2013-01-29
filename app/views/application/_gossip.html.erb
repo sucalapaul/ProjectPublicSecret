@@ -43,6 +43,7 @@
 					</div>
 				</div>
 				 <ol class="comments">
+				 		<li class="comment clearfix" style="display: none"></li>
 						<% if comments == 3%>
 							<% gossip.last_comments.each do |comment| %>
 					 	 		<%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
@@ -53,15 +54,15 @@
 						  <% end %>
 						<% end %>
 						<form id="post_comment_form">
-						<li class="your-comment clearfix">
-							<span class="avatar-mini">
-								<img  src="http://profile.ak.fbcdn.net/hprofile-ak-snc6/260896_708576256_1093295786_t.jpg">
-							</span>
-							<textarea  type="textarea" id="comment_content" name="comment[content]" rows="1"> </textarea>
-							<a class="btnx btnx-blue post_comment_button pull-right" > Post </a>
-							<a class="private"> </a>
-				      		<input id="comment_gossip_id" name="comment[gossip_id]" type="hidden" value="<%= gossip.id %>" />
-						</li>
+							<li class="your-comment clearfix">
+								<span class="avatar-mini">
+									<img  src="http://profile.ak.fbcdn.net/hprofile-ak-snc6/260896_708576256_1093295786_t.jpg">
+								</span>
+								<textarea  type="textarea" id="comment_content" name="comment[content]" rows="1"> </textarea>
+								<a class="btnx btnx-blue post_comment_button pull-right" > Post </a>
+								<a class="private"> </a>
+					      		<input id="comment_gossip_id" name="comment[gossip_id]" type="hidden" value="<%= gossip.id %>" />
+							</li>
 						</form>
 				</ol>				
 			</div> <!-- gossip -->
