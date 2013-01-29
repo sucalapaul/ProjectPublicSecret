@@ -12,13 +12,24 @@
  *= require_tree .
  */
 
- .dashboard {
+.dashboard {
     float:left;
     width:240px;
     height:500px;
     display:block;
     margin-top:30px;
  }
+
+.dashboard .people, .dashboard .tags {
+  margin-bottom:20px;
+  padding:10px;
+  max-width:220px;
+  background:#fafafa;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border:1px solid #dbdbdb;
+}
 
  .dashboard .footer-nav {
   float:left;
@@ -141,9 +152,7 @@ a.x-hover:hover {color:#00a0c6;}
 .menux-container {
   display: block;
   position: relative;
-  width: 240px;
-  
-   
+  max-width: 240px;
   padding: 0;
 }
 
@@ -167,8 +176,6 @@ a.x-hover:hover {color:#00a0c6;}
   list-style:none;
   margin:0;
   border-bottom:1px solid #dbdbdb;
-
-
 }
 
 .menux-container ul li {

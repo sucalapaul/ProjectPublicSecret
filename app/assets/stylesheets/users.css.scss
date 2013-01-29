@@ -69,6 +69,8 @@
      box-shadow: 0 1px 1px rgba(0,0,0,.1);
 }
 
+.top-bar .user-name { width:auto;}
+
 
 .top-bar .right-menu {
 	position: absolute;
@@ -106,6 +108,26 @@
 	color:#588cc7;
 }
 
+@media (max-width: 767px) {
+	.top-bar .user-name { float:left;width:100%;}
+	.top-bar .stats li.stat {
+		max-width:60px;
+		padding: 0 8px 0 8px;
+		margin-bottom:10px;
+	}
+
+	.top-bar .stats li.stat .value {
+		font-size: 2em;
+		line-height: 0.9em;
+	}
+}
+@media (min-width: 767px) and (max-width: 979px){
+	.top-bar .stats li.stat {
+		width:auto;
+		max-width:150px;
+		padding: 0 15px 0 15px;
+	}
+}
 
 /* End Top Bar*/
 
