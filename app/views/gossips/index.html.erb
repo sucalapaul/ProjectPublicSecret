@@ -1,8 +1,9 @@
-<div id="content">
+<div class="top-bar">
 
+<h3 style="text-align:center;padding-bottom:10px;margin-bottom:30px;border-bottom: 3px double rgba(34,25,25,0.1);">
+Latest Gossip</h3>
+</div>
 <% @gossips.each do |gossip| %>
     <%= render partial: "gossip", locals: { gossip: gossip, comments: 3}, formats: [:html] %>
 <% end %>
-
-</div>
 
