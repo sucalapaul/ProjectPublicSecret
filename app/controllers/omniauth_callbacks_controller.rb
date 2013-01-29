@@ -8,6 +8,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	      sign_in_and_redirect user
 	    else
 	    	user.invitation_token = session["invite_token"]
+	    	session["invite_token"] = nil
 	      session["devise.user_attributes"] = user.attributes
 	      redirect_to new_user_registration_url
 	    end

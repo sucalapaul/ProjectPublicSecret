@@ -73,13 +73,13 @@
 
 
 	function sendInvites(fb_ids, selector) {
-	  var link_url = '<%= "#{SITE_URL}invited/#{@invite.token}" %>';
+	  var link_url = '<%= "http://pinterest.com/invited/?code=#{@invite.token}" %>';// '<%= "#{SITE_URL}invited/#{@invite.token}" %>';
 	  FB.ui({
 	      method: "send",
 	      to: fb_ids,
 	      name: "Da cu papagalu!",
 	      description: "Intra si tu pe Gossip.it si afla cele mai noi gossip-uri",
-	      picture: '<%= "#{SITE_URL}assets/fb_invite.png" %>',
+	      //picture: '<%= "#{SITE_URL}assets/fb_invite.png" %>',
 	      link: link_url
 	  }, function(response) {
 	      if (!response){

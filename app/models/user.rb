@@ -6,8 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :nickname, :circles_names, :name, :invite_token
-  attr_accessor :invite_token
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :nickname, :circles_names, :name, :invitation_token
   # attr_accessible :title, :body
 
   # has_many :followers
@@ -43,9 +42,10 @@ class User < ActiveRecord::Base
   #   end
   # end
 
-  validates_presence_of :nickname, :message => "Choose a anoymus nickname"
+  validates_presence_of :nickname
   validates_uniqueness_of :nickname, :message => "Sorry, that nickname is already taken"
   validates_presence_of :invitation_token, :message => "You need an invite to sign up"
+  validate :invitation_token_valid, :if => :invitation_token
 
 
   def self.from_omniauth(auth)
@@ -128,4 +128,13 @@ def self.get_fb_friends()
     e.to_s
   end
 
+end
+
+private 
+def invitation_token_valid
+  return if invitation_token.blank?
+  unless Invite.find_by_token(self.invitation_token)
+    errors.add :invitation_token, 'Invitation code is not valid'
+  end
+  
 end

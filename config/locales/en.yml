@@ -3,3 +3,17 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        email: ""
+        nickname: ""
+        invitation_token: ""
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "You can sign-up only by using Facebook"
+            nickname:
+              blank: "Choose an anoymus nickname"
