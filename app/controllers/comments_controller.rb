@@ -43,6 +43,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
     @comment.user = current_user
 
+    Gossip.update_counters(params[:comment][:gossip_id], comments_count: 1)
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }

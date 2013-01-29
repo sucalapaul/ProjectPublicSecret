@@ -1,3 +1,5 @@
+<%= will_paginate @circles, :param_name => 'circle_page' %>
+
 <ul class="nav nav-tabs circles-tabs">
   <li data-id="my_circles" class="active">
     <a href="#">My Circles</a>
@@ -21,6 +23,7 @@
 <form id="search_circles_form" class="hidden nav-tab-page">
   <div class="clearfix top-bar" style="margin-top:0;border-radius:0 5px 5px 5px">
       <a href="<%= new_circle_path %>" class="hidden-phone hidden-tablet pull-right btnx btnx-green"> <i class="icon-plus"></i> New</a>
+      <%= will_paginate @circles, :param_name => 'circle_search' %>
           <input type="text" id="search_city_box" placeholder="Search for a city" style="height:22px;"class="city-search">
           <a class="btnx btnx-blue pull-left" onclick="search_circle();">Search</a>
           <br /><br /><p id="error" style="display:none; margin:0px; color:red">Please type a city in the search box above.</p>

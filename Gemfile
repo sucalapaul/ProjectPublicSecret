@@ -47,3 +47,4 @@ gem 'omniauth-facebook'
 gem 'geoip'
 gem "koala"
 gem 'acts-as-taggable-on'
+gem 'will_paginate', '> 3.0'
