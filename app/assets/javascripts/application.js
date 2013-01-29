@@ -328,13 +328,16 @@ $(document).ready(function() {
 	//Ajax post for following a user
 	$(".follow-user-btn").click( function () {
 		var self = this;
-		var followerId = $(self).data('id');
+		var followedId = $(self).data('id') || "";
+		var followedFbId =  $(self).closest('[data_fb_id]').attr('data_fb_id') || "";
 
-		var jqxhr = $.post("/users/follow", { "user[follower_id]": followerId },
+		var jqxhr = $.post("/users/follow", { "user[followed_id]": followedId, "user[followed_fb_id]": followedFbId },
 			function(data) {
 				console.log(data);
 				if (data == 1) {
 					$(self).html("Unfollow");
+				} else if (data == 0) {
+					showError("WTF?! that user is not in our database!");
 				} else {
 					$(self).html("Follow");
 				}

@@ -19,28 +19,22 @@
 	</div>
 
 	<div style="float:left;width:340px; margin-right:0px;">
-	<h3> Friends on The Gossip </h3>
-	<ul class="InvitesList">
-	        <li class="friend">
-	        	<a class="btnx btnx-blue" >Follow</a>
-	  			<img class="InvitesProfileImage" src="https://graph.facebook.com/100001260751431/picture?type=square" alt="Profile picture of &lt;%= name %&gt;">
-	    		<div class="individual">
-	        		<div class="name">Bicu Adelina</div>
-			    </div>
-			</li>
-			<li class="friend">
-	        	<a class="btnx btnx-blue">Follow</a>
-	  			<img class="InvitesProfileImage" src="https://graph.facebook.com/100001260751431/picture?type=square" alt="Profile picture of &lt;%= name %&gt;">
-	    		<div class="individual">
-	        		<div class="name">Sucala Paul</div>
-			    </div>
+		<h3> Friends on The Gossip </h3>
+		<ul id="follow_list" class="InvitesList">
+			<li class="friend" data-bind="id">
+				<!--a class="btnx btnx-blue follow-user-btn" >Follow</a-->
+				<img data-bind="profilePicture" class="InvitesProfileImage" src="" alt="">
+				<div class="individual">
+					<div data-bind="name" class="name">/div>
+				</div>
 			</li>
 		</ul>
-</div>
+	</div>
 
 <script type="text/javascript">
 
-		var friendData = <%= @friend_data.to_json.html_safe %>;
+		var friendDataFollow = <%= @friends_follow.to_json.html_safe %>;
+		var friendDataInvite = <%= @friends_invite.to_json.html_safe %>;
 
 		var directives = {
 		  profilePicture: {
@@ -52,20 +46,28 @@
 		    }
 		  }, 
 		  id: {
-		  	data_id: function(params) {
+		  	data_fb_id: function(params) {
 		  		return this.id;
 		  	}, 
-		  	text: function(params) {
-		  		return '';
+		  	html: function(params) {
+		  		if (this.already_following === undefined){
+		  			return '';
+		  		} else if (this.already_following) {
+		  			return '<a class="btnx btnx-blue follow-user-btn disabled" >Following</a>';
+		  		} else {
+		  			return '<a class="btnx btnx-blue follow-user-btn" >Follow</a>';
+		  		}
+
 		  	}
 		  }
 		};
-		$('#invite_list').render(friendData, directives);
+		$('#invite_list').render(friendDataInvite, directives);
+		$('#follow_list').render(friendDataFollow, directives);
 
 		//Invite Button click
 		$(document).on('click', 'a.btn-invite', function () {
 			var self = this;
-			var id = $(self).parent().attr('data_id');
+			var id = $(self).parent().attr('data_fb_id');
 			sendInvites(id, self);
 		})
 
