@@ -7,7 +7,7 @@ ProjectPublicSecret::Application.routes.draw do
 
 
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
-                     controllers: {omniauth_callbacks: "omniauth_callbacks"}
+                     controllers: {omniauth_callbacks: "omniauth_callbacks",  :registrations => "registrations"}
 
   resources :circles    
   resources :gossips     
@@ -21,6 +21,7 @@ ProjectPublicSecret::Application.routes.draw do
   root :to => 'home#index'
 
   get 'tags/:tag', to: 'circles#index', as: :tag
+  get 'invited/:invite_token', to: 'invites#signup', as: :invite_token
 
   get "home/terms"
   match '/terms' => 'home#terms'

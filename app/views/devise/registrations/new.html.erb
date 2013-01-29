@@ -1,12 +1,14 @@
 <div style="width:292px;margin:0 auto;margin-top:75px;">
-<a href="/users/auth/facebook" class="btn_oauth facebook" style="background-image: url( /assets/fb-ico.png)">Sign up with Facebook</a>
-<center><h6 style="margin-bottom:25px"> - Or sign up with email -</h6> </center>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div>
-  <%= f.email_field :email, :style => "width:278px;margin-bottom:20px", :placeholder => "email" %></div>
+  email: <%= resource.email %>
+
+  </div>
+
+  <%= f.hidden_field :invitation_token %>
 
   <div>
   <%= f.text_field :nickname, :style => "width:278px;margin-bottom:20px", :placeholder => "anonymous nickname" %></div>
