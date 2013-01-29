@@ -108,7 +108,20 @@
 	color:#588cc7;
 }
 
+.top-bar .intro {
+	color: #7d7f82;
+	font-size: 18px;
+	text-align: center;
+	padding-bottom: 28px;
+}
+
+/* End Top Bar*/
+
 @media (max-width: 767px) {
+	.top-bar h3 { font-size:19px;}
+	.top-bar h2 {font-size:24px; }
+	.top-bar .intro {font-size:14px;padding-bottom: 14px;}
+
 	.top-bar .user-name { float:left;width:100%;}
 	.top-bar .stats li.stat {
 		max-width:60px;
@@ -127,15 +140,6 @@
 		max-width:150px;
 		padding: 0 15px 0 15px;
 	}
-}
-
-/* End Top Bar*/
-
-.top-bar .intro {
-color: #7d7f82;
-font-size: 18px;
-text-align: center;
-padding-bottom: 28px;
 }
 
 .InvitesList {

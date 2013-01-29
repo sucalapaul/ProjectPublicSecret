@@ -11,7 +11,17 @@
  *= require_self
  *= require_tree .
  */
+.alert {
+  margin-top:30px;
+  margin-bottom:0px;
+}
 
+@media (max-width:767px){
+    .alert {
+      margin-top:0px;
+      margin-bottom:0px;
+  }
+}
 .dashboard {
     float:left;
     width:240px;
@@ -275,7 +285,7 @@ a.tag.bordered:hover {
   cursor: hand;
   cursor:pointer;
   position: relative;
-  display: block;
+  //display: block; 
   padding: 9px 14px;
   max-width: 20em;
   color: #fff;
@@ -366,4 +376,3 @@ a.tag.bordered:hover {
     top: 1px;
 }
 /*Button btnx - End*/
-

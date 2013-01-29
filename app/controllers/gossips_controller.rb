@@ -1,10 +1,13 @@
 class GossipsController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:index] 
   
   # GET /gossips
   # GET /gossips.json  
   def index
+    if !user_signed_in? 
+      redirect_to "/welcome" and return
+    end
     @gossips = current_user.gossips_feed.order("created_at desc") 
     
     respond_to do |format|

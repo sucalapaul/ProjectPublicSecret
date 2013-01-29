@@ -86,20 +86,18 @@
                 </div>
           </div>
           <p id="gossip_circle_info" style="margin-top:5px;margin-bottom:0px;color:#bbb;">Select a circle from above</p>
-         <center><img style="position:absolute;margin-left:-21px" src="/assets/close-post.png"><i style="font-size:18px;color:white;" class="icon-chevron-up"></i></center>
+         <p style="text-align:center"><i style="font-size:18px;color:white;" class="icon-chevron-up"></i></p>
       </div>
 
     </div>
   </form>
 
-  <div class="container">
-          <!-- <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>  -->
-          <!-- %= user_circles.to_yaml % -->      
+  <div class="container">  
 
     <% if (@current_controller=="gossips" && @current_action=="show") || (@current_controller=="gossips" && @current_action=="new") || (@current_controller=="circles" && @current_action == "new" ) || @current_controller=="sessions" || @current_controller=="registrations" || @current_controller=="passwords" || @current_controller=="users" || @current_controller=="invites" || (@current_controller=="home" && @current_action=="terms") %>
       <div class="row">
           <div class="span8 offset2">
+          <%= render "flash_messeges" %>
           <%= yield %>
         </div>
       </div>
@@ -168,12 +166,14 @@
         </div>
 
         <div class="span7 mainx-content" >
+            <%= render "flash_messeges" %>
             <%= yield %>
         </div>
 
       </div> <!-- row -->
     <% end %>
            <div class="back-to-top hidden-phone"></div>
+
   </div> 
 </body>
 <% end %> <!-- if ul daca e landing page --> 

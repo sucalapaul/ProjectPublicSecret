@@ -1,7 +1,11 @@
+<div class="top-bar" style="margin-bottom:30px;">
+	<h3 style="text-align:center;padding-bottom:10px;border-bottom: 3px double rgba(34,25,25,0.1);">
+	Latest Gossip</h3>
+</div>
 <div class="top-bar">
-
-<h3 style="text-align:center;padding-bottom:10px;margin-bottom:30px;border-bottom: 3px double rgba(34,25,25,0.1);">
-Latest Gossip</h3>
+	<h3 style="text-align:center">You have not joined any circle yet</h3>
+	<p class="intro">The Gossip Feed shows the latest rumors only from circles you joined</p>
+	<p class="intro">Join circles<a href="#"> nearby</a>, search by<a href="#"> city</a>, or view the hottest <a href="#">topics</a></p>
 </div>
 <% @gossips.each do |gossip| %>
     <%= render partial: "gossip", locals: { gossip: gossip, comments: 3}, formats: [:html] %>

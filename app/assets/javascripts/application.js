@@ -220,6 +220,8 @@ var city_longitude = 0;
 
 $(document).ready(function() {
 
+	//flash messeges
+	$(".alert-notice").delay(2500).slideUp();
 
 	//toggleMenu();
 

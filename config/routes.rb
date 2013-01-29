@@ -18,12 +18,14 @@ ProjectPublicSecret::Application.routes.draw do
   resources :users  
   resources :invites     
 
-  root :to => 'home#index'
+  root :to => 'gossips#index'
 
   get 'tags/:tag', to: 'circles#index', as: :tag
 
   get "home/terms"
+  get "home/index"
   match '/terms' => 'home#terms'
+  match '/welcome' => 'home#index'
 
   get "users/index"
 
