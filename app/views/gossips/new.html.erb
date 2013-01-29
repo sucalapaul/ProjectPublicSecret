@@ -1,5 +1,34 @@
-<h1>New gossip</h1>
 
-<%= render 'form' %>
+<div class="row">
 
-<%= link_to 'Back', gossips_path %>
+	<div class="span6 offset1">
+	
+	  <form id="post_gossip_form">
+	    <div class="top-bar">
+	    	<center><h3 style="margin-bottom:25px;padding-bottom:7px;border-bottom: 3px double rgba(34,25,25,0.1);">New Gossip</h3></center>
+	         <p id="gossip_content_counter" style="color:#999;float:right;margin-bottom:5px;margin-top:2px;">500</p>
+	        <h3 style="margin-bottom:0;font-size:17px"> What's the word? </h3>
+
+	          <div class="post-well well" style="padding:7px">
+	              <textarea id="gossip_content" name="gossip[content]" class="input-block-level" rows="3" style="max-height:70px;"></textarea>
+	               <button type="button" class="btn btn-primary pull-right disabled" id="button_post_gossip" >OK </button>
+
+	                <a class="private pull-right "></a>
+
+	                <div class="btn-group" id="dropdwn_gossip_circle">
+	                  <button class="btn dropdown-toggle" data-toggle="dropdown">Change Circle <span class="caret"></span></button>
+	                  <ul class="dropdown-menu">
+	                    <%= circle_list %>
+	                    <li class="divider"></li>
+	                    <li><a  href="/circles/new"><img style="margin-top:-3px;" src="/assets/menu/add.png"> New Circle</a></li>
+	                  </ul>
+	                  <input id="gossip_circle_id" name="gossip[circle_id]" type="hidden">
+	                </div>
+	          </div>
+	          <p id="gossip_circle_info" style="margin-top:5px;margin-bottom:0px;color:#777;">Select a circle from above</p>
+
+	    </div>
+	  </form>
+
+	</div>
+</div>

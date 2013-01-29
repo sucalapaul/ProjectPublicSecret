@@ -8,17 +8,20 @@
         </a>
         <a onclick="toggleMenu()" class="brand" href="/"><img src="/assets/logo.png"></a>
         <div class="nav-collapse">
-        <!--   <ul class="nav">
-            <li><%= link_to "Home"%></li>
-            <li><%= link_to "City" %></li>
-            <li><%= link_to "Circles" %></li>
-            <li class="vertical-divider"></li>
-            <li><%= link_to "Circles"%></li>
+          <ul class="nav hidden-desktop">
+            <li><a href="<%= gossips_path %>" ><img src="/assets/menu/feed.png"> Feed</a></li>
+            <li><a href="<%= circles_path %>" ><img src="/assets/menu/circles.png"> Circles</a></li>
+            <li><a href="#" ><img src="/assets/menu/pin.png"> Cities</a></li>
+            <li><a href="#" ><img src="/assets/menu/people.png"> People</a></li>
+            <li><a href="/circles/new" ><img src="/assets/menu/add.png"> New Circle</a></li>
+            <li><a href="/gossips/new" ><img src="/assets/menu/add.png"> New Gossip</a></li>
+            <li><a href="#" ><img src="/assets/menu/settings.png"> My Account</a></li>
+            <li><a href="#" ><img src="/assets/menu/logout.png"> Logout</a></li>
           </ul>
- -->
+
           <ul class="nav pull-right">
             <% if user_signed_in? %>
-              <li class="dropdown no-border">
+              <li class="visible-desktop dropdown no-border">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> You <b class="caret"></b></a>
                 <ul class="dropdown-menu" style="margin-bottom:10px">
                   <li class="nav-header no-border"><%=current_user.email%></li>
@@ -27,9 +30,9 @@
                   <li class="no-border"><%= link_to "Logout", destroy_user_session_path, method: :get %></li>
                 </ul>
               </li>
-<li class="divider-vertical"></li>
-              <li class="btnx btnx-blue-x toggle-slide" data-toggleid="post_gossip_form" style="border-color: #111;-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;margin-top:5px;padding:5px 4px 6px 8px;">
-<img src="/assets/new-gossip.png"></li>     
+              <li class="divider-vertical"></li>
+              <li class="visible-desktop btnx btnx-blue-x toggle-slide" data-toggleid="post_gossip_form" style="border-color: #111;-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;margin-top:5px;padding:5px 4px 6px 8px;">
+              <img src="/assets/new-gossip.png"></li>     
 
 
             <% else %>

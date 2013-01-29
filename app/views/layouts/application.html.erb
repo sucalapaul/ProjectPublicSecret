@@ -86,26 +86,29 @@
                 </div>
           </div>
           <p id="gossip_circle_info" style="margin-top:5px;margin-bottom:0px;color:#bbb;">Select a circle from above</p>
-         <center><img style="position:absolute;margin-left:-21px" src="/assets/close-post.png"><i style="font-size:18px;color:white;"class="icon-chevron-up"></i></center>
+         <center><img style="position:absolute;margin-left:-21px" src="/assets/close-post.png"><i style="font-size:18px;color:white;" class="icon-chevron-up"></i></center>
       </div>
 
     </div>
   </form>
 
-
-<div class="container">
+  <div class="container">
           <!-- <p class="notice"><%= notice %></p>
           <p class="alert"><%= alert %></p>  -->
-          <!-- %= user_circles.to_yaml % -->
- <div style="min-width:880px"> <!-- wrapper - strict pt mobile altfel zboara pe paginile cu dashboard -->       
+          <!-- %= user_circles.to_yaml % -->      
 
-          <% if (@current_controller=="gossips" && @current_action=="show") || (@current_controller=="circles" && @current_action == "new" ) || @current_controller=="sessions" || @current_controller=="registrations" || @current_controller=="passwords" || @current_controller=="users" || @current_controller=="invites" || (@current_controller=="home" && @current_action=="terms") %>
-            <%= yield %>
+    <% if (@current_controller=="gossips" && @current_action=="show") || (@current_controller=="gossips" && @current_action=="new") || (@current_controller=="circles" && @current_action == "new" ) || @current_controller=="sessions" || @current_controller=="registrations" || @current_controller=="passwords" || @current_controller=="users" || @current_controller=="invites" || (@current_controller=="home" && @current_action=="terms") %>
+      <div class="row">
+          <div class="span8 offset2">
+          <%= yield %>
+        </div>
+      </div>
+      
 
-          <% else %>
+    <% else %>
+    <div class="row">
+        <div class="hidden-phone span3 offset1 dashboard">
 
-          <div class="dashboard">
-            
             <div class="menux-container" style="margin-bottom:20px">      
               <div class="navx">
                <h5 style="font-weight:300;font-size:17px;margin-left:15px;color:white;float:left"> Menu</h5>
@@ -113,7 +116,7 @@
               </div>
               <div class="menux">
                   <ul>
-                    <li><a href="#" ><img src="/assets/menu/feed.png"><p>Feed</p></a></li>
+                    <li><a href="<%= gossips_path %>" ><img src="/assets/menu/feed.png"><p>Feed</p></a></li>
                     <li><a href="<%= circles_path %>" ><img src="/assets/menu/circles.png"><p>Circles</p></a></li>
                     <li><a href="#" ><img src="/assets/menu/pin.png"><p>Cities</p></a></li>
                     <li><a href="#" ><img src="/assets/menu/people.png"><p>People</p></a></li>
@@ -126,7 +129,7 @@
               <input placeholder="What's the word?" type=text style="margin:0" />
             </div> -->
 
-            <div class="clearfix" style="margin-bottom:20px;padding:10px;width:220px;background:#fafafa;border-radius:5px; border:1px solid #dbdbdb">
+            <div class="clearfix people">
               <a href="" style="font-size:12px;float:right">View all</a>
               <p> People in this Circle </p>
               
@@ -140,43 +143,38 @@
               <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
               <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
               <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
-              <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
-
-
-              
+              <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>          
             </div>
 
-             <a href="#" class="btnx btnx-blue-x btnx-large" >Gossip in this Circle</a> 
+            <!--  <a href="#" class="btnx btnx-blue-x btnx-large" >Gossip in this Circle</a>  -->
 
              
               <!-- Tags -->
-              <div class="clearfix" style="margin-bottom:20px;padding:10px;width:220px;background:#fafafa;border-radius:5px; border:1px solid #dbdbdb">
-                <h6> TRENDING </h6>
-                <% tag_cloud Circle.tag_counts, %w[tag] do |tag_itself, tag| %>
-                  <%= link_to tag_itself.name, tag_path(tag_itself.name), class: tag %>
-                <% end %>
-              </div>
+            <div class="clearfix tags">
+              <h6> TRENDING </h6>
+              <% tag_cloud Circle.tag_counts, %w[tag] do |tag_itself, tag| %>
+                <%= link_to tag_itself.name, tag_path(tag_itself.name), class: tag %>
+              <% end %>
+            </div>
 
-              <!--FOOTER -->
-              <ul class="footer-nav">
+              <div class="clearfix top-bar" style="max-width:210px">
+              <ul class="footer-nav clearfix" style="margin-bottom:20px;">
                 <li><a href="/">© Let's Gossip</a></li>
                 <li><a href="/contact">Contact</a></li>
                 <li><a href="/terms">Terms</a></li>
               </ul>
+            </div>
               
-          </div>
+        </div>
 
-          <div class="mainx-content" style="float:right;width:600px; ">
+        <div class="span7 mainx-content" >
             <%= yield %>
-          </div>
+        </div>
 
-        
-       
-
+      </div> <!-- row -->
     <% end %>
            <div class="back-to-top hidden-phone"></div>
-  </div>
-  </div>   
+  </div> 
 </body>
 <% end %> <!-- if ul daca e landing page --> 
 <div id="fb-root"></div>
