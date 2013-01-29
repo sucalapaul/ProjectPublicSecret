@@ -47,6 +47,10 @@ class CirclesController < ApplicationController
   def show
     @circle = Circle.find(params[:id], :include => [:gossips])
 
+    @circle.gossips.each do |g|
+      g.last_comments = Comment.where("gossip_id = ?", g.id).order("created_at desc").limit(3).reverse
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @circle }

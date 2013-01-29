@@ -42,12 +42,9 @@
 				<ol class="comments">
 					<li class="comment clearfix" style="display:none">
 					<% if comments == 3%>
-						<% len = gossip.comments.length %>
-						<% gossip.comments.each_with_index do |i, index| %>
-							<% if index > len - 4%>
-								<%= render partial: "comment", locals: { comment: i }, formats: [:html] %>
-							<% end %>
-						<% end %>
+						<% gossip.last_comments.each do |comment| %>
+					 	 <%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
+					  <% end %>
 					<% else %>
 					  <% gossip.comments.each do |comment| %>
 					 	 <%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>

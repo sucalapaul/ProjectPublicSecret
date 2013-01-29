@@ -6,7 +6,11 @@ class GossipsController < ApplicationController
   # GET /gossips.json  
   def index
     @gossips = current_user.gossips_feed.order("created_at desc") 
-    
+
+    @gossips.each do |g|
+      g.last_comments = Comment.where("gossip_id = ?", g.id).order("created_at desc").limit(3).reverse
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @gossips }
@@ -16,7 +20,8 @@ class GossipsController < ApplicationController
   # GET /gossips/1
   # GET /gossips/1.json
   def show
-    @gossip = Gossip.find(params[:id])
+    @gossip = Gossip.find(params[:id], :include => :comments)
+    #@gossip.comments = Comment.where("gossip_id = ?", params[:id]).order("created_at desc").limit(3).reverse
 
     respond_to do |format|
       format.html # show.html.erb
