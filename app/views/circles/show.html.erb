@@ -4,10 +4,8 @@
   currentCircleId = <%= @circle.id %>;
 </script>
 <%= render partial: "circle_header", locals: { circle: @circle }, formats: [:html] %>
-
-<span style="line-height:30px">&nbsp;</span>
-
-	<div class="top-bar" style="margin-top:-20px;width:480px; background:#fff;padding:20px 60px;">
+<div style="position:relative;height:20px;">&nbsp;</div>
+<!-- 	<div class="top-bar" style="margin-top:-20px;width:480px; background:#fff;padding:20px 60px;">
 		<h3> People in this Circle </h3>
 		<ul class="InvitesList">
 	        <li class="friend">
@@ -40,13 +38,11 @@
 			</li>
 			
 		</ul>
-	</div>
+	</div> -->
 
 
 <% @circle.gossips.each do |gossip| %>
     <%= render partial: "gossip", locals: { gossip: gossip, comments: 3 }, formats: [:html] %>
 <% end %>
 
-
-<%= link_to 'Edit', edit_circle_path(@circle) %> |
 

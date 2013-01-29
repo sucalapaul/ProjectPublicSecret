@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.text_field :name, :style => "width:345px;margin-bottom:20px", :placeholder => "Circle Name" %>
+    <%= f.text_field :name, :style => "margin-bottom:20px", :class =>"span4", :placeholder => "Circle Name" %>
   </div>
   <div class="field">
     <%= f.label  "location" %>
-    <%= f.text_field :city_name, :style => "width:345px;margin-bottom:20px", :placeholder => "City" %>
+    <%= f.text_field :city_name, :style => "margin-bottom:20px", :class =>"span4", :placeholder => "City" %>
 
     <%= f.hidden_field :city_lat %>
     <%= f.hidden_field :city_long %>
@@ -24,7 +24,7 @@
 
   <div class="field">
     <%= f.label :description %>
-    <%= f.text_area :description, :rows => "3", :style=> "width:345px;max-width:345px;max-height:60px" %>
+    <%= f.text_area :description, :rows => "3", :class =>"span4", :style=> "max-height:60px" %>
   </div>
 
   <div class="field">

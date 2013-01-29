@@ -6,12 +6,12 @@
 				<a class="follow-user-btn btnx btnx-green" data-id="<%= user.id %>">Follow</a>
 			<%end%>
 	</div>
-	<a class="profile-image" style="display: block;
+	<a class="pull-left profile-image" style="display: block;
 									float: left;
 									margin-right: 20px;">
 			<img alt="Small_vapjpmb0a3bscmazj0du" src="https://s3.amazonaws.com/assets.spinlister.com/user/4174/small_vAPjpMb0a3BsCMAZj0dU.jpg" width="150">						
 	</a>
-	<h2><%if current_user.id == user.id %><span> Hi, </span><%end%> <%= user.name %></h2>
+	<h2 class="user-name"> <%if current_user.id == user.id %><span> Hi, </span><%end%> <%= user.name %></h2>
 	<div class="cleafix">
 		<ul class="stats">
 			<li class="stat">
