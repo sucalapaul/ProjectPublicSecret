@@ -42,17 +42,31 @@
 						</div>
 					</div>
 				</div>
+
 				 <ol class="comments">
 				 		<li class="comment clearfix" style="display: none"></li>
-						<% if comments == 3%>
-							<% gossip.last_comments.each do |comment| %>
-					 	 		<%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
-					  		<% end %>
-						<% else %>
-						  <% gossip.comments.each do |comment| %>
-						 	 <%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
-						  <% end %>
-						<% end %>
+
+				 		<% if ( defined? no_comments ) and ( no_comments == true ) %>
+				 			<!-- no comments -->
+				 		<% else %>
+
+				 			<% if ( defined? last_comments ) and ( last_comments == true ) %>
+
+				 				<!--% # Only last comments  %-->
+								<% gossip.last_comments.each do |comment| %>
+									<%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
+								<% end %>	
+
+				 			<% else %>
+
+				 				<!--% # All comments %-->
+							  <% gossip.comments.each do |comment| %>
+									<%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
+							  <% end %>		
+
+				 			<% end %>
+				 		<% end %>
+
 						<form id="post_comment_form">
 							<li class="your-comment clearfix">
 								<span class="avatar-mini">

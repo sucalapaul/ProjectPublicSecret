@@ -98,6 +98,7 @@ class CirclesController < ApplicationController
         format.html { redirect_to @circle, notice: 'Circle was successfully created.' }
         format.json { render json: @circle, status: :created, location: @circle }
       else
+        
         format.html { render action: "new" }
         format.json { render json: @circle.errors, status: :unprocessable_entity }
       end

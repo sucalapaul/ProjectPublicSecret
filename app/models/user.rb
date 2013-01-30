@@ -44,8 +44,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :nickname
   validates_uniqueness_of :nickname, :message => "Sorry, that nickname is already taken"
-  validates_presence_of :invitation_token, :message => "You need an invite to sign up"
-  validate :invitation_token_valid, :if => :invitation_token
+  validates_presence_of :invitation_token, :message => "You need an invite to sign up", :on => :create
+  validate :invitation_token_valid, :if => :invitation_token, :on => :create
 
 
   def self.from_omniauth(auth)

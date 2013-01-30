@@ -42,7 +42,7 @@
 
 
 <% @circle.gossips.each do |gossip| %>
-    <%= render partial: "gossip", locals: { gossip: gossip, comments: 3 }, formats: [:html] %>
+    <%= render partial: "gossip", locals: { gossip: gossip, last_comments: true }, formats: [:html] %>
 <% end %>
 
 
