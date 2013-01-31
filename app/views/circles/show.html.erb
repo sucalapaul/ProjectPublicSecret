@@ -40,7 +40,7 @@
 		</ul>
 	</div> -->
 
-
+<div class="gossip-post clearfix hidden"> </div>
 <% @circle.gossips.each do |gossip| %>
     <%= render partial: "gossip", locals: { gossip: gossip, last_comments: true }, formats: [:html] %>
 <% end %>

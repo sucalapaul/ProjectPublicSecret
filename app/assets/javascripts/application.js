@@ -172,6 +172,35 @@ $(document).on("click", ".gossip-vote-btn", function () {
 
 });
 
+$(document).on("click", ".toggle-privacy", function () {
+	var self = this;
+	var $info = $(self).siblings('#gossip_private_info');
+
+	// toggle latch
+	if ( $(self).hasClass('public') ) {
+		$(self).removeClass('public').addClass('private');
+		$(self).next('input').val("1");
+		$info.text( $info.data('private') );
+	} else {
+		$(self).removeClass('private').addClass('public');
+		$(self).next('input').val("0");
+		$info.text( $info.data('public') );
+	}
+
+});
+
+	// // toggle Private <-> Me
+	// $(".toggle-radio input").each(function() {
+	// 	var value = $(this).val();
+	// 	$(this).siblings('[data-value="' + value + '"]').addClass("active");
+	// });
+	// $(".toggle-radio .btn").click(function() {
+	// 	$(this).siblings('.active').removeClass('active');
+	// 	$(this).addClass('active');
+	// 	var value = $(this).data('value');
+	// 	$(this).siblings('input').val(value);
+	// });
+
 //Ajax for searching a circle
 function search_circle() {
 	if ($('#search_city_box').val() == ''){
@@ -284,12 +313,22 @@ $(document).ready(function() {
 	$("#button_post_gossip").click(function () {
 		var form = $(this).closest("form");
 		var textLen = $("#gossip_content").val().length;
+		var gossipCircleId = $("#gossip_circle_id").val(); //value chosen from dropdown
 		if (textLen == 0 || textLen >= gossipPostMaxLength){
+			return;
+		}
+		if ( gossipCircleId.length == 0 ) {
+			showError("Please choose a circle where to post");
 			return;
 		}
 		var jqxhr = $.post("/gossips", form.serialize(),
 			function(data) {
 				console.log(data);
+				// redirect to circle where was this gossip posted
+				if (typeof currentCircleId === 'undefined' || currentCircleId != gossipCircleId ) {
+					window.location.href = "/circles/" + gossipCircleId;
+				}
+
 				$(form).find("input[type=text], textarea").val("");
 				$(form).slideUp();
 				$(".gossip-post:first").before(data.html);

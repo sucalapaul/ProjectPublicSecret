@@ -74,8 +74,9 @@
 								</span>
 								<textarea  type="textarea" id="comment_content" name="comment[content]" rows="1"> </textarea>
 								<a class="btnx btnx-blue post_comment_button pull-right" > Post </a>
-								<a class="private"> </a>
-					      		<input id="comment_gossip_id" name="comment[gossip_id]" type="hidden" value="<%= gossip.id %>" />
+								<a class="public toggle-privacy"> </a>
+								<input type="hidden" id="comment_private" name="comment[private]" value="0">
+					      <input id="comment_gossip_id" name="comment[gossip_id]" type="hidden" value="<%= gossip.id %>" />
 							</li>
 						</form>
 				</ol>				
