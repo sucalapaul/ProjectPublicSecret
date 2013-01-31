@@ -45,6 +45,7 @@
 	margin:0;
 	width:82%;
 }
+.gossip img.arrow { float:left; position:absolute; margin-left:-22px; }
 
 @media (max-width: 979px){
 	.gossip-post .gossip {
@@ -236,26 +237,31 @@
  .gossip-post .meta a.true  {
  	display:block;
 	color: #666;
- 	background: url("/assets/social/true.png") no-repeat;
+ 	//background: url("/assets/social/true.png") no-repeat;
  	margin-top:1px;
- 	padding-left:20px;
- 	margin-right:15px;
+ 	padding-left:21px;
+ 	margin-right:17px;
 }
 
 .gossip-post .meta a.fake {
  	display:block;
- 	background: url("/assets/social/fake.png") no-repeat 0px 4px;
+ 	//background: url("/assets/social/fake.png") no-repeat 0px 4px;
  	padding-left:20px;
+ 	margin-top:4px;
+ 	width:2px;
 }
 
 .gossip-vote-btn.enabled[data-value="true"] a{
 	color:#009700;
-	background: url("/assets/social/true-active.png") no-repeat;
+	//background: url("/assets/social/true-active.png") no-repeat;
+	background-position: 0 -751px; width: 15px; height: 17px;
 }
 
 .gossip-vote-btn.enabled[data-value="false"] a{
 	color:#5ead00;
-	background: url("/assets/social/fake-hover.png") no-repeat 0px 4px;
+	//background: url("/assets/social/fake-hover.png") no-repeat 0px 0px;
+	background-position: 0 -146px; width: 15px; height: 17px;
+	width:2px;
 }
 
 
@@ -268,7 +274,6 @@
 	width:22px;
 	cursor:hand;
 	cursor:pointer;
-	
 }
 .your-comment .public:hover, .your-comment .private:hover {border:1px solid #cdcdcd;}
 .your-comment .public { background: url(/assets/unlocked.png) no-repeat 6px 4px; }

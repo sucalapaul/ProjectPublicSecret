@@ -7,16 +7,15 @@
 			<span class="avatar"> </span>
 			<p class="hidden-desktop gossiper-m"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/"<<gossip.user.id.to_s())  %> </p>
 			<p class="hidden-desktop gossiper-m" style="float:none"> in <a href="circles/<%=gossip.circle.id%>"><%= gossip.circle.name %></a></p>
-			
 			<div class="gossip">
 				<div class="text clearfix">
-					<img class="visible-desktop" style="position:absolute; margin-top:0px;margin-left:-22px;" src="/assets/arrow.png"/>
+					<img src="/assets/img_trans.gif" class="visible-desktop arrow sprite sprite-arrow">
 					<a href="/gossips/<%= gossip.id %>"><%= timeago gossip.created_at  %></a>
-					<img style="float:left;width:21px;height:auto" src="/assets/quote-open.png"/>
+					<img src="/assets/img_trans.gif"  class="pull-left sprite sprite-quote-open">
 					<p class="hidden-desktop" style="margin:0px;line-height:10px">&nbsp;</p><!--impinge textu de gossip -->
 					<p class="visible-desktop gossiper"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/"<<gossip.user.id.to_s())  %><span> in </span><a href="circles/<%=gossip.circle.id%>">   <%= gossip.circle.name %></a></p>
 					<a class="link-to-gossip" href="/gossips/<%= gossip.id %>"><p class="gossip-content"><%= gossip.content %></p></a>
-					<img style="float:right;width:21px;height:auto" src="/assets/quote-close.png"/>
+				<img src="/assets/img_trans.gif"  class="pull-right sprite sprite-quote-close">
 
 					<div class= "meta clearfix">
 						<div class="gossip-like-btn" data-count="<%= gossip.like_count %>">
@@ -36,7 +35,7 @@
 								<p class="value" style="margin-right:10px;"> <%= gossip.true_count %></p> 
 							</div>
 							<div class="gossip-vote-btn xxx <%= add_vote_class(v, false) %>" data-value="false" data-count="<%= gossip.false_count %>" style=" float:left;margin-left:10px;">
-								<a class="fake">&nbsp;</a>
+								<a class="sprite sprite-fake fake">&nbsp;</a>
 								<p class="value"><%= gossip.false_count %></p>
 							</div>
 						</div>
