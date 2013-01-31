@@ -22,10 +22,12 @@ ProjectPublicSecret::Application.routes.draw do
 
   get 'tags/:tag', to: 'circles#index', as: :tag
 
+  get "home/contact"
   get "home/terms"
   get "home/index"
   match '/terms' => 'home#terms'
   match '/welcome' => 'home#index'
+  match '/contact' => 'home#contact'
 
   get "users/index"
 

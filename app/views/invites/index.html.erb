@@ -1,9 +1,9 @@
 
 <div class="top-bar clearfix" style="padding:50px 20px; background:white">
-	<center><h2>Facebook People</h2></center>
+	<h3 style="text-align:center">Facebook People</h3>
 	<p class="intro">Gossip is much more fun when have your friends around.</p>
 	<div class="row">
-		<div class="span4">
+		<div class="span5">
 			<h3 style="padding-bottom:10px;border-bottom: 3px double rgba(34,25,25,0.1);"> Invite Friends </h3>
 			<input id="search-friends" type="text" class="search" placeholder="Search for people" />
 			<ul id="invite_list" class="InvitesList">
@@ -17,19 +17,21 @@
 			</ul>
 		</div>
 
-		<div class="span3">
+		<div class="span4">
 			<h3> Friends on The Gossip </h3>
 			<ul id="follow_list" class="InvitesList">
 				<li class="friend" data-bind="id">
 					<!--a class="btnx btnx-blue follow-user-btn" >Follow</a-->
 					<img data-bind="profilePicture" class="InvitesProfileImage" src="" alt="">
 					<div class="individual">
-						<div data-bind="name" class="name">/div>
+						<div data-bind="name" class="name"></div>
 					</div>
 				</li>
 			</ul>
 		</div>
 	</div>
+</div>
+
 <script type="text/javascript">
 
 		var friendDataFollow = <%= @friends_follow.to_json.html_safe %>;

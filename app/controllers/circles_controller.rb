@@ -8,14 +8,14 @@ class CirclesController < ApplicationController
     #@client_ip = request.remote_ip
     
     if params[:tag]
-      @circles = Circle.tagged_with(params[:tag])
+      @circles = Circle.tagged_with(params[:tag]).paginate(:page => params[:circle_page], :per_page => 10)
     else
       @c = GeoIP.new('data/GeoLiteCity.dat').city('188.24.108.194') #iau orasul
 
       #iau id-urile oraselor care corespund coordonatelor
       @city_id = City.find(:all, :select => 'id', :conditions => ["abs(latitude - ?) < 0.1 AND abs(longitude - ?) < 0.1", @c.latitude, @c.longitude] )
 
-      @circles = Circle.where(:city_id => @city_id)
+      @circles = Circle.where(:city_id => @city_id).paginate(:page => params[:circle_page], :per_page => 10)
     end
 
     respond_to do |format|
@@ -30,7 +30,7 @@ class CirclesController < ApplicationController
     #iau id-urile oraselor care corespund coordonatelor
     @city_id = City.find(:all, :select => 'id', :conditions => ["abs(latitude - ?) < 0.1 AND abs(longitude - ?) < 0.1", params[:city][:latitude], params[:city][:longitude]] )
 
-    @circles = Circle.where(:city_id => @city_id).includes(:city)
+    @circles = Circle.where(:city_id => @city_id).includes(:city).paginate(:page => params[:circle_search], :per_page => 2)
     
     @circles.each do |circle|
       circle.joined = current_user.already_joined?(circle.id)
@@ -46,6 +46,10 @@ class CirclesController < ApplicationController
   # GET /circles/1.json
   def show
     @circle = Circle.find(params[:id], :include => [:gossips])
+
+    @circle.gossips.each do |g|
+      g.last_comments = Comment.where("gossip_id = ?", g.id).order("created_at desc").limit(3).reverse
+    end
 
     respond_to do |format|
       format.html # show.html.erb

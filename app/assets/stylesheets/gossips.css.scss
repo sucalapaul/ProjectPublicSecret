@@ -86,7 +86,12 @@
 	background:white;
 }
 
-
+.gossip-post .link-to-gossip{
+		color:#4d1000;
+}
+.gossip-post .link-to-gossip:hover{
+		color:#1f518e;
+}
 .gossip-post .gossip-content {
 	font-family: "Museo-300", Helvetica Neue, Helvetica, Arial, sans-serif;
  	font-size:1.18em;
@@ -141,6 +146,15 @@
 .gossip-post .comments li {
 	padding:7px;
 }
+.gossip-post .comments li.view-all {
+	padding:3px;
+	text-align:center;
+}
+.gossip-post .comments li.view-all a {
+	font-size:12px;
+	padding:0 50px;
+}
+
 .gossip-post .comments li.comment:first-child {
 		border-top:0px;
 }
