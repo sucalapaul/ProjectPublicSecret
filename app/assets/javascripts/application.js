@@ -271,12 +271,12 @@ $(document).ready(function() {
 
 	//Circles -> Navigation Tabs
 
-	$('.nav-tabs li').click(function () {
-		$(this).siblings().removeClass('active');
-		$(this).addClass('active');
-		$('.nav-tab-page').addClass('hidden');
-		$( '#' + $(this).data('id') ).removeClass('hidden');
-	});
+	// $('.nav-tabs li').click(function () {
+	// 	$(this).siblings().removeClass('active');
+	// 	$(this).addClass('active');
+	// 	$('.nav-tab-page').addClass('hidden');
+	// 	$( '#' + $(this).data('id') ).removeClass('hidden');
+	// });
 
 	// toggle Private <-> Me
 	$(".toggle-radio input").each(function() {
