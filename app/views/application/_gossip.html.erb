@@ -25,15 +25,15 @@
 							<% else %>
 								<a class="xxx like-it">Like</a>
 							<%end%>
-							<span class="hearty">&nbsp; </span>
+							<span class="sprite sprite-hearty hearty">&nbsp; </span>
 							<p class="value likes" style="margin-top:4px"> <%= gossip.like_count %> </p>
 						</div>
 						<div class="pull-right">
 
 							<% v =  current_user.voted(gossip.id) %>
 							<div class="gossip-vote-btn xxx <%= add_vote_class(v, true) %>" data-value="true" data-count="<%= gossip.true_count %>" style="float:left;" >
-								<a class="true">True</a>
-								<p class="value" style="margin-right:10px;"> <%= gossip.true_count %></p>
+								<a class="sprite sprite-true true"><i class="sprite sprite-true"></i> True </a>
+								<p class="value" style="margin-right:10px;"> <%= gossip.true_count %></p> 
 							</div>
 							<div class="gossip-vote-btn xxx <%= add_vote_class(v, false) %>" data-value="false" data-count="<%= gossip.false_count %>" style=" float:left;margin-left:10px;">
 								<a class="fake">&nbsp;</a>

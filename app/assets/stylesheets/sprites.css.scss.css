@@ -1,5 +1,5 @@
 .sprite{
-    background: url(csg-5109c97007111.png) no-repeat top left;
+    background: url("/assets/csg-sprite.png") no-repeat top left;
 }
 
 .sprite-add{ background-position: 0 0; width: 16px; height: 16px; } 
@@ -20,6 +20,6 @@
 .sprite-settings{ background-position: -315px 0; width: 16px; height: 16px; } 
 .sprite-true-active{ background-position: -336px 0; width: 15px; height: 17px; } 
 .sprite-true-hover{ background-position: -356px 0; width: 15px; height: 17px; } 
-.sprite-true{ background-position: -376px 0; width: 15px; height: 17px; } 
+.sprite-true{ background-position: -376px 0; width: 15px; height: 17px; }
 .sprite-tw-ico{ background-position: -396px 0; width: 19px; height: 16px; } 
 .sprite-unlocked{ background-position: -420px 0; width: 20px; height: 21px; } 
