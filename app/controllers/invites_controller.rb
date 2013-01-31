@@ -23,6 +23,8 @@ class InvitesController < ApplicationController
 	end
 
 	def signup
-		session["invite_token"] = params[:invite_token]
+		if params[:invite_token]
+			session["invite_token"] = params[:invite_token]
+		end
 	end
 end

@@ -22,6 +22,7 @@ ProjectPublicSecret::Application.routes.draw do
 
   get 'tags/:tag', to: 'circles#index', as: :tag
   get 'invited/:invite_token', to: 'invites#signup', as: :invite_token
+  get 'signup/', to: 'invites#signup'
 
   get "home/contact"
   get "home/terms"
