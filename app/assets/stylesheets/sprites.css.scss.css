@@ -1,25 +1,23 @@
-.sprite{
-    background: url("/assets/csg-sprite.png") no-repeat top left;
-}
+.sprite{ background: url("/assets/csg-sprite.png") no-repeat top left; }
 
 .sprite-add{ background-position: 0 0; width: 16px; height: 16px; } 
-.sprite-arrow{ background-position: -21px 0; width: 12px; height: 24px; } 
-.sprite-circles{ background-position: -38px 0; width: 16px; height: 16px; } 
-.sprite-fake-hover{ background-position: -59px 0; width: 15px; height: 17px; } 
-.sprite-fake{ background-position: -79px 0; width: 15px; height: 17px; } 
-.sprite-fb-ico{ background-position: -99px 0; width: 8px; height: 16px; } 
-.sprite-feed{ background-position: -112px 0; width: 16px; height: 16px; } 
-.sprite-hearty{ background-position: -133px 0; width: 14px; height: 12px; } 
-.sprite-locked{ background-position: -152px 0; width: 16px; height: 21px; } 
-.sprite-logout{ background-position: -173px 0; width: 16px; height: 16px; } 
-.sprite-new-gossip{ background-position: -194px 0; width: 22px; height: 18px; } 
-.sprite-people{ background-position: -221px 0; width: 16px; height: 16px; } 
-.sprite-pin{ background-position: -242px 0; width: 16px; height: 16px; } 
-.sprite-quote-close{ background-position: -263px 0; width: 21px; height: 17px; } 
-.sprite-quote-open{ background-position: -289px 0; width: 21px; height: 17px; } 
-.sprite-settings{ background-position: -315px 0; width: 16px; height: 16px; } 
-.sprite-true-active{ background-position: -336px 0; width: 15px; height: 17px; } 
-.sprite-true-hover{ background-position: -356px 0; width: 15px; height: 17px; } 
-.sprite-true{ background-position: -376px 0; width: 15px; height: 17px; }
-.sprite-tw-ico{ background-position: -396px 0; width: 19px; height: 16px; } 
-.sprite-unlocked{ background-position: -420px 0; width: 20px; height: 21px; } 
+.sprite-arrow{ background-position: 0 -46px; width: 12px; height: 24px; } 
+.sprite-circles{ background-position: 0 -100px; width: 16px; height: 16px; } 
+.sprite-fake-hover{ background-position: 0 -146px; width: 15px; height: 17px; } 
+.sprite-fake{ background-position: 0 -193px; width: 15px; height: 17px; } 
+.sprite-fb-ico{ background-position: 0 -240px; width: 8px; height: 16px; } 
+.sprite-feed{ background-position: 0 -286px; width: 16px; height: 16px; } 
+.sprite-hearty{ background-position: 0 -332px; width: 14px; height: 12px; } 
+.sprite-locked{ background-position: 0 -374px; width: 16px; height: 21px; } 
+.sprite-logout{ background-position: 0 -425px; width: 16px; height: 16px; } 
+.sprite-new-gossip{ background-position: 0 -471px; width: 22px; height: 18px; } 
+.sprite-people{ background-position: 0 -519px; width: 16px; height: 16px; } 
+.sprite-pin{ background-position: 0 -565px; width: 16px; height: 16px; } 
+.sprite-quote-close{ background-position: 0 -611px; width: 21px; height: 17px; } 
+.sprite-quote-open{ background-position: 0 -658px; width: 21px; height: 17px; } 
+.sprite-settings{ background-position: 0 -705px; width: 16px; height: 16px; } 
+.sprite-true-active{ background-position: 0 -751px; width: 15px; height: 17px; } 
+.sprite-true-hover{ background-position: 0 -798px; width: 15px; height: 17px; } 
+.sprite-true{ background-position: 0 -845px; width: 15px; height: 17px; } 
+.sprite-tw-ico{ background-position: 0 -892px; width: 19px; height: 16px; } 
+.sprite-unlocked{ background-position: 0 -938px; width: 20px; height: 21px; } 
