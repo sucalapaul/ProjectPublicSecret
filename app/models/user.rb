@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :nickname, :circles_names, :name
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :nickname, :circles_names, :name, :invitation_token
   # attr_accessible :title, :body
 
   # has_many :followers
@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :circle_users
   has_many :circles, :through => :circle_users
   has_many :gossips_feed, :through => :circles, :source => :gossips
+  has_one :invite
 
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
@@ -42,7 +43,9 @@ class User < ActiveRecord::Base
   # end
 
   validates_presence_of :nickname
-  validates_uniqueness_of :nickname
+  validates_uniqueness_of :nickname, :message => "Sorry, that nickname is already taken"
+  validates_presence_of :invitation_token, :message => "You need an invite to sign up", :on => :create
+  validate :invitation_token_valid, :if => :invitation_token, :on => :create
 
 
   def self.from_omniauth(auth)
@@ -125,4 +128,13 @@ def self.get_fb_friends()
     e.to_s
   end
 
+end
+
+private 
+def invitation_token_valid
+  return if invitation_token.blank?
+  unless Invite.find_by_token(self.invitation_token)
+    errors.add :invitation_token, 'Invitation code is not valid'
+  end
+  
 end

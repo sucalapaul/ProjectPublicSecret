@@ -74,30 +74,31 @@
 
 
 	function sendInvites(fb_ids, selector) {
-	  var link_url = "http://theseedbit.com/";
+	  var link_url = '<%= "http://pinterest.com/invited/?code=#{@invite.token}" %>';// '<%= "#{SITE_URL}invited/#{@invite.token}" %>';
 	  FB.ui({
 	      method: "send",
 	      to: fb_ids,
 	      name: "Da cu papagalu!",
 	      description: "Intra si tu pe Gossip.it si afla cele mai noi gossip-uri",
-	      picture: "http://localhost:3000/" + "assets/fb_invite.png",
+	      //picture: '<%= "#{SITE_URL}assets/fb_invite.png" %>',
 	      link: link_url
 	  }, function(response) {
 	      if (!response){
 	          //selector.selectionCancelled();
 	          return;
 	      }
+	      $(selector).addClass("disabled").text("Invited");
 
-	      $.post("/invite/new/", {
-	          fb_ids: fb_ids
-	      }, function(data) {
-	          if (data.status == "success") {
-	              //selector.afterSelection();
-	              $(selector).addClass("disabled").text("Invited");
-	          } else {
-	              alert(data.message);
-	          }
-	      }, "json");
+	      // $.post("/invite/new/", {
+	      //     fb_ids: fb_ids
+	      // }, function(data) {
+	      //     if (data.status == "success") {
+	      //         //selector.afterSelection();
+	      //         $(selector).addClass("disabled").text("Invited");
+	      //     } else {
+	      //         alert(data.message);
+	      //     }
+	      // }, "json");
 	  });
 	};
 

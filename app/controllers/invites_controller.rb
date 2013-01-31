@@ -1,9 +1,11 @@
 class InvitesController < ApplicationController
 
-	before_filter :authenticate_user!
+	before_filter :authenticate_user!, except: [:signup]
 
 	def index
 		
+		@invite = Invite.where(user_id: current_user.id).first_or_create
+
 		@friend_data = current_user.facebook.get_connection("me", "friends?fields=name,picture,installed") #@graph.get_object("me","likes")
 		@friends_follow = []
 		@friends_invite = []
@@ -18,6 +20,9 @@ class InvitesController < ApplicationController
 			end
 		end
 
+	end
 
+	def signup
+		session["invite_token"] = params[:invite_token]
 	end
 end

@@ -1,4 +1,4 @@
-$('#gossips_container').append('<% @gossips.each do |gossip| %><%= j render partial: "gossip", locals: { gossip: gossip, comments: 3}, formats: [:html] %><% end %>');
+$('#gossips_container').append('<% @gossips.each do |gossip| %><%= j render partial: "gossip", locals: { gossip: gossip, last_comments: true }, formats: [:html] %><% end %>');
 
 <% if @gossips.next_page %>
   $('.pagination').replaceWith('<%= j will_paginate(@gossips) %>');

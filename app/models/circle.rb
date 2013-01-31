@@ -26,5 +26,10 @@ class Circle < ActiveRecord::Base
   has_many :gossips, :order => 'id DESC'
   has_many :users, :through => :circle_users
 
+  validates :name, :presence => true
+  validates :name, :length => { :minimum => 2, :allow_blank => true }
   validates :city_id, :presence => true
+  validates :description, :presence => true
+  validates :description, :length => { :minimum => 2, :allow_blank => true }
+
 end

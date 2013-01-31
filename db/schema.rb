@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130127211052) do
+ActiveRecord::Schema.define(:version => 20130129204054) do
 
   create_table "circle_gossips", :force => true do |t|
     t.integer  "circle_id"
@@ -35,7 +35,11 @@ ActiveRecord::Schema.define(:version => 20130127211052) do
     t.text     "description"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.integer  "user_id"
   end
+
+  add_index "circles", ["city_id"], :name => "index_circles_on_city_id"
+  add_index "circles", ["user_id"], :name => "index_circles_on_user_id"
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -83,6 +87,17 @@ ActiveRecord::Schema.define(:version => 20130127211052) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end
+
+  create_table "invites", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "token"
+    t.integer  "count",      :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "invites", ["token"], :name => "index_invites_on_token"
+  add_index "invites", ["user_id"], :name => "index_invites_on_user_id"
 
   create_table "likes", :force => true do |t|
     t.integer  "gossip_id"

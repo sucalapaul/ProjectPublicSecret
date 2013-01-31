@@ -42,18 +42,32 @@
 						</div>
 					</div>
 				</div>
+
 				 <ol class="comments">
 				 		<li class="comment view-all"><a href="/gossips/<%= gossip.id %>">view all 46 comments</a></li>
 				 		<li class="comment clearfix" style="display: none"></li>
-						<% if comments == 3%>
-							<% gossip.last_comments.each do |comment| %>
-					 	 		<%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
-					  		<% end %>
-						<% else %>
-						  <% gossip.comments.each do |comment| %>
-						 	 <%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
-						  <% end %>
-						<% end %>
+
+				 		<% if ( defined? no_comments ) and ( no_comments == true ) %>
+				 			<!-- no comments -->
+				 		<% else %>
+
+				 			<% if ( defined? last_comments ) and ( last_comments == true ) %>
+
+				 				<!--% # Only last comments  %-->
+								<% gossip.last_comments.each do |comment| %>
+									<%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
+								<% end %>	
+
+				 			<% else %>
+
+				 				<!--% # All comments %-->
+							  <% gossip.comments.each do |comment| %>
+									<%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
+							  <% end %>		
+
+				 			<% end %>
+				 		<% end %>
+
 						<form id="post_comment_form">
 							<li class="your-comment clearfix">
 								<span class="avatar-mini">
@@ -61,8 +75,9 @@
 								</span>
 								<textarea  type="textarea" id="comment_content" name="comment[content]" rows="1"> </textarea>
 								<a class="btnx btnx-blue post_comment_button pull-right" > Post </a>
-								<a class="private"> </a>
-					      		<input id="comment_gossip_id" name="comment[gossip_id]" type="hidden" value="<%= gossip.id %>" />
+								<a class="public toggle-privacy"> </a>
+								<input type="hidden" id="comment_private" name="comment[private]" value="0">
+					      <input id="comment_gossip_id" name="comment[gossip_id]" type="hidden" value="<%= gossip.id %>" />
 							</li>
 						</form>
 				</ol>				
