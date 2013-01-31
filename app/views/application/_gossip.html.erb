@@ -11,11 +11,11 @@
 			<div class="gossip">
 				<div class="text clearfix">
 					<img class="visible-desktop" style="position:absolute; margin-top:0px;margin-left:-22px;" src="/assets/arrow.png"/>
-					<%= timeago gossip.created_at  %>
+					<a href="/gossips/<%= gossip.id %>"><%= timeago gossip.created_at  %></a>
 					<img style="float:left;width:21px;height:auto" src="/assets/quote-open.png"/>
 					<p class="hidden-desktop" style="margin:0px;line-height:10px">&nbsp;</p><!--impinge textu de gossip -->
 					<p class="visible-desktop gossiper"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/"<<gossip.user.id.to_s())  %><span> in </span><a href="circles/<%=gossip.circle.id%>">   <%= gossip.circle.name %></a></p>
-					<p class="gossip-content"><%= gossip.content %></p>
+					<a class="link-to-gossip" href="/gossips/<%= gossip.id %>"><p class="gossip-content"><%= gossip.content %></p></a>
 					<img style="float:right;width:21px;height:auto" src="/assets/quote-close.png"/>
 
 					<div class= "meta clearfix">
@@ -25,15 +25,15 @@
 							<% else %>
 								<a class="xxx like-it">Like</a>
 							<%end%>
-							<span class="hearty">&nbsp; </span>
+							<span class="sprite sprite-hearty hearty">&nbsp; </span>
 							<p class="value likes" style="margin-top:4px"> <%= gossip.like_count %> </p>
 						</div>
 						<div class="pull-right">
 
 							<% v =  current_user.voted(gossip.id) %>
 							<div class="gossip-vote-btn xxx <%= add_vote_class(v, true) %>" data-value="true" data-count="<%= gossip.true_count %>" style="float:left;" >
-								<a class="true">True</a>
-								<p class="value" style="margin-right:10px;"> <%= gossip.true_count %></p>
+								<a class="sprite sprite-true true"><i class="sprite sprite-true"></i> True </a>
+								<p class="value" style="margin-right:10px;"> <%= gossip.true_count %></p> 
 							</div>
 							<div class="gossip-vote-btn xxx <%= add_vote_class(v, false) %>" data-value="false" data-count="<%= gossip.false_count %>" style=" float:left;margin-left:10px;">
 								<a class="fake">&nbsp;</a>
@@ -42,17 +42,32 @@
 						</div>
 					</div>
 				</div>
+
 				 <ol class="comments">
+				 		<li class="comment view-all"><a href="/gossips/<%= gossip.id %>">view all 46 comments</a></li>
 				 		<li class="comment clearfix" style="display: none"></li>
-						<% if comments == 3%>
-							<% gossip.last_comments.each do |comment| %>
-					 	 		<%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
-					  		<% end %>
-						<% else %>
-						  <% gossip.comments.each do |comment| %>
-						 	 <%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
-						  <% end %>
-						<% end %>
+
+				 		<% if ( defined? no_comments ) and ( no_comments == true ) %>
+				 			<!-- no comments -->
+				 		<% else %>
+
+				 			<% if ( defined? last_comments ) and ( last_comments == true ) %>
+
+				 				<!--% # Only last comments  %-->
+								<% gossip.last_comments.each do |comment| %>
+									<%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
+								<% end %>	
+
+				 			<% else %>
+
+				 				<!--% # All comments %-->
+							  <% gossip.comments.each do |comment| %>
+									<%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
+							  <% end %>		
+
+				 			<% end %>
+				 		<% end %>
+
 						<form id="post_comment_form">
 							<li class="your-comment clearfix">
 								<span class="avatar-mini">
@@ -60,8 +75,9 @@
 								</span>
 								<textarea  type="textarea" id="comment_content" name="comment[content]" rows="1"> </textarea>
 								<a class="btnx btnx-blue post_comment_button pull-right" > Post </a>
-								<a class="private"> </a>
-					      		<input id="comment_gossip_id" name="comment[gossip_id]" type="hidden" value="<%= gossip.id %>" />
+								<a class="public toggle-privacy"> </a>
+								<input type="hidden" id="comment_private" name="comment[private]" value="0">
+					      <input id="comment_gossip_id" name="comment[gossip_id]" type="hidden" value="<%= gossip.id %>" />
 							</li>
 						</form>
 				</ol>				

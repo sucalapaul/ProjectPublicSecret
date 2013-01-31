@@ -19,7 +19,7 @@
     window.fbAsyncInit = function() {
       // init the FB JS SDK
       FB.init({
-        appId      : '376948882379562', // App ID from the App Dashboard
+        appId      : <%= FB_APP_ID %>, // App ID from the App Dashboard
         // channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File for x-domain communication
         status     : true, // check the login status upon init?
         cookie     : true, // set sessions cookies to allow your server to access the session?
@@ -65,15 +65,10 @@
           <div class="post-well clearfix">
               <textarea id="gossip_content" name="gossip[content]" class="input-block-level" rows="3" style="max-height:70px;max-width:553px;"></textarea>
                <button type="button" class="btn btn-primary pull-right disabled" id="button_post_gossip" >OK </button>
-             <!--   <div class="btn-toolbar pull-right" style="margin:0 20px 0 0">
-                  <div class="btn-group toggle-radio">
-                    <a class="btn" data-value="1" href="#"><i class="icon-lock"></i> anonymous</a>
-                    <a class="btn" data-value="0" href="#"><i class="icon-user"></i> you</a>
-                    <input id="gossip_private" name="gossip[private]" type="hidden" value="0" />
-                  </div>
-                </div> -->
-                <a class=" private"> </a>
-                <p style="float:right;margin-top:5px;margin-bottom:0px;margin-right:15px;color:white;font-size:12px;">Post as:</p>
+
+                <a class="public toggle-privacy"> </a>
+                <input id="gossip_private" name="gossip[private]" type="hidden" value="0" />
+                <p  data-public="Post as: you" data-private="Post as: anonymous" id="gossip_private_info" style="float:right;margin-top:5px;margin-bottom:0px;margin-right:15px;color:white;font-size:12px;">Post as: you</p>
 
                 <div class="btn-group" id="dropdwn_gossip_circle">
                   <button class="btn dropdown-toggle" data-toggle="dropdown">Change Circle <span class="caret"></span></button>
@@ -86,26 +81,35 @@
                 </div>
           </div>
           <p id="gossip_circle_info" style="margin-top:5px;margin-bottom:0px;color:#bbb;">Select a circle from above</p>
-         <center><img style="position:absolute;margin-left:-21px" src="/assets/close-post.png"><i style="font-size:18px;color:white;" class="icon-chevron-up"></i></center>
+         <p style="text-align:center; cursor:pointer; cursor:hand; " class="toggle-slide" data-toggleid="post_gossip_form"><i style="font-size:18px;color:white;" class="icon-chevron-up"></i></p>
       </div>
 
     </div>
   </form>
 
   <div class="container">
-          <!-- <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>  -->
-          <!-- %= user_circles.to_yaml % -->      
+    
 
-    <% if (@current_controller=="gossips" && @current_action=="show") || (@current_controller=="gossips" && @current_action=="new") || (@current_controller=="circles" && @current_action == "new" ) || @current_controller=="sessions" || @current_controller=="registrations" || @current_controller=="passwords" || @current_controller=="users" || @current_controller=="invites" || (@current_controller=="home" && @current_action=="terms") %>
+    <% if (@current_controller=="gossips" && @current_action=="show") || (@current_controller=="gossips" && @current_action=="new") || (@current_controller=="circles" && @current_action == "new" ) || @current_controller=="sessions" || @current_controller=="registrations" || @current_controller=="passwords" || @current_controller=="users" || (@current_controller=="home" && @current_action=="terms") || (@current_controller=="home" && @current_action=="contact") %>
+
       <div class="row">
           <div class="span8 offset2">
+          <%= render "flash_messeges" %>
           <%= yield %>
         </div>
       </div>
-      
 
     <% else %>
+
+      <%if @current_controller=="invites"%>
+            <div class="row">
+                  <div class="span10 offset1">
+                  <%= render "flash_messeges" %>
+                  <%= yield %>
+                </div>
+              </div>
+      <% else %>
+
     <div class="row">
         <div class="hidden-phone span3 offset1 dashboard">
 
@@ -157,8 +161,8 @@
               <% end %>
             </div>
 
-              <div class="clearfix top-bar" style="max-width:210px">
-              <ul class="footer-nav clearfix" style="margin-bottom:20px;">
+              <div class="clearfix top-bar" style="padding:7px;max-width:230px">
+              <ul class="footer-nav clearfix" >
                 <li><a href="/">© Let's Gossip</a></li>
                 <li><a href="/contact">Contact</a></li>
                 <li><a href="/terms">Terms</a></li>
@@ -168,12 +172,15 @@
         </div>
 
         <div class="span7 mainx-content" >
+            <%= render "flash_messeges" %>
             <%= yield %>
         </div>
 
       </div> <!-- row -->
     <% end %>
+    <%end%>
            <div class="back-to-top hidden-phone"></div>
+
   </div> 
 </body>
 <% end %> <!-- if ul daca e landing page --> 

@@ -86,7 +86,12 @@
 	background:white;
 }
 
-
+.gossip-post .link-to-gossip{
+		color:#4d1000;
+}
+.gossip-post .link-to-gossip:hover{
+		color:#1f518e;
+}
 .gossip-post .gossip-content {
 	font-family: "Museo-300", Helvetica Neue, Helvetica, Arial, sans-serif;
  	font-size:1.18em;
@@ -141,6 +146,15 @@
 .gossip-post .comments li {
 	padding:7px;
 }
+.gossip-post .comments li.view-all {
+	padding:3px;
+	text-align:center;
+}
+.gossip-post .comments li.view-all a {
+	font-size:12px;
+	padding:0 50px;
+}
+
 .gossip-post .comments li.comment:first-child {
 		border-top:0px;
 }
@@ -205,9 +219,8 @@
  .gossip-post .meta span.hearty  {
  	display:block;
 	color: #EA4C89;
-	margin:7px 0 0 10px;
- 	background: url("/assets/social/hearty.png") no-repeat;
- 	padding-left:14px;
+	margin:7px 2px 0 10px;
+ 	//background: url("/assets/social/hearty.png") no-repeat;
  	float:left;
 }
  .gossip-post .meta p.value {
@@ -226,7 +239,7 @@
  	background: url("/assets/social/true.png") no-repeat;
  	margin-top:1px;
  	padding-left:20px;
- 	margin-right:10px;
+ 	margin-right:15px;
 }
 
 .gossip-post .meta a.fake {

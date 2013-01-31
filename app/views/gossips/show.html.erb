@@ -1,7 +1,6 @@
 <div class="row">
   <div class="span6 offset1 ">
     <p id="notice"><%= notice %></p>
-    <div style="display:table;block;margin:0 auto">
       <div class="top-bar clearfix" style="margin-bottom:30px;">
       <h3 style="text-align:center;padding-bottom:10px;border-bottom: 3px double rgba(34,25,25,0.1);"><a href="#"><%=@gossip.circle.name%></a></h3>
       <%if current_user.already_joined?(@gossip.circle.id) %>
@@ -15,7 +14,6 @@
        <a href="https://twitter.com/share?url=&amp;text=Textul de sharuit acest gossip @TheGossip. http://www.theseedbit.com/year/2012" target="_blank" class="btnx btnx-blue pull-left" style="line-height:16px;background-color: #00aced;"><span class="tw-ico"></span><span class="hidden-phone">Tweet</span> <span class="hidden-phone hidden-tablet">gossip</span></a>
 
       </div>
-      <%= render partial: "gossip", locals: { gossip: @gossip, comments: 0 }, formats: [:html] %>
-    </div>
-</div>
+      <%= render partial: "gossip", locals: { gossip: @gossip }, formats: [:html] %>
+  </div>
 </div>

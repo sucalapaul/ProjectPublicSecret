@@ -1,9 +1,0 @@
-development:
-  app_id: '376948882379562'
-  secret_key: '9341397bd10475f50d313bc6955a362c'
-
-test:
-
-production:
-  app_id: 'YOUR APP ID'
-  secret_key: 'YOUR SECRET'

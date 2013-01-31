@@ -1,35 +1,36 @@
 
-
-<div class="top-bar clearfix" style="padding:50px 80px; background:white">
-	<center><h2>Facebook People</h2></center>
+<div class="top-bar clearfix" style="padding:50px 20px; background:white">
+	<h3 style="text-align:center">Facebook People</h3>
 	<p class="intro">Gossip is much more fun when have your friends around.</p>
+	<div class="row">
+		<div class="span5">
+			<h3 style="padding-bottom:10px;border-bottom: 3px double rgba(34,25,25,0.1);"> Invite Friends </h3>
+			<input id="search-friends" type="text" class="search" placeholder="Search for people" />
+			<ul id="invite_list" class="InvitesList">
+				<li class="friend" data-bind="id">
+		        	<a class="btn-invite btnx btnx-blue">Invite</a>
+		  			<img data-bind="profilePicture" class="InvitesProfileImage" src="" alt="">
+		    		<div class="individual">
+		        	<div class="searchable" data-bind="name"></div>
+				    </div>
+				</li>
+			</ul>
+		</div>
 
-	<div style="float:left;width:340px; margin-right:40px;">
-		<h3> Invite Friends </h3>
-		<input id="search-friends" type="text" class="search" placeholder="Search" />
-		<ul id="invite_list" class="InvitesList">
-			<li class="friend" data-bind="id">
-	        	<a class="btn-invite btnx btnx-blue">Invite</a>
-	  			<img data-bind="profilePicture" class="InvitesProfileImage" src="" alt="">
-	    		<div class="individual">
-	        	<div class="searchable" data-bind="name"></div>
-			    </div>
-			</li>
-		</ul>
+		<div class="span4">
+			<h3> Friends on The Gossip </h3>
+			<ul id="follow_list" class="InvitesList">
+				<li class="friend" data-bind="id">
+					<!--a class="btnx btnx-blue follow-user-btn" >Follow</a-->
+					<img data-bind="profilePicture" class="InvitesProfileImage" src="" alt="">
+					<div class="individual">
+						<div data-bind="name" class="name"></div>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
-
-	<div style="float:left;width:340px; margin-right:0px;">
-		<h3> Friends on The Gossip </h3>
-		<ul id="follow_list" class="InvitesList">
-			<li class="friend" data-bind="id">
-				<!--a class="btnx btnx-blue follow-user-btn" >Follow</a-->
-				<img data-bind="profilePicture" class="InvitesProfileImage" src="" alt="">
-				<div class="individual">
-					<div data-bind="name" class="name">/div>
-				</div>
-			</li>
-		</ul>
-	</div>
+</div>
 
 <script type="text/javascript">
 
@@ -73,30 +74,31 @@
 
 
 	function sendInvites(fb_ids, selector) {
-	  var link_url = "http://theseedbit.com/";
+	  var link_url = '<%= "http://pinterest.com/invited/?code=#{@invite.token}" %>';// '<%= "#{SITE_URL}invited/#{@invite.token}" %>';
 	  FB.ui({
 	      method: "send",
 	      to: fb_ids,
 	      name: "Da cu papagalu!",
 	      description: "Intra si tu pe Gossip.it si afla cele mai noi gossip-uri",
-	      picture: "http://localhost:3000/" + "assets/fb_invite.png",
+	      //picture: '<%= "#{SITE_URL}assets/fb_invite.png" %>',
 	      link: link_url
 	  }, function(response) {
 	      if (!response){
 	          //selector.selectionCancelled();
 	          return;
 	      }
+	      $(selector).addClass("disabled").text("Invited");
 
-	      $.post("/invite/new/", {
-	          fb_ids: fb_ids
-	      }, function(data) {
-	          if (data.status == "success") {
-	              //selector.afterSelection();
-	              $(selector).addClass("disabled").text("Invited");
-	          } else {
-	              alert(data.message);
-	          }
-	      }, "json");
+	      // $.post("/invite/new/", {
+	      //     fb_ids: fb_ids
+	      // }, function(data) {
+	      //     if (data.status == "success") {
+	      //         //selector.afterSelection();
+	      //         $(selector).addClass("disabled").text("Invited");
+	      //     } else {
+	      //         alert(data.message);
+	      //     }
+	      // }, "json");
 	  });
 	};
 

@@ -1,14 +1,20 @@
 class GossipsController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:index] 
   
   # GET /gossips
   # GET /gossips.json  
   def index
-    @gossips = current_user.gossips_feed.order("created_at desc") .page(params[:page]).per_page(10)
+    if !user_signed_in? 
+      redirect_to "/welcome" and return
+    end
+@gossips = current_user.gossips_feed.order("created_at desc") .page(params[:page]).per_page(10)
+
+
 
     @gossips.each do |g|
       g.last_comments = Comment.where("gossip_id = ?", g.id).order("created_at desc").limit(3).reverse
+
     end
 
     # respond_to do |format|
@@ -58,7 +64,7 @@ class GossipsController < ApplicationController
       if @gossip.save
         format.html { redirect_to @gossip, notice: 'Gossip was successfully created.' }
         format.json { render json: {
-              'html' => render_to_string( partial: "gossip", locals: { gossip: @gossip, hidden: true, comments: 0 }, formats: [:html])
+              'html' => render_to_string( partial: "gossip", locals: { gossip: @gossip, hidden: true, no_comments: true }, formats: [:html])
           }, status: :created, location: @gossip }
       else
         format.html { render action: "new" }

@@ -15,8 +15,10 @@
             <li><a href="#" ><img src="/assets/menu/people.png"> People</a></li>
             <li><a href="/circles/new" ><img src="/assets/menu/add.png"> New Circle</a></li>
             <li><a href="/gossips/new" ><img src="/assets/menu/add.png"> New Gossip</a></li>
-            <li><a href="#" ><img src="/assets/menu/settings.png"> My Account</a></li>
-            <li><a href="#" ><img src="/assets/menu/logout.png"> Logout</a></li>
+            <% if user_signed_in? %>
+              <li><a href="/users/<%=current_user.id%>" <img src="/assets/menu/settings.png"> My Account</a></li>
+              <li><a href="/users/logout" ><img src="/assets/menu/logout.png"> Logout</a></li>
+            <% end %>
           </ul>
 
           <ul class="nav pull-right">
