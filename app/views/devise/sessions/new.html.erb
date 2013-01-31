@@ -5,7 +5,7 @@
 	<center><h6 style="margin-bottom:25px"> - Or sign in with email -</h6> </center>
 
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)),  :validate => true  do |f| %>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name))  do |f| %>
   
    	<div><%= f.email_field :email, :placeholder => "Email", :style => "width:278px;margin-bottom:20px" %></div>
 	<div><%= f.password_field :password , :placeholder => "Password", :style => "margin-bottom:10px;width:278px"%></div>

@@ -1,4 +1,4 @@
-<%= form_for(@gossip)  do |f| %>
+<%= form_for(@gossip) do |f| %>
   <% if @gossip.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@gossip.errors.count, "error") %> prohibited this gossip from being saved:</h2>
