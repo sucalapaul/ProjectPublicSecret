@@ -1,0 +1,16 @@
+class HomeController < ApplicationController
+
+	def index
+	end
+
+	def terms
+	end
+
+<<<<<<< HEAD
+	def contact
+=======
+	def welcome
+
+>>>>>>> 950c19c1b426cc41eb8430543eba78f75228baea
+	end
+end

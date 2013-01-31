@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="span6 offset1 ">
+    <p id="notice"><%= notice %></p>
+      <div class="top-bar clearfix" style="margin-bottom:30px;">
+      <h3 style="text-align:center;padding-bottom:10px;border-bottom: 3px double rgba(34,25,25,0.1);"><a href="#"><%=@gossip.circle.name%></a></h3>
+      <%if current_user.already_joined?(@gossip.circle.id) %>
+      	<a data-id=<%= @gossip.circle.id %> class="joined-circle join-circle-btn btnx btnx-green pull-right"><span class="joined"><i class="icon-ok"></i> Joined</span><span class="leave"><i class="icon-remove"></i> Leave Circle </span></a>
+      <% else %>
+       	<a data-id=<%= @gossip.circle.id %> class="join-circle join-circle-btn btnx btnx-green pull-right"><i class="icon-plus"></i> Join Circle</a>
+      <% end %>
+
+       <a href="http://www.facebook.com/sharer/sharer.php?u=http://www.theseedbit.com" target="_blank" class="btnx btnx-blue pull-left" style="line-height:16px;background-color: #3b5998;margin-right:20px"><span class="fb-ico"></span> <span class="hidden-phone">Share</span> <span class="hidden-phone hidden-tablet"> gossip</span></a>
+
+       <a href="https://twitter.com/share?url=&amp;text=Textul de sharuit acest gossip @TheGossip. http://www.theseedbit.com/year/2012" target="_blank" class="btnx btnx-blue pull-left" style="line-height:16px;background-color: #00aced;"><span class="tw-ico"></span><span class="hidden-phone">Tweet</span> <span class="hidden-phone hidden-tablet">gossip</span></a>
+
+      </div>
+<<<<<<< HEAD
+      <%= render partial: "gossip", locals: { gossip: @gossip, comments: 0 }, formats: [:html] %>
+  </div>
+=======
+      <%= render partial: "gossip", locals: { gossip: @gossip }, formats: [:html] %>
+    </div>
+</div>
+>>>>>>> 950c19c1b426cc41eb8430543eba78f75228baea
+</div>
