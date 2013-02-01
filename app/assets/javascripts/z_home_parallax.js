@@ -243,10 +243,10 @@ gspit.ui = function (a, h) {
             }
         },
         updateDownloadLinks: function () {
-            this.downloadLinks.each(function () {
-                var b = a(this).attr("href");
-                a(this).attr("href", gspit.download.getDownloadPageURI(b))
-            })
+            // this.downloadLinks.each(function () {
+            //     var b = a(this).attr("href");
+            //     a(this).attr("href", gspit.download.getDownloadPageURI(b))
+            // })
         },
         updateOsPlaceholders: function () {
             this.osPlaceholders.text(gspit.user.getOs())

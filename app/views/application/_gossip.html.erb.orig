@@ -15,7 +15,11 @@
 					<a href="/gossips/<%= gossip.id %>"><%= timeago gossip.created_at  %></a>
 					<img src="/assets/img_trans.gif"  class="pull-left sprite sprite-quote-open">
 					<p class="hidden-desktop" style="margin:0px;line-height:10px">&nbsp;</p><!--impinge textu de gossip -->
+<<<<<<< HEAD
+					<p class="visible-desktop gossiper"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/"<<gossip.user.id.to_s())  %><span> in </span><a href="/circles/<%=gossip.circle.id%>">   <%= gossip.circle.name %></a></p>
+=======
 					<p class="visible-desktop gossiper"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/"<<gossip.user.id.to_s())  %><span> in </span>  <%= link_to(gossip.circle.name, "/circles/"<<gossip.circle.id.to_s()) %> </p>
+>>>>>>> 8338dd496bf926c1d3335550a5e805d44947e0d4
 					<a class="link-to-gossip" href="/gossips/<%= gossip.id %>"><p class="gossip-content"><%= gossip.content %></p></a>
 				<img src="/assets/img_trans.gif"  class="pull-right sprite sprite-quote-close">
 
@@ -45,10 +49,17 @@
 				</div>
 
 				 <ol class="comments">
+<<<<<<< HEAD
 
 						<li class="comment view-all"><a href="/gossips/<%= gossip.id %>">
 							<%=  gossip.comments_count > COMMENTS_PER_GOSSIP ? "view all " : "" %><%= pluralize(gossip.comments_count, 'comment')  %></a></li>				 		
 				 		<li class="comment clearfix hidden" ></li>
+=======
+				 		<% if (gossip.comments_count > 3) and (defined? last_comments) %>
+				 			<li class="comment view-all"><a href="/gossips/<%= gossip.id %>">view all <%= gossip.comments_count %> comments</a></li>
+				 		<% end %>
+				 		<li class="comment clearfix" style="display: none"></li>
+>>>>>>> 8338dd496bf926c1d3335550a5e805d44947e0d4
 
 				 		<% if ( defined? no_comments ) and ( no_comments == true ) %>
 				 			<!-- no comments -->
@@ -56,7 +67,7 @@
 
 				 			<% if ( defined? last_comments ) and ( last_comments == true ) %>
 
-				 				<!--% # Only last comments  %-->
+				 				<!--% # Only last comments + view all %-->	
 								<% gossip.last_comments.each do |comment| %>
 									<%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
 								<% end %>	

@@ -42,6 +42,24 @@ class CirclesController < ApplicationController
     end
   end
 
+  # POST /circles
+  # POST /circles.json
+  def mycircles
+    #iau cercurile userului
+    @circles = current_user.circles
+    
+    #redundant, dar trebuie
+    @circles.each do |circle|
+      circle.joined = current_user.already_joined?(circle.id)
+    end
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @circles, :include => :city }
+    end
+  end
+
+
   # GET /circles/1
   # GET /circles/1.json
   def show

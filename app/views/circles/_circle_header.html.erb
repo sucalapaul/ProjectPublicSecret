@@ -1,6 +1,8 @@
-<div class="circle-post" data-bind="muie" data-id="<%= circle.id.nil? ? '' : circle.id %>"
+<div data-bind="muie" data-id="<%= circle.id.nil? ? '' : circle.id %>"
     <% if defined? hidden %> 
-        style="display:none"
+        style="display:none" class="circle-post template"
+    <% else %>
+        class="circle-post"
     <% end %>
 >
 

@@ -9,11 +9,29 @@ div.scroller-holder {
 	left: 0;
 	position: fixed;
 	overflow: hidden;
+
+vertical-align: baseline;
 }
 
 body > .wrapx {
 	height: auto;
 	min-height: 100%;
+}
+
+.page-homepage .parallax-disabled{
+	background-position:top center;
+	background-repeat:no-repeat;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	background-size:cover
+}
+
+.page-homepage img.scroller-tile {
+visibility: hidden;
+max-width: none;
+-webkit-perspective: 1000;
+vertical-align: baseline;
 }
 
 .page-homepage .dummy-firstload {
@@ -86,6 +104,12 @@ body > .wrapx {
 	line-height: 1.1;
 	margin: .2em 0;
 }
+.page-homepage .soundtrack h2 {
+	color: #FFF;
+	font-size: 2.6em;
+	line-height: 1.1;
+	margin: .2em auto;
+}
 .page-homepage .soundtrack p {
 	color: #FFF;
 }
@@ -124,12 +148,12 @@ background-image: url('/assets/gossip_logo.png');*/
 .page-homepage .section-arrow.section-arrow-big {
 height: 60px;
 width: 60px;
-background-image: url("http://cf.scdn.co/i/home/arrow-big-new.png");
+background-image: url("/assets/landing_page/arrow-big.png");
 }
 .page-homepage .section-arrow {
 height: 33px;
 width: 72px;
-background-image: url("http://cf.scdn.co/i/home/arrow-new.png");
+background-image: url("/assets/landing_page/arrow.png");
 cursor: pointer;
 display: block;
 margin: 0 auto;
@@ -143,7 +167,7 @@ background-color: #fff;
 /* FOOTER */
 .footer-main {
 margin-top:0px;
-background-color: #f5f5f3;
+background-color: #eee;
 border-top: 1px solid #FFF;
 padding-bottom: 1.5em;
 padding-top: 1.5em;

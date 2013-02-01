@@ -192,36 +192,19 @@ $(document).on("click", ".toggle-privacy", function () {
 
 });
 
-	// // toggle Private <-> Me
-	// $(".toggle-radio input").each(function() {
-	// 	var value = $(this).val();
-	// 	$(this).siblings('[data-value="' + value + '"]').addClass("active");
-	// });
-	// $(".toggle-radio .btn").click(function() {
-	// 	$(this).siblings('.active').removeClass('active');
-	// 	$(this).addClass('active');
-	// 	var value = $(this).data('value');
-	// 	$(this).siblings('input').val(value);
-	// });
-
-//Ajax for searching a circle
-function search_circle() {
-	if ($('#search_city_box').val() == ''){
-		$('#error').show("fast");
-		return false;
-	}
-	else
-		$('#error').hide("fast");
-	var form = $(this).closest("form");
-	var jqxhr = $.post("/circles/search", {"city[latitude]": city_latitude, "city[longitude]": city_longitude},
-		function(data) {
+//Ajax for my circles
+function my_circles() {
+	$('#mycircles_container').empty();
+	$('#mycircles_resource').clone().appendTo('#mycircles_container');
+	var jqxhr = $.post("/circles/mycircles",
+		function(data) {			
 			var circleData = data;
 			var directives = {
-		  	muie: {
-			    "data-id": function(params) {
-			      return this.id;
-			    }
-			  },
+			  	muie: {
+				    "data-id": function(params) {
+				      return this.id;
+				    }
+				  },
 				cityname: {
 					html: function(params) {
 						return this.city.name;
@@ -237,7 +220,47 @@ function search_circle() {
 					}
 				}
 			};
-			$('#initial_content').empty();
+			$('#mycircles_container').render(circleData, directives);
+			$('#mycircles_container').find('.circle-post').removeAttr('style');
+		}, "json")
+		.error(function() {
+			showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+		});
+}
+
+//Ajax for searching a circle
+function search_circle() {
+	if ($('#search_city_box').val() == ''){
+		$('#error').show("fast");
+		return false;
+	}
+	else
+		$('#error').hide("fast");
+	var form = $(this).closest("form");
+	var jqxhr = $.post("/circles/search", {"city[latitude]": city_latitude, "city[longitude]": city_longitude},
+		function(data) {
+			var circleData = data;
+			var directives = {
+			  	muie: {
+				    "data-id": function(params) {
+				      return this.id;
+				    }
+				  },
+				cityname: {
+					html: function(params) {
+						return this.city.name;
+					}
+				},
+				joined: {
+					html: function(params) {
+						if (params.value) {
+							return '<a style="margin-top:10px;" data-count="' + this.people_count + '" class="joined-circle join-circle-btn pull-right btnx btnx-blue"><span class="joined"><i class="icon-ok"></i> Joined</span> <span class="leave"><i class="icon-remove"></i> Leave Circle </span></a>';
+						} else {
+							return '<a style="margin-top:10px;" data-count="' + this.people_count + '" class="join-circle join-circle-btn pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle </a>';
+						}
+					}
+				}
+			};
 			$('#circles_container').render(circleData, directives);
 			$('.circle-post').removeAttr('style');
 		}, "json")
@@ -256,7 +279,7 @@ $(document).ready(function() {
 	$(".alert-notice").delay(2500).slideUp();
 
 	//toggleMenu();
-
+	my_circles();
 	$("abbr.timeago").timeago();
 
 	//gspit.parallaxScroller = $.parallaxScroller();
