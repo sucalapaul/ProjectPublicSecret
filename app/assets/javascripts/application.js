@@ -194,8 +194,11 @@ $(document).on("click", ".toggle-privacy", function () {
 
 //Ajax for my circles
 function my_circles() {
-	$('#mycircles_container').empty();
-	$('#mycircles_resource').clone().appendTo('#mycircles_container');
+	
+	//no cleaning anymore :D
+	//$('#mycircles_container').empty();
+	//$('#mycircles_resource').children().clone().appendTo('#mycircles_container');//.attr('id', '');
+
 	var jqxhr = $.post("/circles/mycircles",
 		function(data) {			
 			var circleData = data;
