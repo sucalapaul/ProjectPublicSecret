@@ -36,6 +36,7 @@ ProjectPublicSecret::Application.routes.draw do
   post "circles/join"
   post "users/follow"
   post "circles/search"
+  post "circles/mycircles"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

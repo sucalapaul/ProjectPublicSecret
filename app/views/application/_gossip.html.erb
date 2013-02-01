@@ -13,7 +13,7 @@
 					<a href="/gossips/<%= gossip.id %>"><%= timeago gossip.created_at  %></a>
 					<img src="/assets/img_trans.gif"  class="pull-left sprite sprite-quote-open">
 					<p class="hidden-desktop" style="margin:0px;line-height:10px">&nbsp;</p><!--impinge textu de gossip -->
-					<p class="visible-desktop gossiper"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/"<<gossip.user.id.to_s())  %><span> in </span><a href="circles/<%=gossip.circle.id%>">   <%= gossip.circle.name %></a></p>
+					<p class="visible-desktop gossiper"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/"<<gossip.user.id.to_s())  %><span> in </span>  <%= link_to(gossip.circle.name, "/circles/"<<gossip.circle.id.to_s()) %> </p>
 					<a class="link-to-gossip" href="/gossips/<%= gossip.id %>"><p class="gossip-content"><%= gossip.content %></p></a>
 				<img src="/assets/img_trans.gif"  class="pull-right sprite sprite-quote-close">
 
@@ -43,7 +43,9 @@
 				</div>
 
 				 <ol class="comments">
-				 		<li class="comment view-all"><a href="/gossips/<%= gossip.id %>">view all 46 comments</a></li>
+				 		<% if (gossip.comments_count > 3) and (defined? last_comments) %>
+				 			<li class="comment view-all"><a href="/gossips/<%= gossip.id %>">view all <%= gossip.comments_count %> comments</a></li>
+				 		<% end %>
 				 		<li class="comment clearfix" style="display: none"></li>
 
 				 		<% if ( defined? no_comments ) and ( no_comments == true ) %>

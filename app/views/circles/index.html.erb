@@ -5,37 +5,54 @@
     <a href="#nearby">Nearby</a>
   </li>
 
-  <li data-id="my_circles" class="">
-    <a href="#my">My Circles</a>
+  <li id="#my-circles" data-id="my_circles" class="">
+    <a href="#my" onclick="my_circles();">My Circles</a>
   </li>
 
   <li data-id="search_circles_form" class="">
     <a href="#city">City</a>
   </li>
 
-  <li data-id="hot_circles" class="">
+  <li id="hot-circles" data-id="hot_circles" class="">
     <a href="#hot">Hot Circles</a>
   </li>
 </ul>
 
 <div id="map_canvas"></div>
-<div id="nearby_circles" class="clearfix top-bar nav-tab-page" style="margin-top:0;border-radius:0 5px 5px 5px">
+<div id="nearby_circles" class="clearfix nav-tab-page" style="margin-top:0;border-radius:0 5px 5px 5px">
     <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New Circle</a>
         <h3 style="margin-bottom:0;margin-top:4px">Circles Nearby</h3>
+        <div id="initial_content">
+        <% @circles.each do |circle| %>
+            <%= render partial: "circle_header", locals: { circle: circle }, formats: [:html] %>
+        <% end %>
+      </div>
 </div>
 
-<div id="my_circles" class="clearfix top-bar nav-tab-page" style="margin-top:0;border-radius:0 5px 5px 5px">
+<div id="my_circles" class="clearfix nav-tab-page" style="margin-top:0;border-radius:0 5px 5px 5px">
     <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New Circle</a>
-        <h3 style="margin-bottom:0;margin-top:4px">Circles you joined</h3>
+    <h3 style="margin-bottom:0;margin-top:4px">Circles you joined</h3>
+    
+    <div id="mycircles_container">
+      <%= render partial: "circle_header", locals: { circle: Circle.new, hidden: 1 }, formats: [:html] %>
+    </div>
+
+    <div id="mycircles_resource">
+      <%= render partial: "circle_header", locals: { circle: Circle.new, hidden: 1 }, formats: [:html] %>
+    </div>    
+
 </div>
 
 <form id="search_circles_form" class="nav-tab-page">
-  <div class="clearfix top-bar" style="margin-top:0;border-radius:0 5px 5px 5px">
+  <div class="clearfix " style="margin-top:0;border-radius:0 5px 5px 5px">
       <a href="<%= new_circle_path %>" class="hidden-phone hidden-tablet pull-right btnx btnx-green"> <i class="icon-plus"></i> New</a>
       <%= will_paginate @circles, :param_name => 'circle_search' %>
           <input type="text" id="search_city_box" placeholder="Search for a city" style="height:22px;"class="city-search">
           <a class="btnx btnx-blue pull-left" onclick="search_circle();">Search</a>
           <br /><br /><p id="error" style="display:none; margin:0px; color:red">Please type a city in the search box above.</p>
+          <div id="circles_container">
+            <%= render partial: "circle_header", locals: { circle: Circle.new, hidden: 1 }, formats: [:html] %>
+          </div>
   </div>
 </form>
 
@@ -77,17 +94,3 @@
   <p class="intro">Be the first to create a circle in your city and invite your friends.</p>
   <p style="text-align:center"><a class="btnx btnx-green"> <i class="icon-plus"></i> Create new Circle</a></p>
 </div>
-
-<div id="initial_content">
-  <% @circles.each do |circle| %>
-      <%= render partial: "circle_header", locals: { circle: circle }, formats: [:html] %>
-  <% end %>
-</div>
-
-<div id="circles_container">
-  <%= render partial: "circle_header", locals: { circle: Circle.new, hidden: 1 }, formats: [:html] %>
-</div>
-
-
-
-
