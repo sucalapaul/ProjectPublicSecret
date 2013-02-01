@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require rails.validations
 //= require_tree .
 
 $.ajaxSetup({
@@ -176,16 +175,19 @@ $(document).on("click", ".gossip-vote-btn", function () {
 $(document).on("click", ".toggle-privacy", function () {
 	var self = this;
 	var $info = $(self).siblings('#gossip_private_info');
+	var $avatar = $(self).siblings('.avatar-mini').children(); //span   in   span.avatar-mini
 
 	// toggle latch
 	if ( $(self).hasClass('public') ) {
 		$(self).removeClass('public').addClass('private');
 		$(self).next('input').val("1");
 		$info.text( $info.data('private') );
+		$avatar.hide();
 	} else {
 		$(self).removeClass('private').addClass('public');
 		$(self).next('input').val("0");
 		$info.text( $info.data('public') );
+		$avatar.show();
 	}
 
 });

@@ -4,7 +4,9 @@
 	<% end %>
 >
 <div class="clearfix">
-			<span class="avatar"> </span>
+			<span class="avatar" 
+			<%= gossip.private? ? "" : "style=\"background-image: url('http://graph.facebook.com/#{gossip.user.uid}/picture?type=normal');\"".html_safe %>  >
+			</span>
 			<p class="hidden-desktop gossiper-m"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/"<<gossip.user.id.to_s())  %> </p>
 			<p class="hidden-desktop gossiper-m" style="float:none"> in <a href="circles/<%=gossip.circle.id%>"><%= gossip.circle.name %></a></p>
 			<div class="gossip">
@@ -13,7 +15,7 @@
 					<a href="/gossips/<%= gossip.id %>"><%= timeago gossip.created_at  %></a>
 					<img src="/assets/img_trans.gif"  class="pull-left sprite sprite-quote-open">
 					<p class="hidden-desktop" style="margin:0px;line-height:10px">&nbsp;</p><!--impinge textu de gossip -->
-					<p class="visible-desktop gossiper"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/"<<gossip.user.id.to_s())  %><span> in </span><a href="circles/<%=gossip.circle.id%>">   <%= gossip.circle.name %></a></p>
+					<p class="visible-desktop gossiper"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/"<<gossip.user.id.to_s())  %><span> in </span><a href="/circles/<%=gossip.circle.id%>">   <%= gossip.circle.name %></a></p>
 					<a class="link-to-gossip" href="/gossips/<%= gossip.id %>"><p class="gossip-content"><%= gossip.content %></p></a>
 				<img src="/assets/img_trans.gif"  class="pull-right sprite sprite-quote-close">
 
@@ -43,8 +45,10 @@
 				</div>
 
 				 <ol class="comments">
-				 		<li class="comment view-all"><a href="/gossips/<%= gossip.id %>">view all 46 comments</a></li>
-				 		<li class="comment clearfix" style="display: none"></li>
+
+						<li class="comment view-all"><a href="/gossips/<%= gossip.id %>">
+							<%=  gossip.comments_count > COMMENTS_PER_GOSSIP ? "view all " : "" %><%= pluralize(gossip.comments_count, 'comment')  %></a></li>				 		
+				 		<li class="comment clearfix hidden" ></li>
 
 				 		<% if ( defined? no_comments ) and ( no_comments == true ) %>
 				 			<!-- no comments -->
@@ -52,7 +56,7 @@
 
 				 			<% if ( defined? last_comments ) and ( last_comments == true ) %>
 
-				 				<!--% # Only last comments  %-->
+				 				<!--% # Only last comments + view all %-->	
 								<% gossip.last_comments.each do |comment| %>
 									<%= render partial: "comment", locals: { comment: comment }, formats: [:html] %>
 								<% end %>	
@@ -67,10 +71,12 @@
 				 			<% end %>
 				 		<% end %>
 
+
 						<form id="post_comment_form">
 							<li class="your-comment clearfix">
 								<span class="avatar-mini">
-									<img  src="http://profile.ak.fbcdn.net/hprofile-ak-snc6/260896_708576256_1093295786_t.jpg">
+									<span style="background-image: url('http://graph.facebook.com/<%= current_user.uid %>/picture?type=small');">
+									</span>
 								</span>
 								<textarea  type="textarea" id="comment_content" name="comment[content]" rows="1"> </textarea>
 								<a class="btnx btnx-blue post_comment_button pull-right" > Post </a>

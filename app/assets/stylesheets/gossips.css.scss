@@ -17,7 +17,9 @@
 	height: 50px;
 	margin: 0 15px 10px 0;
 	padding: 0 0 0 0;
-	background: url(/assets/male-avatar.png) no-repeat 100%;
+	background: url(/assets/male-avatar.png) no-repeat;
+	background-position:center; 
+	background-size: cover;
 	overflow:hidden;
 	-webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, .04), 0 1px 5px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 1px 5px rgba(0,0,0,0.1);
@@ -29,14 +31,30 @@
 	height:32px;
 	width:32px;
 	margin-right:10px;
-	background: url(/assets/male-avatar-mini.png) no-repeat 100%;
+	background: url(/assets/male-avatar-mini.png) no-repeat;
 	overflow:hidden;
+	background-position:center; 
+	background-size: cover;
 }
 
-.avatar img {
-	min-width:62px;
-	min-height:62px;
+
+.avatar-mini span {
+	height:32px;
+	width:32px;
+	background-position:center; 
+	background-size: cover;
+	display:block;
 }
+
+/*.avatar img {
+	min-width:50px;
+	min-height:50px;
+}
+
+.avatar-mini img {
+	min-width:32px;
+	min-height:32px;
+}*/
 
 .gossip-post .gossip {
 	position:relative;

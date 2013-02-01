@@ -2,7 +2,7 @@
   <div class="span6 offset1 ">
     <p id="notice"><%= notice %></p>
       <div class="top-bar clearfix" style="margin-bottom:30px;">
-      <h3 style="text-align:center;padding-bottom:10px;border-bottom: 3px double rgba(34,25,25,0.1);"><a href="#"><%=@gossip.circle.name%></a></h3>
+      <h3 style="text-align:center;padding-bottom:10px;border-bottom: 3px double rgba(34,25,25,0.1);"><a href="/circles/<%=@gossip.circle.id%>"><%=@gossip.circle.name%></a></h3>
       <%if current_user.already_joined?(@gossip.circle.id) %>
       	<a data-id=<%= @gossip.circle.id %> class="joined-circle join-circle-btn btnx btnx-green pull-right"><span class="joined"><i class="icon-ok"></i> Joined</span><span class="leave"><i class="icon-remove"></i> Leave Circle </span></a>
       <% else %>

@@ -48,7 +48,7 @@ class CirclesController < ApplicationController
     @circle = Circle.find(params[:id], :include => [:gossips])
 
     @circle.gossips.each do |g|
-      g.last_comments = Comment.where("gossip_id = ?", g.id).order("created_at desc").limit(3).reverse
+      g.last_comments = Comment.where("gossip_id = ?", g.id).order("created_at desc").limit(COMMENTS_PER_GOSSIP).reverse
     end
 
     respond_to do |format|

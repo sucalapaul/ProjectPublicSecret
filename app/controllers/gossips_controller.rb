@@ -13,7 +13,7 @@ class GossipsController < ApplicationController
 
 
     @gossips.each do |g|
-      g.last_comments = Comment.where("gossip_id = ?", g.id).order("created_at desc").limit(3).reverse
+      g.last_comments = Comment.where("gossip_id = ?", g.id).order("created_at desc").limit(COMMENTS_PER_GOSSIP).reverse
 
     end
 

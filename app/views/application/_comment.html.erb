@@ -3,8 +3,8 @@
 		style="display:none"
 	<% end %>
 >
-	<span class="avatar-mini"> 
-	<img src="http://profile.ak.fbcdn.net/hprofile-ak-snc6/260896_708576256_1093295786_t.jpg"/> 
+	<span class="avatar-mini" 
+		<%= comment.private? ? "" : "style=\"background-image: url('http://graph.facebook.com/#{comment.user.uid}/picture?type=small');\" ".html_safe %> >
 	</span>
 		 <strong><%= comment.private? ? comment.user.nickname : link_to(comment.user.name, "/users/index")  %></strong>
 		  <p class="pull-right" style="color:#777;margin-bottom:0;font-size:12px"><%= timeago comment.created_at  %></p> 
