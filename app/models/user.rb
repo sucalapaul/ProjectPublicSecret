@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
 
 
+  #after_create :send_welcome_mail
+
   # def self.from_omniauth(auth)
   #   where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
   #     user.provider = auth.provider
@@ -44,8 +46,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :nickname
   validates_uniqueness_of :nickname, :message => "Sorry, that nickname is already taken"
-  validates_presence_of :invitation_token, :message => "You need an invite to sign up", :on => :create
-  validate :invitation_token_valid, :if => :invitation_token, :on => :create
+  #validates_presence_of :invitation_token, :message => "You need an invite to sign up", :on => :create
+  #validate :invitation_token_valid, :if => :invitation_token, :on => :create
 
 
   def self.from_omniauth(auth)
@@ -135,6 +137,12 @@ def invitation_token_valid
   return if invitation_token.blank?
   unless Invite.find_by_token(self.invitation_token)
     errors.add :invitation_token, 'Invitation code is not valid'
-  end
-  
+end
+
+#send confirmation email after creating the user
+
+def send_welcome_mail
+  UserMailer.signup_confirmation(self).deliver
+end
+
 end
