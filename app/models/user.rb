@@ -32,6 +32,8 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
 
 
+  #after_create :send_welcome_mail
+
   # def self.from_omniauth(auth)
   #   where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
   #     user.provider = auth.provider
@@ -138,6 +140,12 @@ def invitation_token_valid
   return if invitation_token.blank?
   unless Invite.find_by_token(self.invitation_token)
     errors.add :invitation_token, 'Invitation code is not valid'
-  end
-  
+end
+
+#send confirmation email after creating the user
+
+def send_welcome_mail
+  UserMailer.signup_confirmation(self).deliver
+end
+
 end
