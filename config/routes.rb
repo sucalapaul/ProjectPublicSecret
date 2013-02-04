@@ -24,6 +24,8 @@ ProjectPublicSecret::Application.routes.draw do
   get 'invited/:invite_token', to: 'invites#signup', as: :invite_token
   get 'signup/', to: 'invites#signup'
 
+  post 'verify/nickname', to: 'users#valid_nickname'
+
   get "home/contact"
   get "home/terms"
   get "home/index"

@@ -194,37 +194,42 @@ $(document).on("click", ".toggle-privacy", function () {
 
 //Ajax for my circles
 function my_circles() {
-	
+
 	//no cleaning anymore :D
 	//$('#mycircles_container').empty();
 	//$('#mycircles_resource').children().clone().appendTo('#mycircles_container');//.attr('id', '');
 
+	if ( ! document.getElementById('mycircles_container')) {
+		return;
+	}
+
 	var jqxhr = $.post("/circles/mycircles",
 		function(data) {			
-			var circleData = data;
-			var directives = {
-			  	muie: {
-				    "data-id": function(params) {
-				      return this.id;
-				    }
-				  },
-				cityname: {
-					html: function(params) {
-						return this.city.name;
-					}
-				},
-				joined: {
-					html: function(params) {
-						if (params.value) {
-							return '<a style="margin-top:10px;" data-count="' + this.people_count + '" class="joined-circle join-circle-btn pull-right btnx btnx-blue"><span class="joined"><i class="icon-ok"></i> Joined</span> <span class="leave"><i class="icon-remove"></i> Leave Circle </span></a>';
-						} else {
-							return '<a style="margin-top:10px;" data-count="' + this.people_count + '" class="join-circle join-circle-btn pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle </a>';
-						}
-					}
-				}
-			};
-			$('#mycircles_container').render(circleData, directives);
-			$('#mycircles_container').find('.circle-post').removeAttr('style');
+			$('#mycircles_container').html(data.html);
+			// var circleData = data;
+			// var directives = {
+			//   	muie: {
+			// 	    "data-id": function(params) {
+			// 	      return this.id;
+			// 	    }
+			// 	  },
+			// 	cityname: {
+			// 		html: function(params) {
+			// 			return this.city.name;
+			// 		}
+			// 	},
+			// 	joined: {
+			// 		html: function(params) {
+			// 			if (params.value) {
+			// 				return '<a style="margin-top:10px;" data-count="' + this.people_count + '" class="joined-circle join-circle-btn pull-right btnx btnx-blue"><span class="joined"><i class="icon-ok"></i> Joined</span> <span class="leave"><i class="icon-remove"></i> Leave Circle </span></a>';
+			// 			} else {
+			// 				return '<a style="margin-top:10px;" data-count="' + this.people_count + '" class="join-circle join-circle-btn pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle </a>';
+			// 			}
+			// 		}
+			// 	}
+			// };
+			// $('#mycircles_container').render(circleData, directives);
+			// $('#mycircles_container').find('.circle-post').removeAttr('style');
 		}, "json")
 		.error(function() {
 			showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);

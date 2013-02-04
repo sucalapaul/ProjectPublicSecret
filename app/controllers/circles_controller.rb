@@ -55,7 +55,10 @@ class CirclesController < ApplicationController
     
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @circles, :include => :city }
+      #format.json { render json: @circles, :include => :city }
+      format.json { render json: {
+              'html' => render_to_string( partial: "circle_header", :as => :circle, :collection => @circles, formats: [:html])
+          }, status: :created, location: @gossip }
     end
   end
 

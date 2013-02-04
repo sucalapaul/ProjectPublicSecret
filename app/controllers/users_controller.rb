@@ -20,6 +20,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def valid_nickname
+    valid = true
+    if User.find_by_nickname( params[:nickname] )
+      valid = false
+    end
+
+    respond_to do |format|
+      format.json { render json: { valid: valid } }
+    end
+  end
+
   # POST /users
   # POST /users.json
   def follow
