@@ -194,10 +194,6 @@ $(document).on("click", ".toggle-privacy", function () {
 
 //Ajax for my circles
 function my_circles() {
-	
-	//no cleaning anymore :D
-	//$('#mycircles_container').empty();
-	//$('#mycircles_resource').children().clone().appendTo('#mycircles_container');//.attr('id', '');
 
 	var jqxhr = $.post("/circles/mycircles",
 		function(data) {			
@@ -223,8 +219,14 @@ function my_circles() {
 					}
 				}
 			};
-			$('#mycircles_container').render(circleData, directives);
-			$('#mycircles_container').find('.circle-post').removeAttr('style');
+			if (circleData.length > 0){
+				$('#no-circles-joined').hide();
+				$('#mycircles_container').render(circleData, directives);
+				$('#mycircles_container').find('.circle-post').removeAttr('style');
+			}
+			else{
+				$('#no-circles-joined').show();
+			}
 		}, "json")
 		.error(function() {
 			showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);

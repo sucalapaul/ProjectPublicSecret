@@ -10,10 +10,14 @@ class CirclesController < ApplicationController
     if params[:tag]
       @circles = Circle.tagged_with(params[:tag]).paginate(:page => params[:circle_page], :per_page => 10)
     else
-      @c = GeoIP.new('data/GeoLiteCity.dat').city('188.24.108.194') #iau orasul
+      @c = GeoIP.new('data/GeoLiteCity.dat').city('188.24.56.178') #iau orasul
 
-      #iau id-urile oraselor care corespund coordonatelor
-      @city_id = City.find(:all, :select => 'id', :conditions => ["abs(latitude - ?) < 0.1 AND abs(longitude - ?) < 0.1", @c.latitude, @c.longitude] )
+      if @c != nil
+        #iau id-urile oraselor care corespund coordonatelor, doar daca am gasit ceva oras cu ip-ul dat
+        @city_id = City.find(:all, :select => 'id', :conditions => ["abs(latitude - ?) < 0.1 AND abs(longitude - ?) < 0.1", @c.latitude, @c.longitude] )
+      else
+        @city_id = 0 #altfel, ii dau orasului id=0, adica nu am gasit oras
+      end
 
       @circles = Circle.where(:city_id => @city_id).paginate(:page => params[:circle_page], :per_page => 10)
     end

@@ -26,6 +26,13 @@
         <% @circles.each do |circle| %>
             <%= render partial: "circle_header", locals: { circle: circle }, formats: [:html] %>
         <% end %>
+        <% if @circles.length == 0%>
+          <!-- Cand nu ii vede locatie -->
+           <p id="no-location" class="alert alert-error fade in">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            We are unable to determine your location at this point. Search for your city in the City tab. 
+           </p>
+        <% end %>
       </div>
 </div>
 
@@ -36,6 +43,13 @@
     <div id="mycircles_container">
       <%= render partial: "circle_header", locals: { circle: Circle.new, hidden: 1 }, formats: [:html] %>
     </div>
+
+      <!-- Cand nu esti in mici un cerc, la My circles -->
+      <div id="no-circles-joined" class="top-bar" style="display:none">
+        <h3 style="text-align:center">You have not joined any circle yet</h3>
+        <p class="intro">The Gossip Feed shows the latest rumors only from circles you joined</p>
+        <p class="intro">Join circles<a href="#"> nearby</a>, search by<a href="#"> city</a>, or view the hottest <a href="#">topics</a></p>
+      </div>
 
     <div id="mycircles_resource">
       <%= render partial: "circle_header", locals: { circle: Circle.new, hidden: 1 }, formats: [:html] %>
@@ -62,6 +76,8 @@
         <% tag_cloud Circle.tag_counts, %w[tag] do |tag_itself, tag| %>
           <%= link_to tag_itself.name, tag_path(tag_itself.name), class: tag %>
         <% end %>
+
+
 </div>
 
 <script type="text/javascript">
@@ -74,22 +90,8 @@
   );
 </script>
 
-<!-- Cand nu ii vede locatie -->
- <p class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">×</button>
-  We are unable to determine your location at this point. Search for your city in the City tab.
-    
- </p>
-
-<!-- Cand nu esti in mici un cerc, la My circles -->
-<div class="top-bar">
-  <h3 style="text-align:center">You have not joined any circle yet</h3>
-  <p class="intro">The Gossip Feed shows the latest rumors only from circles you joined</p>
-  <p class="intro">Join circles<a href="#"> nearby</a>, search by<a href="#"> city</a>, or view the hottest <a href="#">topics</a></p>
-</div>
-
 <!-- Cand nu este cerc in orasul tau, la search by city -->
-<div class="top-bar clearfix">
+<div id="no-circles-city" class="top-bar clearfix hidden">
   <h3 style="text-align:center">No circles in NUMELE ORASULUI</h3>
   <p class="intro">Be the first to create a circle in your city and invite your friends.</p>
   <p style="text-align:center"><a class="btnx btnx-green"> <i class="icon-plus"></i> Create new Circle</a></p>
