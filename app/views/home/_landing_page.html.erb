@@ -27,10 +27,11 @@
           <p class="lead" >The voice of the city. Rumors and news around you </p>
 
           <p class="hidden-phone lead">Gossip is invitation based only. Make a request and we'll send you an invite </p>
-          <form style="display:inline-block;margin-top:10px">
-            <input class="pull-left" style="margin-right:10px" type="email" placeholder="Enter your email">
-            <a class="pull-left btnx btnx-green" style="line-height:28px" href="#" > Request an invite</a>
+          <form style="display:inline-block;margin-top:10px;margin-bottom:0px">
+            <input id="email" class="pull-left" style="margin-right:10px" type="email" placeholder="Enter your email">
+            <a id="request_invite" class="pull-left btnx btnx-green" style="line-height:28px" href="#" > Request an invite</a>
           </form>
+          <div id="request_response"> &nbsp;</div>
             <a href="#features" class="section-arrow section-arrow-big js-ga-event"
           data-ga-event-category="moreinfo"
           data-ga-event-action="arrow1_home"
@@ -40,7 +41,30 @@
     </div>
   </div>
 </section>
+  
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#request_invite').click(function() {
+      var email = $('#email').val();
+      if ( ! isEmail(email) ) {
+        return;
+      }
+      var jqxhr = $.post("/requestinvite", { "email": email },
+        function(data) {
+          console.log(data);
+          $('#request_email').val("");
+          if (data.status == "created") {
+            $('#request_response').html("Stay tuned at: " + email);
+          }
+        }, "json")
+        .error(function() {
+          showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+        });
 
+      });
+  });
+  
+</script>
 <!-- <div class="artwork-strip"></div> -->
 
 <div class="visible-desktop scroller-main"

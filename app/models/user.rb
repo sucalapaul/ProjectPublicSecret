@@ -142,19 +142,17 @@ def increase_retry_count
   self.retry_count = self.retry_count.nil? ? 0 : self.retry_count + 1
 end
 
+#send confirmation email after creating the user
+def send_welcome_mail
+  UserMailer.signup_confirmation(self).deliver
+end
+
 private 
 
 def invitation_token_valid
   return if invitation_token.blank?
   unless Invite.find_by_token(self.invitation_token)
     errors.add :invitation_token, 'Invitation code is not valid'
-end
-
-
-#send confirmation email after creating the user
-
-def send_welcome_mail
-  UserMailer.signup_confirmation(self).deliver
 end
 
 end
