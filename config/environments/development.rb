@@ -19,11 +19,11 @@ ProjectPublicSecret::Application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   ActionMailer::Base.smtp_settings = {
-    :address              => "smtp.gmail.com",
+    :address              => "smtp.mandrillapp.com",
     :port                 => 587,
     :domain               => 'letsgossip.it',
-    :user_name            => 'admin@letsgossip.it',
-    :password             => 'g0$$ipers',
+    :user_name            => 'cristianrosu',
+    :password             => 'ptMAf_wrtATrVMxtC4w9mw ',
     :authentication       => 'plain',
     :enable_starttls_auto => true  
   }

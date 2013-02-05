@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
 
 
-  #after_create :send_welcome_mail
+  after_create :send_welcome_mail
 
   # def self.from_omniauth(auth)
   #   where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
@@ -135,6 +135,10 @@ def self.get_fb_friends()
 
 end
 
+def send_welcome_mail
+  UserMailer.signup_confirmation(self).deliver
+end
+
 private 
 def invitation_token_valid
   return if invitation_token.blank?
@@ -143,9 +147,5 @@ def invitation_token_valid
 end
 
 #send confirmation email after creating the user
-
-def send_welcome_mail
-  UserMailer.signup_confirmation(self).deliver
-end
 
 end
