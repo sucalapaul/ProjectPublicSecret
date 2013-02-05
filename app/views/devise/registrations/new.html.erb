@@ -1,7 +1,20 @@
 <div style="width:292px;margin:0 auto;margin-top:75px;">
 
+
+<% if INVITE_ONLY %>
+  <% if resource.invitation_token.blank? %>
+    <p> You need an invitation to sign up. You can <a href="/welcome">request an invite</a> </p>
+  <% end %>
+<% end %>  
+
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :builder => BootstrapFormBuilder) do |f| %>
-                <!-- %= devise_error_messages! % -->
+                
+
+<% if resource.retry_count > 0 %>
+
+    <%= devise_error_messages! %>
+
+<% end %>
 
 <input id="user_invitation_token" name="user[invitation_token]" type="hidden" value="<%= resource.invitation_token %>" /> 
 
@@ -53,81 +66,106 @@
 
   $(document).ready(function() {
 
-    var isError = true;
+    var isError = false;
     var nickTaken = true;
 
     $('#form_submit').click(function () {
+
+      <% if INVITE_ONLY %>
+        <% if resource.invitation_token.blank? %>
+          return false;
+        <% end %>
+      <% end %>
+
+      isError = false
+    
+      $inputs = $('input');
+      $.each($inputs, function (i, o) {
+        if ( validateInput(o) == false ){
+          isError = true;
+        }
+      });
+
       if (isError) {
         showError("Please correct the errors");
         return false;
       }
-      //$('#user_terms').is(':checked')
-      
+
+      if ( ! $('#user_terms').is(':checked') ) {
+        showError("You must accept the Terms and Conditions!");
+        return false;
+      }
 
     });
 
     $("input").bind("change", function() {
-      var value = $(this).val();
-      var $self = $(this);
-      var placeholder = $self.attr('placeholder');
-      var $errorMessage = $(this).siblings('.help-inline');
-      var $container = $(this).closest('.control-group');
-      var errorMessage;
-
-      if ( !errorMessage &&
-            $self.data('required') == "" &&
-            value.length == 0 ) {
-
-        errorMessage = placeholder + " is required"
-      }
-
-      if ( !errorMessage && 
-            $self.data('minlength') && 
-            value.length < $self.data('minlength') ){
-
-        errorMessage = placeholder + " is to short";
-      }
-
-      if ( !errorMessage &&
-            $self.data('match') ){
-
-        var $other = $( '#' + $self.data('match') )
-        if (value != $other.val()) {
-          errorMessage = "passwords don't match";
-        }
-      }
-
-      if (!errorMessage &&
-          $self.data('ajaxverify') ) {
-        var url = $self.data('ajaxverify');
-        var jqxhr = $.post(url, { 'nickname': value }, 
-          function ( data ) {
-            if ( !data.valid ){
-              nickTaken = true;
-              errorMessage = "sorry, that nickname is already taken";
-              $container.addClass('error');
-              $errorMessage.show().text(errorMessage);              
-            }
-          }, "json")
-          .error(function() {
-            showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
-          });
-      }
-
-
-      if (errorMessage) {
-        $container.addClass('error');
-        $errorMessage.show().text(errorMessage);
-        isError = true;
-      } else {
-        $container.removeClass('error');
-        $errorMessage.hide();
-        isError = false;
-      }
-
+      validateInput(this);
     });
-
   });
+  
+  function refreshErrorMessage($container, $errorMessage, errorMessage){
+    if (errorMessage) {
+      $errorMessage.text(errorMessage).slideDown();
+      $container.addClass('error');
+      isError = true;
+      return false;
+    } else {
+      $errorMessage.slideUp();
+      $container.removeClass('error');
+      return true;
+      //isError = false;
+    }
+  }
+
+  function validateInput(input){ //return true if is valid
+    var $self = $(input);
+    var value = $self.val();
+    var placeholder = $self.attr('placeholder');
+    var $errorMessage = $self.siblings('.help-inline');
+    var $container = $self.closest('.control-group');
+    var errorMessage;
+
+    if ( !errorMessage &&
+          $self.data('required') == "" &&
+          value.length == 0 ) {
+
+      errorMessage = placeholder + " is required"
+    }
+
+    if ( !errorMessage && 
+          $self.data('minlength') && 
+          value.length < $self.data('minlength') ){
+
+      errorMessage = placeholder + " is to short";
+    }
+
+    if ( !errorMessage &&
+          $self.data('match') ){
+
+      var $other = $( '#' + $self.data('match') )
+      if (value != $other.val()) {
+        errorMessage = "passwords don't match";
+      }
+    }
+
+    if (!errorMessage &&
+        $self.data('ajaxverify') ) {
+      var url = $self.data('ajaxverify');
+      var jqxhr = $.post(url, { 'nickname': value }, 
+        function ( data ) {
+          if ( !data.valid ){
+            errorMessage = "sorry, that nickname is already taken";
+            return refreshErrorMessage($container, $errorMessage, errorMessage);        
+          }
+        }, "json")
+        .error(function() {
+          //showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+        });
+    }
+
+    return refreshErrorMessage($container, $errorMessage, errorMessage);
+
+  }
 
 </script>
 

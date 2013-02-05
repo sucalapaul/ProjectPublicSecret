@@ -7,7 +7,7 @@ en:
     attributes:
       user:
         email: ""
-        nickname: ""
+        #nickname: ""
         invitation_token: ""
     errors:
       models:
