@@ -27,11 +27,12 @@
           <p class="lead" >The voice of the city. Rumors and news around you. </p>
 
           <p class="hidden-phone lead">The Gossip is invitation based only. Make a request and we'll send you an invite. </p>
-          <form style="display:inline-block;margin-top:10px">
-            <input class="pull-left" style="margin-right:10px" type="email" placeholder="Enter your email">
-            <a class="pull-left btnx btnx-green" style="line-height:28px" href="#" > Request an invite</a>
+          <form style="display:inline-block;margin-top:10px;margin-bottom:0px">
+            <input id="email" class="pull-left" style="margin-right:10px" type="email" placeholder="Enter your email">
+            <a id="request_invite" class="pull-left btnx btnx-green" style="line-height:28px" href="#" > Request an invite</a>
           </form>
-            <a href="#features" class="section-arrow section-arrow-big js-ga-event"
+          <div id="request_response"> &nbsp;</div>
+            <a href="#city_voice" class="section-arrow section-arrow-big js-ga-event"
           data-ga-event-category="moreinfo"
           data-ga-event-action="arrow1_home"
           data-ga-event-label="mega"
@@ -40,7 +41,30 @@
     </div>
   </div>
 </section>
+  
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#request_invite').click(function() {
+      var email = $('#email').val();
+      if ( ! isEmail(email) ) {
+        return;
+      }
+      var jqxhr = $.post("/requestinvite", { "email": email },
+        function(data) {
+          console.log(data);
+          $('#request_email').val("");
+          if (data.status == "created") {
+            $('#request_response').html("Stay tuned at: " + email);
+          }
+        }, "json")
+        .error(function() {
+          showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+        });
 
+      });
+  });
+  
+</script>
 <a id="features" class="in-page-anchor" name="features"></a>
 <section id="section-listen-everywhere" class="section-auto-size has-arrow-button-below listen-everywhere"
          data-auto-size="0.6">
@@ -52,6 +76,7 @@
 
         <p class="lead">
             People love gossip. It's the biggest thing that keeps the entertainment industry going.
+              </p>
          <div class="row">
           <div class="span3 offset3">
             <p class="lead" style="color:#eb0a4e">Hey Gossipers </p>
@@ -62,19 +87,19 @@
             <p style="line-height:1.4;font-size:18px;font-weight:200"> Spread the word and keep your friends in the loop. Share your favourites and invite others to join.</p>
           </div>
          </div>
-        </p>
+      
 
       </div>
     </div>
   </div>
 </section>
 <div class="section-arrow-holder">
-  <a href="#search-discover"
+  <a href="#circles"
   class="section-arrow js-ga-event"
   data-ga-event-category="moreinfo"
   data-ga-event-action="arrow2_listen"
   data-ga-event-label="mega"
-  data-target="section-search-discover"></a>
+  data-target="section-circles"></a>
 </div>
 
 <div class="scroller-main"
@@ -84,7 +109,7 @@
      data-width="1600"
      data-height="1061"></div>
 
-<section id="section-listen-everywhere" class="section-auto-size has-arrow-button-below listen-everywhere"
+<section id="section-circles" class="section-auto-size has-arrow-button-below listen-everywhere"
          data-auto-size="0.6">
   <div class="container">
     <div class="box">
@@ -104,12 +129,12 @@
   </div>
 </section>
 <div class="section-arrow-holder">
-  <a href="#playlists"
+  <a href="#topics"
   class="section-arrow js-ga-event"
   data-ga-event-category="moreinfo"
   data-ga-event-action="arrow3_search"
   data-ga-event-label="mega"
-  data-target="section-playlists"></a>
+  data-target="section-hottest-topics"></a>
 </div>
 
 
@@ -119,7 +144,7 @@
      data-width="1600"
      data-height="936"></div>
 
-<section id="section-listen-everywhere" class="section-auto-size has-arrow-button-below listen-everywhere"
+<section id="section-hottest-topics" class="section-auto-size has-arrow-button-below listen-everywhere"
          data-auto-size="0.6">
   <div class="container">
     <div class="box">
@@ -138,12 +163,12 @@
 </section>
 
 <div class="section-arrow-holder">
-  <a href="#radio"
+  <a href="#about"
   class="section-arrow js-ga-event"
   data-ga-event-category="moreinfo"
   data-ga-event-action="arrow5_follow"
   data-ga-event-label="mega"
-  data-target="section-radio"></a>
+  data-target="section-about"></a>
 </div>
 
 <div class="scroller-main"
@@ -152,7 +177,7 @@
      data-width="1600"
      data-height="866"></div>
 
-<section id="section-listen-everywhere" class="section-auto-size has-arrow-button-below listen-everywhere"
+<section id="section-about" class="section-auto-size has-arrow-button-below listen-everywhere"
          data-auto-size="0.6">
   <div class="container">
     <div class="box">
@@ -171,7 +196,7 @@
 </div>
 
 </div> <!--/wrapx-->
-<footer id= "footer-main" class="footer-main group">
+<footer id= "footer-main" class="footer-main">
   <div class="container">
     <nav class="nav-footer">
       <ul>
@@ -182,7 +207,10 @@
           <a href="/terms">Terms</a>
         </li>
         <li class="nav-item">
-          <a href="#" rel="publisher">Social</a>
+          <a href="http://www.facebook.com/333468333431025" target="_blanck" rel="publisher">Facebook</a>
+        </li>
+        <li class="nav-item">
+          <a href="http://twitter.com/LetsGossipIt" target="_blanck" rel="publisher">Twitter</a>
         </li>
       </ul>
     </nav>

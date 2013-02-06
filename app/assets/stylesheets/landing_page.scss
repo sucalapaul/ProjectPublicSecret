@@ -167,10 +167,9 @@ background-color: #fff;
 /* FOOTER */
 .footer-main {
 margin-top:0px;
-background-color: #eee;
+background-color: #efefef;
 border-top: 1px solid #FFF;
-padding-bottom: 1.5em;
-padding-top: 1.5em;
+padding:40px 0;
 position: relative;
 }
 
@@ -184,6 +183,12 @@ nav .nav-item {
 display: inline-block;
 }
 
+.nav-item a {
+	color: #676767;
+	font-family: "proxima-nova", sans-serif;
+	text-transform: uppercase;
+}
+.nav-item a:hover {color:#eb0a4e;}
 .footer-main .copyright {
 clear: right;
 margin-right:25px;
