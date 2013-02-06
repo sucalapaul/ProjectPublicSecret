@@ -8,7 +8,7 @@ ProjectPublicSecret::Application.routes.draw do
 
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
                      controllers: {omniauth_callbacks: "omniauth_callbacks",  :registrations => "registrations"}
-
+get "circles/search"
   resources :circles    
   resources :gossips     
   resources :likes     
@@ -35,6 +35,7 @@ ProjectPublicSecret::Application.routes.draw do
   match '/contact' => 'home#contact'
 
   get "users/index"
+
 
   post "circles/join"
   post "users/follow"
