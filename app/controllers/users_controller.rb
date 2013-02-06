@@ -31,6 +31,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def request_invite
+    request = InviteRequest.where( email: params[:email] ).first_or_initialize
+
+    respond_to do |format|
+
+      if request.persisted?
+        format.json { render json: { status: "created" }, status: :created }
+      else
+        if request.save
+          format.json { render json: { status: "created" }, status: :created }
+        else
+          format.json {render json: { status: "error" }}
+        end
+      end
+    end
+  end
+
   # POST /users
   # POST /users.json
   def follow

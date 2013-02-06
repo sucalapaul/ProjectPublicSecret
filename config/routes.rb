@@ -25,6 +25,7 @@ get "circles/search"
   get 'signup/', to: 'invites#signup'
 
   post 'verify/nickname', to: 'users#valid_nickname'
+  post 'requestinvite/', to: 'users#request_invite'
 
   get "home/contact"
   get "home/terms"

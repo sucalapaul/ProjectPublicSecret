@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130129204054) do
+ActiveRecord::Schema.define(:version => 20130205140057) do
 
   create_table "circle_gossips", :force => true do |t|
     t.integer  "circle_id"
@@ -87,6 +87,16 @@ ActiveRecord::Schema.define(:version => 20130129204054) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end
+
+  create_table "invite_requests", :force => true do |t|
+    t.string   "email"
+    t.integer  "invited",    :default => 0
+    t.integer  "registered", :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "invite_requests", ["email"], :name => "index_invite_requests_on_email"
 
   create_table "invites", :force => true do |t|
     t.integer  "user_id"
