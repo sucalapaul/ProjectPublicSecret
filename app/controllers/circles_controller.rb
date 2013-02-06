@@ -24,25 +24,30 @@ class CirclesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @circles }
+      format.json { render json: {
+              'html' => render_to_string( partial: "circle_header", :as => :circle, :collection => @circles, formats: [:html])
+          }, status: :created, location: @gossip }
     end
   end
 
-  # POST /circles
-  # POST /circles.json
+
   def search
     #iau id-urile oraselor care corespund coordonatelor
     @city_id = City.find(:all, :select => 'id', :conditions => ["abs(latitude - ?) < 0.1 AND abs(longitude - ?) < 0.1", params[:city][:latitude], params[:city][:longitude]] )
 
-    @circles = Circle.where(:city_id => @city_id).includes(:city).paginate(:page => params[:circle_search], :per_page => 2)
+    @circles = Circle.where(:city_id => @city_id).includes(:city).paginate(:page => params[:circle_search], :per_page => 5)
     
     @circles.each do |circle|
       circle.joined = current_user.already_joined?(circle.id)
+
     end
     #@circles = Circle.find(:all, :conditions => [:city_id => @city_id], :include => [:city])
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @circles, :include => :city }
+      format.json { render json: {
+              'html' => render_to_string( partial: "circle_header", :as => :circle, :collection => @circles, formats: [:html]),
+              'pg' => @circles.total_pages
+          }, status: :created, location: @gossip }
     end
   end
 
@@ -59,7 +64,10 @@ class CirclesController < ApplicationController
     
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @circles, :include => :city }
+      #format.json { render json: @circles, :include => :city }
+      format.json { render json: {
+              'html' => render_to_string( partial: "circle_header", :as => :circle, :collection => @circles, formats: [:html])
+          }, status: :created, location: @gossip }
     end
   end
 

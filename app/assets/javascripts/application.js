@@ -195,38 +195,42 @@ $(document).on("click", ".toggle-privacy", function () {
 //Ajax for my circles
 function my_circles() {
 
+	if ( ! document.getElementById('mycircles_container')) {
+		return;
+	}
+
 	var jqxhr = $.post("/circles/mycircles",
-		function(data) {			
-			var circleData = data;
-			var directives = {
-			  	muie: {
-				    "data-id": function(params) {
-				      return this.id;
-				    }
-				  },
-				cityname: {
-					html: function(params) {
-						return this.city.name;
-					}
-				},
-				joined: {
-					html: function(params) {
-						if (params.value) {
-							return '<a style="margin-top:10px;" data-count="' + this.people_count + '" class="joined-circle join-circle-btn pull-right btnx btnx-blue"><span class="joined"><i class="icon-ok"></i> Joined</span> <span class="leave"><i class="icon-remove"></i> Leave Circle </span></a>';
-						} else {
-							return '<a style="margin-top:10px;" data-count="' + this.people_count + '" class="join-circle join-circle-btn pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle </a>';
-						}
-					}
-				}
-			};
-			if (circleData.length > 0){
-				$('#no-circles-joined').hide();
-				$('#mycircles_container').render(circleData, directives);
-				$('#mycircles_container').find('.circle-post').removeAttr('style');
-			}
-			else{
-				$('#no-circles-joined').show();
-			}
+		function(data) {
+			if (data.html.length < 2)
+				$('#no-circles-joined').show("fast");
+			else
+				$('#no-circles-joined').hide("fast");			
+			$('#mycircles_container').html(data.html);
+			// var circleData = data;
+			// var directives = {
+			//   	muie: {
+			// 	    "data-id": function(params) {
+			// 	      return this.id;
+			// 	    }
+			// 	  },
+			// 	cityname: {
+			// 		html: function(params) {
+			// 			return this.city.name;
+			// 		}
+			// 	},
+			// 	joined: {
+			// 		html: function(params) {
+			// 			if (params.value) {
+			// 				return '<a style="margin-top:10px;" data-count="' + this.people_count + '" class="joined-circle join-circle-btn pull-right btnx btnx-blue"><span class="joined"><i class="icon-ok"></i> Joined</span> <span class="leave"><i class="icon-remove"></i> Leave Circle </span></a>';
+			// 			} else {
+			// 				return '<a style="margin-top:10px;" data-count="' + this.people_count + '" class="join-circle join-circle-btn pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle </a>';
+			// 			}
+			// 		}
+			// 	}
+			// };
+			// $('#mycircles_container').render(circleData, directives);
+			// $('#mycircles_container').find('.circle-post').removeAttr('style');
+		
 		}, "json")
 		.error(function() {
 			showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
@@ -244,30 +248,40 @@ function search_circle() {
 	var form = $(this).closest("form");
 	var jqxhr = $.post("/circles/search", {"city[latitude]": city_latitude, "city[longitude]": city_longitude},
 		function(data) {
-			var circleData = data;
-			var directives = {
-			  	muie: {
-				    "data-id": function(params) {
-				      return this.id;
-				    }
-				  },
-				cityname: {
-					html: function(params) {
-						return this.city.name;
-					}
-				},
-				joined: {
-					html: function(params) {
-						if (params.value) {
-							return '<a style="margin-top:10px;" data-count="' + this.people_count + '" class="joined-circle join-circle-btn pull-right btnx btnx-blue"><span class="joined"><i class="icon-ok"></i> Joined</span> <span class="leave"><i class="icon-remove"></i> Leave Circle </span></a>';
-						} else {
-							return '<a style="margin-top:10px;" data-count="' + this.people_count + '" class="join-circle join-circle-btn pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle </a>';
-						}
-					}
-				}
-			};
-			$('#circles_container').render(circleData, directives);
-			$('.circle-post').removeAttr('style');
+			if (data.html.length < 2){
+				$('#no-circles-city').show("fast");
+				$('#search-city-name').html("No circles in "+city_name);
+			}
+			else
+				$('#no-circles-city').hide("fast");
+			
+			$('#circles_container').html(data.html);
+			$('li.active').data('page',1);
+
+			// var circleData = data;
+			// var directives = {
+			//   	muie: {
+			// 	    "data-id": function(params) {
+			// 	      return this.id;
+			// 	    }
+			// 	  },
+			// 	cityname: {
+			// 		html: function(params) {
+			// 			return this.city.name;
+			// 		}
+			// 	},
+			// 	joined: {
+			// 		html: function(params) {
+			// 			if (params.value) {
+			// 				return '<a style="margin-top:10px;" data-count="' + this.people_count + '" class="joined-circle join-circle-btn pull-right btnx btnx-blue"><span class="joined"><i class="icon-ok"></i> Joined</span> <span class="leave"><i class="icon-remove"></i> Leave Circle </span></a>';
+			// 			} else {
+			// 				return '<a style="margin-top:10px;" data-count="' + this.people_count + '" class="join-circle join-circle-btn pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle </a>';
+			// 			}
+			// 		}
+			// 	}
+			// };
+			// $('#circles_container').render(circleData, directives);
+			// $('.circle-post').removeAttr('style');
 		}, "json")
 		.error(function() {
 			showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
@@ -277,6 +291,7 @@ function search_circle() {
 
 var city_latitude = 0;
 var city_longitude = 0;
+var city_name = "";
 
 $(document).ready(function() {
 
@@ -451,8 +466,8 @@ $(document).ready(function() {
 		    }
 
 		    city_name = place.address_components[0].long_name;
-		    city_longitude = place.geometry.location.$a;
-		    city_latitude = place.geometry.location.Za;
+		    city_longitude = place.geometry.location.hb;
+		    city_latitude = place.geometry.location.gb;
 		  });
 	}
 });

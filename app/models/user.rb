@@ -6,8 +6,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :nickname, :circles_names, :name, :invitation_token
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :nickname, :circles_names, :name, :invitation_token, :terms
   # attr_accessible :title, :body
+
+  attr_accessor :terms
 
   # has_many :followers
   # has_many :followers_users, :through => :followers, :source => :user
@@ -30,7 +32,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
 
 
-  #after_create :send_welcome_mail
+  after_create :send_welcome_mail
 
   # def self.from_omniauth(auth)
   #   where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
@@ -46,8 +48,9 @@ class User < ActiveRecord::Base
 
   validates_presence_of :nickname
   validates_uniqueness_of :nickname, :message => "Sorry, that nickname is already taken"
-  #validates_presence_of :invitation_token, :message => "You need an invite to sign up", :on => :create
-  #validate :invitation_token_valid, :if => :invitation_token, :on => :create
+  validates_presence_of :invitation_token, :message => "You need an invite to sign up", :on => :create, :if => lambda { INVITE_ONLY }
+  validate :invitation_token_valid, :if => lambda { INVITE_ONLY } && :invitation_token, :on => :create  
+  validates_acceptance_of :terms
 
 
   def self.from_omniauth(auth)

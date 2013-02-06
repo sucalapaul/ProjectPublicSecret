@@ -1,27 +1,133 @@
 <div style="width:292px;margin:0 auto;margin-top:75px;">
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :builder => BootstrapFormBuilder) do |f| %>
+                <!-- %= devise_error_messages! % -->
+
+<input id="user_invitation_token" name="user[invitation_token]" type="hidden" value="<%= resource.invitation_token %>" /> 
 
   <div>
-  email: <%= resource.email %>
-
+    <div class="control-group clearfix">
+      <div class="input">
+        <input id="user_nickname" data-ajaxverify="/verify/nickname/" data-required data-minlength="4" placeholder="anonymus nickname" name="user[nickname]" size="30" type="text" value="<%= resource.nickname %>" style="width:278px;margin-top:0px" />
+         <span style="display: none;" class="help-inline"></span>
+      </div>
+    </div>
   </div>
 
-  <%= f.hidden_field :invitation_token %>
+  <div>
+    <div class="control-group clearfix">
+      <div class="input">
+        <input id="user_password" data-required data-minlength="6" placeholder="password" name="user[password]" size="30" type="password" value="<%= resource.password %>" style="width:278px;margin-top:0px" />
+        <span style="display: none;" class="help-inline"></span>
+      </div>
+    </div>
+  </div>
 
   <div>
-  <%= f.text_field :nickname, :style => "width:278px;margin-bottom:20px", :placeholder => "anonymous nickname" %></div>
+    <div class="control-group clearfix">
+      <div class="input">
+        <input id="user_password_confirmation" data-match="user_password" placeholder="password confirmation" name="user[password_confirmation]" size="30" type="password" value="<%= resource.password_confirmation %>" style="width:278px;margin-top:0px" />
+        <span style="display: none;" class="help-inline"></span> 
+      </div>
+    </div>
+  </div>
 
-  <% if f.object.password_required? %>
+    <!--div class="field">
+    <div class="field_with_errors"><input id="user_password" name="user[password]" placeholder="password" size="30" style="width:278px;margin-bottom:20px" type="password" /></div></div>
+
     <div class="field">
-    <%= f.password_field :password,  :style => "width:278px;margin-bottom:20px", :placeholder => "password" %></div>
+    <input id="user_password_confirmation" name="user[password_confirmation]" placeholder="confirm password" size="30" style="width:278px;margin-bottom:10px" type="password" /></div-->
 
-    <div class="field">
-    <%= f.password_field :password_confirmation, :style => "width:278px;margin-bottom:10px", :placeholder => "confirm password" %></div>
-  <% end %>
 
-  <div><%= f.submit "Sign up", :class => "btn btn-success pull-right", :style => "margin-bottom:30px;" %></div>
+    <div><input name="user[terms]" type="hidden" value="0" /><input id="user_terms" name="user[terms]" style="float:left" type="checkbox" value="1" /><p style="font-size:12px"> &nbsp; &nbsp;I agree with the <a href="/terms">Terms and conditions</a> </p></div>
+
+  <div><input id="form_submit"class="btn btn-success pull-right" name="commit" style="margin-bottom:30px;" type="submit" value="Sign up" /></div>
+
+
+
 <% end %>
 
 </div>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+
+    var isError = true;
+    var nickTaken = true;
+
+    $('#form_submit').click(function () {
+      if (isError) {
+        showError("Please correct the errors");
+        return false;
+      }
+      //$('#user_terms').is(':checked')
+      
+
+    });
+
+    $("input").bind("change", function() {
+      var value = $(this).val();
+      var $self = $(this);
+      var placeholder = $self.attr('placeholder');
+      var $errorMessage = $(this).siblings('.help-inline');
+      var $container = $(this).closest('.control-group');
+      var errorMessage;
+
+      if ( !errorMessage &&
+            $self.data('required') == "" &&
+            value.length == 0 ) {
+
+        errorMessage = placeholder + " is required"
+      }
+
+      if ( !errorMessage && 
+            $self.data('minlength') && 
+            value.length < $self.data('minlength') ){
+
+        errorMessage = placeholder + " is to short";
+      }
+
+      if ( !errorMessage &&
+            $self.data('match') ){
+
+        var $other = $( '#' + $self.data('match') )
+        if (value != $other.val()) {
+          errorMessage = "passwords don't match";
+        }
+      }
+
+      if (!errorMessage &&
+          $self.data('ajaxverify') ) {
+        var url = $self.data('ajaxverify');
+        var jqxhr = $.post(url, { 'nickname': value }, 
+          function ( data ) {
+            if ( !data.valid ){
+              nickTaken = true;
+              errorMessage = "sorry, that nickname is already taken";
+              $container.addClass('error');
+              $errorMessage.show().text(errorMessage);              
+            }
+          }, "json")
+          .error(function() {
+            showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+          });
+      }
+
+
+      if (errorMessage) {
+        $container.addClass('error');
+        $errorMessage.show().text(errorMessage);
+        isError = true;
+      } else {
+        $container.removeClass('error');
+        $errorMessage.hide();
+        isError = false;
+      }
+
+    });
+
+  });
+
+</script>
+
