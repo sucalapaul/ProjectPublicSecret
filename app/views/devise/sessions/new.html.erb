@@ -1,24 +1,32 @@
-<div style="width:292px;margin:0 auto;margin-top:80px">
+<div style="width:322px;margin:0 auto">
+	<div class="top-bar" style="width:292px;margin-top:60px;margin-bottom:5px">
+		<h3 style="text-align:center;padding-bottom:10px;margin-bottom:30px;border-bottom: 3px double rgba(34,25,25,0.1);">Login</h3>
+		<a href="/users/auth/facebook" class="btn_oauth facebook" style="background-image: url( /assets/fb-ico.png)">Sign in with Facebook</a>
 
-	<a href="/users/auth/facebook" class="btn_oauth facebook" style="background-image: url( /assets/fb-ico.png)">Sign in with Facebook</a>
-
-	<center><h6 style="margin-bottom:25px"> - Or sign in with email -</h6> </center>
+		<center><h4 style="margin-bottom:25px"> Or sign in with email </h5> </center>
 
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name))  do |f| %>
-  
-   	<div><%= f.email_field :email, :placeholder => "Email", :style => "width:278px;margin-bottom:20px" %></div>
-	<div><%= f.password_field :password , :placeholder => "Password", :style => "margin-bottom:10px;width:278px"%></div>
+	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name))  do |f| %>
+	  
+	   	<div><%= f.email_field :email, :placeholder => "Email", :style => "width:278px;margin-bottom:20px" %></div>
+		<div><%= f.password_field :password , :placeholder => "Password", :style => "margin-bottom:10px;width:278px"%></div>
 
-	<div><%= f.submit "Sign in", :class => "btn btn-success pull-right" %></div>
-	<% if devise_mapping.rememberable? -%>
-	  <div><%= f.check_box :remember_me, :style => "float:left" %>    &nbsp;Remember me </div>
+		<div><%= f.submit "Sign in", :class => "btn btn-success pull-right" %></div>
+		<% if devise_mapping.rememberable? -%>
+		  <div><%= f.check_box :remember_me, :style => "float:left" %>    &nbsp;Remember me </div>
+		<% end %>
+
+		
+		
 	<% end %>
+	</div>
 
-	<div><%= link_to "Forgot your password?", new_password_path(resource_name), :style => "margin-top:35px;float:right;margin-bottom:30px;margin-right:10px;" %></div>
+	<div  style="width:320px;padding:0 2px">
+		<a href="/" style="float:left"> Request invite </a>
+		<%= link_to "Forgot your password?", new_password_path(resource_name), :style => "float:right;" %>
+	</div>
 	
-<% end %>
 </div>
-<!-- <%= render "devise/shared/links" %> -->
+
 
 

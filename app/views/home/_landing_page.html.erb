@@ -5,12 +5,12 @@
 
 <header id="js-header-main" class="header-main">
  <!--      <a class="logo" href="/se/">
-  <img src="http://cf.scdn.co/i/_global/logo.png" alt="Spotify">
+  <img src="" alt="TheGossip">
 </a> -->
     <div class="container-fluid" style="margin:0 auto;max-width:880px; padding:5px 10px">
     <a class="logo" href="/"><h3 style="color:white"> The gossip</h3></a>
-    <a class="pull-right btnx btnx-green" href="/signup" style="margin-top:1em;"> Sign up </a>
-    <a class="pull-right" href="/users/login" style="margin-right:24px;line-height:32px;margin-top:1em"> Login </a>
+    <a class="pull-right btnx btnx-green" href="/users/login" style="margin-top:1em;"> Login </a>
+    <!-- <a class="pull-right" href="/users/login" style="margin-right:24px;line-height:32px;margin-top:1em"> Login </a> -->
     </div>
   </header>
 
@@ -24,15 +24,15 @@
           <h2 class="visible-phone">Welcome to The Gossip</h2>
           <h1 class="hidden-phone">Welcome to The Gossip</h1>
           
-          <p class="lead" >The voice of the city. Rumors and news around you </p>
+          <p class="lead" >The voice of the city. Rumors and news around you. </p>
 
-          <p class="hidden-phone lead">Gossip is invitation based only. Make a request and we'll send you an invite </p>
+          <p class="hidden-phone lead">The Gossip is invitation based only. Make a request and we'll send you an invite. </p>
           <form style="display:inline-block;margin-top:10px;margin-bottom:0px">
             <input id="email" class="pull-left" style="margin-right:10px" type="email" placeholder="Enter your email">
             <a id="request_invite" class="pull-left btnx btnx-green" style="line-height:28px" href="#" > Request an invite</a>
           </form>
           <div id="request_response"> &nbsp;</div>
-            <a href="#features" class="section-arrow section-arrow-big js-ga-event"
+            <a href="#city_voice" class="section-arrow section-arrow-big js-ga-event"
           data-ga-event-category="moreinfo"
           data-ga-event-action="arrow1_home"
           data-ga-event-label="mega"
@@ -65,16 +65,6 @@
   });
   
 </script>
-<!-- <div class="artwork-strip"></div> -->
-
-<div class="visible-desktop scroller-main"
-     data-image="http://cf.scdn.co/i/home/intro-fence.jpg"
-     data-image-mobile="http://cf.scdn.co/i/home/intro-fence-small.jpg"
-     data-width="1600"
-     data-height="837"
-     data-extra-height="128"
-     data-extra-height-mobile="64"></div> <!-- 128px is the bottom area covered by the toplist album artwork strip; number is somewhat arbitrary. -->
-
 <a id="features" class="in-page-anchor" name="features"></a>
 <section id="section-listen-everywhere" class="section-auto-size has-arrow-button-below listen-everywhere"
          data-auto-size="0.6">
@@ -85,144 +75,87 @@
         <h1 style="color:#eb0a4e">Voice of the City</h1>
 
         <p class="lead">
-            Spotify works on your computer, your mobile, your tablet, and your home entertainment system.         <br/>You can even download your favourite music for when you’re offline.
-        </p>
-<!-- 
-        <p class="lead">
-            Spotify works on your computer, your mobile, your tablet, and your home entertainment system.         <br/>You can even download your favourite music for when you’re offline.
-        </p> -->
+            People love gossip. It's the biggest thing that keeps the entertainment industry going.
+              </p>
+         <div class="row">
+          <div class="span3 offset3">
+            <p class="lead" style="color:#eb0a4e">Hey Gossipers </p>
+            <p style="line-height:1.4;font-size:18px;font-weight:200">Things will never be left unsaid anymore. Keep up with everything that's going around in your city. </p>
+          </div>
+          <div class="span3">
+            <p class="lead" style="color:#eb0a4e"> They want to hear the gossip </p>
+            <p style="line-height:1.4;font-size:18px;font-weight:200"> Spread the word and keep your friends in the loop. Share your favourites and invite others to join.</p>
+          </div>
+         </div>
+      
 
       </div>
     </div>
   </div>
 </section>
 <div class="section-arrow-holder">
-  <a href="#search-discover"
+  <a href="#circles"
   class="section-arrow js-ga-event"
   data-ga-event-category="moreinfo"
   data-ga-event-action="arrow2_listen"
   data-ga-event-label="mega"
-  data-target="section-search-discover"></a>
+  data-target="section-circles"></a>
 </div>
 
 <div class="scroller-main"
-     data-image="http://cf.scdn.co/i/home/intro-ipad.jpg"
-     data-image-mobile="http://cf.scdn.co/i/home/intro-ipad-small.jpg"
+    
+     data-image = "/assets/landing_page/gossip2.jpg"
+     data-image-mobile="/assets/landing_page/gossip2-small.jpg"
      data-width="1600"
      data-height="1061"></div>
 
-<section id="section-listen-everywhere" class="section-auto-size has-arrow-button-below listen-everywhere"
+<section id="section-circles" class="section-auto-size has-arrow-button-below listen-everywhere"
          data-auto-size="0.6">
   <div class="container">
     <div class="box">
       <div class="single-column">
        
-        <h1 style="color:#eb0a4e">Follow the hottest topics</h1>
+        <h1 style="color:#eb0a4e">Join circles</h1>
 
         <p class="lead">
-            Spotify works on your computer, your mobile, your tablet, and your home entertainment system.         <br/>You can even download your favourite music for when you’re offline.
+            Gossip is everywhere.<br> Join your friends in circles you're interested in and find news &amp; rumors while they are hot.
         </p>
-<!-- 
         <p class="lead">
-            Spotify works on your computer, your mobile, your tablet, and your home entertainment system.         <br/>You can even download your favourite music for when you’re offline.
-        </p> -->
+          Create circles, invite your friends to join and watch them grow :)
+        </p>
 
       </div>
     </div>
   </div>
 </section>
 <div class="section-arrow-holder">
-  <a href="#playlists"
+  <a href="#topics"
   class="section-arrow js-ga-event"
   data-ga-event-category="moreinfo"
   data-ga-event-action="arrow3_search"
   data-ga-event-label="mega"
-  data-target="section-playlists"></a>
+  data-target="section-hottest-topics"></a>
 </div>
 
 
 <div class="scroller-main"
-     data-image="http://cf.scdn.co/i/home/intro-bike.jpg"
-     data-image-mobile="http://cf.scdn.co/i/home/intro-bike-small.jpg"
+     data-image="/assets/landing_page/gossip3.jpg"
+     data-image-mobile="/assets/landing_page/gossip3-small.jpg"
      data-width="1600"
      data-height="936"></div>
 
-<!-- <section id="section-playlists" class="section-auto-size has-arrow-button-below playlists" data-auto-size="0.6">
-  <div class="container">
-    <a name="playlists"></a>
-
-    <div class="box">
-      <div class="box-innner">
-          <div class="two-columns">
-            <h1>Build your collection</h1>
-
-            <p class="lead">
-              It’s easy to build a personal collection by creating your own playlists. Or if you find a playlist you really like, just add it to your collection.                <span class="desktop-only">Very soon, you'll have the right music for every mood and occasion.</span>
-            </p>
-          </div>
-          <div class="two-columns">
-            <ul class="playlist">
-              <li id="playlistItem1">
-                <a class="playlist-link" href="http://open.spotify.com/user/spotify/playlist/0p36VWCE69lwAoIG6i80Dv">
-                  <i class="icon icon-75 icon-pl-1"></i>
-                </a>
-                  <div class="playlist-item">
-                    <a href="http://open.spotify.com/user/spotify/playlist/0p36VWCE69lwAoIG6i80Dv">
-                      <span class="playlist-name">Beat the commute blues</span>
-                    </a>
-                  </div>
-
-              </li>
-              <li id="playlistItem2">
-                <a class="playlist-link" href="http://open.spotify.com/user/spotify/playlist/5srGoJjNy2FziC51u8HrP1">
-                  <i class="icon icon-75 icon-pl-2"></i>
-                </a>
-                <div class="playlist-item">
-                  <a href="http://open.spotify.com/user/spotify/playlist/5srGoJjNy2FziC51u8HrP1">
-                    <span class="playlist-name">It's party time!</span>
-                  </a>
-                </div>
-              </li>
-              <li id="playlistItem3">
-                <a class="playlist-link" href="http://open.spotify.com/user/spotify/playlist/25p0k2XJ2SVFFKJN6TcUvG">
-                  <i class="icon icon-75 icon-pl-3"></i>
-                </a>
-                <div class="playlist-item">
-                  <a href="http://open.spotify.com/user/spotify/playlist/25p0k2XJ2SVFFKJN6TcUvG">
-                    <span class="playlist-name">Ultimate workout</span>
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-<!-- <div class="section-arrow-holder">
-  <a href="#follow-share"
-  class="section-arrow js-ga-event"
-  data-ga-event-category="moreinfo"
-  data-ga-event-action="arrow4_build"
-  data-ga-event-label="mega"
-  data-target="section-follow-share"></a>
-</div> -->
-<!-- 
-<div class="scroller-main"
-     data-image="http://cf.scdn.co/i/home/intro-guitar.jpg"
-     data-image-mobile="http://cf.scdn.co/i/home/intro-guitar-small.jpg"
-     data-width="1600"
-     data-height="1067"></div> -->
-
-<section id="section-listen-everywhere" class="section-auto-size has-arrow-button-below listen-everywhere"
+<section id="section-hottest-topics" class="section-auto-size has-arrow-button-below listen-everywhere"
          data-auto-size="0.6">
   <div class="container">
     <div class="box">
       <div class="single-column">
-        <h1 style="color:#eb0a4e">Follow &amp; share</h1>
+        <h1 style="color:#eb0a4e">Follow the hottest topics</h1>
 
         <p class="lead">
-            Spotify works on your computer, your mobile, your tablet, and your home entertainment system.         <br/>You can even download your favourite music for when you’re offline.
+            Join the hottest circles and follow people you're interested in.
+        </p>
+        <p class="lead">
+             Search by City or just Explore the current trending topics.
         </p>
       </div>
     </div>
@@ -230,12 +163,12 @@
 </section>
 
 <div class="section-arrow-holder">
-  <a href="#radio"
+  <a href="#about"
   class="section-arrow js-ga-event"
   data-ga-event-category="moreinfo"
   data-ga-event-action="arrow5_follow"
   data-ga-event-label="mega"
-  data-target="section-radio"></a>
+  data-target="section-about"></a>
 </div>
 
 <div class="scroller-main"
@@ -244,15 +177,16 @@
      data-width="1600"
      data-height="866"></div>
 
-<section id="section-listen-everywhere" class="section-auto-size has-arrow-button-below listen-everywhere"
+<section id="section-about" class="section-auto-size has-arrow-button-below listen-everywhere"
          data-auto-size="0.6">
   <div class="container">
     <div class="box">
       <div class="single-column">
-        <h1 style="color:#eb0a4e">Follow &amp; share</h1>
+        <h1 style="color:#eb0a4e">About The Gossip</h1>
 
         <p class="lead">
-            Spotify works on your computer, your mobile, your tablet, and your home entertainment system.         <br/>You can even download your favourite music for when you’re offline.
+            The Gossip is an app that lets you share and explore rumors and news around you. 
+            <br/>It's anonymous and secret if you want to keep your privacy, but it's not intended to attack, insult or mislead other people.
         </p>
       </div>
     </div>
@@ -262,7 +196,7 @@
 </div>
 
 </div> <!--/wrapx-->
-<footer id= "footer-main" class="footer-main group">
+<footer id= "footer-main" class="footer-main">
   <div class="container">
     <nav class="nav-footer">
       <ul>
@@ -273,7 +207,10 @@
           <a href="/terms">Terms</a>
         </li>
         <li class="nav-item">
-          <a href="#" rel="publisher">Social</a>
+          <a href="http://www.facebook.com/333468333431025" target="_blanck" rel="publisher">Facebook</a>
+        </li>
+        <li class="nav-item">
+          <a href="http://twitter.com/LetsGossipIt" target="_blanck" rel="publisher">Twitter</a>
         </li>
       </ul>
     </nav>

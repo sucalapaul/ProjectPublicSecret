@@ -192,18 +192,31 @@ a.x-hover:hover {color:#00a0c6;}
 	border-left:1px solid #dbdbdb;
 	border-right: 1px solid #dbdbdb;
   border-bottom:1px solid rgba(0,0,0,0.1);
-  padding:11px 10px;
+ // padding:11px 10px;
   box-shadow:inset 0 1px 1px #fff;
   text-indent:10px;
  }
 
 .menux ul li a {
+  display: block;
+   padding:11px 10px;
   font-size:14px;
   color:#646363;
   font-size:14px;
   text-decoration:none;
   text-shadow: 1px 1px 1px #fff;
 }
+
+.menux ul li a .icon-chevron-right {
+float: right;
+margin-top: 2px;
+margin-right: 10px;
+opacity: .25;
+}
+.menux ul li:hover .icon-chevron-right {
+opacity: 1;
+}
+
 
 .menux ul li img {
   float:left;

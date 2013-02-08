@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
 
 
-  #after_create :send_welcome_mail
+  after_create :send_welcome_mail
 
   # def self.from_omniauth(auth)
   #   where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|

@@ -29,13 +29,17 @@
 
           <ul class="nav pull-right">
             <% if user_signed_in? %>
-              <li class="visible-desktop dropdown no-border">
+              <li class="visible-desktop dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> You <b class="caret"></b></a>
                 <ul class="dropdown-menu" style="margin-bottom:10px">
-                  <li class="nav-header no-border"><%=current_user.email%></li>
-                  <li class="no-border"><%= link_to 'Edit profile', edit_user_registration_path %></li>
-                  <li class="divider no-border"></li>
-                  <li class="no-border"><%= link_to "Logout", destroy_user_session_path, method: :get %></li>
+                  <li class="nav-header"><%=current_user.name%></li>
+                  <li>  <%= link_to('Your Profile', "/users/"<<current_user.id.to_s())  %></li>
+                  <li><a href="/invites">Invite People</a></li>
+                   <li class="divider"></li>
+                  <li><a href="/terms">Terms</a></li>
+                  <li><a href="/contact">Contact</a></li>
+                  <li class="divider"></li>
+                  <li><%= link_to "Logout", destroy_user_session_path, method: :get %></li>
                 </ul>
               </li>
               <li class="divider-vertical"></li>
