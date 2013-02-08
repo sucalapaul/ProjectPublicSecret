@@ -44,6 +44,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'devise_invitable', '~> 1.0.0'
 gem 'omniauth-facebook'
+gem 'cancan'
 gem 'geoip'
 gem "koala"
 gem 'acts-as-taggable-on'

@@ -2,13 +2,18 @@ class GossipsController < ApplicationController
 
   before_filter :authenticate_user!, except: [:index] 
   
+  load_and_authorize_resource
+  #skip_authorize_resource  :only => :index # asta-i cam hackish, da cred ca merge
+                                          # ok... nu merge, un user nou, logat, pote intra pe index.
+                                          # trebe scos redirectul spre weolcome de aci.
+  
   # GET /gossips
   # GET /gossips.json  
   def index
-    if !user_signed_in? 
-      redirect_to "/welcome" and return
-    end
-@gossips = current_user.gossips_feed.order("created_at desc") .page(params[:page]).per_page(10)
+    # if !user_signed_in? 
+    #   redirect_to "/welcome" and return
+    # end
+    @gossips = current_user.gossips_feed.order("created_at desc") .page(params[:page]).per_page(10)
 
 
 
