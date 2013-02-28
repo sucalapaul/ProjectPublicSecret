@@ -32,9 +32,9 @@ ProjectPublicSecret::Application.configure do
     :port                 => 587,
     :domain               => 'letsgossip.it',
     :user_name            => 'cristianrosu',
-    :password             => 'ptMAf_wrtATrVMxtC4w9mw ',
+    :password             => 'ptMAf_wrtATrVMxtC4w9mw',
     :authentication       => 'plain',
-    :enable_starttls_auto => true  
+    :enable_starttls_auto => true # detects and uses STARTTLS  
   }
 
   config.action_mailer.default_url_options = { :host => 'letsgossip.it' }
