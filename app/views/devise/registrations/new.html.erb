@@ -1,5 +1,9 @@
-<div style="width:292px;margin:0 auto;margin-top:75px;">
 
+<div style="width:322px;margin:0 auto;margin-top:75px;">
+  <div class="top-bar clearfix" style="width:292px;margin-top:60px;margin-bottom:5px">
+    <h3 style="text-align:center;padding-bottom:10px;margin-bottom:30px;border-bottom: 3px double rgba(34,25,25,0.1);">One more step</h3>
+
+    <center><h4 style="margin-bottom:25px"> Choose an anonymous nickname </h4> </center>
 
 <% if INVITE_ONLY %>
   <% if resource.invitation_token.blank? %>
@@ -54,12 +58,13 @@
 
     <div><input name="user[terms]" type="hidden" value="0" /><input id="user_terms" name="user[terms]" style="float:left" type="checkbox" value="1" /><p style="font-size:12px"> &nbsp; &nbsp;I agree with the <a href="/terms">Terms and conditions</a> </p></div>
 
-  <div><input id="form_submit"class="btn btn-success pull-right" name="commit" style="margin-bottom:30px;" type="submit" value="Sign up" /></div>
+  <div><input id="form_submit"class="btn btn-success pull-right" name="commit"  type="submit" value="Sign up" /></div>
 
 
 
 <% end %>
 
+</div>
 </div>
 
 <script type="text/javascript">
