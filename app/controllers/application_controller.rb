@@ -1,6 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+
+  rescue_from CanCan::AccessDenied do |exception|
+    #flash[:error] = "Access denied!"
+    #redirect_to "/403.html"
+    redirect_to "/welcome"
+  end
+
   private
   #this gives access in views to the current controller and action, so that you can display partial with conditions
   before_filter :instantiate_controller_and_action_names

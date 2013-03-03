@@ -466,8 +466,8 @@ $(document).ready(function() {
 		    }
 
 		    city_name = place.address_components[0].long_name;
-		    city_longitude = place.geometry.location.hb;
-		    city_latitude = place.geometry.location.gb;
+		    city_longitude = place.geometry.location.lng();
+		    city_latitude = place.geometry.location.lat();
 		  });
 	}
 });

@@ -74,7 +74,7 @@
 
 
 	function sendInvites(fb_ids, selector) {
-	  var link_url = '<%= "http://pinterest.com/invited/?code=#{@invite.token}" %>';// '<%= "#{SITE_URL}invited/#{@invite.token}" %>';
+	  var link_url = '<%= "#{SITE_URL}invited/#{@invite.token}" %>';
 	  FB.ui({
 	      method: "send",
 	      to: fb_ids,

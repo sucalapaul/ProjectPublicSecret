@@ -15,6 +15,8 @@ ProjectPublicSecret::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
+  config.action_mailer.delivery_method = :smtp
+
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = true
 
@@ -23,9 +25,9 @@ ProjectPublicSecret::Application.configure do
     :port                 => 587,
     :domain               => 'letsgossip.it',
     :user_name            => 'cristianrosu',
-    :password             => 'ptMAf_wrtATrVMxtC4w9mw ',
+    :password             => 'ptMAf_wrtATrVMxtC4w9mw',
     :authentication       => 'plain',
-    :enable_starttls_auto => true  
+    :enable_starttls_auto => true # detects and uses STARTTLS  
   }
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
