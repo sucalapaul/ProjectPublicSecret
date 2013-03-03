@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :nickname, :circles_names, :name, :invitation_token, :terms, :retry_count
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :nickname, :circles_names, :name, :invitation_token, :terms, :retry_count, :roles_mask
   # attr_accessible :title, :body
 
   attr_accessor :terms, :retry_count
@@ -49,11 +49,14 @@ class User < ActiveRecord::Base
   validates_presence_of :nickname
   validates_uniqueness_of :nickname, :message => "Sorry, that nickname is already taken"
   validates :nickname, :length => { :minimum => 4 }
-  validates :password, :length => { :minimum => 6 }
   validates_presence_of :invitation_token, :message => "You need an invite to sign up", :on => :create, :if => lambda { INVITE_ONLY }
   validate :invitation_token_valid, :if => lambda { INVITE_ONLY } && :invitation_token, :on => :create  
   validates_acceptance_of :terms
   validate :increase_retry_count
+
+  #named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0 "} }
+
+  ROLES = %w[admin moderator gossiper new_user banned]
 
 
   def self.from_omniauth(auth)
@@ -121,38 +124,54 @@ class User < ActiveRecord::Base
     end
   end
 
-
-def facebook
-  @facebook ||= Koala::Facebook::API.new(oauth_token)
-end
-
-def self.get_fb_friends()
-    if self.provider != "facebook"
-      user = User.where("email = ? AND provider = ?", "sucalas_lab@yahoo.com", "facebook").first
-    end
-    return self.facebook.get_connection("me", "friends")
-  rescue Koala::Facebook::APIError
-    logger.info e.to_s
-    e.to_s
+  def roles=(roles)
+    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
   end
 
-end
+  def roles
+    ROLES.reject do |r|
+      ((roles_mask || 0) & 2**ROLES.index(r)).zero?
+    end
+  end
 
-def increase_retry_count
-  self.retry_count = self.retry_count.nil? ? 0 : self.retry_count + 1
-end
+  def is?(role)
+    roles.include?(role.to_s)
+  end
 
-#send confirmation email after creating the user
-def send_welcome_mail
-  UserMailer.signup_confirmation(self).deliver
-end
 
-private 
+  def increase_retry_count
+    self.retry_count = self.retry_count.nil? ? 0 : self.retry_count + 1
+  end
 
-def invitation_token_valid
-  return if invitation_token.blank?
-  unless Invite.find_by_token(self.invitation_token)
-    errors.add :invitation_token, 'Invitation code is not valid'
-end
+  #send confirmation email after creating the user
+  def send_welcome_mail
+    UserMailer.signup_confirmation(self).deliver
+  end
+
+  def facebook
+    @facebook ||= Koala::Facebook::API.new(oauth_token)
+  end
+
+  # pizda masii de metoda!!
+  # nu mai scrie nimic dupa asta, ca nu iti ia
+  def self.get_fb_friends()
+      if self.provider != "facebook"
+        user = User.where("email = ? AND provider = ?", "sucalas_lab@yahoo.com", "facebook").first
+      end
+      return self.facebook.get_connection("me", "friends")
+    rescue Koala::Facebook::APIError
+      logger.info e.to_s
+      e.to_s
+    end
+
+  end
+
+  private 
+
+  def invitation_token_valid
+    return if invitation_token.blank?
+    unless Invite.find_by_token(self.invitation_token)
+      errors.add :invitation_token, 'Invitation code is not valid'
+  end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130205140057) do
+ActiveRecord::Schema.define(:version => 20130205235543) do
 
   create_table "circle_gossips", :force => true do |t|
     t.integer  "circle_id"
@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(:version => 20130205140057) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+    t.integer  "roles_mask",                           :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

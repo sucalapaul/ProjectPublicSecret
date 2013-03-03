@@ -1,6 +1,7 @@
 class CirclesController < ApplicationController
 
  before_filter :authenticate_user!
+ load_and_authorize_resource :except => [:search, :mycircles, :join]
 
   # GET /circles
   # GET /circles.json
