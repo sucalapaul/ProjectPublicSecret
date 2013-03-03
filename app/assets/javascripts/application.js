@@ -289,6 +289,17 @@ function search_circle() {
 }
 
 
+  function sendRequestViaMultiFriendSelector() {
+    FB.ui({method: 'apprequests',
+      message: 'My Great Request'
+    }, requestCallback);
+  }
+  
+  function requestCallback(response) {
+    // Handle callback here
+    console.log(response);
+  }      
+
 var city_latitude = 0;
 var city_longitude = 0;
 var city_name = "";

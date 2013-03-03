@@ -31,7 +31,7 @@ get "circles/search"
   get "home/terms"
   get "home/index"
   match '/terms' => 'home#terms'
-  match '/welcome' => 'home#index'
+  match '/welcome' => 'home#welcome'
   match '/contact' => 'home#contact'
 
   get "users/index"

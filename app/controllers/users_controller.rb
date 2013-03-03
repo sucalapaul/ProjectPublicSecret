@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
 	def index
-		@user = User.find(3, :include => [:gossips], :include => [:circles], :include => [:followers])
+		@user = User.find(current_user, :include => [:gossips], :include => [:circles], :include => [:followers])
 
 		respond_to do |format|
 		  format.html # show.html.erb

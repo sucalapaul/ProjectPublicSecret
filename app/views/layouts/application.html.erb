@@ -58,9 +58,9 @@
 </script>
 </head>
 
-<% if !user_signed_in? && @current_controller=='home' && @current_action=="index"%> 
+<% if @current_controller=='home' && @current_action=="welcome"%> 
 
- <%= render "landing_page" %>
+  <%= yield %>
 
 <% else %>
 
@@ -144,6 +144,7 @@
 
             <div class="clearfix people">
               <a href="" style="font-size:12px;float:right">View all</a>
+              <a href="#" onclick="sendRequestViaMultiFriendSelector(); return false;" style="font-size:12px;float:right">Invite</a>
               <p> People in this Circle </p>
               
               <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
