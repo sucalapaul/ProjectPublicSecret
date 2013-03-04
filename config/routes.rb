@@ -33,6 +33,7 @@ get "circles/search"
   match '/terms' => 'home#terms'
   match '/welcome' => 'home#welcome'
   match '/contact' => 'home#contact'
+  match '/profile' => 'users#index'
 
   get "users/index"
 

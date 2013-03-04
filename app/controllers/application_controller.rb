@@ -5,7 +5,13 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     #flash[:error] = "Access denied!"
     #redirect_to "/403.html"
-    redirect_to "/welcome"
+    # redirect_to "/welcome"
+    if user_signed_in?
+      redirect_to "/profile"
+    else
+      redirect_to "/welcome"
+    end
+
   end
 
   private

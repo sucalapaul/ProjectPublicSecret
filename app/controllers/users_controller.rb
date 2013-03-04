@@ -1,12 +1,16 @@
 class UsersController < ApplicationController
 
+  before_filter :authenticate_user!, except: [:valid_nickname, :request_invite] 
+  load_and_authorize_resource :except => [:index, :valid_nickname, :request_invite]
+
 	def index
 		@user = User.find(current_user, :include => [:gossips], :include => [:circles], :include => [:followers])
 
-		respond_to do |format|
-		  format.html # show.html.erb
-		  format.json { render json: @circle }
-		end	
+    render "show"
+		# respond_to do |format|
+		#   format.html # show.html.erb
+		#   format.json { render json: @circle }
+		# end	
 	end
 
 	# GET /users/1
