@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :authenticate_user!, except: [:valid_nickname, :request_invite] 
-  load_and_authorize_resource :except => [:index, :valid_nickname, :request_invite]
+  load_and_authorize_resource :except => [:index, :valid_nickname, :request_invite, :follow]
 
 	def index
 		@user = User.find(current_user, :include => [:gossips], :include => [:circles], :include => [:followers])
