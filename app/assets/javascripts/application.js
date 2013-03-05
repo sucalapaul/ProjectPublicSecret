@@ -295,7 +295,7 @@ function search_circle() {
 		  'me/thegossip:start',
 		  'post',
 		  {
-		    object: "http://letsgossip.it"
+		    object: "http://samples.ogp.me/226075010839791"
 		  },
 		  function(response) {
 		    console.log(response);
