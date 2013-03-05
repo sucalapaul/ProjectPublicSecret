@@ -10,8 +10,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	    	user.invitation_token = session["invite_token"]
 	    	session["invite_token"] = nil
 	      session["devise.user_attributes"] = user.attributes
-	      RestClient.post("https://graph.facebook.com/me/thegossip:join?access_token=#{user.oauth_token}&object=http://letsgossip.it"
 
+#	      RestClient.post("https://graph.facebook.com/me/thegossip:join?access_token=#{user.oauth_token}&object=http://letsgossip.it"
 
 	      redirect_to new_user_registration_url
 	    end
