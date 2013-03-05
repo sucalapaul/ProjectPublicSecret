@@ -35,6 +35,8 @@ get "circles/search"
   match '/contact' => 'home#contact'
   match '/profile' => 'users#index'
 
+  match '/fb/obj'
+
   get "users/index"
 
 
