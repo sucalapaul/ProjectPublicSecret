@@ -292,7 +292,7 @@ function search_circle() {
 	function postStartUsingGossip() {
 		console.log("start");
 		FB.api(
-		  'me/thegossip:join',
+		  'me/thegossip:start',
 		  'post',
 		  {
 		    object: "http://letsgossip.it"
