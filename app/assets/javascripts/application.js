@@ -289,8 +289,19 @@ function search_circle() {
 }
 
 
-
-
+	function postStartUsingGossip() {
+		console.log("start");
+		FB.api(
+		  'me/thegossip:join',
+		  'post',
+		  {
+		    object: "http://letsgossip.it"
+		  },
+		  function(response) {
+		    console.log(response);
+		  }
+		);
+	}
 
   function sendRequestViaMultiFriendSelector() {
     FB.ui({method: 'apprequests',
