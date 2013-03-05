@@ -289,6 +289,9 @@ function search_circle() {
 }
 
 
+
+
+
   function sendRequestViaMultiFriendSelector() {
     FB.ui({method: 'apprequests',
       message: 'My Great Request'

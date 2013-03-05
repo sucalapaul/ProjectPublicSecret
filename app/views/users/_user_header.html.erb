@@ -38,3 +38,19 @@
 		</ul>
 	</div>
 </div>
+
+<script type="text/javascript">
+function postObject() {
+	console("start");
+	FB.api(
+	  'me/thegossip:join'
+	  'post',
+	  {
+	    object: "http://samples.ogp.me/226075010839791"
+	  },
+	  function(response) {
+	    console.log(response);
+	  }
+	);
+}
+</script>
