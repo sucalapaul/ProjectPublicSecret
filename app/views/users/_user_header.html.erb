@@ -40,6 +40,19 @@
 </div>
 
 <script type="text/javascript">
+function futPeMata(){
+	FB.api(
+	  'me/thegossip:start'
+	  'post',
+	  {
+	    object: "http://samples.ogp.me/226075010839791"
+	  },
+	  function(response) {
+	    // handle the response
+	    console.log(response);
+	  }
+	);
 
+}
 
 </script>
