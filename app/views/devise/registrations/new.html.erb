@@ -73,10 +73,11 @@
 
     var isError = false;
     var nickTaken = true;
+    var posted = false;
 
-    postStartUsingGossip();
 
     $('#form_submit').click(function () {
+      postStartUsingGossip();
 
       <% if INVITE_ONLY %>
         <% if resource.invitation_token.blank? %>
