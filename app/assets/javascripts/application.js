@@ -290,14 +290,14 @@ function search_circle() {
 
 
 	function postStartUsingGossip() {
-		console.log("start");
 		FB.api(
 		  'me/thegossip:start',
 		  'post',
 		  {
-		    object: "http://samples.ogp.me/226075010839791"
+		    object: "http://letsgossip.it/fbstart.html"
 		  },
 		  function(response) {
+		    // handle the response
 		    console.log(response);
 		  }
 		);
