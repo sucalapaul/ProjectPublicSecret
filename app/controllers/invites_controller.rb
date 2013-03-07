@@ -1,6 +1,6 @@
 class InvitesController < ApplicationController
 
-	before_filter :authenticate_user!, except: [:signup]
+	before_filter :authenticate_user!, except: [:signup, :fb_using_action]
 
 	def index
 		
