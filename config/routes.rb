@@ -35,6 +35,7 @@ get "circles/search"
   match '/contact' => 'home#contact'
   match '/profile' => 'users#index'
 
+  match '/test132', :to => redirect('/fbstart01.html')
 
   get "users/index"
 
