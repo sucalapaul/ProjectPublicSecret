@@ -30,6 +30,6 @@ class InvitesController < ApplicationController
 
 	# the object for "Using" activity
 	def fb_using_action
-		# render the view
+		render layout: false
 	end
 end
