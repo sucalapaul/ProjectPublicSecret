@@ -228,7 +228,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
-  config.omniauth :facebook, FB_APP_ID, FB_APP_SECRET, :scope => 'publish_actions'
+  config.omniauth :facebook, FB_APP_ID, FB_APP_SECRET, :scope => 'email,publish_actions'
 
   #config.omniauth :eventbrite, 'QOOBYRXNVJMH3B4QRM', 'KSK2LS3BN63UCUHTNYUWSOL5OF4OTTCM7TQSDTUGO6TRKSMZXG' #theseedbit.com
   # config.omniauth :eventbrite, 'C4CYJAXZO7O4QNZOYL', '336L4VADXCF56RGFLPQU2YPXSNZTHO4FNA2YHL2NFUR2KVYTZY' #develop local
