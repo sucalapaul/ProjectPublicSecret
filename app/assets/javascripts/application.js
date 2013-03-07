@@ -290,6 +290,7 @@ function search_circle() {
 
 
 	function postStartUsingGossip() {
+		//deprecated
 		FB.api(
 		  'me/thegossip:start',
 		  'post',
@@ -301,6 +302,21 @@ function search_circle() {
 		    console.log(response);
 		  }
 		);
+	}
+
+	function postActivityGossipUse(obj) {
+		FB.api(
+		  'me/thegossip:use',
+		  'post',
+		  {
+		    object: obj
+		  },
+		  function(response) {
+		    // handle the response
+		    console.log(response);
+		  }
+		);
+
 	}
 
   function sendRequestViaMultiFriendSelector() {

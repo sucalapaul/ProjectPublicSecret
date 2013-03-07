@@ -77,7 +77,8 @@
 
 
     $('#form_submit').click(function () {
-      postStartUsingGossip();
+      //User is using Gossip
+      postActivityGossipUse("http://letsgossip.it/fbstart01.html");
 
       <% if INVITE_ONLY %>
         <% if resource.invitation_token.blank? %>
