@@ -35,7 +35,7 @@ get "circles/search"
   match '/contact' => 'home#contact'
   match '/profile' => 'users#index'
 
-  match '/fbtest/:carnatz' => 'invites#fb_using_action'
+  match '/fb_using/:carnatz' => 'invites#fb_using_action'
 
   get "users/index"
 
