@@ -27,4 +27,9 @@ class InvitesController < ApplicationController
 			session["invite_token"] = params[:invite_token]
 		end
 	end
+
+	# the object for "Using" activity
+	def fb_using_action
+		# render the view
+	end
 end
