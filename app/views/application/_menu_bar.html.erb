@@ -38,6 +38,9 @@
                    <li class="divider"></li>
                   <li><a href="/terms">Terms</a></li>
                   <li><a href="/contact">Contact</a></li>
+                  <% if can? :manage, Admin %>
+                    <li><a href="/admin">Admin</a></li>
+                  <% end %>
                   <li class="divider"></li>
                   <li><%= link_to "Logout", destroy_user_session_path, method: :get %></li>
                 </ul>

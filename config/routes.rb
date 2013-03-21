@@ -32,6 +32,7 @@ get "circles/search"
   get "home/terms"
   get "home/index"
   get "invites/accept"
+  get "admin/", to: "admin#index"
 
   match '/terms' => 'home#terms'
   match '/welcome' => 'home#welcome'
