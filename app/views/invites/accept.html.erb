@@ -1,0 +1,49 @@
+
+<div class="top-bar clearfix" style="padding:50px 20px; background:white">
+	<h3 style="text-align:center">Invite requests</h3>
+	<p class="intro">Accept invitations</p>
+	<div class="row">
+		<div class="span5">
+			<h3 style="padding-bottom:10px;border-bottom: 3px double rgba(34,25,25,0.1);"> Early birds </h3>
+			<!-- input id="search-friends" type="text" class="search" placeholder="Search for people" / -->
+			<ul id="invite_list" class="InvitesList">
+				<% @inviteRequests.each_with_index do |invite, index| %>
+					<li class="friend" data-bind="id">
+			    		<button type="button" data-email="<%= invite.email %>" class="btn btn-primary pull-right <%= invite.invited>0 ? "disabled" : "accept_invite" %> btnx-blue">Invite</button>
+			  			<!-- img data-bind="profilePicture" class="InvitesProfileImage" src="" alt="" -->
+			  			
+			    		<div class="individual">
+			        	<div class="searchable" data-bind="name"><%= "#{index}.	#{invite.email}" %></div>
+					    </div>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+
+		$(".accept_invite").click(function() {
+			var self = this;
+			var email = $(self).data("email");
+
+			var jqxhr = $.post("/invites/accepted", { "user[email]": email },
+				function(data) {
+					console.log(data);
+					if (data == 1) {
+						$(self).addClass("disabled").removeClass("accept_invite");
+					}
+				}, "json" )
+				.error( function() {
+					showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+				});
+
+		})
+
+	})
+
+</script>

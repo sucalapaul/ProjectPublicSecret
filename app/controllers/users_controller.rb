@@ -40,15 +40,15 @@ class UsersController < ApplicationController
 
     respond_to do |format|
 
-      if request.persisted?
-        format.json { render json: { status: "created" }, status: :created }
-      else
+      # if request.persisted?
+      #   format.json { render json: { status: "created" }, status: :created }
+      # else
         if request.save
           format.json { render json: { status: "created" }, status: :created }
         else
           format.json {render json: { status: "error" }}
         end
-      end
+      # end
     end
   end
 

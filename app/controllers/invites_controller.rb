@@ -1,6 +1,7 @@
 class InvitesController < ApplicationController
 
 	before_filter :authenticate_user!, except: [:signup, :fb_using_action]
+	load_and_authorize_resource :except => [:index, :signup, :fb_using_action]
 
 	def index
 		
@@ -22,6 +23,32 @@ class InvitesController < ApplicationController
 
 	end
 
+	def accept
+		@inviteRequests = InviteRequest.all
+
+		respond_to do |format|
+      format.html # index.html.erb
+    end
+	end
+
+	def accepted
+		#
+
+		invite = InviteRequest.find_by_email(params[:user][:email])
+
+		sts = 0
+
+		if invite
+			UserMailer.invite_accepted(invite.email).deliver
+			InviteRequest.update_counters(invite.id, invited: 1)
+			sts = 1
+		end
+
+		respond_to do |format|
+      format.json { render json: sts, status: :created }
+    end
+	end
+
 	def signup
 		if params[:invite_token]
 			session["invite_token"] = params[:invite_token]
@@ -32,4 +59,6 @@ class InvitesController < ApplicationController
 	def fb_using_action
 		render layout: false
 	end
+
+
 end

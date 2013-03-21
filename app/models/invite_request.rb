@@ -2,7 +2,7 @@ class InviteRequest < ActiveRecord::Base
   attr_accessible :email, :invited, :registered
 
 
-  after_create :send_subscribe_mail
+  after_save :send_subscribe_mail
 
 
   #send request email from homepage

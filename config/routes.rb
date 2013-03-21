@@ -16,7 +16,7 @@ get "circles/search"
   resources :gossip_votes  
   resources :circle_users
   resources :users  
-  resources :invites     
+  #resources :invites     
 
   root :to => 'gossips#index'
 
@@ -26,14 +26,20 @@ get "circles/search"
 
   post 'verify/nickname', to: 'users#valid_nickname'
   post 'requestinvite/', to: 'users#request_invite'
+  post '/invites/accepted', to: 'invites#accepted'
 
   get "home/contact"
   get "home/terms"
   get "home/index"
+  get "invites/accept"
+
   match '/terms' => 'home#terms'
   match '/welcome' => 'home#welcome'
   match '/contact' => 'home#contact'
   match '/profile' => 'users#index'
+  match '/invites' => 'invites#index'
+
+  #match 'invites/accept' => 'invites#accept'
 
   match '/fb_using/:carnatz' => 'invites#fb_using_action'
 
