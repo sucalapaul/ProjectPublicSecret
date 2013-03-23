@@ -142,9 +142,12 @@
                   <ul>
                     <li><a href="<%= gossips_path %>" ><img src="/assets/img_trans.gif" class="sprite sprite-feed"> Feed</a></li>
                     <li><a href="<%= circles_path %>" ><img src="/assets/img_trans.gif" class="sprite sprite-circles"> Circles</a></li>
-                    <li><a href="#"><img src="/assets/img_trans.gif" class="sprite sprite-pin"> Cities</a></li>
-                    <li><a href="#"><img src="/assets/img_trans.gif" class="sprite sprite-people"> People</a></li>
+                    <li><a href="/circles#city"><img src="/assets/img_trans.gif" class="sprite sprite-pin"> Cities</a></li>
+                    <!-- li><a href="#"><img src="/assets/img_trans.gif" class="sprite sprite-people"> People</a></li -->
+                  <% if can? :create, Circle %>
                     <li><a href="/circles/new" ><img src="/assets/img_trans.gif" class="sprite sprite-add"> New Circle</a></li>
+                  <% end %>
+                  
                   </ul>
               </div>         
             </div>

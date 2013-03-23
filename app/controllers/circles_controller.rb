@@ -12,7 +12,7 @@ class CirclesController < ApplicationController
       @circles = Circle.tagged_with(params[:tag]).paginate(:page => params[:circle_page], :per_page => 10)
     else
       @c = GeoIP.new('data/GeoLiteCity.dat').city(client_ip) #iau orasul
-
+      flash.notice = client_ip
       if @c != nil
         #iau id-urile oraselor care corespund coordonatelor, doar daca am gasit ceva oras cu ip-ul dat
         @city_id = City.find(:all, :select => 'id', :conditions => ["abs(latitude - ?) < 0.1 AND abs(longitude - ?) < 0.1", @c.latitude, @c.longitude] )
@@ -22,6 +22,8 @@ class CirclesController < ApplicationController
 
       @circles = Circle.where(:city_id => @city_id).paginate(:page => params[:circle_page], :per_page => 10)
     end
+
+    @hide_invite_button = true
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,6 +44,8 @@ class CirclesController < ApplicationController
       circle.joined = current_user.already_joined?(circle.id)
 
     end
+
+    @hide_invite_button = true
     #@circles = Circle.find(:all, :conditions => [:city_id => @city_id], :include => [:city])
     respond_to do |format|
       format.html # index.html.erb
@@ -62,6 +66,8 @@ class CirclesController < ApplicationController
     @circles.each do |circle|
       circle.joined = current_user.already_joined?(circle.id)
     end
+
+    @hide_invite_button = true
     
     respond_to do |format|
       format.html # index.html.erb
@@ -72,10 +78,19 @@ class CirclesController < ApplicationController
     end
   end
 
+  def preview
+    # not used
+
+    # preview of the circle header 
+    # and ask for login with facebook
+  end
+
 
   # GET /circles/1
   # GET /circles/1.json
   def show
+
+    # render action: "preview" and return
     @circle = Circle.find(params[:id], :include => [:gossips])
 
     @circle.gossips.each do |g|

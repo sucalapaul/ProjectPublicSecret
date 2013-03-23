@@ -15,8 +15,11 @@
             <%if current_user.already_joined?(circle.id) %>
                 <a style="margin-top:10px;" data-count="<%= circle.people_count %>" class="joined-circle join-circle-btn pull-right btnx btnx-blue"><span class="joined"><i class="icon-ok"></i> Joined</span> <span class="leave"><i class="icon-remove"></i> Leave Circle </span></a>
             <% else %>
-                <a style="margin-top:10px;" data-count="<%= circle.people_count %>" class="join-circle join-circle-btn pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle </a>
+                <a style="margin-top:10px;" data-count="<%= circle.people_count %>" class="join-circle join-circle-btn pull-right btnx btnx-blue"><i class="icon-plus"></i> Join Circle </a>                
             <%end%>
+            <% if @hide_invite_button.nil? || @hide_invite_button == false  %>
+                <a href="#" onclick='sendRequestViaMultiFriendSelector("Join this Circle!"); return false;' style="margin-top:10px; margin-right:15px" class="pull-right btnx btnx-blue"><i class="icon-plus"></i> Invite friends </a>
+            <% end %>
             <!-- If is template -->
           <%end%>
             <ul class="stats" style="margin:0px">

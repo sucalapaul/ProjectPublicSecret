@@ -2,7 +2,7 @@ class GossipsController < ApplicationController
 
   before_filter :authenticate_user!, except: [:index] 
   
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:index] 
   #skip_authorize_resource  :only => :index # asta-i cam hackish, da cred ca merge
                                           # ok... nu merge, un user nou, logat, pote intra pe index.
                                           # trebe scos redirectul spre weolcome de aci.
@@ -10,24 +10,35 @@ class GossipsController < ApplicationController
   # GET /gossips
   # GET /gossips.json  
   def index
-    # if !user_signed_in? 
-    #   redirect_to "/welcome" and return
-    # end
+    #redirect_to "/gossips/9" and return
 
     # TODO: move handling facebook requests from here
     Rails.logger.debug("dbg:1 #{params[:request_ids]}, clasa: #{params[:request_ids].class}")
     if params[:request_ids]
-      rid = params[:request_ids].split[","].last
+      rid = params[:request_ids].split(",").last
       Rails.logger.debug("dbg:1 #{rid}, clasa: #{rid.class}") 
-      facebookRequest = FacebookRequest.where(rid: rid)
-      redirect_to URI.join(SITE_URL, facebookRequest.url) and return
+      
 
+      if !user_signed_in?
+        facebookRequest = FacebookRequest.where(rid: rid).first        
+      else
+        facebookRequest = FacebookRequest.where(rid: rid, to_user_id: current_user.uid).first
+        facebookRequest.click_date = Time.now
+        facebookRequest.app_request_type = params[:app_request_type]
+        facebookRequest.ref = params[:ref]
+        facebookRequest.save
+      end
+
+      path = File.join(SITE_URL, facebookRequest.url)
+      # URI.join(SITE_URL, facebookRequest.url)
+      redirect_to path and return
+    end
+
+    if !user_signed_in? 
+      redirect_to "/welcome" and return
     end
 
     @gossips = current_user.gossips_feed.order("created_at desc") .page(params[:page]).per_page(10)
-
-
-
     @gossips.each do |g|
       g.last_comments = Comment.where("gossip_id = ?", g.id).order("created_at desc").limit(COMMENTS_PER_GOSSIP).reverse
 
