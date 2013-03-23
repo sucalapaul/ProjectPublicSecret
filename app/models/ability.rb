@@ -36,7 +36,7 @@ class Ability
 
   def gossiper
     can :read, Circle   
-    can :create, Circle
+    # can :create, Circle
 
     can :read, Comment
     can :create, Comment

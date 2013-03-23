@@ -13,6 +13,17 @@ class GossipsController < ApplicationController
     # if !user_signed_in? 
     #   redirect_to "/welcome" and return
     # end
+
+    # TODO: move handling facebook requests from here
+    Rails.logger.debug("dbg:1 #{params[:request_ids]}")
+    debugger
+    if params[:request_ids]
+      rid = params[:request_ids].last
+      facebookRequest = FacebookRequest.where(rid: rid)
+      redirect_to URI.join(SITE_URL, facebookRequest.url) and return
+
+    end
+
     @gossips = current_user.gossips_feed.order("created_at desc") .page(params[:page]).per_page(10)
 
 

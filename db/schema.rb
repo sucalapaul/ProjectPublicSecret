@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130205235543) do
+ActiveRecord::Schema.define(:version => 20130323004550) do
+
+  create_table "admins", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "circle_gossips", :force => true do |t|
     t.integer  "circle_id"
@@ -58,6 +63,21 @@ ActiveRecord::Schema.define(:version => 20130205235543) do
     t.datetime "updated_at", :null => false
     t.boolean  "private"
   end
+
+  create_table "facebook_requests", :force => true do |t|
+    t.string   "rid"
+    t.string   "user_id"
+    t.string   "url"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "to_user_id"
+    t.string   "ref"
+    t.string   "app_request_type"
+    t.datetime "click_date"
+  end
+
+  add_index "facebook_requests", ["rid"], :name => "index_facebook_requests_on_rid"
+  add_index "facebook_requests", ["user_id"], :name => "index_facebook_requests_on_user_id"
 
   create_table "followers", :force => true do |t|
     t.integer  "user_id"

@@ -3,7 +3,29 @@
 <script type="text/javascript">
   currentCircleId = <%= @circle.id %>;
 </script>
+<% content_for :submenu_1 do %>
+
+	<div class="clearfix people">
+	  <a href="" style="font-size:12px;float:right">View all</a>
+	  <a href="#" onclick='sendRequestViaMultiFriendSelector("Join this Circle!"); return false;' style="font-size:12px;float:right">Invite</a>
+	  <p> People in this Circle </p>
+	  
+	  <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
+	  <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
+	  <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
+	  <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
+	  <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
+	  <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
+	  <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
+	  <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
+	  <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
+	  <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
+	  <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>          
+	</div>
+<% end %>
+
 <%= render partial: "circle_header", locals: { circle: @circle }, formats: [:html] %>
+
 <div style="position:relative;height:20px;">&nbsp;</div>
 <!-- 	<div class="top-bar" style="margin-top:-20px;width:480px; background:#fff;padding:20px 60px;">
 		<h3> People in this Circle </h3>

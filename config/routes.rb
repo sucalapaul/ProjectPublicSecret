@@ -16,6 +16,7 @@ get "circles/search"
   resources :gossip_votes  
   resources :circle_users
   resources :users  
+  resources :facebook_requests
   #resources :invites     
 
   root :to => 'gossips#index'

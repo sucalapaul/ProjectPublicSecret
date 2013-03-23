@@ -319,16 +319,48 @@ function search_circle() {
 
 	}
 
-  function sendRequestViaMultiFriendSelector() {
+  function sendRequestViaMultiFriendSelector(message) {
     FB.ui({method: 'apprequests',
-      message: 'My Great Request'
+      message: message
     }, requestCallback);
   }
   
-  function requestCallback(response) {
-    // Handle callback here
-    console.log(response);
+  function requestCallback(requestObject) {
+
+  	// Facebook returns an object containing 
+  	//   - a request ID
+  	//   - a list of userIDs to which was this request sent 
+
+  	requestObject.url = window.location.pathname;
+  	var jqxhr = $.post("/facebook_requests", requestObject, 
+  		function(data){
+  			// don't even bother
+  		}, "json")
+  	.error(function(){
+  		// don't care :P
+  	});
+
+    console.log(requestObject);
   }      
+
+		// var jqxhr = $.post("/gossips", form.serialize(),
+		// 	function(data) {
+		// 		console.log(data);
+		// 		// redirect to circle where was this gossip posted
+		// 		if (typeof currentCircleId === 'undefined' || currentCircleId != gossipCircleId ) {
+		// 			window.location.href = "/circles/" + gossipCircleId;
+		// 		}
+
+		// 		$(form).find("input[type=text], textarea").val("");
+		// 		$(form).slideUp();
+		// 		$(".gossip-post:first").before(data.html);
+		// 		$(".gossip-post:first").slideDown().find("abbr.timeago").timeago();
+
+		// 	}, "json")
+		// 	.error(function() {
+		// 		showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+		// 	}
+		// );  
 
 var city_latitude = 0;
 var city_longitude = 0;

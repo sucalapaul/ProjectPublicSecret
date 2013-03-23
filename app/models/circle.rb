@@ -1,16 +1,8 @@
 class Circle < ActiveRecord::Base
 
-	def city_name
-	end
-  
-	def city_lat
-	end
+  attr_accessor :joined, :city_name, :city_long, :city_lat
+  attr_accessible :city_id, :description, :gossip_count, :name, :people_count, :city, :tag_list, :city_name, :city_lat, :city_long
 
-	def city_long
-	end
-
-  attr_accessible :city_id, :description, :gossip_count, :name, :people_count, :city_name, :city_lat, :city_long, :city, :tag_list
-  attr_accessor :joined
 
   acts_as_taggable
 

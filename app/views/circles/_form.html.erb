@@ -65,13 +65,24 @@
         }
 
         city_name = place.address_components[0].long_name;
-        $('#circle_city_long').val(place.geometry.location.$a);
-        $('#circle_city_lat').val(place.geometry.location.Za);
+        $('#circle_city_name').val(city_name);
+        $('#circle_city_long').val(place.geometry.location.lng());
+        $('#circle_city_lat').val(place.geometry.location.lat());
       });
 
     $('#new_circle').submit(function() {
       $('#circle_city_name').val(city_name);
     });
+
+    $(document).ready(function() {
+      $(window).keydown(function(event){
+        if(event.keyCode == 13) {
+          event.preventDefault();
+          return false;
+        }
+      });
+    });    
+    
   </script>
 
 
