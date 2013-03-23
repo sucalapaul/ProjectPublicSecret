@@ -15,10 +15,10 @@ class GossipsController < ApplicationController
     # end
 
     # TODO: move handling facebook requests from here
-    Rails.logger.debug("dbg:1 #{params[:request_ids]}")
-    debugger
+    Rails.logger.debug("dbg:1 #{params[:request_ids]}, clasa: #{params[:request_ids].class}")
     if params[:request_ids]
-      rid = params[:request_ids].last
+      rid = params[:request_ids].split[","].last
+      Rails.logger.debug("dbg:1 #{rid}, clasa: #{rid.class}") 
       facebookRequest = FacebookRequest.where(rid: rid)
       redirect_to URI.join(SITE_URL, facebookRequest.url) and return
 

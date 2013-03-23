@@ -6,12 +6,12 @@ class CirclesController < ApplicationController
   # GET /circles
   # GET /circles.json
   def index
-    #@client_ip = request.remote_ip
+    @client_ip = request.remote_ip
     
     if params[:tag]
       @circles = Circle.tagged_with(params[:tag]).paginate(:page => params[:circle_page], :per_page => 10)
     else
-      @c = GeoIP.new('data/GeoLiteCity.dat').city('188.24.56.178') #iau orasul
+      @c = GeoIP.new('data/GeoLiteCity.dat').city(client_ip) #iau orasul
 
       if @c != nil
         #iau id-urile oraselor care corespund coordonatelor, doar daca am gasit ceva oras cu ip-ul dat
