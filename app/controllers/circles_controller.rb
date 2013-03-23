@@ -6,7 +6,7 @@ class CirclesController < ApplicationController
   # GET /circles
   # GET /circles.json
   def index
-    @client_ip = request.remote_ip
+    client_ip = request.remote_ip
     
     if params[:tag]
       @circles = Circle.tagged_with(params[:tag]).paginate(:page => params[:circle_page], :per_page => 10)
