@@ -12,7 +12,7 @@
 	</div>
 	<a class="profile-image"
 		
-			<%=  "style=\"background-image: url('http://graph.facebook.com/#{current_user.uid}/picture?type=large');\"".html_safe %>  >
+			<%=  "style=\"background-image: url('http://graph.facebook.com/#{user.uid}/picture?type=large');\"".html_safe %>  >
 				
 	</a>
 	<h2 class="user-name"> <%if current_user.id == user.id %><span> Hi, </span><%end%> <%= user.name %></h2>
