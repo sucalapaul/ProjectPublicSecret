@@ -59,6 +59,7 @@ class GossipsController < ApplicationController
     @og_type = "thegossip:rumor"
     @og_title = "a rumor"
     @og_url = File.join(SITE_URL, "gossips/#{@gossip.id}")
+    @og_description = @gossip.content
 
     respond_to do |format|
       format.html # show.html.erb

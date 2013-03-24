@@ -16,7 +16,19 @@
 					<img src="/assets/img_trans.gif"  class="pull-left sprite sprite-quote-open">
 					<p class="hidden-desktop" style="margin:0px;line-height:10px">&nbsp;</p><!--impinge textu de gossip -->
 					<p class="visible-desktop gossiper"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/"<<gossip.user.id.to_s())  %><span> in </span>  <%= link_to(gossip.circle.name, "/circles/"<<gossip.circle.id.to_s()) %> </p>
-					<a class="link-to-gossip" href="/gossips/<%= gossip.id %>"><p class="gossip-content"><%= gossip.content %></p></a>
+
+					<% if @current_action=="show"%>
+						<p class="gossip-content">
+							<%= gossip.content %>
+						</p>
+					<% else %>	
+						<a class="link-to-gossip" href="/gossips/<%= gossip.id %>">
+							<p class="gossip-content">
+								<%= gossip.content %>
+							</p>
+						</a>
+					<% end %>
+
 				<img src="/assets/img_trans.gif"  class="pull-right sprite sprite-quote-close">
 
 					<div class= "meta clearfix">
