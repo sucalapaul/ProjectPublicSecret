@@ -18,8 +18,10 @@
 
 <div id="map_canvas"></div>
 <div id="nearby_circles" class="clearfix nav-tab-page" style="margin-top:0;border-radius:0 5px 5px 5px">
+  <div class="top-bar" style="margin-top:0px; border-radius:0 5px 5px 5px">
     <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New Circle</a>
         <h3 style="margin-bottom:0;margin-top:4px">Circles Nearby</h3>
+      </div>
         <div id="initial_content">
           <%= will_paginate @circles, :param_name => 'circle_page' %>
         <% @circles.each do |circle| %>
@@ -43,9 +45,10 @@
 </div>
 
 <div id="my_circles" class="clearfix nav-tab-page" style="margin-top:0;border-radius:0 5px 5px 5px">
+  <div class="top-bar" style="margin-top:0px">
     <a href="<%= new_circle_path %>" class="pull-right btnx btnx-green"> <i class="icon-plus"></i> New Circle</a>
     <h3 style="margin-bottom:0;margin-top:4px">Circles you joined</h3>
-    
+    </div>
     <div id="mycircles_container">
     </div>
 
@@ -59,12 +62,14 @@
 </div>
 
 <form id="search_circles_form" class="nav-tab-page">
-  <div class="clearfix " style="margin-top:0;border-radius:0 5px 5px 5px">
+  <div class="clearfix" style="margin-top:0;border-radius:0 5px 5px 5px">
+    <div class="top-bar" style="margin-top:0px">
       <a href="<%= new_circle_path %>" class="hidden-phone hidden-tablet pull-right btnx btnx-green"> <i class="icon-plus"></i> New</a>
       
           <input type="text" id="search_city_box" placeholder="Search for a city" style="height:22px;"class="city-search">
           <a class="btnx btnx-blue pull-left" onclick="search_circle();">Search</a>
           <br /><br /><p id="error" style="display:none; margin:0px; color:red">Please type a city in the search box above.</p>
+        </div>
           <div id="search_container">
             <%= will_paginate @circles, :param_name => 'circle_search' %>
             <div id="circles_container">
@@ -129,6 +134,13 @@
   }
 
   $(document).ready(function() {
-          paginationInit();
+    paginationInit();
+    $(window).keydown(function(event){
+      if(event.keyCode == 13) {
+        event.preventDefault();
+        return false;
+      }
+    });
+
     });
 </script>

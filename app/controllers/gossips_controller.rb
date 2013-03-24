@@ -1,8 +1,8 @@
 class GossipsController < ApplicationController
 
-  before_filter :authenticate_user!, except: [:index] 
+  before_filter :authenticate_user!, except: [:index, :show] 
   
-  load_and_authorize_resource except: [:index] 
+  load_and_authorize_resource except: [:index, :show] 
   #skip_authorize_resource  :only => :index # asta-i cam hackish, da cred ca merge
                                           # ok... nu merge, un user nou, logat, pote intra pe index.
                                           # trebe scos redirectul spre weolcome de aci.

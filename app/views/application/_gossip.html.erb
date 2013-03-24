@@ -21,15 +21,20 @@
 
 					<div class= "meta clearfix">
 						<div class="gossip-like-btn" data-count="<%= gossip.like_count %>">
-							<%if current_user.already_likes?(gossip.id) %>
-								<a class="xxx like-it">Unlike</a>
+							<% if user_signed_in? %>
+								<%if current_user.already_likes?(gossip.id) %>
+									<a class="xxx like-it">Unlike</a>
+								<% else %>
+									<a class="xxx like-it">Like</a>
+								<%end%>
 							<% else %>
-								<a class="xxx like-it">Like</a>
-							<%end%>
+								<a href="/users/auth/facebook" class="xxx">Like</a>
+							<% end %>
 							<span class="sprite sprite-hearty hearty">&nbsp; </span>
 							<p class="value likes" style="margin-top:4px"> <%= gossip.like_count %> </p>
 						</div>
 						<div class="pull-right">
+						<% if user_signed_in? %>
 
 							<% v =  current_user.voted(gossip.id) %>
 							<div class="gossip-vote-btn xxx <%= add_vote_class(v, true) %>" data-value="true" data-count="<%= gossip.true_count %>" style="float:left;" >
@@ -40,6 +45,17 @@
 								<a class="sprite sprite-fake fake">&nbsp;</a>
 								<p class="value"><%= gossip.false_count %></p>
 							</div>
+
+							<% else %>
+								<div class="xxx" style="float:left;">
+									<a class="sprite sprite-true true"><i class="sprite sprite-true"></i> True </a>
+									<p class="value" style="margin-right:10px;"> <%= gossip.true_count %></p> 
+								</div>
+								<div class="xxx" style=" float:left;margin-left:10px;">
+									<a class="sprite sprite-fake fake">&nbsp;</a>
+									<p class="value"><%= gossip.false_count %></p>
+								</div>
+							<% end %>
 						</div>
 					</div>
 				</div>
@@ -75,8 +91,13 @@
 						<form id="post_comment_form">
 							<li class="your-comment clearfix">
 								<span class="avatar-mini">
-									<span style="background-image: url('http://graph.facebook.com/<%= current_user.uid %>/picture?type=small');">
-									</span>
+									<% if user_signed_in? %>
+										<span style="background-image: url('http://graph.facebook.com/<%= current_user.uid %>/picture?type=small');">
+										</span>
+									<% else %>
+										<span style="background-image: url('http://graph.facebook.com/me/picture?type=small');">
+										</span>
+									<% end %>
 								</span>
 								<textarea  type="textarea" id="comment_content" name="comment[content]" rows="1"> </textarea>
 								<a class="btnx btnx-blue post_comment_button pull-right" > Post </a>

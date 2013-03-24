@@ -3,9 +3,20 @@ class LikesController < ApplicationController
   # # GET /likes.json
   def index
     
+    params[:q] = params[:q].downcase
+
     @tags = ActsAsTaggableOn::Tag.where("name like ?", "%#{params[:q]}%")
     if @tags.empty?
       @tags = [{id: "#{params[:q]}", name: "New: \"#{params[:q]}\""}]
+    else
+      @tags_hack = []
+
+      @tags.each do |tag|
+        tag_hack = { id: tag.name, name: tag.name }
+        @tags_hack << tag_hack
+      end
+
+      @tags = @tags_hack
     end
     respond_to do |format|
       format.html
