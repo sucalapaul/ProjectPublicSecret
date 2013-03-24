@@ -56,6 +56,10 @@ class GossipsController < ApplicationController
     @gossip = Gossip.find(params[:id], :include => :comments)
     #@gossip.comments = Comment.where("gossip_id = ?", params[:id]).order("created_at desc").limit(3).reverse
 
+    @og_type = "thegossip:rumor"
+    @og_title = "a rumor"
+    @og_url = File.join(SITE_URL, "gossips/#{@gossip.id}")
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @gossip }

@@ -11,10 +11,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta property="fb:app_id" content="354917017937937" /> 
-  <meta property="og:type"   content="object" /> 
-  <meta property="og:url"    content="http://letsgossip.it/welcome" /> 
-  <meta property="og:title"  content="The Gossip" /> 
-  <meta property="og:description" content="The Gossip is an app that lets you share and explore rumors and news around you. It's anonymous and secret if you want to keep your privacy, but it's not intended to attack, insult or mislead other people." />
+  <meta property="og:type"   content="<%= @og_type.nil? ? "object" : @og_type %>" /> 
+  <meta property="og:url"    content="<%= @og_url.nil? ? "http://letsgossip.it/welcome" : @og_url %>" />
+  <meta property="og:title"  content="<%= @og_title.nil? ? "The gossip" : @og_title %>" /> 
+  <meta property="og:description" content="<%= @og_description.nil? ? "The Gossip is an app that lets you share and explore rumors and news around you. It's anonymous and secret if you want to keep your privacy, but it's not intended to attack, insult or mislead other people." : @og_description %>"  />
   <meta property="og:image"  content="http://profile.ak.fbcdn.net/hprofile-ak-ash3/c10.9.110.110/s100x100/579557_333826166728575_1479745533_s.png" />   
 
 
