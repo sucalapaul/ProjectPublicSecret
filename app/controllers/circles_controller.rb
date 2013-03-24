@@ -6,21 +6,43 @@ class CirclesController < ApplicationController
   # GET /circles
   # GET /circles.json
   def index
-    client_ip = request.remote_ip
+
+    min_tolerance = 0.1
+    max_tolerance = 2 # ~200km
+    tolerance = min_tolerance
     
     if params[:tag]
+      # search by tags
       @circles = Circle.tagged_with(params[:tag]).paginate(:page => params[:circle_page], :per_page => 10)
-    else
-      @c = GeoIP.new('data/GeoLiteCity.dat').city(client_ip) #iau orasul
-      flash.notice = client_ip
-      if @c != nil
-        #iau id-urile oraselor care corespund coordonatelor, doar daca am gasit ceva oras cu ip-ul dat
-        @city_id = City.find(:all, :select => 'id', :conditions => ["abs(latitude - ?) < 0.1 AND abs(longitude - ?) < 0.1", @c.latitude, @c.longitude] )
-      else
-        @city_id = 0 #altfel, ii dau orasului id=0, adica nu am gasit oras
-      end
 
-      @circles = Circle.where(:city_id => @city_id).paginate(:page => params[:circle_page], :per_page => 10)
+    else
+      # search by location
+      client_ip = request.remote_ip
+      @c = GeoIP.new('data/GeoLiteCity.dat').city(client_ip) #iau orasul
+      if @c != nil
+        # daca am gasit localitatea dupa IP
+        # caut cercuri in orase tot mai indepartate, pana gasesc vreun cerc sau pana depasesc o limita de distanta
+        while true do
+          @city_id = City.find(:all, :select => 'id', :conditions => ["abs(latitude - ?) < ? AND abs(longitude - ?) < ?", @c.latitude, tolerance, @c.longitude, tolerance] )
+          @circles = Circle.where(:city_id => @city_id).paginate(:page => params[:circle_page], :per_page => 10)
+
+          if @circles.count > 0 || tolerance > max_tolerance
+            break
+          end
+
+          tolerance = tolerance * 2
+        end
+      else
+        # altfel, ii dau orasului id=0, adica nu am gasit orasului
+        @city_id = 0 
+        @circles = Circle.where(:city_id => @city_id).paginate(:page => params[:circle_page], :per_page => 10)
+        @location_unknown = true
+      end
+    end
+
+    if (@location_unknown.nil? || !@location_unknown) && @circles.count == 0  
+      # known location, but no results
+      @no_circles = true
     end
 
     @hide_invite_button = true

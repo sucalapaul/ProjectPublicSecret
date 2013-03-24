@@ -25,11 +25,18 @@
         <% @circles.each do |circle| %>
             <%= render partial: "circle_header", locals: { circle: circle }, formats: [:html] %>
         <% end %>
-        <% if @circles.length == 0%>
+        <% if !@location_unknown.nil? && @location_unknown == true %>
           <!-- Cand nu ii vede locatie -->
            <p id="no-location" class="alert alert-error fade in">
             <button type="button" class="close" data-dismiss="alert">×</button>
             We are unable to determine your location at this point. Search for your city in the City tab. 
+           </p>
+        <% end %>
+        <% if !@no_circles.nil? && @no_circles == true %>
+          <!-- Cand nu is cercuri in apropiere -->
+           <p id="no-location" class="alert alert-error fade in">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            There are no circles close to you. You can create one and Start Gossiping!
            </p>
         <% end %>
       </div>
