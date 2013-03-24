@@ -17,7 +17,7 @@
 					<p class="hidden-desktop" style="margin:0px;line-height:10px">&nbsp;</p><!--impinge textu de gossip -->
 					<p class="visible-desktop gossiper"><%= gossip.private? ? gossip.user.nickname : link_to(gossip.user.name, "/users/"<<gossip.user.id.to_s())  %><span> in </span>  <%= link_to(gossip.circle.name, "/circles/"<<gossip.circle.id.to_s()) %> </p>
 
-					<% if @current_action=="show"%>
+					<% if @current_controller=="gossips" && @current_action=="show"%>
 						<p class="gossip-content">
 							<%= gossip.content %>
 						</p>
