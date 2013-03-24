@@ -9,6 +9,14 @@ class Ability
 
     if @user.roles.size == 0
       #can :read, :all #for guest without roles
+      can :read, Circle   
+      can :create, Circle
+
+      can :read, Comment
+      can :create, Comment
+
+      can :read, Gossip
+      can :create, Gossip
     end
     #
     # The first argument to `can` is the action you are giving the user 
@@ -32,11 +40,12 @@ class Ability
   end
 
   def new_user
+
   end
 
   def gossiper
     can :read, Circle   
-    # can :create, Circle
+    can :create, Circle
 
     can :read, Comment
     can :create, Comment
