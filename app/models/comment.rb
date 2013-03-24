@@ -5,5 +5,6 @@ class Comment < ActiveRecord::Base
   belongs_to :user
 
   validates :content, :length => { :minimum => 2 }
+  validates_presence_of :user_id
   
 end
