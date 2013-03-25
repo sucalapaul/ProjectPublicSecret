@@ -46,12 +46,16 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
     @comment.user = current_user
 
-    Gossip.update_counters(params[:comment][:gossip_id], comments_count: 1)
+    gossip_id = params[:comment][:gossip_id]
+    gossip_url = File.join(SITE_URL, "gossips/#{gossip_id}")
+
+    Gossip.update_counters(gossip_id, comments_count: 1)
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.json { render json: {
-              'html' => render_to_string( partial: "comment", locals: { comment: @comment, hidden: true }, formats: [:html])
+              'html' => render_to_string( partial: "comment", locals: { comment: @comment, hidden: true }, formats: [:html]),
+              'gossip_url' => gossip_url
           }, status: :created, location: @comment }
       else
         format.html { render action: "new" }

@@ -60,6 +60,7 @@ $(document).on("click", ".post_comment_button", function () {
 			$(form).find("input[type=text], textarea").val("");
 			$(form).closest(".gossip").find(".comment:last").after(data.html);
 			$(form).closest(".gossip").find(".comment:last").slideDown().find("abbr.timeago").timeago();
+			postCommentedRumor(data.gossip_url);
 		}, "json")
 		.error(function() {
 			showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
