@@ -60,7 +60,7 @@ $(document).on("click", ".post_comment_button", function () {
 			$(form).find("input[type=text], textarea").val("");
 			$(form).closest(".gossip").find(".comment:last").after(data.html);
 			$(form).closest(".gossip").find(".comment:last").slideDown().find("abbr.timeago").timeago();
-			if (data.private == false){
+			if (data.private==false){
 				postCommentedRumor(data.gossip_url);
 			}
 		}, "json")
