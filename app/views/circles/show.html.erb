@@ -5,6 +5,7 @@
   <% if !@post_created_circle.nil? && @post_created_circle == "true" %>
 	  $(document).bind('fbInit',function(){
 	  	postCreatedCircle("<%= File.join(SITE_URL, "circles/#{@circle.id}") %>");
+	  	sendRequestViaMultiFriendSelector("Join <%= @circle.name %>!");
 		});
   <% end %>
 
