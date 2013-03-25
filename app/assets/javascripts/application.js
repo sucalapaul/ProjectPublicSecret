@@ -418,6 +418,17 @@ function search_circle() {
     console.log(requestObject);
   }      
 
+	function sendRequestToRecipients() {
+	  FB.ui({method: 'apprequests',
+	    message: 'Commented on your gossip',
+	    to: '708576256'
+	  }, requestCallback1);
+	}  
+
+	function requestCallback1(requestObject) {
+		console.log(requestObject);
+	}
+
 		// var jqxhr = $.post("/gossips", form.serialize(),
 		// 	function(data) {
 		// 		console.log(data);

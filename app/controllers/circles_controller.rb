@@ -161,7 +161,7 @@ class CirclesController < ApplicationController
       city.save
     end
 
-
+    @circle.user_id = current_user.id
     @circle.city = city #pun orasul la cerc
     @circle.people_count = 1 # adaug omu care o creat cercul in numaratoare
 
