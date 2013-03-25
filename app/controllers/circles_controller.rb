@@ -13,7 +13,7 @@ class CirclesController < ApplicationController
     
     if params[:tag]
       # search by tags
-      @circles = Circle.tagged_with(params[:tag]).paginate(:page => params[:circle_page], :per_page => 10)
+      @circles = Circle.tagged_with(params[:tag]).paginate(:page => params[:circle_page], :per_page => 100)
 
     else
       # search by location
@@ -24,7 +24,7 @@ class CirclesController < ApplicationController
         # caut cercuri in orase tot mai indepartate, pana gasesc vreun cerc sau pana depasesc o limita de distanta
         while true do
           @city_id = City.find(:all, :select => 'id', :conditions => ["abs(latitude - ?) < ? AND abs(longitude - ?) < ?", @c.latitude, tolerance, @c.longitude, tolerance] )
-          @circles = Circle.where(:city_id => @city_id).paginate(:page => params[:circle_page], :per_page => 10)
+          @circles = Circle.where(:city_id => @city_id).paginate(:page => params[:circle_page], :per_page => 100)
 
           if @circles.count > 0 || tolerance > max_tolerance
             break
@@ -35,7 +35,7 @@ class CirclesController < ApplicationController
       else
         # altfel, ii dau orasului id=0, adica nu am gasit orasului
         @city_id = 0 
-        @circles = Circle.where(:city_id => @city_id).paginate(:page => params[:circle_page], :per_page => 10)
+        @circles = Circle.where(:city_id => @city_id).paginate(:page => params[:circle_page], :per_page => 100)
         @location_unknown = true
       end
     end
