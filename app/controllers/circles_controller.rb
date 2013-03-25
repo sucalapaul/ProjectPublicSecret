@@ -60,7 +60,7 @@ class CirclesController < ApplicationController
     #iau id-urile oraselor care corespund coordonatelor
     @city_id = City.find(:all, :select => 'id', :conditions => ["abs(latitude - ?) < 0.1 AND abs(longitude - ?) < 0.1", params[:city][:latitude], params[:city][:longitude]] )
 
-    @circles = Circle.where(:city_id => @city_id).includes(:city).paginate(:page => params[:circle_search], :per_page => 5)
+    @circles = Circle.where(:city_id => @city_id).includes(:city).paginate(:page => params[:circle_search], :per_page => 100)
     
     @circles.each do |circle|
       circle.joined = current_user.already_joined?(circle.id)
