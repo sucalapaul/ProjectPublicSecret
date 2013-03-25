@@ -91,13 +91,18 @@ class GossipsController < ApplicationController
     @gossip.user = current_user
 
     User.update_counters(current_user.id, gossip_count: 1) # cresc numarul de gossips la persoana
-    Circle.update_counters(@gossip.circle_id, gossip_count: 1) # cresc numarul de gossips la cerc
+    Circle.update_counters(@gossip.circle_id, gossip_count: 1) # cresc numarul de gossips la cercssssss
 
     respond_to do |format|
       if @gossip.save
+
+        gossip_url = File.join(SITE_URL, "gossips/#{@gossip.id}")
+
         format.html { redirect_to @gossip, notice: 'Gossip was successfully created.' }
         format.json { render json: {
-              'html' => render_to_string( partial: "gossip", locals: { gossip: @gossip, hidden: true, no_comments: true }, formats: [:html])
+              'html' => render_to_string( partial: "gossip", locals: { gossip: @gossip, hidden: true, no_comments: true }, formats: [:html]),
+              'private' => @gossip.private,
+              'gossip_url' => gossip_url
           }, status: :created, location: @gossip }
       else
         format.html { render action: "new" }

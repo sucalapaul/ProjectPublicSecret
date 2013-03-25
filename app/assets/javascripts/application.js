@@ -530,6 +530,9 @@ $(document).ready(function() {
 				$(".gossip-post:first").before(data.html);
 				$(".gossip-post:first").slideDown().find("abbr.timeago").timeago();
 
+				if (data.private==false){
+					postPostedRumor(data.gossip_url);
+				}
 			}, "json")
 			.error(function() {
 				showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
