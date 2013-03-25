@@ -55,7 +55,8 @@ class CommentsController < ApplicationController
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.json { render json: {
               'html' => render_to_string( partial: "comment", locals: { comment: @comment, hidden: true }, formats: [:html]),
-              'gossip_url' => gossip_url
+              'gossip_url' => gossip_url,
+              'private' => @comment.private
           }, status: :created, location: @comment }
       else
         format.html { render action: "new" }

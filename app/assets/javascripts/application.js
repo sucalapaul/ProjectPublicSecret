@@ -60,7 +60,9 @@ $(document).on("click", ".post_comment_button", function () {
 			$(form).find("input[type=text], textarea").val("");
 			$(form).closest(".gossip").find(".comment:last").after(data.html);
 			$(form).closest(".gossip").find(".comment:last").slideDown().find("abbr.timeago").timeago();
-			postCommentedRumor(data.gossip_url);
+			if (data.private == false){
+				postCommentedRumor(data.gossip_url);
+			}
 		}, "json")
 		.error(function() {
 			showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
@@ -83,21 +85,24 @@ $(document).on("click", ".join-circle-btn", function () {
 	var jqxhr = $.post("/circles/join", { "circle[circle_id]": circleId },
 		function(data) {
 			console.log(data);
-			if (data == 1) {
+			if (data.status == 1) {
+				// joined circle
 				$(self).html("<span class=\"joined\"><i class=\"icon-ok\"></i> Joined</span> <span class=\"leave\"><i class=\"icon-remove\"></i> Leave Circle </span>");
 				$(self).addClass("joined-circle");
 				$(self).removeClass("join-circle");
+				postJoinedCircle(data.circle_url);
 			} else {
+				//leaved circle
 				$(self).html("<i class=\"icon-plus\"></i> Join Circle");
 				$(self).removeClass("joined-circle");
 				$(self).addClass("join-circle");
-
 			}
 			if (from === "circles"){
-				peopleCount = peopleCount + data;
+				peopleCount = peopleCount + data.status;
 				$(self).parent().find('p').html(peopleCount);
 				$(self).data('count', peopleCount);
 			}
+
 
 		}, "json")
 		.error(function() {
@@ -373,6 +378,20 @@ function search_circle() {
 		    console.log(response);
 		  }
 		);
+	}
+
+	function postJoinedCircle(circle_url){
+		FB.api(
+		  'me/thegossip:join',
+		  'post',
+		  {
+		    circle: circle_url
+		  },
+		  function(response) {
+		    // handle the response
+		    console.log(response);
+		  }
+		);		
 	}
 
   function sendRequestViaMultiFriendSelector(message) {
