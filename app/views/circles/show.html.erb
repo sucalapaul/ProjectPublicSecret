@@ -2,6 +2,14 @@
 
 <script type="text/javascript">
   currentCircleId = <%= @circle.id %>;
+  <% if !@post_created_circle.nil? && @post_created_circle == "true" %>
+	  $(document).bind('fbInit',function(){
+	  	postCreatedCircle("<%= File.join(SITE_URL, "circles/#{@circle.id}") %>");
+		});
+  <% end %>
+
+
+
 </script>
 <% content_for :submenu_1 do %>
 

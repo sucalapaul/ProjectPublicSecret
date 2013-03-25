@@ -304,6 +304,62 @@ function search_circle() {
 		);
 	}
 
+	function postCreatedCircle(circle_url) {
+		FB.api(
+		  'me/thegossip:create',
+		  'post',
+		  {
+		    circle: circle_url
+		  },
+		  function(response) {
+		    // handle the response
+		    console.log(response);
+		  }
+		);
+	}
+
+	function postCommentedRumor(rumor_url){
+		FB.api(
+		  'me/thegossip:comment',
+		  'post',
+		  {
+		    rumor: rumor_url
+		  },
+		  function(response) {
+		    // handle the response
+		    console.log(response);
+		  }
+		);
+	}
+
+	// function postLikedRumor(rumor_url){
+	// 	FB.api(
+	// 	  'me/og.likes',
+	// 	  'post',
+	// 	  {
+	// 	    object: "http://samples.ogp.me/226075010839791"
+	// 	  },
+	// 	  function(response) {
+	// 	    // handle the response
+	// 	    console.log(response);
+	// 	  }
+	// 	);
+	// }
+
+	function postPostedRumor(rumor_url){
+		FB.api(
+		  'me/thegossip:post',
+		  'post',
+		  {
+		    rumor: rumor_url
+		  },
+		  function(response) {
+		    // handle the response
+		    console.log(response);
+		  }
+		);		
+	}	
+
 	function postActivityGossipUse(obj) {
 		FB.api(
 		  'me/thegossip:use',
@@ -316,7 +372,6 @@ function search_circle() {
 		    console.log(response);
 		  }
 		);
-
 	}
 
   function sendRequestViaMultiFriendSelector(message) {

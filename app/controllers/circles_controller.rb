@@ -119,6 +119,13 @@ class CirclesController < ApplicationController
       g.last_comments = Comment.where("gossip_id = ?", g.id).order("created_at desc").limit(COMMENTS_PER_GOSSIP).reverse
     end
 
+    @og_type = "thegossip:circle"
+    @og_title = "a circle"
+    @og_url = File.join(SITE_URL, "circles/#{@circle.id}")
+    @og_description = "#{@circle.name} \n #{@circle.description}"
+
+    @post_created_circle = params[:post_created]
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @circle }
@@ -160,9 +167,10 @@ class CirclesController < ApplicationController
 
     respond_to do |format|
       if @circle.save
+        @post_created_circle = false
         City.update_counters(city.id, circle_count: 1)   # cresc numarul de cercuri la oras
         User.update_counters(current_user.id, circle_count: 1) # cresc numarul de cercuri la persoana
-        format.html { redirect_to @circle, notice: 'Circle was successfully created.' }
+        format.html { redirect_to circle_path(@circle, post_created: "true") }
         format.json { render json: @circle, status: :created, location: @circle }
       else
         
