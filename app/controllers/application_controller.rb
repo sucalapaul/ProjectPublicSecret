@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     else
       redirect_to "/welcome"
     end
+  end
+
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    redirect_to "public/404.html"
 
   end
 

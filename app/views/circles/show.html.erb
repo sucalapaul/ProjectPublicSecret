@@ -14,8 +14,8 @@
 </script>
 <% content_for :submenu_1 do %>
 
-	<div class="clearfix people">
-	  <a href="#" style="font-size:12px;float:right"> View all </a>
+	<div class="clearfix">
+	  <!-- <a href="#" style="font-size:12px;float:right"> View all </a>
 	  <a href="#" onclick='sendRequestViaMultiFriendSelector("Join <%= @circle.name %>!"); return false;' style="font-size:12px;float:right"> Invite&nbsp;&nbsp; </a>
 	  <p> People in this Circle </p>
 	  
@@ -29,8 +29,10 @@
 	  <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
 	  <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
 	  <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>
-	  <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>          
+	  <img style="float:left;width:33px;height:33px;background:#ddd;margin:0 3px 3px 0"/>    -->       
+	  <a href="#"  onclick='sendRequestViaMultiFriendSelector("Join <%= @circle.name %>!"); return false;' class="pull-left btnx btnx-blue-x " style="margin-bottom:20px; width:210px" >Invite Friends in this Circle!</a>
 	</div>
+
 <% end %>
 
 <%= render partial: "circle_header", locals: { circle: @circle }, formats: [:html] %>
