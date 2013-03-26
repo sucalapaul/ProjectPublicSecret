@@ -19,7 +19,7 @@
 
 					<% if @current_controller=="gossips" && @current_action=="show"%>
 						<p class="gossip-content">
-							<%= gossip.content.linkify!.html_safe %>
+							<%= gossip.content %>
 						</p>
 					<% else %>	
 						<a class="link-to-gossip" href="/gossips/<%= gossip.id %>">
