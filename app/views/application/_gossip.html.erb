@@ -19,7 +19,7 @@
 
 					<% if @current_controller=="gossips" && @current_action=="show"%>
 						<p class="gossip-content">
-							<%= gossip.content %>
+							<%= gossip.content.linkify!.html_safe %>
 						</p>
 					<% else %>	
 						<a class="link-to-gossip" href="/gossips/<%= gossip.id %>">
@@ -104,7 +104,7 @@
 							<li class="your-comment clearfix">
 								<span class="avatar-mini">
 									<% if user_signed_in? %>
-										<span style="background-image: url('http://graph.facebook.com/<%= current_user.uid %>/picture?type=small');">
+										<span style="background-image: url('http://graph.facebook.com/<%= current_user.uid %>/picture?type=small'); display: none;">
 										</span>
 									<% else %>
 										<span style="background-image: url('http://graph.facebook.com/me/picture?type=small');">
@@ -113,8 +113,8 @@
 								</span>
 								<textarea  type="textarea" id="comment_content" name="comment[content]" rows="1"> </textarea>
 								<a class="btnx btnx-blue post_comment_button pull-right" > Post </a>
-								<a class="public toggle-privacy"> </a>
-								<input type="hidden" id="comment_private" name="comment[private]" value="0">
+								<a class="private toggle-privacy"> </a>
+								<input type="hidden" id="comment_private" name="comment[private]" value="1">
 					      <input id="comment_gossip_id" name="comment[gossip_id]" type="hidden" value="<%= gossip.id %>" />
 							</li>
 						</form>

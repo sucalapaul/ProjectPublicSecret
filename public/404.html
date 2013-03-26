@@ -1,26 +1,94 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>The page you were looking for doesn't exist (404)</title>
-  <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
-    }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-  </style>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>The Gossip - 404</title>
+    <link rel="stylesheet" href="./Pinterest - 404_files/error.css" type="text/css" media="all">
+    <style type="text/css">
+        body {
+            font-size: 24px;
+            color: #B7AEB4;
+            }
+
+        body a.link,
+        body h1,
+        body p {
+            -webkit-transition: opacity 0.5s ease-in-out;
+            -moz-transition: opacity 0.5s ease-in-out;
+            transition: opacity 0.5s ease-in-out;
+            }
+
+        #wrapper {
+            text-align: center;
+            margin: 100px auto;
+            width: 594px;
+            }
+
+        a.link {
+            text-shadow: 0px 1px 2px white;
+            font-weight: 600;
+            color: #cb2027;
+            opacity: 0;
+            }
+
+        h1 {
+            text-shadow: 0px 1px 2px white;
+            font-size: 24px;
+            opacity: 0;
+            }
+
+        img {
+            -webkit-transition: opacity 1s ease-in-out;
+            -moz-transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out;
+            height: 202px;
+            width: 199px;
+            opacity: 0;
+            }
+
+        p {
+            text-shadow: 0px 1px 2px white;
+            font-weight: normal;
+            font-weight: 200;
+            opacity: 0;
+            }
+
+        .fade {
+            opacity: 1;
+            }
+
+        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+            #wrapper {
+                margin: 40px auto;
+                text-align: center;
+                width: 280px;
+                }
+            }
+    </style>
+
+    <script src="./Pinterest - 404_files/jquery-1.6.2.min.js" type="text/javascript" charset="utf-8"></script><style type="text/css"></style>
+    <script type="text/javascript">
+      $('document').ready(function() {
+        if (!$.browser.msie) {
+          $('img').addClass('fade').delay(800).queue(function(next) {
+            $('h1, p').addClass('fade');
+            $('a.link').css('opacity', 1);
+            next();
+          });
+        } else {
+          $('img, h1, p').addClass('fade');
+          $('a.link').css('opacity', 1);
+        }
+      });
+    </script>
 </head>
 
-<body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
-  </div>
-</body>
-</html>
+<body style="zoom: 1;">
+    <div id="wrapper">
+        <a href="http://pinterest.com/"><img src="./Pinterest - 404_files/404_icon.png" class="fade"></a>
+        <div>
+            <h1 class="fade">Oops!</h1>
+            <p class="fade">The page you're looking for could not be found.</p>
+            <a class="link" href="http://pinterest.com/" onclick="history.go(-1)" style="opacity: 1;">Go back?</a>
+        </div>
+    </div>
+
+</body></html>

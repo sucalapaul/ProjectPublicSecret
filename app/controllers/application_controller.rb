@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from ActiveRecord::RecordNotFound do |exception|
-    redirect_to "public/404.html"
+    redirect_to "/404.html"
 
   end
 
