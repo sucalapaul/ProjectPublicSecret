@@ -16,3 +16,5 @@
 /others
 database.yml
 constants.rb
+
+.DS_Store

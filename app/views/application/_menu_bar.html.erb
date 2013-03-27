@@ -29,9 +29,28 @@
 
           <ul class="nav pull-right">
             <% if user_signed_in? %>
-<!--               <li class="visible-desktop dropdown">
-                <span class="badge badge-success">2</span>
+
+          <!--     <li>
+
+              <a href="#" id="notifications-btn">Popover on bottom</a>
+
+              <div id="notifications" class=" popover fade bottom in" style="top: 69px; left: 372.5px; display: block;">
+                <div class="arrow"></div><h3 class="popover-title">Popover on bottom</h3><div class="popover-content">Vivamus sagittis lacus vel augue laoreet rutrum faucibus.</div>
+              </div>
+
               </li> -->
+
+              <li>
+                <div class="notifications">
+                  <div class="new-message">
+                      <a href="#" target="_top"> 12</a>
+                  </div>
+                  <div class="messages">
+                      <a href="#" target="_top">Notifications</a>
+                  </div>
+                </div>
+              </li>
+
               <li class="visible-desktop dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> You <b class="caret"></b></a>
                 <ul class="dropdown-menu" style="margin-bottom:10px">
@@ -62,3 +81,17 @@
       </div>
     </div>
   </div>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#notifications-btn").popover({
+          placement:  "bottom",
+          title:    "",
+          trigger:"click",
+          html:"true",
+          content:function(){ 
+            return $("#notifications").html();
+          }
+        });
+    });
+  </script>
