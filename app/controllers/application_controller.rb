@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound do |exception|
     redirect_to "/404.html"
-
   end
 
   private
@@ -40,6 +39,13 @@ class ApplicationController < ActionController::Base
   		return current_user.circles
   	end
   	return nil
+  end
+
+  private
+  def refresh_notifications
+    if user_signed_in? 
+      @notifications = FacebookRequest.where(to_user_id: current_user.uid)
+    end
   end
 
 end

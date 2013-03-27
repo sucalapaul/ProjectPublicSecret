@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130323004550) do
+ActiveRecord::Schema.define(:version => 20130326215831) do
 
   create_table "admins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20130323004550) do
   end
 
   add_index "facebook_requests", ["rid"], :name => "index_facebook_requests_on_rid"
+  add_index "facebook_requests", ["to_user_id"], :name => "index_facebook_requests_on_to_user_id"
   add_index "facebook_requests", ["user_id"], :name => "index_facebook_requests_on_user_id"
 
   create_table "followers", :force => true do |t|
