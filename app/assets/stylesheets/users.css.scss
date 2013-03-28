@@ -113,6 +113,7 @@
 	padding: 0px 0px 0 20px;
 	border-right: 1px solid #EEE;
 }
+ .top-bar .stats li.stat:hover {	background-color:rgba(0,0,0,0.04);  }
 .top-bar .stats li.stat .value {
 	font-size: 2.2em;
 	font-family: "Museo-300", Helvetica Neue, Helvetica, Arial, sans-serif;

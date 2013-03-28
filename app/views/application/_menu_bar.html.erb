@@ -40,8 +40,8 @@
 
 
               </li> -->
-
-              <div id="notifications" class="popover fade bottom in" style="top: 69px; left: 372.5px; display: block;">
+              <%if false%>
+               <div id="notifications" class="popover fade bottom in" style="top: 69px; left: 372.5px; display: block;">
                <ul class="notifications-list">
                   <% current_user.notifications = ActiveSupport::JSON.decode current_user.notifications %>
                   <% current_user.notifications.each do |notification| %>
@@ -64,6 +64,7 @@
                   </div>
                 </div>
               </li>
+              <%end%>
 
               <li class="visible-desktop dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> You <b class="caret"></b></a>
