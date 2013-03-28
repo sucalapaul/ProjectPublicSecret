@@ -1,0 +1,33 @@
+<%= render partial: "circle_header", locals: { circle: @circle }, formats: [:html] %>
+
+
+
+<div class="top-bar clearfix">
+	<% if @circle.people_count >= MIN_PEOPLE_IN_CIRCLE %>
+		<ul class="ppl-in-circle">
+			<% @circle.users.each do |u| %>
+			<li>
+				<%if current_user.already_follows?(u.id) %>
+	     			<a style="margin-top:10px" class="pull-right follow-user-btn btnx btnx-green" data-id="<%= u.id %>">Unfollow</a>
+	      		<% else %>
+	     			<a style="margin-top:10px;" class="pull-right follow-user-btn btnx btnx-green" data-id="<%= u.id %>">Follow</a>
+	     		<%end%>
+				<span style="background-image: url('http://graph.facebook.com/<%=u.uid%>/picture?type=normal');">
+				</span>
+				<a href="/users/<%=u.id%>"><strong><%=u.name%></strong></a>
+				<p><strong> <%=u.circle_count %></strong> Circles &middot; <strong><%= u.follower_count %></strong> Followers </p>
+			</li>
+			<% end %>	
+		</ul>
+
+	<% else %>
+
+		<div class="top-bar" style="">
+	        <h3 style="text-align:center">You cannot view people in this circle!</h3>
+	        <p class="intro">You can only view who's in this circle if there are <span style="color:#eb0a4e">at least 30 people</span> joined.</p>
+	        <p class="intro">Click the <span style="color:#eb0a4e">invite button above</span> and invite your friends to join!</a></p>
+	    </div>
+
+    <% end %>
+
+</div>
