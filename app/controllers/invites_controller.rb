@@ -11,6 +11,8 @@ class InvitesController < ApplicationController
 		@friends_follow = []
 		@friends_invite = []
 
+		refresh_notifications
+
 		# Create two arrays of friends; one for those who already use the app, and those who doesn't
 		@friend_data.each do |friend| 
 			if friend["installed"]

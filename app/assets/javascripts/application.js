@@ -198,6 +198,20 @@ $(document).on("click", ".toggle-privacy", function () {
 
 });
 
+$(document).on("click", ".notification-item", function() {
+	var self = this;
+	var rid = $(self).data("rid");
+
+	var jqxhr = $.post("/notification_click", { "notification[rid]":rid },
+		function(data) {
+			window.location.href = data.url;
+		}, "json")
+	.error(function() {
+		showError("Something went wrong!" + "\nResponse: " + jqxhr.responseText + "\nStatus: " + jqxhr.statusText);
+	});
+
+});
+
 //Ajax for my circles
 function my_circles() {
 
@@ -436,12 +450,7 @@ function search_circle() {
 
 	function bindNotifications() {
 
-	$("ul.notifications-list > li").unbind()
-		.bind("click", function() {
-			var self = this;
 
-			var jqxhr = $.post("/notification_click", {} );
-		})
 
 	}
 
@@ -521,7 +530,7 @@ $(document).ready(function() {
 	// 	$('.nav-tab-page').addClass('hidden');
 	// 	$( '#' + $(this).data('id') ).removeClass('hidden');
 	// });
-
+	bindNotifications();
 	// toggle Private <-> Me
 	$(".toggle-radio input").each(function() {
 		var value = $(this).val();

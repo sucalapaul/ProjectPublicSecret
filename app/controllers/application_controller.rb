@@ -19,8 +19,9 @@ class ApplicationController < ActionController::Base
 
   def refresh_notifications
     if user_signed_in? 
-
       if current_user.notifications.nil? || current_user.notifications_expired?
+
+
 
         #update notifications for a user
         notifications = FacebookRequest.where(to_user_id: current_user.uid, click_date: nil).select([:rid, :user_id, :url, :type, :content, :invited_by_name])

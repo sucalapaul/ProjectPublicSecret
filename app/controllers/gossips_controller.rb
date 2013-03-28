@@ -12,8 +12,6 @@ class GossipsController < ApplicationController
   def index
     #redirect_to "/gossips/9" and return
 
-    refresh_notifications
-
     # TODO: move handling facebook requests from here
     Rails.logger.debug("dbg:1 #{params[:request_ids]}, clasa: #{params[:request_ids].class}")
     if params[:request_ids]
@@ -40,6 +38,8 @@ class GossipsController < ApplicationController
       redirect_to "/welcome" and return
     end
 
+    refresh_notifications
+
     @gossips = current_user.gossips_feed.order("created_at desc") .page(params[:page]).per_page(10)
     @gossips.each do |g|
       g.last_comments = Comment.where("gossip_id = ?", g.id).order("created_at desc").limit(COMMENTS_PER_GOSSIP).reverse
@@ -62,7 +62,8 @@ class GossipsController < ApplicationController
     @og_title = "a rumor"
     @og_url = File.join(SITE_URL, "gossips/#{@gossip.id}")
     @og_description = @gossip.content
-    
+  
+    refresh_notifications    
 
     respond_to do |format|
       format.html # show.html.erb
@@ -97,6 +98,14 @@ class GossipsController < ApplicationController
 
     respond_to do |format|
       if @gossip.save
+
+        ActiveRecord::Base.transaction do
+
+        end
+
+        cu = CircleUser.where(circle_id: @gossip.circle_id).select(:user_id)
+        User.where(:id => cu).update_all(notifications_expired: true)
+
 
         gossip_url = File.join(SITE_URL, "gossips/#{@gossip.id}")
 

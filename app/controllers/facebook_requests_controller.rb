@@ -16,7 +16,21 @@ class FacebookRequestsController < ApplicationController
 	end
 
   def notification_click
-        
+    rid = params[:notification][:rid]
+    notification = FacebookRequest.find_by_rid(rid)
+    notification.click_date = Time.now
+    notification.ref = "web_notif"
+    notification.save
+
+    current_user.notifications_expired = true
+    current_user.save
+
+    render json: { url: notification.url }
+  end
+
+
+  def notifications
+
   end
 
 

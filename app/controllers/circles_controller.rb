@@ -46,6 +46,7 @@ class CirclesController < ApplicationController
     end
 
     @hide_invite_button = true
+    refresh_notifications
 
     respond_to do |format|
       format.html # index.html.erb
