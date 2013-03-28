@@ -71,3 +71,23 @@ border:1px solid #fff;
 		width:auto;
 	}
 }
+
+/* People-in-a-circle List */
+ul.ppl-in-circle { margin:0;list-style:none}
+ul.ppl-in-circle li { border-bottom:1px solid #dbdbdb;padding:10px 0 }
+ul.ppl-in-circle li span {
+	position: relative;
+	float: left;
+	width: 50px;
+	height: 50px;
+	margin: 0 15px 0 0;
+	background: url(/assets/male-avatar.png) no-repeat;
+	background-position: center;
+	background-size: cover;
+	overflow: hidden;
+}
+
+
+.triangl-gossips {position:absolute;bottom:-19px; left:20px; width:20px;height:20px;background: url(/assets/triangle.png) no-repeat;}
+.triangl-ppl {position:absolute;bottom:-19px; left:130px; width:20px;height:20px;background: url(/assets/triangle.png) no-repeat;}
+/* People-in-a-circle List END */

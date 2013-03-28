@@ -40,40 +40,39 @@
 
 
               </li> -->
-              <%if false%>
-               <div id="notifications" class="popover fade bottom in" style="top: 69px; left: 372.5px; display: block;">
+
+              <div id="notifications" class="popover fade bottom in" style="top: 69px; left: 372.5px; display: block;">
                <ul class="notifications-list">
+<<<<<<< HEAD
+                <% current_user.notifications.each do |notification| %>
+				          <li><strong><%= notification["invited_by_name"] %></strong> invited you to join <strong><%= notification["content"] %></strong></li>
+                 <% end %>
+                <li><strong>MAria</strong> a comentat la gosipu tau</li>
+                <li><strong>cristache007</strong> a comentat la gosipu tau a comentat la gosipu tau in cercul <strong>Emanuil Gojdu</strong> </li>
+=======
                   <% current_user.notifications = ActiveSupport::JSON.decode current_user.notifications %>
                   <% current_user.notifications.each do |notification| %>
-  				          <li class="notification-item" data-rid="<%= notification["rid"] %>">
-                      <strong><%= notification["invited_by_name"] %></strong> 
-                      invited you to join 
-                      <strong><%= notification["content"] %></strong></li>
+  				          <li><strong><%= notification["invited_by_name"] %></strong> invited you to join <strong><%= notification["content"] %></strong></li>
                    <% end %>
-
-                  <% if current_user.notifications.count < 1 %>
-                    <li><strong>You don't have any new notifications right now!</strong></li>
-                  <% end %>
-                  
+                  <li><strong>MAria</strong> a comentat la gosipu tau</li>
+                  <li><strong>cristache007</strong> a comentat la gosipu tau a comentat la gosipu tau in cercul <strong>Emanuil Gojdu</strong> </li>
+>>>>>>> e746cb17b28ece866ef45f678cf7677bd9193f6b
                </ul>
-             <a href="/notifications"><div class="notifications-view-all">View all</div></a>
+             <a href="#"><div class="notifications-view-all">View all</div></a>
+                 <!--  <%= current_user.notifications %> -->
+               
               </div>
 
               <li>
                 <div class="notifications">
                   <div class="new-message">
-                      <% if current_user.notifications.count > 0 %>
-                        <a target="_top">
-                          <%= current_user.notifications.count %>
-                        </a>
-                      <% end %>
+                      <a target="_top"> 12</a>
                   </div>
                   <div id="notifications-btn" class="messages">
                       <a target="_top">Notifications</a>
                   </div>
                 </div>
               </li>
-              <%end%>
 
               <li class="visible-desktop dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> You <b class="caret"></b></a>

@@ -17,7 +17,9 @@ get "circles/search"
   resources :circle_users
   resources :users  
   resources :facebook_requests
-  #resources :invites     
+  #resources :invites  
+
+  get 'circles/:id/people' , to: 'circles#people'  
 
   root :to => 'gossips#index'
 

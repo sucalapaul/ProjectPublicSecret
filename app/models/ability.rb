@@ -11,6 +11,7 @@ class Ability
       #can :read, :all #for guest without roles
       can :read, Circle   
       can :create, Circle
+      can :people, Circle
 
       can :read, Comment
       can :create, Comment
@@ -46,6 +47,7 @@ class Ability
   def gossiper
     can :read, Circle   
     can :create, Circle
+    can :people, Circle
 
     can :read, Comment
     can :create, Comment
