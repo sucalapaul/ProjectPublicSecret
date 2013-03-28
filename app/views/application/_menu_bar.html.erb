@@ -45,7 +45,9 @@
                 <div class="arrow"></div>
                 <h3 class="popover-title">Popover on bottom</h3>
                 <div class="popover-content">
-                  <%= current_user.notifications %>
+                  <% current_user.notifications.each do |notification| %>
+                    <li><%= "#{notification["invited_by_name"]} invited you to join #{notification["content"]}" %></li>
+                  <% end %>
                 </div>
               </div>
 
