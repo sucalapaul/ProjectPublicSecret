@@ -35,6 +35,8 @@ get "circles/search"
   get "invites/accept"
   get "admin/", to: "admin#index"
 
+  match '/notifications' => 'facebook_requests#notifications'
+
   match '/terms' => 'home#terms'
   match '/welcome' => 'home#welcome'
   match '/contact' => 'home#contact'

@@ -44,8 +44,6 @@
               <div id="notifications" class="popover fade bottom in" style="top: 69px; left: 372.5px; display: block;">
                <ul class="notifications-list">
                 <% current_user.notifications.each do |notification| %>
-                    
-                 
 				          <li><strong><%= notification["invited_by_name"] %></strong> invited you to join <strong><%= notification["content"] %></strong></li>
                  <% end %>
                 <li><strong>MAria</strong> a comentat la gosipu tau</li>
