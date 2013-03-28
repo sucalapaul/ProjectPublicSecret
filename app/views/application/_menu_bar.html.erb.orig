@@ -42,18 +42,24 @@
               </li> -->
 
               <div id="notifications" class="popover fade bottom in" style="top: 69px; left: 372.5px; display: block;">
+<<<<<<< HEAD
+                <div class="arrow"></div>
+                <h3 class="popover-title">Popover on bottom</h3>
+                <div class="popover-content">
+                  <% current_user.notifications.each do |notification| %>
+                    <li><%= "#{notification["invited_by_name"]} invited you to join #{notification["content"]}" %></li>
+                  <% end %>
+                </div>
+=======
                <ul class="notifications-list">
-                <% current_user.notifications.each do |notification| %>
-                    
-                 
-				          <li><strong><%= notification["invited_by_name"] %></strong> invited you to join <strong><%= notification["content"] %></strong></li>
-                 <% end %>
+                <li><strong>Alex</strong> te-a chemat in cercul Numele Cerculuisaiaaiaiaifweiufhw eifuhweiufhwaiaiai</li>
                 <li><strong>MAria</strong> a comentat la gosipu tau</li>
                 <li><strong>cristache007</strong> a comentat la gosipu tau a comentat la gosipu tau in cercul <strong>Emanuil Gojdu</strong> </li>
                </ul>
              <a href="#"><div class="notifications-view-all">View all</div></a>
                  <!--  <%= current_user.notifications %> -->
                
+>>>>>>> 8296b6063794a3cb2084e51b7fb7a26306bae4d0
               </div>
 
               <li>
