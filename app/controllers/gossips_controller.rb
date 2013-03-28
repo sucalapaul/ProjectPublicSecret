@@ -99,12 +99,12 @@ class GossipsController < ApplicationController
     respond_to do |format|
       if @gossip.save
 
-        ActiveRecord::Base.transaction do
+        # ActiveRecord::Base.transaction do
 
-        end
+        # end
 
-        cu = CircleUser.where(circle_id: @gossip.circle_id).select(:user_id)
-        User.where(:id => cu).update_all(notifications_expired: true)
+        # cu = CircleUser.where(circle_id: @gossip.circle_id).select(:user_id)
+        # User.where(:id => cu).update_all(notifications_expired: true)
 
 
         gossip_url = File.join(SITE_URL, "gossips/#{@gossip.id}")
