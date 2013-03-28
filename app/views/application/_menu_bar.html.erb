@@ -43,15 +43,15 @@
 
               <div id="notifications" class="popover fade bottom in" style="top: 69px; left: 372.5px; display: block;">
                <ul class="notifications-list">
-                <% current_user.notifications.each do |notification| %>
-				          <li><strong><%= notification["invited_by_name"] %></strong> invited you to join <strong><%= notification["content"] %></strong></li>
-                 <% end %>
-                <li><strong>MAria</strong> a comentat la gosipu tau</li>
-                <li><strong>cristache007</strong> a comentat la gosipu tau a comentat la gosipu tau in cercul <strong>Emanuil Gojdu</strong> </li>
+                  <% current_user.notifications = ActiveSupport::JSON.decode current_user.notifications %>
+                  <% current_user.notifications.each do |notification| %>
+  				          <li><strong><%= notification["invited_by_name"] %></strong> invited you to join <strong><%= notification["content"] %></strong></li>
+                   <% end %>
+
+                  <li><strong>You don't have any new notifications right now!</strong></li>
+                  
                </ul>
-             <a href="#"><div class="notifications-view-all">View all</div></a>
-                 <!--  <%= current_user.notifications %> -->
-               
+             <a href="/notifications"><div class="notifications-view-all">View all</div></a>
               </div>
 
               <li>

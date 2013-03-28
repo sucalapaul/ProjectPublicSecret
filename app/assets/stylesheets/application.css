@@ -408,7 +408,7 @@ a.tag.bordered:hover {
 
 /*Notification Stuff*/
 
-ul.notifications-list { margin:0; list-style:none }
+ul.notifications-list,ul.notifications-list-pg { margin:0; list-style:none }
 ul.notifications-list li {
   cursor:pointer;
   padding:6px 8px;
@@ -416,12 +416,18 @@ ul.notifications-list li {
   font-size: 12px;
   line-height: 17px;
  }  
+ul.notifications-list-pg li{
+    cursor:pointer; padding:10px 5px 5px;border-bottom: 1px solid #dbdbdb;
+ }
+ul.notifications-list-pg li p{
+    margin-top:3px; margin-bottom:0; font-size:13px; color:#757575;
+ }
 
- ul.notifications-list li:last-child{
+ ul.notifications-list li:last-child, ul.notifications-list-pg li:last-child{
   border-bottom:none;
  } 
 
- ul.notifications-list li:hover {
+ ul.notifications-list li:hover,  ul.notifications-list-pg li:hover{
   background-color:rgba(0,0,0,0.02);
  }
 

@@ -56,7 +56,6 @@ class ApplicationController < ActionController::Base
         current_user.save
       end
 
-      current_user.notifications = ActiveSupport::JSON.decode current_user.notifications
     end
   end
 

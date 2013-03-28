@@ -28,6 +28,7 @@ get "circles/search"
   post 'verify/nickname', to: 'users#valid_nickname'
   post 'requestinvite/', to: 'users#request_invite'
   post '/invites/accepted', to: 'invites#accepted'
+  post '/notification_click', to: 'facebook_requests#notification_click'
 
   get "home/contact"
   get "home/terms"
