@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326215831) do
+ActiveRecord::Schema.define(:version => 20130327161354) do
 
   create_table "admins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -74,6 +74,9 @@ ActiveRecord::Schema.define(:version => 20130326215831) do
     t.string   "ref"
     t.string   "app_request_type"
     t.datetime "click_date"
+    t.integer  "type"
+    t.string   "content"
+    t.string   "invited_by_name"
   end
 
   add_index "facebook_requests", ["rid"], :name => "index_facebook_requests_on_rid"
@@ -166,35 +169,38 @@ ActiveRecord::Schema.define(:version => 20130326215831) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                :default => "", :null => false
-    t.string   "encrypted_password",                   :default => ""
+    t.string   "email",                                  :default => "", :null => false
+    t.string   "encrypted_password",                     :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                        :default => 0
+    t.integer  "sign_in_count",                          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
+    t.datetime "created_at",                                             :null => false
+    t.datetime "updated_at",                                             :null => false
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.integer  "follower_count",                       :default => 0
-    t.integer  "following_count",                      :default => 0
-    t.integer  "gossip_count",                         :default => 0
-    t.integer  "circle_count",                         :default => 0
+    t.integer  "follower_count",                         :default => 0
+    t.integer  "following_count",                        :default => 0
+    t.integer  "gossip_count",                           :default => 0
+    t.integer  "circle_count",                           :default => 0
     t.string   "nickname"
-    t.string   "invitation_token",       :limit => 60
+    t.string   "invitation_token",         :limit => 60
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
-    t.integer  "roles_mask",                           :default => 0
+    t.integer  "roles_mask",                             :default => 0
+    t.text     "notifications"
+    t.boolean  "notifications_expired"
+    t.datetime "notifications_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -12,6 +12,8 @@ class GossipsController < ApplicationController
   def index
     #redirect_to "/gossips/9" and return
 
+    refresh_notifications
+
     # TODO: move handling facebook requests from here
     Rails.logger.debug("dbg:1 #{params[:request_ids]}, clasa: #{params[:request_ids].class}")
     if params[:request_ids]

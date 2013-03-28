@@ -17,6 +17,54 @@ class ApplicationController < ActionController::Base
     redirect_to "/404.html"
   end
 
+  def refresh_notifications
+    if user_signed_in? 
+
+      if current_user.notifications.nil? || current_user.notifications_expired?
+
+        #update notifications for a user
+        notifications = FacebookRequest.where(to_user_id: current_user.uid, click_date: nil).select([:rid, :user_id, :url, :type, :content, :invited_by_name])
+        
+        Rails.logger.debug("dbg:1 #{notifications.to_yaml}\n-----------------------------------------------------------------------------\n\n\n")
+        
+        notifications.each do |notification|
+
+          Rails.logger.debug("dbg:2 #{notification.to_yaml}\n-----------------------------------------------------------------------------\n\n\n")
+
+          #update properties for notifications generated through facebook
+          if notification.type.nil?
+            notification.type = 1
+          end
+
+          if notification.content.nil?
+            url = notification.url.split("/")
+            if ! url[2]
+              case notification.type
+                when 1  #invite to circle
+                  notification.content = Circle.select(:name).find(url[2]).name
+              end
+            end
+          end
+
+          if notification.invited_by_name.nil? && !notification.user_id.nil?
+            notification.invited_by_name =  User.select(:name).find(notification.user_id).name
+          end
+
+          notification.save
+          Rails.logger.debug("dbg:2 #{notification.to_yaml}\n-----------------------------------------------------------------------------\n\n\n")
+        end #update notifications for a user
+
+        Rails.logger.debug("dbg:1 #{notifications.to_yaml}\n-----------------------------------------------------------------------------\n\n\n")
+
+        current_user.notifications = notifications.to_json
+        current_user.notifications_updated_at = Time.now
+        current_user.notifications_expired = false
+        current_user.save
+      end
+
+    end
+  end
+
   private
   #this gives access in views to the current controller and action, so that you can display partial with conditions
   before_filter :instantiate_controller_and_action_names
@@ -41,11 +89,5 @@ class ApplicationController < ActionController::Base
   	return nil
   end
 
-  private
-  def refresh_notifications
-    if user_signed_in? 
-      @notifications = FacebookRequest.where(to_user_id: current_user.uid)
-    end
-  end
 
 end
