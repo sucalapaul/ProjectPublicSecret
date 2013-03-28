@@ -42,11 +42,14 @@
               </li> -->
 
               <div id="notifications" class="popover fade bottom in" style="top: 69px; left: 372.5px; display: block;">
-                <div class="arrow"></div>
-                <h3 class="popover-title">Popover on bottom</h3>
-                <div class="popover-content">
-                  <%= current_user.notifications %>
-                </div>
+               <ul class="notifications-list">
+                <li><strong>Alex</strong> te-a chemat in cercul Numele Cerculuisaiaaiaiaifweiufhw eifuhweiufhwaiaiai</li>
+                <li><strong>MAria</strong> a comentat la gosipu tau</li>
+                <li><strong>cristache007</strong> a comentat la gosipu tau a comentat la gosipu tau in cercul <strong>Emanuil Gojdu</strong> </li>
+               </ul>
+             <a href="#"><div class="notifications-view-all">View all</div></a>
+                 <!--  <%= current_user.notifications %> -->
+               
               </div>
 
               <li>
@@ -95,7 +98,7 @@
     $(document).ready(function() {
       $("#notifications-btn").popover({
           placement:  "bottom",
-          title:    "",
+          title:    "Notifications",
           trigger:"click",
           html:"true",
           content:function(){ 
