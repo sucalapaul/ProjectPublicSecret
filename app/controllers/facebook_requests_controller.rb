@@ -15,6 +15,10 @@ class FacebookRequestsController < ApplicationController
 
 	end
 
+  def notification_click
+        
+  end
+
 
 end
 
